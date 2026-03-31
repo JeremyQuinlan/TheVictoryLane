@@ -5,7 +5,10 @@ Polls Yahoo Mail via IMAP for newsletters from Vital Knowledge,
 summarizes them with Claude in Adam's voice, saves a styled HTML
 digest, and commits it to GitHub Pages for sharing.
 
-Generates a styled index page listing all past digests.
+Features:
+- Styled index page listing all past digests
+- 10-second skip forward/back buttons
+- Desktop push notifications when new digest is published
 
 Folder: C:\\Tools\\VitalRecap\\
 Setup:
@@ -100,7 +103,6 @@ Important rules:
 
 
 def get_category_tag(subject):
-    """Determine category tag from email subject."""
     s = subject.lower()
     if "dawn" in s or "morning" in s:
         return "MORNING"
@@ -265,8 +267,6 @@ def summarize_with_claude(body, api_key):
 
 
 def get_preview(digest_text):
-    """Extract first meaningful sentence for index card preview."""
-    # Strip markdown headers and get first real paragraph
     lines = [l.strip() for l in digest_text.split("\n") if l.strip() and not l.startswith("#")]
     if lines:
         preview = lines[0][:140]
@@ -319,6 +319,10 @@ def build_html(digest_text, subject, email_date, tts_rate):
     tag = get_category_tag(subject)
     bg, fg = get_tag_color(tag)
 
+    # Chars per second at rate 1.0 — used for 10-sec skip estimation
+    # Average speaking rate ~150 wpm, ~5 chars/word = ~750 chars/min = ~12.5 chars/sec
+    chars_per_10sec = int(125 * tts_rate)
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -350,7 +354,7 @@ def build_html(digest_text, subject, email_date, tts_rate):
     letter-spacing: 0.05em;
   }}
   .back-link:hover {{ color: #c9b97a; }}
-  .vk-logo {{
+  .site-name {{
     font-size: 12px;
     color: #333;
     font-family: 'Courier New', monospace;
@@ -406,35 +410,46 @@ def build_html(digest_text, subject, email_date, tts_rate):
     bottom: 0; left: 0; right: 0;
     background: #111;
     border-top: 1px solid #222;
-    padding: 12px 24px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
     font-family: 'Courier New', monospace;
-    font-size: 13px;
+    font-size: 12px;
   }}
   #tts-bar button {{
     background: #1a1a1a;
     border: 1px solid #333;
     color: #e8e4d9;
-    padding: 6px 16px;
+    padding: 5px 12px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     border-radius: 3px;
     font-family: 'Courier New', monospace;
     transition: background 0.15s;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
   }}
   #tts-bar button:hover {{ background: #2a2a2a; }}
   #tts-bar button.active {{ background: #3d3820; border-color: #c9b97a; color: #c9b97a; }}
-  #tts-status {{ color: #555; flex: 1; font-size: 12px; }}
+  #tts-bar button.skip {{ color: #888; font-size: 11px; }}
+  #tts-bar button.skip:hover {{ color: #e8e4d9; background: #2a2a2a; }}
+  #tts-status {{ color: #555; flex: 1; font-size: 11px; margin-left: 4px; }}
+  .notify-btn {{
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+    font-size: 10px !important;
+  }}
+  .notify-btn.enabled {{ color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }}
 </style>
 </head>
 <body>
 
 <div class="top-bar">
   <a class="back-link" href="index.html">&#8592; All Digests</a>
-  <span class="vk-logo">VITAL KNOWLEDGE</span>
+  <span class="site-name">MARKET DIGEST</span>
 </div>
 
 <header>
@@ -448,14 +463,18 @@ def build_html(digest_text, subject, email_date, tts_rate):
 
 <div id="tts-bar">
   <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
-  <button id="btn-stop" onclick="stopReading()">&#9632; Stop</button>
-  <button id="btn-replay" onclick="replayReading()">&#8635; Replay</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
   <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">&#128276; Notify me</button>
 </div>
 
 <script>
   const digestText = "{tts_text_escaped}";
   const rate = {tts_rate};
+  const CHARS_PER_10S = {chars_per_10sec};
   let charIndex = 0;
   let isPaused = false;
   let utterance = null;
@@ -480,6 +499,7 @@ def build_html(digest_text, subject, email_date, tts_rate):
 
   function speakFrom(startChar) {{
     window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
     const text = startChar > 0 ? digestText.slice(startChar) : digestText;
     utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = rate;
@@ -506,10 +526,106 @@ def build_html(digest_text, subject, email_date, tts_rate):
     else {{ charIndex = 0; isPaused = false; speakFrom(0); }}
   }}
 
-  function stopReading() {{ isPaused = false; charIndex = 0; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Stopped \u2014 press Replay to start over"); }}
-  function replayReading() {{ isPaused = false; charIndex = 0; window.speechSynthesis.cancel(); setStatus("Restarting..."); setTimeout(() => speakFrom(0), 300); }}
+  function skipForward() {{
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) {{ isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }}
+    else {{ setStatus("Skipped forward \u2014 press Play to resume from here"); }}
+  }}
 
-  window.addEventListener("load", () => {{ setTimeout(() => speakFrom(0), 1800); }});
+  function skipBack() {{
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) {{ isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }}
+    else {{ setStatus("Skipped back \u2014 press Play to resume from here"); }}
+  }}
+
+  function stopReading() {{
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }}
+
+  function replayReading() {{
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }}
+
+  // ── Push Notifications ──────────────────────────────
+  function updateNotifyBtn() {{
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {{
+      btn.textContent = "\u{1F514} Notifications on";
+      btn.classList.add("enabled");
+    }} else if (Notification.permission === "denied") {{
+      btn.textContent = "\u{1F515} Blocked";
+    }} else {{
+      btn.textContent = "\u{1F514} Notify me";
+      btn.classList.remove("enabled");
+    }}
+  }}
+
+  function requestNotifications() {{
+    if (!("Notification" in window)) {{
+      setStatus("Notifications not supported in this browser");
+      return;
+    }}
+    if (Notification.permission === "granted") {{
+      setStatus("Notifications already enabled!");
+      return;
+    }}
+    Notification.requestPermission().then(permission => {{
+      updateNotifyBtn();
+      if (permission === "granted") {{
+        setStatus("Notifications enabled \u2014 you'll be alerted when new digests arrive");
+        new Notification("Market Digest", {{
+          body: "You'll now get notified when new digests are published.",
+          icon: ""
+        }});
+      }} else {{
+        setStatus("Notifications blocked \u2014 enable in browser settings to receive alerts");
+      }}
+    }});
+  }}
+
+  // Check for new digests every 5 minutes and notify
+  function checkForNewDigest() {{
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {{
+        if (data && data.length > 0) {{
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {{
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (Notification.permission === "granted" && lastSeen !== null) {{
+              const n = new Notification("New Market Digest", {{
+                body: latest.subject + " \u00b7 " + latest.email_date,
+                icon: ""
+              }});
+              n.onclick = () => {{ window.open(latest.filename); }};
+            }}
+          }}
+        }}
+      }})
+      .catch(() => {{}});
+  }}
+
+  window.addEventListener("load", () => {{
+    updateNotifyBtn();
+    // Store current digest as seen
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    // Start polling for new digests
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 5 * 60 * 1000);
+    // Auto-start TTS
+    setTimeout(() => speakFrom(0), 1800);
+  }});
 </script>
 
 </body>
@@ -517,7 +633,7 @@ def build_html(digest_text, subject, email_date, tts_rate):
 
 
 def build_index_html(digests):
-    """Build VK-inspired index page. digests = list of dicts newest first."""
+    """Build styled index page."""
     cards = ""
     for i, entry in enumerate(digests):
         tag = get_category_tag(entry["subject"])
@@ -539,7 +655,7 @@ def build_index_html(digests):
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Vital Knowledge Digests</title>
+<title>Market Digests</title>
 <style>
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{
@@ -581,7 +697,7 @@ def build_index_html(digests):
   }}
   .card:hover {{ padding-left: 8px; }}
   .card:hover .card-title {{ color: #c9b97a; }}
-  .card:first-of-type {{ border-top: 1px solid #141414; }}
+  .card:first-of-type {{ border-top: 1px solid #141414; margin-top: 8px; }}
   .card-tag {{
     display: inline-block;
     font-size: 10px;
@@ -616,7 +732,7 @@ def build_index_html(digests):
 <body>
 
 <div class="site-header">
-  <div class="site-title">VITAL KNOWLEDGE · DIGESTS</div>
+  <div class="site-title">MARKET DIGEST</div>
   <div class="site-updated">Updated {updated}</div>
 </div>
 
@@ -636,7 +752,6 @@ def save_html_local(html, output_path):
 def save_html_github(html, subject):
     os.makedirs("docs", exist_ok=True)
     slug = re.sub(r"[^a-z0-9]+", "-", subject.lower()).strip("-")
-    # Truncate slug if too long
     slug = slug[:80]
     filename = f"{slug}.html"
     filepath = f"docs/{filename}"
@@ -647,7 +762,6 @@ def save_html_github(html, subject):
 
 
 def update_index(new_entries):
-    """Load existing digest metadata, add new entries, rebuild index."""
     meta_path = "docs/digests.json"
     existing = []
 
@@ -665,7 +779,6 @@ def update_index(new_entries):
                 "preview": preview
             })
 
-    # Sort newest first
     existing.sort(key=lambda x: x["filename"], reverse=True)
 
     with open(meta_path, "w", encoding="utf-8") as f:

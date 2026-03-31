@@ -1,19 +1,19 @@
 """
-Vital Knowledge Newsletter → Discord Digest + Edge/Guy Readout
----------------------------------------------------------------
+Vital Knowledge Newsletter → Edge/Guy Readout + GitHub Pages
+-------------------------------------------------------------
 Polls Yahoo Mail via IMAP for newsletters from Vital Knowledge,
 summarizes them with Claude in Adam's voice, saves a styled HTML
-digest, launches Edge to read it aloud via Guy, and posts to Discord
-with the HTML file attached.
+digest, and commits it to GitHub Pages for sharing.
 
-Processes ALL unprocessed emails from the last N hours in one run.
+When running in GitHub Actions, credentials are read from environment
+variables. When running locally, falls back to the CONFIG block below.
 
-Folder: C:\\Tools\\VitalRecaps\\
+Folder: C:\\Tools\\VitalRecap\\
 Setup:
   pip install anthropic requests
-  Then configure the CONFIG block below.
+  Then configure the CONFIG block below for local use.
 
-TO RUN:
+TO RUN LOCALLY:
   python vital_knowledge_digest.py
 """
 
@@ -34,34 +34,23 @@ from zoneinfo import ZoneInfo
 EASTERN = ZoneInfo("America/New_York")
 
 # ─────────────────────────────────────────────
-# CONFIG — fill these in before running
+# CONFIG — used for local runs
+# Credentials are read from environment variables
+# when running in GitHub Actions
 # ─────────────────────────────────────────────
 CONFIG = {
-    # Yahoo Mail credentials
-    "yahoo_email":        "jeremyquinlan@yahoo.com",
-    "yahoo_app_password": "mnvpshecwpfckeeh",
-
-    # Sender filter — partial match on From address
+    "yahoo_email":        os.environ.get("YAHOO_EMAIL",        "YOUR_EMAIL@yahoo.com"),
+    "yahoo_app_password": os.environ.get("YAHOO_APP_PASSWORD", "YOUR_APP_PASSWORD"),
+    "anthropic_api_key":  os.environ.get("ANTHROPIC_API_KEY",  "YOUR_ANTHROPIC_API_KEY"),
+    "discord_webhook_url": os.environ.get("DISCORD_WEBHOOK_URL", ""),
     "sender_filter":      "vitalknowledge",
-
-    # Anthropic API key
-    "anthropic_api_key":  "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",
-
-    # Discord webhook URL
-    "discord_webhook_url": "YOUR_DISCORD_WEBHOOK_URL",
-
-    # How far back to look for emails (hours)
-    "lookback_hours": 6,
-
-    # Output paths
-    "html_output":  r"C:\Tools\VitalRecaps\digest.html",
-    "state_file":   r"C:\Tools\VitalRecaps\processed_ids.json",
-
-    # Edge browser executable
-    "edge_exe": r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-
-    # TTS reading speed (0.1 slow – 2.0 fast, 1.0 = normal)
-    "tts_rate": 1.0,
+    "lookback_hours":     5,
+    "html_output":        r"C:\Tools\VitalRecap\digest.html",
+    "state_file":         r"C:\Tools\VitalRecap\processed_ids.json",
+    "edge_exe":           r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    "tts_rate":           1.0,
+    # GitHub Actions mode — set automatically, don't change
+    "github_actions":     os.environ.get("GITHUB_ACTIONS", "false").lower() == "true",
 }
 # ─────────────────────────────────────────────
 
@@ -164,7 +153,6 @@ def get_email_date(msg):
     date_str = msg.get("Date", "")
     try:
         dt = parsedate_to_datetime(date_str)
-        # Convert to Eastern time regardless of what tz the header is in
         dt_eastern = dt.astimezone(EASTERN)
         return dt_eastern.strftime("%A %B %d, %Y · %I:%M %p ET")
     except Exception:
@@ -183,25 +171,42 @@ def get_email_sent_utc(msg):
         return datetime.now(timezone.utc)
 
 
+def load_processed_ids_github():
+    """Load processed IDs from processed_ids.json in repo root when in GitHub Actions."""
+    path = "processed_ids.json"
+    if os.path.exists(path):
+        with open(path) as f:
+            return set(json.load(f))
+    return set()
+
+
+def save_processed_ids_github(ids):
+    """Save processed IDs to repo root for GitHub Actions."""
+    with open("processed_ids.json", "w") as f:
+        json.dump(list(ids), f)
+
+
 def fetch_new_emails(config):
     """Fetch all unprocessed Vital Knowledge emails within lookback window."""
     mail = imaplib.IMAP4_SSL("imap.mail.yahoo.com", 993)
     mail.login(config["yahoo_email"], config["yahoo_app_password"])
     mail.select("inbox")
 
-    # IMAP SINCE is date-only so we cast a wider net and filter precisely below
     since_date = (datetime.utcnow() - timedelta(hours=config["lookback_hours"] + 24)).strftime("%d-%b-%Y")
     status, data = mail.search(None, f'(SINCE "{since_date}")')
 
     uids = data[0].split()
     results = []
-    processed = load_processed_ids(config["state_file"])
+
+    if config["github_actions"]:
+        processed = load_processed_ids_github()
+    else:
+        processed = load_processed_ids(config["state_file"])
+
     cutoff = datetime.now(timezone.utc) - timedelta(hours=config["lookback_hours"])
 
     for uid in uids:
         uid_str = uid.decode()
-
-        # Skip already processed
         if uid_str in processed:
             print(f"  Skipping already processed UID {uid_str}")
             continue
@@ -210,12 +215,10 @@ def fetch_new_emails(config):
         raw = msg_data[0][1]
         msg = email.message_from_bytes(raw)
 
-        # Filter by sender
         from_addr = decode_str(msg.get("From", ""))
         if config["sender_filter"].lower() not in from_addr.lower():
             continue
 
-        # Filter by actual sent time — must be within lookback window
         sent_utc = get_email_sent_utc(msg)
         if sent_utc < cutoff:
             print(f"  Skipping old email (sent {sent_utc.strftime('%Y-%m-%d %H:%M UTC')})")
@@ -231,8 +234,6 @@ def fetch_new_emails(config):
             print(f"  Found: {clean_subject} ({email_date})")
 
     mail.logout()
-
-    # Sort oldest to newest so they play in chronological order
     results.sort(key=lambda x: x[4])
     return results, processed
 
@@ -248,7 +249,6 @@ def summarize_with_claude(body, api_key):
 
 
 def markdown_to_html_body(text):
-    """Convert simple markdown digest to styled HTML paragraphs."""
     lines = text.split("\n")
     html_parts = []
     for line in lines:
@@ -266,7 +266,6 @@ def markdown_to_html_body(text):
 
 
 def prepare_tts_text(html_body):
-    """Strip HTML and expand abbreviations for clean TTS reading."""
     text = re.sub(r"<[^>]+>", " ", html_body)
     text = re.sub(r"\s+", " ", text).strip()
     text = re.sub(r"\bbp\b", "basis points", text)
@@ -281,8 +280,7 @@ def prepare_tts_text(html_body):
     return text
 
 
-def save_html_digest(digest_text, subject, email_date, output_path, tts_rate):
-    """Save styled HTML file with embedded Guy auto-readout."""
+def build_html(digest_text, subject, email_date, tts_rate):
     body_html = markdown_to_html_body(digest_text)
     tts_text = prepare_tts_text(body_html)
     tts_text_escaped = (tts_text
@@ -291,7 +289,7 @@ def save_html_digest(digest_text, subject, email_date, output_path, tts_rate):
         .replace("\n", " ")
         .replace("`", "'"))
 
-    html = f"""<!DOCTYPE html>
+    return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -400,7 +398,6 @@ def save_html_digest(digest_text, subject, email_date, output_path, tts_rate):
 <script>
   const digestText = "{tts_text_escaped}";
   const rate = {tts_rate};
-
   let charIndex = 0;
   let isPaused = false;
   let utterance = null;
@@ -415,19 +412,12 @@ def save_html_digest(digest_text, subject, email_date, output_path, tts_rate):
     );
   }}
 
-  function setStatus(msg) {{
-    document.getElementById("tts-status").textContent = msg;
-  }}
+  function setStatus(msg) {{ document.getElementById("tts-status").textContent = msg; }}
 
   function setPlayBtn(playing) {{
     const btn = document.getElementById("btn-play");
-    if (playing) {{
-      btn.innerHTML = "&#9646;&#9646; Pause";
-      btn.classList.add("active");
-    }} else {{
-      btn.innerHTML = "&#9654; Play";
-      btn.classList.remove("active");
-    }}
+    if (playing) {{ btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }}
+    else {{ btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }}
   }}
 
   function speakFrom(startChar) {{
@@ -437,22 +427,10 @@ def save_html_digest(digest_text, subject, email_date, output_path, tts_rate):
     utterance.rate = rate;
     utterance.pitch = 1.0;
     utterance.volume = 1.0;
-
-    utterance.onboundary = (e) => {{
-      if (e.name === "word") {{
-        charIndex = startChar + e.charIndex;
-      }}
-    }};
-
+    utterance.onboundary = (e) => {{ if (e.name === "word") charIndex = startChar + e.charIndex; }};
     utterance.onend = () => {{
-      if (!isPaused) {{
-        charIndex = 0;
-        isPaused = false;
-        setPlayBtn(false);
-        setStatus("Done \u2014 press Replay to listen again");
-      }}
+      if (!isPaused) {{ charIndex = 0; isPaused = false; setPlayBtn(false); setStatus("Done \u2014 press Replay to listen again"); }}
     }};
-
     const doSpeak = () => {{
       const voice = getVoice();
       if (voice) utterance.voice = voice;
@@ -460,64 +438,50 @@ def save_html_digest(digest_text, subject, email_date, output_path, tts_rate):
       setPlayBtn(true);
       window.speechSynthesis.speak(utterance);
     }};
-
     const voices = window.speechSynthesis.getVoices();
-    if (voices.length === 0) {{
-      window.speechSynthesis.onvoiceschanged = doSpeak;
-    }} else {{
-      doSpeak();
-    }}
+    if (voices.length === 0) {{ window.speechSynthesis.onvoiceschanged = doSpeak; }} else {{ doSpeak(); }}
   }}
 
   function togglePlay() {{
-    if (isPaused) {{
-      isPaused = false;
-      speakFrom(charIndex);
-      setStatus("Resumed...");
-    }} else if (window.speechSynthesis.speaking) {{
-      isPaused = true;
-      window.speechSynthesis.cancel();
-      setPlayBtn(false);
-      setStatus("Paused \u2014 press Play to resume");
-    }} else {{
-      charIndex = 0;
-      isPaused = false;
-      speakFrom(0);
-    }}
+    if (isPaused) {{ isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }}
+    else if (window.speechSynthesis.speaking) {{ isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }}
+    else {{ charIndex = 0; isPaused = false; speakFrom(0); }}
   }}
 
-  function stopReading() {{
-    isPaused = false;
-    charIndex = 0;
-    window.speechSynthesis.cancel();
-    setPlayBtn(false);
-    setStatus("Stopped \u2014 press Replay to start over");
-  }}
+  function stopReading() {{ isPaused = false; charIndex = 0; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Stopped \u2014 press Replay to start over"); }}
 
-  function replayReading() {{
-    isPaused = false;
-    charIndex = 0;
-    window.speechSynthesis.cancel();
-    setStatus("Restarting...");
-    setTimeout(() => speakFrom(0), 300);
-  }}
+  function replayReading() {{ isPaused = false; charIndex = 0; window.speechSynthesis.cancel(); setStatus("Restarting..."); setTimeout(() => speakFrom(0), 300); }}
 
-  window.addEventListener("load", () => {{
-    setTimeout(() => speakFrom(0), 1800);
-  }});
+  window.addEventListener("load", () => {{ setTimeout(() => speakFrom(0), 1800); }});
 </script>
 
 </body>
 </html>"""
 
+
+def save_html_local(html, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"  ✓ HTML digest saved: {output_path}")
 
 
+def save_html_github(html, subject):
+    """Save HTML to docs/ folder for GitHub Pages publishing."""
+    os.makedirs("docs", exist_ok=True)
+    # Slugify subject for filename
+    slug = re.sub(r"[^a-z0-9]+", "-", subject.lower()).strip("-")
+    filename = f"docs/{slug}.html"
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(html)
+    # Also overwrite docs/index.html with the latest digest
+    with open("docs/index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"  ✓ HTML digest saved to GitHub Pages: {filename}")
+    return filename
+
+
 def launch_edge(html_path, edge_exe):
-    """Open the digest HTML in Edge."""
     if not os.path.exists(edge_exe):
         edge_exe = r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
     if os.path.exists(edge_exe):
@@ -528,21 +492,17 @@ def launch_edge(html_path, edge_exe):
         print(f"  ✓ Opened digest in default browser")
 
 
-def post_to_discord(webhook_url, subject, email_date, html_path):
-    """Post short message to Discord with HTML file attached."""
-    content = (
-        f"📬 **{subject}**\n"
-        f"🕐 {email_date}\n"
-        f"🔊 Full audio digest attached — open in Edge"
-    )
-    with open(html_path, "rb") as f:
-        resp = requests.post(
-            webhook_url,
-            data={"content": content},
-            files={"file": ("digest.html", f, "text/html")}
-        )
-    resp.raise_for_status()
-    print(f"  ✓ Posted to Discord with HTML attachment")
+def commit_and_push(subject):
+    """Commit the new digest HTML and processed_ids to GitHub."""
+    try:
+        subprocess.run(["git", "config", "user.email", "actions@github.com"], check=True)
+        subprocess.run(["git", "config", "user.name", "GitHub Actions"], check=True)
+        subprocess.run(["git", "add", "docs/", "processed_ids.json"], check=True)
+        subprocess.run(["git", "commit", "-m", f"Digest: {subject}"], check=True)
+        subprocess.run(["git", "push"], check=True)
+        print(f"  ✓ Committed and pushed to GitHub Pages")
+    except subprocess.CalledProcessError as e:
+        print(f"  ✗ Git push failed: {e}")
 
 
 def run():
@@ -564,19 +524,16 @@ def run():
             print("  Summarizing with Claude...")
             digest = summarize_with_claude(body, config["anthropic_api_key"])
 
-            print("  Saving HTML digest...")
-            save_html_digest(digest, subject, email_date, config["html_output"], config["tts_rate"])
+            html = build_html(digest, subject, email_date, config["tts_rate"])
 
-            print("  Launching Edge with Guy readout...")
-            launch_edge(config["html_output"], config["edge_exe"])
-
-            print("  Posting to Discord...")
-            post_to_discord(
-                config["discord_webhook_url"],
-                subject,
-                email_date,
-                config["html_output"]
-            )
+            if config["github_actions"]:
+                # GitHub Actions mode — save to docs/ and push to Pages
+                save_html_github(html, subject)
+                commit_and_push(subject)
+            else:
+                # Local mode — save and open in Edge
+                save_html_local(html, config["html_output"])
+                launch_edge(config["html_output"], config["edge_exe"])
 
             new_ids.add(uid)
 
@@ -584,7 +541,11 @@ def run():
             print(f"  ✗ Error processing '{subject}': {e}")
             raise
 
-    save_processed_ids(config["state_file"], processed_ids | new_ids)
+    if config["github_actions"]:
+        save_processed_ids_github(processed_ids | new_ids)
+    else:
+        save_processed_ids(config["state_file"], processed_ids | new_ids)
+
     print(f"\n  Done. Processed {len(new_ids)} email(s).")
 
 

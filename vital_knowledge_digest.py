@@ -294,24 +294,40 @@ def markdown_to_html_body(text):
 
 
 def prepare_tts_text(html_body):
-    text = re.sub(r"<[^>]+>", " ", html_body)
-    text = re.sub(r"\s+", " ", text).strip()
+    """Convert HTML digest to clean TTS text.
+    Skips sections with fewer than 120 chars of content (placeholder sections).
+    """
+    # Split by h2 section headers, process each section individually
+    sections = re.split(r"<h2>[^<]*</h2>", html_body)
+    headers = re.findall(r"<h2>([^<]*)</h2>", html_body)
 
-    # Strip empty section placeholders so Guy skips them
-    empty_patterns = [
-        r"[^.]*[Nn]o market data[^.]*\.",
-        r"[^.]*[Nn]ot provided in this[^.]*\.",
-        r"[^.]*[Nn]o (?:Fed|rates|Treasury|rate)[^.]*provided[^.]*\.",
-        r"[^.]*[Nn]o (?:broader |specific )?market outlook[^.]*\.",
-        r"[^.]*[Nn]o geopolitical[^.]*\.",
-        r"[^.]*[Nn]o (?:earnings|upcoming earnings)[^.]*\.",
-        r"[^.]*[Nn]o (?:macro|scheduled)[^.]*provided[^.]*\.",
-        r"[^.]*(?:market data|rates?|outlook|geopolitical|earnings)[^.]*not (?:provided|included|covered|available)[^.]*\.",
-        r"[^.]*[Nn]ot (?:provided|included|covered) in this[^.]*\.",
-    ]
-    for pattern in empty_patterns:
-        text = re.sub(pattern, " ", text, flags=re.IGNORECASE)
+    tts_parts = []
 
+    for i, section_html in enumerate(sections):
+        # Strip HTML tags to get plain text
+        section_text = re.sub(r"<[^>]+>", " ", section_html)
+        section_text = re.sub(r"\s+", " ", section_text).strip()
+
+        if i == 0:
+            # Preamble before first header — always include
+            if section_text:
+                tts_parts.append(section_text)
+            continue
+
+        header = headers[i - 1] if i - 1 < len(headers) else ""
+
+        # Skip section if content is too short — it's a placeholder
+        if len(section_text) < 120:
+            continue
+
+        # Add header as spoken label then content
+        if header:
+            tts_parts.append(header + ".")
+        tts_parts.append(section_text)
+
+    text = " ".join(tts_parts)
+
+    # Abbreviation expansions
     text = re.sub(r"\bbp\b", "basis points", text)
     text = re.sub(r"\bBP\b", "basis points", text)
     text = re.sub(r"\bpct\b", "percent", text, flags=re.IGNORECASE)
@@ -787,16 +803,18 @@ def update_index(new_entries):
             existing = json.load(f)
 
     existing_filenames = {e["filename"] for e in existing}
-    for filename, subject, email_date, preview in new_entries:
+    for filename, subject, email_date, preview, sent_ts in new_entries:
         if filename not in existing_filenames:
             existing.append({
                 "filename": filename,
                 "subject": subject,
                 "email_date": email_date,
-                "preview": preview
+                "preview": preview,
+                "sent_ts": sent_ts
             })
 
-    existing.sort(key=lambda x: x["filename"], reverse=True)
+    # Sort by sent timestamp if available, fall back to filename
+    existing.sort(key=lambda x: x.get("sent_ts", x["filename"]), reverse=True)
 
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(existing, f, indent=2, ensure_ascii=False)
@@ -844,7 +862,7 @@ def run():
 
             if config["github_actions"]:
                 filename = save_html_github(html, subject)
-                new_index_entries.append((filename, subject, email_date, preview))
+                new_index_entries.append((filename, subject, email_date, preview, sent_utc.isoformat()))
             else:
                 save_html_local(html, config["html_output"])
                 launch_edge(config["html_output"], config["edge_exe"])

@@ -696,6 +696,8 @@ def build_html(digest_text, subject, email_date, tts_rate):
     setInterval(checkForNewDigest, 5 * 60 * 1000);
     setTimeout(() => speakFrom(0), 1800);
   }});
+  window.addEventListener("pagehide", () => {{ window.speechSynthesis.cancel(); }});
+  window.addEventListener("visibilitychange", () => {{ if (document.hidden) {{ window.speechSynthesis.cancel(); setPlayBtn(false); }} }});
 </script>
 
 </body>

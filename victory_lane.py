@@ -556,6 +556,8 @@ def build_html(digest_text, subject, email_date, tts_rate):
   let charIndex = 0;
   let isPaused = false;
   let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
 
   function getVoice() {{
     const voices = window.speechSynthesis.getVoices();
@@ -570,6 +572,15 @@ def build_html(digest_text, subject, email_date, tts_rate):
       voices.find(v => v.lang.startsWith("en"))        ||
       voices[0]
     );
+  }}
+
+  // iOS Safari requires a user-gesture-triggered utterance to unlock the synth
+  function iosWarmup() {{
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
   }}
 
   function updateSpeed(val) {{
@@ -613,6 +624,7 @@ def build_html(digest_text, subject, email_date, tts_rate):
   }}
 
   function togglePlay() {{
+    iosWarmup();
     if (isPaused) {{ isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }}
     else if (window.speechSynthesis.speaking) {{ isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }}
     else {{ charIndex = 0; isPaused = false; speakFrom(0); }}
@@ -699,7 +711,11 @@ def build_html(digest_text, subject, email_date, tts_rate):
     localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
     checkForNewDigest();
     setInterval(checkForNewDigest, 5 * 60 * 1000);
-    setTimeout(() => speakFrom(0), 1800);
+    if (isIOS) {{
+      setStatus("Tap Play to start");
+    }} else {{
+      setTimeout(() => speakFrom(0), 1800);
+    }}
   }});
   window.addEventListener("pagehide", () => {{ window.speechSynthesis.cancel(); }});
   window.addEventListener("visibilitychange", () => {{ if (document.hidden) {{ window.speechSynthesis.cancel(); setPlayBtn(false); }} }});

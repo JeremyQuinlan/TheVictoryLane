@@ -375,7 +375,16 @@ def build_html(digest_text, subject, email_date, tts_rate):
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{subject} · {SITE_NAME}</title>
+<meta property="og:title" content="{subject}">
+<meta property="og:description" content="{SITE_NAME} · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{subject}">
+<meta name="twitter:description" content="{SITE_NAME} · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
 <style>
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{
@@ -747,7 +756,16 @@ def build_index_html(digests):
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{SITE_NAME}</title>
+<meta property="og:title" content="{SITE_NAME}">
+<meta property="og:description" content="Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{SITE_NAME}">
+<meta name="twitter:description" content="Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
 <style>
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{

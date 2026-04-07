@@ -230,7 +230,7 @@ def fetch_new_emails(config):
     mail.select("inbox")
 
     since_date = (datetime.utcnow() - timedelta(hours=config["lookback_hours"] + 24)).strftime("%d-%b-%Y")
-    status, data = mail.search(None, f'(SINCE "{since_date}")')
+    status, data = mail.uid('search', None, f'(SINCE "{since_date}")')
 
     uids = data[0].split()
     results = []
@@ -248,7 +248,7 @@ def fetch_new_emails(config):
             print(f"  Skipping already processed UID {uid_str}")
             continue
 
-        status, msg_data = mail.fetch(uid, "(RFC822)")
+        status, msg_data = mail.uid('fetch', uid, "(RFC822)")
         raw = msg_data[0][1]
         msg = email.message_from_bytes(raw)
 

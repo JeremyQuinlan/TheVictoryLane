@@ -2,8 +2,8 @@ name: The Victory Lane
 
 on:
   schedule:
-    # Runs every 60 minutes, all day, every day
-    - cron: '0 * * * *'
+    # Backup: runs every 2 hours (primary trigger is cron-job.org every 5 min)
+    - cron: '0 */2 * * *'
   workflow_dispatch: # Allow manual trigger from GitHub UI
 
 jobs:
@@ -28,10 +28,10 @@ jobs:
 
       - name: Run digest script
         env:
-          YAHOO_EMAIL:        ${{ secrets.YAHOO_EMAIL }}
+          YAHOO_EMAIL: ${{ secrets.YAHOO_EMAIL }}
           YAHOO_APP_PASSWORD: ${{ secrets.YAHOO_APP_PASSWORD }}
-          ANTHROPIC_API_KEY:  ${{ secrets.ANTHROPIC_API_KEY }}
-          GITHUB_ACTIONS:     "true"
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_ACTIONS: "true"
         run: python victory_lane.py
 
       - name: Commit and push digest

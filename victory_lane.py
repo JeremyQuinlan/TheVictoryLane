@@ -230,7 +230,8 @@ def fetch_new_emails(config):
     mail.select("inbox")
 
     since_date = (datetime.utcnow() - timedelta(hours=config["lookback_hours"] + 24)).strftime("%d-%b-%Y")
-    status, data = mail.uid('search', None, f'(SINCE "{since_date}")')
+    sender = config["sender_filter"]
+    status, data = mail.uid('search', None, f'(SINCE "{since_date}" FROM "{sender}")')
 
     uids = data[0].split()
     results = []
@@ -248,13 +249,9 @@ def fetch_new_emails(config):
             print(f"  Skipping already processed UID {uid_str}")
             continue
 
-        status, msg_data = mail.uid('fetch', uid, "(RFC822)")
+        status, msg_data = mail.uid('fetch', uid, "(BODY.PEEK[])")
         raw = msg_data[0][1]
         msg = email.message_from_bytes(raw)
-
-        from_addr = decode_str(msg.get("From", ""))
-        if config["sender_filter"].lower() not in from_addr.lower():
-            continue
 
         sent_utc = get_email_sent_utc(msg)
         if sent_utc < cutoff:
@@ -269,6 +266,8 @@ def fetch_new_emails(config):
         if body.strip():
             results.append((uid_str, subject, body, email_date, sent_utc))
             print(f"  Found: {subject} ({email_date})")
+            # Mark this Vital Knowledge email as read
+            mail.uid('store', uid, '+FLAGS', '\\Seen')
 
     mail.logout()
     results.sort(key=lambda x: x[4])
@@ -377,6 +376,7 @@ def build_html(digest_text, subject, email_date, tts_rate):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{subject} · {SITE_NAME}</title>
+<meta http-equiv="refresh" content="180">
 <meta property="og:title" content="{subject}">
 <meta property="og:description" content="{SITE_NAME} · Market Intelligentsia">
 <meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
@@ -758,6 +758,7 @@ def build_index_html(digests):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{SITE_NAME}</title>
+<meta http-equiv="refresh" content="180">
 <meta property="og:title" content="{SITE_NAME}">
 <meta property="og:description" content="Market Intelligentsia">
 <meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">

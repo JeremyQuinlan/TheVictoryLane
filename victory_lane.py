@@ -158,7 +158,12 @@ def clean_subject(raw_subject, source_type="vk"):
         if not date_match:
             date_match = re.search(r"\w+\s+\d+,?\s*\d{4}", raw_subject)
         date_str = date_match.group(0).strip(", ") if date_match else ""
-        return f"Earnings Preview · {date_str}".strip(" ·")
+
+        s_lower = raw_subject.lower()
+        if "most anticipated" in s_lower or "releases" in s_lower:
+            return f"Earnings Calendar · {date_str}".strip(" ·")
+        else:
+            return f"Earnings Preview · {date_str}".strip(" ·")
 
     s = re.sub(r"^Vital Knowledge:\s*", "", raw_subject).strip()
 
@@ -183,7 +188,9 @@ def clean_subject(raw_subject, source_type="vk"):
 
 def get_category_tag(subject):
     s = subject.lower()
-    if "earnings preview" in s:
+    if "earnings calendar" in s:
+        return "EARNINGS"
+    elif "earnings preview" in s:
         return "EARNINGS"
     elif "morning intelligentsia" in s or "morning" in s:
         return "MORNING"
@@ -267,7 +274,8 @@ def get_email_body(msg):
 
 
 def extract_calendar_image(msg):
-    """Extract the largest inline image from an email (the earnings calendar grid)."""
+    """Extract the earnings calendar image — try inline attachments first, then linked images."""
+    # Try inline attachments first
     largest = None
     largest_size = 0
     for part in msg.walk():
@@ -278,7 +286,39 @@ def extract_calendar_image(msg):
                 largest_size = len(payload)
                 ext = ct.split("/")[-1].replace("jpeg", "jpg")
                 largest = (payload, ext, ct)
-    return largest
+    if largest:
+        return largest
+
+    # No inline images — look for linked calendar image in HTML
+    for part in msg.walk():
+        ct = part.get_content_type()
+        if ct == "text/html":
+            html = part.get_payload(decode=True).decode("utf-8", errors="replace")
+            # Look for large images that are likely the calendar grid
+            img_urls = re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', html, re.IGNORECASE)
+            for url in img_urls:
+                # Skip tiny tracking pixels and icons
+                if "earningswhispers" in url.lower() and ("calendar" in url.lower() or "anticipated" in url.lower()):
+                    try:
+                        resp = requests.get(url, timeout=15)
+                        if resp.status_code == 200 and len(resp.content) > 10000:
+                            ct_header = resp.headers.get("Content-Type", "image/png")
+                            ext = ct_header.split("/")[-1].split(";")[0].replace("jpeg", "jpg")
+                            return (resp.content, ext, ct_header)
+                    except Exception as e:
+                        print(f"  Warning: could not download calendar image: {e}")
+            # Fallback: grab the largest linked image
+            for url in img_urls:
+                if url.startswith("http") and "track" not in url.lower() and "pixel" not in url.lower():
+                    try:
+                        resp = requests.get(url, timeout=15)
+                        if resp.status_code == 200 and len(resp.content) > 50000:
+                            ct_header = resp.headers.get("Content-Type", "image/png")
+                            ext = ct_header.split("/")[-1].split(";")[0].replace("jpeg", "jpg")
+                            return (resp.content, ext, ct_header)
+                    except Exception:
+                        continue
+    return None
 
 
 def get_email_date(msg):
@@ -354,9 +394,9 @@ def fetch_new_emails(config):
         body = get_email_body(msg)
         email_date = get_email_date(msg)
 
-        # Extract calendar image for Earnings Whispers
+        # Extract calendar image only for the "Most Anticipated" calendar emails
         calendar_image = None
-        if source_type == "ew":
+        if source_type == "ew" and "calendar" in subject.lower():
             calendar_image = extract_calendar_image(msg)
 
         if body.strip():
@@ -1052,6 +1092,14 @@ def run():
     for uid, subject, body, email_date, sent_utc, source_type, calendar_image in emails:
         print(f"\n  ── Processing: {subject} ({email_date}) ──")
         try:
+            # Check if HTML already exists (skip re-summarization)
+            slug = re.sub(r"[^a-z0-9]+", "-", subject.lower()).strip("-")[:80]
+            expected_file = f"docs/{slug}.html"
+            if config["github_actions"] and os.path.exists(expected_file):
+                print(f"  ✓ Already exists, skipping summarization: {expected_file}")
+                new_ids.add(uid)
+                continue
+
             print("  Summarizing with Claude...")
             digest = summarize_with_claude(body, config["anthropic_api_key"], source_type)
             preview = get_preview(digest)
@@ -1060,7 +1108,6 @@ def run():
             calendar_image_path = None
             if calendar_image and config["github_actions"]:
                 img_data, img_ext, img_ct = calendar_image
-                slug = re.sub(r"[^a-z0-9]+", "-", subject.lower()).strip("-")[:80]
                 img_filename = f"{slug}-calendar.{img_ext}"
                 img_filepath = f"docs/{img_filename}"
                 os.makedirs("docs", exist_ok=True)
@@ -1079,6 +1126,10 @@ def run():
                 launch_edge(config["html_output"], config["edge_exe"])
 
             new_ids.add(uid)
+
+            # Save progress after each email so crashes don't lose work
+            if config["github_actions"]:
+                save_processed_ids_github(processed_ids | new_ids)
 
         except Exception as e:
             print(f"  ✗ Error processing '{subject}': {e}")

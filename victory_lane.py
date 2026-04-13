@@ -316,44 +316,54 @@ def fetch_new_emails(config):
     cutoff = datetime.now(timezone.utc) - timedelta(hours=config["lookback_hours"])
     results = []
 
-    for source in EMAIL_SOURCES:
-        sender = source["sender_filter"]
-        source_type = source["source_type"]
-        print(f"\n  Checking source: {source['name']}...")
+    # Single IMAP search for all recent emails, then filter by source in Python
+    status, data = mail.uid('search', None, f'(SINCE "{since_date}")')
+    all_uids = data[0].split()
+    print(f"  Found {len(all_uids)} total email(s) since {since_date}")
 
-        status, data = mail.uid('search', None, f'(SINCE "{since_date}" FROM "{sender}")')
-        uids = data[0].split()
+    for uid in all_uids:
+        uid_str = uid.decode()
+        if uid_str in processed:
+            continue
 
-        for uid in uids:
-            uid_str = uid.decode()
-            if uid_str in processed:
-                print(f"  Skipping already processed UID {uid_str}")
-                continue
+        status, msg_data = mail.uid('fetch', uid, "(BODY.PEEK[])")
+        raw = msg_data[0][1]
+        msg = email.message_from_bytes(raw)
 
-            status, msg_data = mail.uid('fetch', uid, "(BODY.PEEK[])")
-            raw = msg_data[0][1]
-            msg = email.message_from_bytes(raw)
+        from_addr = decode_str(msg.get("From", "")).lower()
 
-            sent_utc = get_email_sent_utc(msg)
-            if sent_utc < cutoff:
-                print(f"  Skipping old email (sent {sent_utc.strftime('%Y-%m-%d %H:%M UTC')})")
-                continue
+        # Match against each source
+        matched_source = None
+        for source in EMAIL_SOURCES:
+            if source["sender_filter"].lower() in from_addr:
+                matched_source = source
+                break
 
-            raw_subject = decode_str(msg.get("Subject", "(No Subject)"))
-            subject = clean_subject(raw_subject, source_type)
-            body = get_email_body(msg)
-            email_date = get_email_date(msg)
+        if not matched_source:
+            continue
 
-            # Extract calendar image for Earnings Whispers
-            calendar_image = None
-            if source_type == "ew":
-                calendar_image = extract_calendar_image(msg)
+        source_type = matched_source["source_type"]
 
-            if body.strip():
-                results.append((uid_str, subject, body, email_date, sent_utc, source_type, calendar_image))
-                print(f"  Found: {subject} ({email_date})")
-                # Mark as read
-                mail.uid('store', uid, '+FLAGS', '\\Seen')
+        sent_utc = get_email_sent_utc(msg)
+        if sent_utc < cutoff:
+            print(f"  Skipping old email (sent {sent_utc.strftime('%Y-%m-%d %H:%M UTC')})")
+            continue
+
+        raw_subject = decode_str(msg.get("Subject", "(No Subject)"))
+        subject = clean_subject(raw_subject, source_type)
+        body = get_email_body(msg)
+        email_date = get_email_date(msg)
+
+        # Extract calendar image for Earnings Whispers
+        calendar_image = None
+        if source_type == "ew":
+            calendar_image = extract_calendar_image(msg)
+
+        if body.strip():
+            results.append((uid_str, subject, body, email_date, sent_utc, source_type, calendar_image))
+            print(f"  Found [{matched_source['name']}]: {subject} ({email_date})")
+            # Mark as read
+            mail.uid('store', uid, '+FLAGS', '\\Seen')
 
     mail.logout()
     results.sort(key=lambda x: x[4])

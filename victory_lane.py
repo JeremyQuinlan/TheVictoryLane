@@ -41,7 +41,7 @@ CONFIG = {
     "html_output":        r"C:\Tools\VitalRecap\digest.html",
     "state_file":         r"C:\Tools\VitalRecap\processed_ids.json",
     "edge_exe":           r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-    "tts_rate":           1.0,
+    "tts_rate":           1.3,
     "github_actions":     os.environ.get("GITHUB_ACTIONS", "false").lower() == "true",
 }
 
@@ -452,7 +452,7 @@ def markdown_to_html_body(text):
 def prepare_tts_text(html_body):
     """Convert HTML digest to clean TTS text.
     Skips sections with fewer than 120 chars of content (placeholder sections).
-    Also strips any remaining VK brand references.
+    Also strips any remaining VK brand references and source citations.
     """
     sections = re.split(r"<h2>[^<]*</h2>", html_body)
     headers = re.findall(r"<h2>([^<]*)</h2>", html_body)
@@ -481,6 +481,9 @@ def prepare_tts_text(html_body):
 
     # Strip any remaining brand references
     text = re.sub(r"\b(Vital Knowledge|Vital Dawn|Vital)\b", "", text, flags=re.IGNORECASE)
+
+    # Strip source citations: (Bloomberg), (WSJ), (NYT), (FT), (Reuters), (Axios), etc.
+    text = re.sub(r"\s*\((?:Bloomberg|WSJ|Wall Street Journal|NYT|New York Times|FT|Financial Times|Reuters|Axios|CNBC|CNN|AP|Barron\'?s|MarketWatch)\)", "", text, flags=re.IGNORECASE)
 
     # Abbreviation expansions
     text = re.sub(r"\bbp\b", "basis points", text)
@@ -705,6 +708,7 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
 <script>
   const digestText = "{tts_text_escaped}";
   const CHARS_PER_10S = {chars_per_10sec};
+  const CHUNK_SIZE = 4000;
   let rate = {tts_rate};
   let charIndex = 0;
   let isPaused = false;
@@ -712,22 +716,42 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   let iosWarmedUp = false;
 
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {{
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {{
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {{
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }}
+      chunks.push({{ text: text.slice(start, end), start: start }});
+      start = end;
+    }}
+    return chunks;
+  }}
+
+  const chunks = getChunks(digestText);
+
   function getVoice() {{
     const voices = window.speechSynthesis.getVoices();
     return (
-      voices.find(v => v.name.includes("Guy Online"))  ||  // Edge: Microsoft Guy Online
-      voices.find(v => v.name.includes("Guy"))         ||  // Edge fallback
-      voices.find(v => v.name === "Daniel")            ||  // iOS/macOS British male
-      voices.find(v => v.name === "Aaron")             ||  // iOS male
-      voices.find(v => v.name === "Samantha")          ||  // iOS default female
-      voices.find(v => v.name.includes("Male") && v.lang.startsWith("en")) ||
-      voices.find(v => v.lang.startsWith("en-US"))     ||
-      voices.find(v => v.lang.startsWith("en"))        ||
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
       voices[0]
     );
   }}
 
-  // iOS Safari requires a user-gesture-triggered utterance to unlock the synth
   function iosWarmup() {{
     if (!isIOS || iosWarmedUp) return;
     const warm = new SpeechSynthesisUtterance("");
@@ -739,7 +763,6 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
   function updateSpeed(val) {{
     rate = parseFloat(val);
     document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
-    // If currently playing, restart from current position at new speed
     if (window.speechSynthesis.speaking && !isPaused) {{
       speakFrom(charIndex);
     }}
@@ -753,33 +776,59 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
     else {{ btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }}
   }}
 
-  function speakFrom(startChar) {{
-    window.speechSynthesis.cancel();
-    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
-    const text = startChar > 0 ? digestText.slice(startChar) : digestText;
-    utterance = new SpeechSynthesisUtterance(text);
+  function findChunkIndex(charPos) {{
+    for (let i = chunks.length - 1; i >= 0; i--) {{
+      if (charPos >= chunks[i].start) return i;
+    }}
+    return 0;
+  }}
+
+  function speakChain(chunkIdx) {{
+    if (chunkIdx >= chunks.length || isPaused) {{
+      if (!isPaused && chunkIdx >= chunks.length) {{
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \\u2014 press Replay to listen again");
+      }}
+      return;
+    }}
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
     utterance.rate = rate;
     utterance.pitch = 1.0;
     utterance.volume = 1.0;
-    utterance.onboundary = (e) => {{ if (e.name === "word") charIndex = startChar + e.charIndex; }};
-    utterance.onend = () => {{
-      if (!isPaused) {{ charIndex = 0; isPaused = false; setPlayBtn(false); setStatus("Done \u2014 press Replay to listen again"); }}
-    }};
-    const doSpeak = () => {{
-      const voice = getVoice();
-      if (voice) utterance.voice = voice;
-      setStatus("Voice: " + (voice ? voice.name : "default"));
-      setPlayBtn(true);
-      window.speechSynthesis.speak(utterance);
-    }};
-    const voices = window.speechSynthesis.getVoices();
-    if (voices.length === 0) {{ window.speechSynthesis.onvoiceschanged = doSpeak; }} else {{ doSpeak(); }}
+    utterance.onboundary = (e) => {{ if (e.name === "word") charIndex = chunk.start + e.charIndex; }};
+    utterance.onend = () => {{ if (!isPaused) speakChain(chunkIdx + 1); }};
+    utterance.onerror = (e) => {{ if (e.error !== "canceled") speakChain(chunkIdx + 1); }};
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }}
+
+  function speakFrom(startChar) {{
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {{
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = {{ text: origText.slice(offset), start: startChar }};
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = {{ text: origText, start: chunks[chunkIdx].start - offset + offset }};
+    }} else {{
+      speakChain(chunkIdx);
+    }}
   }}
 
   function togglePlay() {{
     iosWarmup();
     if (isPaused) {{ isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }}
-    else if (window.speechSynthesis.speaking) {{ isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }}
+    else if (window.speechSynthesis.speaking) {{ isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \\u2014 press Play to resume"); }}
     else {{ charIndex = 0; isPaused = false; speakFrom(0); }}
   }}
 
@@ -788,7 +837,7 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
     window.speechSynthesis.cancel();
     charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
     if (wasPlaying) {{ isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }}
-    else {{ setStatus("Skipped forward \u2014 press Play to resume"); }}
+    else {{ setStatus("Skipped forward \\u2014 press Play to resume"); }}
   }}
 
   function skipBack() {{
@@ -796,14 +845,14 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
     window.speechSynthesis.cancel();
     charIndex = Math.max(0, charIndex - CHARS_PER_10S);
     if (wasPlaying) {{ isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }}
-    else {{ setStatus("Skipped back \u2014 press Play to resume"); }}
+    else {{ setStatus("Skipped back \\u2014 press Play to resume"); }}
   }}
 
   function stopReading() {{
     isPaused = false; charIndex = 0;
     window.speechSynthesis.cancel();
     setPlayBtn(false);
-    setStatus("Stopped \u2014 press Replay to start over");
+    setStatus("Stopped \\u2014 press Replay to start over");
   }}
 
   function replayReading() {{
@@ -811,6 +860,26 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
     window.speechSynthesis.cancel();
     setStatus("Restarting...");
     setTimeout(() => speakFrom(0), 300);
+  }}
+
+  // Audio chime for new dispatches
+  function playChime() {{
+    try {{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {{
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      }});
+    }} catch(e) {{}}
   }}
 
   function updateNotifyBtn() {{
@@ -847,11 +916,15 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
           const lastSeen = localStorage.getItem("lastSeenDigest");
           if (lastSeen !== latest.filename) {{
             localStorage.setItem("lastSeenDigest", latest.filename);
-            if (Notification.permission === "granted" && lastSeen !== null) {{
-              const n = new Notification("{SITE_NAME}", {{
-                body: latest.subject + " \u00b7 " + latest.email_date,
-              }});
-              n.onclick = () => {{ window.open(latest.filename); }};
+            if (lastSeen !== null) {{
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {{
+                const n = new Notification("{SITE_NAME}", {{
+                  body: latest.subject + " \\u00b7 " + latest.email_date,
+                }});
+                n.onclick = () => {{ window.open(latest.filename); }};
+              }}
             }}
           }}
         }}
@@ -859,11 +932,22 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
       .catch(() => {{}});
   }}
 
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {{
+    window.location.href = "index.html";
+  }}, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {{
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => {{ window.location.href = "index.html"; }}, 5 * 60 * 1000);
+  }});
+
   window.addEventListener("load", () => {{
     updateNotifyBtn();
     localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
     checkForNewDigest();
-    setInterval(checkForNewDigest, 5 * 60 * 1000);
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
     if (isIOS) {{
       setStatus("Tap Play to start");
     }} else {{

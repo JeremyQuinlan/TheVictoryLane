@@ -1,5 +1,215 @@
 [
   {
+    "filename": "company-specific-news-for-tues-6-23-amc-cbrs-fdx-gme-iclr-kbh-ms-nke.html",
+    "subject": "Company-specific news for Tues 6/23 (AMC) - CBRS, FDX, GME, ICLR, KBH, MS, NKE",
+    "email_date": "Jun 23, 2026 · 04:55 PM ET",
+    "preview": "No index-level market data was provided in this newsletter. Coverage focuses exclusively on post-close earnings and company news for Tuesday...",
+    "sent_ts": "2026-06-23T20:55:08+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-june-23-2026.html",
+    "subject": "Market Recap · Tuesday June 23, 2026",
+    "email_date": "Jun 23, 2026 · 04:04 PM ET",
+    "preview": "**SPX:** -1.43% | **Nasdaq:** -2.21% | **Dow:** -47 points (-0.09%) | **R2K:** -0.96%",
+    "sent_ts": "2026-06-23T20:04:25+00:00"
+  },
+  {
+    "filename": "carnival-fq2-earnings-takeaways.html",
+    "subject": "Carnival FQ2 earnings takeaways",
+    "email_date": "Jun 23, 2026 · 09:32 AM ET",
+    "preview": "No broad market data reported in this edition.",
+    "sent_ts": "2026-06-23T13:32:05+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-6-23-bmo-amc-cour-fmc-kdp-maersk-mgx-qdel-sho-smc.html",
+    "subject": "Company-specific news for Tues 6/23 (BMO) - AMC, COUR, FMC, KDP, Maersk, MGX, QDEL, SHO, SMCI, SPCX, SUNB, Vuori, WEN",
+    "email_date": "Jun 23, 2026 · 08:42 AM ET",
+    "preview": "No index or commodity data provided in this newsletter edition.",
+    "sent_ts": "2026-06-23T12:42:05+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-june-23-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday June 23, 2026",
+    "email_date": "Jun 23, 2026 · 05:28 AM ET",
+    "preview": "S&P futures: **-1.35%** | Nasdaq futures: **-2.45%** | Dow: -318 points | R2K: -45 points | Brent: ~$77.35 (-0.70%) | Gold: -1.90% | Silver:...",
+    "sent_ts": "2026-06-23T09:28:18+00:00"
+  },
+  {
+    "filename": "earnings-preview-monday-june-22-2026.html",
+    "subject": "Earnings Preview · Monday, June 22, 2026",
+    "email_date": "Jun 22, 2026 · 08:28 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-06-23T00:28:17+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-6-22-amc-apo-couche-tard-defense-producton-dpz-epc.html",
+    "subject": "Company-specific news for Mon 6/22 (AMC) - APO, Couche-Tard, defense producton, DPZ, EPC, ORCL, PRIM, QCOM",
+    "email_date": "Jun 22, 2026 · 07:37 PM ET",
+    "preview": "No broad market index data (SPX, Nasdaq, Dow, R2K, etc.) was included in this edition — today's dispatch is a focused after-close company ne...",
+    "sent_ts": "2026-06-22T23:37:39+00:00"
+  },
+  {
+    "filename": "market-recap-monday-june-22-2026.html",
+    "subject": "Market Recap · Monday June 22, 2026",
+    "email_date": "Jun 22, 2026 · 04:05 PM ET",
+    "preview": "**SPX:** -0.37% | **Nasdaq:** -1.32% | **Dow:** +151 points (+0.29%) | **R2K:** +0.83% | **Brent:** -2.85% | **Gold:** +0.75% | **Silver:** ...",
+    "sent_ts": "2026-06-22T20:05:18+00:00"
+  },
+  {
+    "filename": "mid-day-update-monday-june-22-2026.html",
+    "subject": "Mid-Day Update · Monday June 22,\r\n 2026",
+    "email_date": "Jun 22, 2026 · 11:14 AM ET",
+    "preview": "SPX: -0.39% | Nasdaq: -1.08% | Dow: +101 points | R2K: +13 points | Brent: ~$78.11 (-3.00%) | Gold: +1.00% | Silver: +1.80% | BTC: +1.85% | ...",
+    "sent_ts": "2026-06-22T15:14:47+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-monday-june-22-2026.html",
+    "subject": "Morning Intelligentsia · Monday June 22, 2026",
+    "email_date": "Jun 22, 2026 · 05:22 AM ET",
+    "preview": "SPX: -0.11% | Nasdaq: +0.07% | Dow: flat | R2K: -0.20%",
+    "sent_ts": "2026-06-22T09:22:53+00:00"
+  },
+  {
+    "filename": "weekend-sun-6-21-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 6/21/2026) - getting ready for the week ahead",
+    "email_date": "Jun 21, 2026 · 09:12 AM ET",
+    "preview": "No closing price data was included in this newsletter. The following assets were referenced directionally:",
+    "sent_ts": "2026-06-21T13:12:07+00:00"
+  },
+  {
+    "filename": "news-highlights-for-friday-june-19-2026.html",
+    "subject": "News highlights for Friday June 19, 2026",
+    "email_date": "Jun 19, 2026 · 06:36 AM ET",
+    "preview": "No index price data was included in this morning's note. The following assets were covered narratively but no closing levels or percentage c...",
+    "sent_ts": "2026-06-19T10:36:34+00:00"
+  },
+  {
+    "filename": "earnings-preview-thursday-june-18-2026.html",
+    "subject": "Earnings Preview · Thursday, June 18, 2026",
+    "email_date": "Jun 18, 2026 · 05:12 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-06-18T21:12:19+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-june-18-2026.html",
+    "subject": "Mid-Day Update · Thursday June 18,\r\n 2026",
+    "email_date": "Jun 18, 2026 · 11:15 AM ET",
+    "preview": "**SPX:** +1.08% | **Nasdaq:** +1.44% | **Dow:** +263 pts (+0.51%) | **R2K:** +1.53%",
+    "sent_ts": "2026-06-18T15:15:39+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-6-22-flash-pmis-us-pce-and-earnings-ccl-fdx-mu-and-mo.html",
+    "subject": "Catalyst Watch (week of Mon 6/22) - flash PMIs, US PCE, and earnings (CCL, FDX, MU, and more)",
+    "email_date": "Jun 18, 2026 · 08:29 AM ET",
+    "preview": "No market price data was included in this newsletter. SPX, Nasdaq, and other asset prices were not reported.",
+    "sent_ts": "2026-06-18T12:29:38+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-june-18-2026.html",
+    "subject": "Market Recap · Thursday June 18, 2026",
+    "email_date": "Jun 18, 2026 · 08:22 AM ET",
+    "preview": "SPX and Nasdaq figures were not provided in this week's recap — the newsletter focused on narrative rather than closing prices. The followin...",
+    "sent_ts": "2026-06-18T12:22:23+00:00"
+  },
+  {
+    "filename": "accenture-and-kroger-earnings-are-both-underwhelming-especially-acn.html",
+    "subject": "Accenture and Kroger earnings are both underwhelming (especially ACN)",
+    "email_date": "Jun 18, 2026 · 06:54 AM ET",
+    "preview": "No broad market index data provided in this edition.",
+    "sent_ts": "2026-06-18T10:54:54+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-june-18-2026.html",
+    "subject": "Morning Intelligentsia · Thursday June 18, 2026",
+    "email_date": "Jun 18, 2026 · 05:29 AM ET",
+    "preview": "S&P futures: **+0.80%** | Nasdaq futures: **+1.43%** | Dow: +247 points | R2K: +29 points | Brent: ~$77.85 (-2.15%) | Gold: +0.25% | Silver:...",
+    "sent_ts": "2026-06-18T09:29:23+00:00"
+  },
+  {
+    "filename": "three-huge-events-have-come-and-gone-spacex-fomc-and-iran-leaving-one-major-cata.html",
+    "subject": "Three huge events have come and gone (SpaceX, FOMC, and Iran), leaving one major catalyst left on the June calendar: Micron",
+    "email_date": "Jun 17, 2026 · 07:32 PM ET",
+    "preview": "No index pricing data provided in this edition.",
+    "sent_ts": "2026-06-17T23:32:46+00:00"
+  },
+  {
+    "filename": "earnings-preview-wednesday-june-17-2026.html",
+    "subject": "Earnings Preview · Wednesday, June 17, 2026",
+    "email_date": "Jun 17, 2026 · 06:55 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-06-17T22:55:09+00:00"
+  },
+  {
+    "filename": "apple-plans-to-hike-prices-q2-eps-updates-from-nue-stld.html",
+    "subject": "Apple plans to hike prices & Q2 EPS updates from NUE/STLD",
+    "email_date": "Jun 17, 2026 · 05:16 PM ET",
+    "preview": "No index data provided in this edition.",
+    "sent_ts": "2026-06-17T21:16:18+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-june-17-2026.html",
+    "subject": "Market Recap · Wednesday June 17, 2026",
+    "email_date": "Jun 17, 2026 · 04:04 PM ET",
+    "preview": "- **SPX:** -1.21%",
+    "sent_ts": "2026-06-17T20:04:29+00:00"
+  },
+  {
+    "filename": "fed-takeaways-we-have-a-task-force-for-that.html",
+    "subject": "Fed takeaways: \"we have a task force for that\"",
+    "email_date": "Jun 17, 2026 · 03:26 PM ET",
+    "preview": "No index or asset price data was included in this newsletter. Market levels not reported.",
+    "sent_ts": "2026-06-17T19:26:07+00:00"
+  },
+  {
+    "filename": "fed-update-thoughts-on-the-2pmet-statement-and-supplemental.html",
+    "subject": "Fed update: thoughts on the 2pmET statement and supplemental",
+    "email_date": "Jun 17, 2026 · 02:23 PM ET",
+    "preview": "No price data provided in this dispatch — this is a Fed-focused intraday update only.",
+    "sent_ts": "2026-06-17T18:23:53+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-june-17-2026.html",
+    "subject": "Mid-Day Update · Wednesday June\r\n 17, 2026",
+    "email_date": "Jun 17, 2026 · 11:06 AM ET",
+    "preview": "- **SPX:** -0.09%",
+    "sent_ts": "2026-06-17T15:06:33+00:00"
+  },
+  {
+    "filename": "jabil-fq3-earnings-takeaways.html",
+    "subject": "Jabil FQ3 earnings takeaways",
+    "email_date": "Jun 17, 2026 · 07:46 AM ET",
+    "preview": "No broad market data provided in this edition.",
+    "sent_ts": "2026-06-17T11:46:31+00:00"
+  },
+  {
+    "filename": "carmax-reports-solid-fq1-earnings.html",
+    "subject": "CarMax reports solid FQ1 earnings",
+    "email_date": "Jun 17, 2026 · 06:05 AM ET",
+    "preview": "No broad market data (SPX, Nasdaq, Dow, R2K, commodities, crypto, DXY) was included in today's newsletter.",
+    "sent_ts": "2026-06-17T10:05:47+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-june-17-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday June 17, 2026",
+    "email_date": "Jun 17, 2026 · 05:28 AM ET",
+    "preview": "S&P futures +0.15%, Nasdaq futures +0.64%, Dow -23 points, R2K +4 points. Brent +0.30% to ~$79.20. Gold and silver -0.10–0.30%. BTC -1.20% t...",
+    "sent_ts": "2026-06-17T09:28:07+00:00"
+  },
+  {
+    "filename": "earnings-preview-tuesday-june-16-2026.html",
+    "subject": "Earnings Preview · Tuesday, June 16, 2026",
+    "email_date": "Jun 16, 2026 · 05:39 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-06-16T21:39:44+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-6-16-amc-azo-fisv-intc-lzb-lion.html",
+    "subject": "Company-specific news for Tues 6/16 (AMC) - AZO, FISV, INTC, LZB, LION",
+    "email_date": "Jun 16, 2026 · 05:22 PM ET",
+    "preview": "No index or macro market data provided in this newsletter.",
+    "sent_ts": "2026-06-16T21:22:00+00:00"
+  },
+  {
     "filename": "mid-day-update-monday-june-1-2026.html",
     "subject": "Mid-Day Update · Monday June 1,\r\n 2026",
     "email_date": "Jun 01, 2026 · 11:15 AM ET",

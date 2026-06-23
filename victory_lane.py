@@ -415,7 +415,7 @@ def summarize_with_claude(body, api_key, source_type="vk"):
     prompt = EW_SUMMARIZE_PROMPT if source_type == "ew" else SUMMARIZE_PROMPT
     max_tok = 3000 if source_type == "ew" else 1800
     message = client.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-6",
         max_tokens=max_tok,
         messages=[{"role": "user", "content": prompt.format(body=body)}]
     )

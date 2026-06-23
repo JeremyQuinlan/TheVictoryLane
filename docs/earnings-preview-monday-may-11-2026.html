@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Preview · Monday, May 11, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Earnings Preview · Monday, May 11, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Earnings Preview · Monday, May 11, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a2a1a;
+    color: #c9b97a;
+    border: 1px solid #c9b97a44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">EARNINGS</div>
+  <h1>Earnings Preview · Monday, May 11, 2026</h1>
+  <div class="meta">May 11, 2026 · 07:32 PM ET</div>
+</header>
+<hr class="divider">
+
+<p># VICTORY LANE EARNINGS PREVIEW</p>
+<h2>QBTS — D-Wave Quantum Inc.</h2>
+<p><strong>Earnings Date:</strong> Tuesday, May 12, 2026 at 7:00 AM ET</p>
+<p><strong>Consensus Estimates:</strong> Loss of $0.10 per share on revenue of $5.01 million</p>
+<p><strong>Whisper Number:</strong> Loss of $0.08 per share (20% better than consensus)</p>
+<p><strong>Revenue Growth:</strong> -66.6% year-over-year decline expected</p>
+<p><strong>Investor Sentiment:</strong> 21.2% bearish positioning ahead of report</p>
+<p><strong>Options Implied Move:</strong> 15.5% vs 14.7% historical average move</p>
+<p><strong>Guidance vs Consensus:</strong> No current guidance provided</p>
+<h2>WBTN — WEBTOON Entertainment Inc.</h2>
+<p><strong>Recent Report:</strong> Q1 2026 earnings already released</p>
+<p><strong>Actual Results:</strong> $0.07 per share vs $0.01 consensus (beat by 250%)</p>
+<p><strong>Whisper vs Actual:</strong> Whisper was $0.02, actual beat whisper by 150%</p>
+<p><strong>Revenue Performance:</strong> $320.87M vs $321.61M consensus (slight miss)</p>
+<p><strong>Revenue Growth:</strong> -1.48% year-over-year decline</p>
+<p><strong>Q2 Guidance:</strong> $332.0M to $342.0M revenue vs $352.69M consensus (below estimates)</p>
+<h2>DCGO — DocGo Inc.</h2>
+<p><strong>Recent Report:</strong> Q1 2026 earnings already released</p>
+<p><strong>Actual Results:</strong> Loss of $0.12 per share vs loss of $0.02 consensus (missed by 500%)</p>
+<p><strong>Revenue Performance:</strong> $75.55M vs $70.90M consensus (beat revenue)</p>
+<p><strong>Revenue Growth:</strong> -21.33% year-over-year decline</p>
+<p><strong>2026 Guidance:</strong> Revenue of $300.0M to $315.0M (raised from prior $290.0M to $310.0M)</p>
+<p><strong>Guidance vs Consensus:</strong> Midpoint of $307.5M vs $301.49M consensus (above estimates)</p>
+<h2>HIMS — Hims & Hers Health Inc.</h2>
+<p><strong>Recent Report:</strong> Q1 2026 earnings already released</p>
+<p><strong>Actual Results:</strong> Loss of $0.18 per share vs $0.04 consensus (missed by 400%)</p>
+<p><strong>Whisper vs Actual:</strong> Whisper was $0.06, significant miss</p>
+<p><strong>Revenue Performance:</strong> $608.10M vs $619.62M consensus</p>
+<p><strong>Revenue Growth:</strong> 3.77% year-over-year growth</p>
+<p><strong>Q2 Guidance:</strong> $680.0M to $700.0M revenue vs $654.50M consensus (above estimates)</p>
+<p><strong>2026 Guidance:</strong> Revenue raised to $2.80B to $3.00B from prior $2.70B to $2.90B vs $2.85B consensus</p>
+<h2>HLIT — Harmonic Inc.</h2>
+<p><strong>Recent Guidance Update:</strong> Raised outlook across all metrics</p>
+<p><strong>Q2 2026 Guidance:</strong> Non-GAAP EPS of $0.15 to $0.19 vs $0.12 consensus</p>
+<p><strong>Q2 Revenue Guidance:</strong> $115.0M to $125.0M vs $111.39M consensus</p>
+<p><strong>2026 Guidance:</strong> Non-GAAP EPS raised to $0.57 to $0.67 vs $0.54 consensus</p>
+<p><strong>2026 Revenue:</strong> Raised to $475.0M to $495.0M from prior $440.0M to $480.0M vs $465.67M consensus</p>
+<h2>CERT — Certara Inc.</h2>
+<p><strong>Recent Guidance Update:</strong> Lowered 2026 outlook significantly</p>
+<p><strong>2026 EPS Guidance:</strong> Reduced to $0.35 to $0.41 from prior $0.44 to $0.48 vs $0.45 consensus</p>
+<p><strong>2026 Revenue Guidance:</strong> Cut to $395.0M to $405.0M from prior $418.8M to $435.6M vs $427.74M consensus</p>
+<p><strong>Guidance vs Consensus:</strong> Well below estimates on both metrics</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "# VICTORY LANE EARNINGS PREVIEW QBTS — D-Wave Quantum Inc.. Earnings Date: Tuesday, May 12, 2026 at 7:00 AM Eastern time Consensus Estimates: Loss of $0.10 per share on revenue of $5.01 million Whisper Number: Loss of $0.08 per share (20% better than consensus) Revenue Growth: -66.6% year-over-year decline expected Investor Sentiment: 21.2% bearish positioning ahead of report Options Implied Move: 15.5% vs 14.7% historical average move Guidance vs Consensus: No current guidance provided WBTN — WEBTOON Entertainment Inc.. Recent Report: Q1 2026 earnings already released Actual Results: $0.07 per share vs $0.01 consensus (beat by 250%) Whisper vs Actual: Whisper was $0.02, actual beat whisper by 150% Revenue Performance: $320.87M vs $321.61M consensus (slight miss) Revenue Growth: -1.48% year-over-year decline Q2 Guidance: $332.0M to $342.0M revenue vs $352.69M consensus (below estimates) DCGO — DocGo Inc.. Recent Report: Q1 2026 earnings already released Actual Results: Loss of $0.12 per share vs loss of $0.02 consensus (missed by 500%) Revenue Performance: $75.55M vs $70.90M consensus (beat revenue) Revenue Growth: -21.33% year-over-year decline 2026 Guidance: Revenue of $300.0M to $315.0M (raised from prior $290.0M to $310.0M) Guidance vs Consensus: Midpoint of $307.5M vs $301.49M consensus (above estimates) HIMS — Hims & Hers Health Inc.. Recent Report: Q1 2026 earnings already released Actual Results: Loss of $0.18 per share vs $0.04 consensus (missed by 400%) Whisper vs Actual: Whisper was $0.06, significant miss Revenue Performance: $608.10M vs $619.62M consensus Revenue Growth: 3.77% year-over-year growth Q2 Guidance: $680.0M to $700.0M revenue vs $654.50M consensus (above estimates) 2026 Guidance: Revenue raised to $2.80B to $3.00B from prior $2.70B to $2.90B vs $2.85B consensus HLIT — Harmonic Inc.. Recent Guidance Update: Raised outlook across all metrics Q2 2026 Guidance: Non-GAAP earnings per share of $0.15 to $0.19 vs $0.12 consensus Q2 Revenue Guidance: $115.0M to $125.0M vs $111.39M consensus 2026 Guidance: Non-GAAP earnings per share raised to $0.57 to $0.67 vs $0.54 consensus 2026 Revenue: Raised to $475.0M to $495.0M from prior $440.0M to $480.0M vs $465.67M consensus CERT — Certara Inc.. Recent Guidance Update: Lowered 2026 outlook significantly 2026 earnings per share Guidance: Reduced to $0.35 to $0.41 from prior $0.44 to $0.48 vs $0.45 consensus 2026 Revenue Guidance: Cut to $395.0M to $405.0M from prior $418.8M to $435.6M vs $427.74M consensus Guidance vs Consensus: Well below estimates on both metrics";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

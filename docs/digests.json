@@ -1,5 +1,1762 @@
 [
   {
+    "filename": "mid-day-update-monday-june-1-2026.html",
+    "subject": "Mid-Day Update · Monday June 1,\r\n 2026",
+    "email_date": "Jun 01, 2026 · 11:15 AM ET",
+    "preview": "The SPX and Nasdaq were essentially flat to slightly down, while the Dow dropped 143 points and the R2K sank 29 points. Brent crude spiked 7...",
+    "sent_ts": "2026-06-01T15:15:47+00:00"
+  },
+  {
+    "filename": "manufacturing-ism-details-are-positive-for-may.html",
+    "subject": "Manufacturing ISM details are positive for May",
+    "email_date": "Jun 01, 2026 · 10:07 AM ET",
+    "preview": "Market performance data not provided in the intraday commentary.",
+    "sent_ts": "2026-06-01T14:07:08+00:00"
+  },
+  {
+    "filename": "casino-m-a-another-iconic-vegas-casino-firm-in-play.html",
+    "subject": "Casino M&A: another iconic Vegas casino firm in play",
+    "email_date": "Jun 01, 2026 · 08:17 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-06-01T12:17:26+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-6-1-bmo-cold-jblu-msi-saic.html",
+    "subject": "Company-specific news for Mon 6/1 (BMO) - COLD, JBLU, MSI, SAIC",
+    "email_date": "Jun 01, 2026 · 07:38 AM ET",
+    "preview": "Market data not provided in this company-specific earnings update.",
+    "sent_ts": "2026-06-01T11:38:21+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-monday-june-1-2026.html",
+    "subject": "Morning Intelligentsia · Monday June 1, 2026",
+    "email_date": "Jun 01, 2026 · 05:21 AM ET",
+    "preview": "US equity futures rallied this morning with the SPX up +0.26%, Nasdaq gaining +0.33%, and Dow climbing 134 points. R2K traded flat. Asian ma...",
+    "sent_ts": "2026-06-01T09:21:11+00:00"
+  },
+  {
+    "filename": "berkshire-buys-tmhc-for-8-5b-thoughts-on-the-deal.html",
+    "subject": "Berkshire buys TMHC for ~$8.5B - thoughts on the deal",
+    "email_date": "May 31, 2026 · 06:46 PM ET",
+    "preview": "No market data provided in this newsletter.",
+    "sent_ts": "2026-05-31T22:46:30+00:00"
+  },
+  {
+    "filename": "weekend-sun-5-31-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 5/31/2026) - getting ready for the week ahead",
+    "email_date": "May 31, 2026 · 10:01 AM ET",
+    "preview": "Markets closed Friday with the SPX at ~7500-7600 levels as Iran deal speculation continues to dominate headlines.",
+    "sent_ts": "2026-05-31T14:01:56+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-june-1-2026.html",
+    "subject": "Earnings Calendar · Monday, June 1,\r\n 2026",
+    "email_date": "May 30, 2026 · 08:21 AM ET",
+    "preview": "**Monday, June 1, 2026 after market close (4:05 PM ET)**",
+    "sent_ts": "2026-05-30T12:21:44+00:00"
+  },
+  {
+    "filename": "earnings-preview-friday-may-29-2026.html",
+    "subject": "Earnings Preview · Friday, May 29, 2026",
+    "email_date": "May 29, 2026 · 06:02 PM ET",
+    "preview": "**Earnings Date:** Monday, June 1, 2026 after market close (4:05 PM ET)",
+    "sent_ts": "2026-05-29T22:02:50+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-may-29-2026.html",
+    "subject": "Mid-Day Update · Friday May 29,\r\n 2026",
+    "email_date": "May 29, 2026 · 11:24 AM ET",
+    "preview": "SPX gained +0.26% while Nasdaq advanced +0.18%. The Dow jumped +0.72% and equal-weight S&P rose +0.35%, though R2K underperformed, falling -...",
+    "sent_ts": "2026-05-29T15:24:37+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-6-1-us-eco-data-for-may-inc-fri-jobs-report-conferenc.html",
+    "subject": "Catalyst Watch (week of Mon 6/1) - US eco data for May (inc. Fri jobs report), conferences, and more earnings (AVGO, CRDO, CRWD, DG, HPE, LULU, PANW, and more)",
+    "email_date": "May 29, 2026 · 07:47 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-29T11:47:31+00:00"
+  },
+  {
+    "filename": "market-recap-friday-may-29-2026.html",
+    "subject": "Market Recap · Friday May 29, 2026",
+    "email_date": "May 29, 2026 · 07:44 AM ET",
+    "preview": "SPX data not provided in this weekly recap format. Strong performance noted across AI-related names including **DELL**, **MRVL**, **SNOW** w...",
+    "sent_ts": "2026-05-29T11:44:12+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-may-29-2026.html",
+    "subject": "Morning Intelligentsia · Friday May 29, 2026",
+    "email_date": "May 29, 2026 · 05:27 AM ET",
+    "preview": "US equity futures are mixed this morning with S&P +0.13%, Nasdaq +0.14%, Dow +0.18%, and R2K -0.09%. Major Eurozone indices are up ~50 basis...",
+    "sent_ts": "2026-05-29T09:27:17+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-5-28-amc-adsk-aeo-amba-asan-clx-cost-dell-estc-g.html",
+    "subject": "Company-specific news for Thurs 5/28 (AMC) - ADSK, AEO, AMBA, ASAN, CLX, COST, DELL, ESTC, GAP, MDB, NTAP, OKTA, PATH, PD, S",
+    "email_date": "May 28, 2026 · 05:19 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-28T21:19:49+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-may-28-2026.html",
+    "subject": "Market Recap · Thursday May 28, 2026",
+    "email_date": "May 28, 2026 · 04:05 PM ET",
+    "preview": "SPX +0.58%, Nasdaq +0.91%, Dow +0.05%, R2K +0.57%. Treasuries gained with yields falling 1-3 basis points across the curve. Brent dipped 0.3...",
+    "sent_ts": "2026-05-28T20:05:18+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-may-28-2026.html",
+    "subject": "Mid-Day Update · Thursday May 28,\r\n 2026",
+    "email_date": "May 28, 2026 · 11:12 AM ET",
+    "preview": "The SPX climbed +0.43% while the Nasdaq advanced +0.53%. The Dow remained essentially flat, and the Russell 2000 gained +0.31%. Brent crude ...",
+    "sent_ts": "2026-05-28T15:12:35+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-5-28-bmo-bby-burl-czr-dltr-hrl-kss-plab.html",
+    "subject": "Company-specific news for Thurs 5/28 (BMO) - BBY, BURL, CZR, DLTR, HRL, KSS, PLAB",
+    "email_date": "May 28, 2026 · 07:28 AM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-28T11:28:51+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-may-28-2026.html",
+    "subject": "Morning Intelligentsia · Thursday May 28, 2026",
+    "email_date": "May 28, 2026 · 05:23 AM ET",
+    "preview": "US equity futures showing modest pressure with S&P -7 points, Nasdaq -65 points, and R2K -5 points. Asian markets mostly declined (Hang Seng...",
+    "sent_ts": "2026-05-28T09:23:50+00:00"
+  },
+  {
+    "filename": "earnings-preview-wednesday-may-27-2026.html",
+    "subject": "Earnings Preview · Wednesday, May 27, 2026",
+    "email_date": "May 27, 2026 · 06:33 PM ET",
+    "preview": "**Earnings Date:** Thursday, May 28, 2026 after market close (4:05 PM ET)",
+    "sent_ts": "2026-05-27T22:33:21+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-5-27-amc-a-amzn-arxs-crm-dell-fdxf-hei-hpq-iclr-mr.html",
+    "subject": "Company-specific news for Wed 5/27 (AMC) - A, AMZN, ARXS, CRM, DELL, FDXF, HEI, HPQ, ICLR, MRVL, NTNX, P, SNOW, SNPS",
+    "email_date": "May 27, 2026 · 05:34 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-27T21:34:37+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-may-27-2026.html",
+    "subject": "Market Recap · Wednesday May 27, 2026",
+    "email_date": "May 27, 2026 · 03:44 PM ET",
+    "preview": "SPX didn't move much on Wednesday despite significant sector rotation beneath the surface. Consumer discretionary surged on Iran optimism an...",
+    "sent_ts": "2026-05-27T19:44:14+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-may-27-2026.html",
+    "subject": "Mid-Day Update · Wednesday May 27,\r\n 2026",
+    "email_date": "May 27, 2026 · 11:15 AM ET",
+    "preview": "SPX essentially unchanged while the Nasdaq fell -0.14%. The equal-weight SPX climbed +0.10% as the R2K advanced +0.12% and Dow jumped +0.50%...",
+    "sent_ts": "2026-05-27T15:15:47+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-5-27-bmo-anf-bbwi-cpri-dks-dy-lulu-mnro-pdd.html",
+    "subject": "Company-specific news for Wed 5/27 (BMO) - ANF, BBWI, CPRI, DKS, DY, LULU, MNRO, PDD",
+    "email_date": "May 27, 2026 · 07:46 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-27T11:46:07+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-may-27-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday May 27, 2026",
+    "email_date": "May 27, 2026 · 05:27 AM ET",
+    "preview": "US equity futures are climbing with S&P +0.27%, Nasdaq +0.35%, while Dow gained 215 points and R2K surged 75 basis points. Asian markets wer...",
+    "sent_ts": "2026-05-27T09:27:47+00:00"
+  },
+  {
+    "filename": "zscaler-and-the-inflationary-impact-of-ai.html",
+    "subject": "Zscaler and the inflationary impact of AI",
+    "email_date": "May 26, 2026 · 08:50 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-27T00:50:40+00:00"
+  },
+  {
+    "filename": "earnings-preview-tuesday-may-26-2026.html",
+    "subject": "Earnings Preview · Tuesday, May 26, 2026",
+    "email_date": "May 26, 2026 · 07:56 PM ET",
+    "preview": "- **Earnings Date:** Wednesday, May 27, 2026 after market close (4:05 PM ET)",
+    "sent_ts": "2026-05-26T23:56:35+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-5-26-amc-box-dd-ful-mod-podd-smtc-zs.html",
+    "subject": "Company-specific news for Tues 5/26 (AMC) - BOX, DD, FUL, MOD, PODD, SMTC, ZS",
+    "email_date": "May 26, 2026 · 04:42 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-26T20:42:45+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-may-26-2026.html",
+    "subject": "Market Recap · Tuesday May 26, 2026",
+    "email_date": "May 26, 2026 · 04:04 PM ET",
+    "preview": "The SPX gained +0.61% while the Nasdaq surged +1.19% as semiconductors exploded higher. The Dow fell -0.23% on pressure in legacy names, whi...",
+    "sent_ts": "2026-05-26T20:04:27+00:00"
+  },
+  {
+    "filename": "mid-day-update-tuesday-may-26-2026.html",
+    "subject": "Mid-Day Update · Tuesday May 26,\r\n 2026",
+    "email_date": "May 26, 2026 · 11:17 AM ET",
+    "preview": "The SPX gained +0.68% while the Nasdaq jumped +1.14%. The Dow fell -0.16% and R2K spiked +1.48%. Treasuries caught a modest bid with yields ...",
+    "sent_ts": "2026-05-26T15:17:38+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-5-26-bmo-azo-lly-mod.html",
+    "subject": "Company-specific news for Tues 5/26 (BMO) - AZO, LLY, MOD",
+    "email_date": "May 26, 2026 · 07:10 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-26T11:10:21+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-may-26-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday May 26, 2026",
+    "email_date": "May 26, 2026 · 05:20 AM ET",
+    "preview": "SPX futures +0.57%, Nasdaq +0.88%, Dow +0.49%, R2K +0.98%. European indices down 30-85 basis points with weakness in autos, luxury, and tech...",
+    "sent_ts": "2026-05-26T09:20:19+00:00"
+  },
+  {
+    "filename": "weekend-sun-5-24-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 5/24/2026) - getting ready for the week ahead",
+    "email_date": "May 24, 2026 · 09:30 PM ET",
+    "preview": "No specific market performance data provided for this weekend update.",
+    "sent_ts": "2026-05-25T01:30:14+00:00"
+  },
+  {
+    "filename": "iran-what-bulls-and-bears-are-saying-about-the-weekend-news.html",
+    "subject": "Iran: what bulls and bears are saying about the weekend news",
+    "email_date": "May 24, 2026 · 12:29 PM ET",
+    "preview": "Markets data not provided in this Iran-focused commentary.",
+    "sent_ts": "2026-05-24T16:29:35+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-may-25-2026.html",
+    "subject": "Earnings Calendar · Monday, May 25,\r\n 2026",
+    "email_date": "May 23, 2026 · 10:14 AM ET",
+    "preview": "**Tuesday, May 26, 2026 at 10:55 PM ET**",
+    "sent_ts": "2026-05-23T14:14:11+00:00"
+  },
+  {
+    "filename": "earnings-preview-friday-may-22-2026.html",
+    "subject": "Earnings Preview · Friday, May 22, 2026",
+    "email_date": "May 22, 2026 · 05:41 PM ET",
+    "preview": "**Earnings Date:** Monday, May 25, 2026 at 7:00 PM ET (after market close)",
+    "sent_ts": "2026-05-22T21:41:39+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-may-22-2026.html",
+    "subject": "Mid-Day Update · Friday May 22,\r\n 2026",
+    "email_date": "May 22, 2026 · 11:23 AM ET",
+    "preview": "The SPX climbed +0.61% with the equal-weight version matching that exact gain, while the Nasdaq advanced +0.66% and the Dow rallied +0.75%. ...",
+    "sent_ts": "2026-05-22T15:23:14+00:00"
+  },
+  {
+    "filename": "waller-michigan-are-both-negative.html",
+    "subject": "Waller & Michigan are both negative",
+    "email_date": "May 22, 2026 · 10:10 AM ET",
+    "preview": "Market data not provided in this intraday commentary.",
+    "sent_ts": "2026-05-22T14:10:32+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-5-25-us-pce-more-conference-presentations-and-lots-of.html",
+    "subject": "Catalyst Watch (week of Mon 5/25) - US PCE, more conference presentations, and lots of earnings (ANF, AEO, BBY, CRM, DELL, DKS, GAP, HPQ, MRVL, SNOW, and many more)",
+    "email_date": "May 22, 2026 · 08:37 AM ET",
+    "preview": "Markets data not provided in this earnings preview newsletter.",
+    "sent_ts": "2026-05-22T12:37:41+00:00"
+  },
+  {
+    "filename": "market-recap-friday-may-22-2026.html",
+    "subject": "Market Recap · Friday May 22, 2026",
+    "email_date": "May 22, 2026 · 08:35 AM ET",
+    "preview": "The SPX traded in the 7400-7500 range this week amid mixed signals from earnings and geopolitical tensions. Specific percentage changes not ...",
+    "sent_ts": "2026-05-22T12:35:37+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-fri-5-22-bmo-bah-bj.html",
+    "subject": "Company-specific news for Fri 5/22 (BMO) - BAH, BJ",
+    "email_date": "May 22, 2026 · 07:12 AM ET",
+    "preview": "No market data provided in this earnings-focused update.",
+    "sent_ts": "2026-05-22T11:12:33+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-may-22-2026.html",
+    "subject": "Morning Intelligentsia · Friday May 22, 2026",
+    "email_date": "May 22, 2026 · 05:31 AM ET",
+    "preview": "US equity futures showing modest gains: SPX +0.15%, Nasdaq +0.23%, with Dow +99 points and R2K +3 points. Major European indices up 40-60 ba...",
+    "sent_ts": "2026-05-22T09:31:05+00:00"
+  },
+  {
+    "filename": "earnings-preview-thursday-may-21-2026.html",
+    "subject": "Earnings Preview · Thursday, May 21, 2026",
+    "email_date": "May 21, 2026 · 05:26 PM ET",
+    "preview": "Based on the newsletter content, here are the key earnings previews for Victory Lane:",
+    "sent_ts": "2026-05-21T21:26:40+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-5-21-amc-cor-deck-el-flo-rost-ttwo-wday-zm.html",
+    "subject": "Company-specific news for Thurs 5/21 (AMC) - COR, DECK, EL, FLO, ROST, TTWO, WDAY, ZM",
+    "email_date": "May 21, 2026 · 04:44 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-21T20:44:24+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-may-21-2026.html",
+    "subject": "Market Recap · Thursday May 21, 2026",
+    "email_date": "May 21, 2026 · 04:05 PM ET",
+    "preview": "SPX rose +0.17%, Nasdaq gained +0.09%, while broader markets showed more strength with the Dow up 276 points (+0.55%) and R2K surging 26 poi...",
+    "sent_ts": "2026-05-21T20:05:36+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-may-21-2026.html",
+    "subject": "Mid-Day Update · Thursday May 21,\r\n 2026",
+    "email_date": "May 21, 2026 · 11:12 AM ET",
+    "preview": "The SPX dropped -0.57% while the Nasdaq sank -0.79%. The Dow fell -0.29% and R2K declined -0.11%. Treasuries saw pressure with yields up 1-5...",
+    "sent_ts": "2026-05-21T15:12:16+00:00"
+  },
+  {
+    "filename": "flash-pmis-in-may-for-the-us-are-net-negative.html",
+    "subject": "Flash PMIs in May for the US are net negative",
+    "email_date": "May 21, 2026 · 09:53 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-21T13:53:42+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-5-21-bmo-aap-birk-de-dvn-eqr-avb-frpt-kr-ktb-qua.html",
+    "subject": "Company-specific news for Thurs 5/21 (BMO) - AAP, BIRK, DE, DVN, EQR/AVB, FRPT, KR, KTB, quantum computing, RL, VSCO, WMT",
+    "email_date": "May 21, 2026 · 08:35 AM ET",
+    "preview": "No major index data provided in today's earnings-focused report.",
+    "sent_ts": "2026-05-21T12:35:19+00:00"
+  },
+  {
+    "filename": "walmart-fq1-earnings-takeaways.html",
+    "subject": "Walmart FQ1 earnings takeaways",
+    "email_date": "May 21, 2026 · 07:18 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-21T11:18:52+00:00"
+  },
+  {
+    "filename": "grocery-price-war-deere-s-beat-and-reiterate-quarter-the-eqt-avb-apartment-merge.html",
+    "subject": "Grocery price war, Deere's beat-and-reiterate quarter, the EQT-AVB apartment merger, and quantum computing grants",
+    "email_date": "May 21, 2026 · 06:20 AM ET",
+    "preview": "Market data not provided in this earnings-focused update.",
+    "sent_ts": "2026-05-21T10:20:57+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-may-21-2026.html",
+    "subject": "Morning Intelligentsia · Thursday May 21, 2026",
+    "email_date": "May 21, 2026 · 05:29 AM ET",
+    "preview": "US equity futures essentially unchanged this morning with S&P +0.08%, Nasdaq +0.05%, Dow +0.12%, and R2K flat. Oil down -0.55% after yesterd...",
+    "sent_ts": "2026-05-21T09:29:29+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-5-20-amc-anthropic-apld-be-chh-elf-intu-nvda-space.html",
+    "subject": "Company-specific news for Wed 5/20 (AMC) - Anthropic, APLD, BE, CHH, ELF, INTU, NVDA, SpaceX, URBN",
+    "email_date": "May 20, 2026 · 05:55 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-20T21:55:02+00:00"
+  },
+  {
+    "filename": "spacex-highlights-from-the-ipo-prospectus.html",
+    "subject": "SpaceX – highlights from the IPO prospectus",
+    "email_date": "May 20, 2026 · 05:38 PM ET",
+    "preview": "Market data not provided in today's commentary.",
+    "sent_ts": "2026-05-20T21:38:37+00:00"
+  },
+  {
+    "filename": "earnings-preview-wednesday-may-20-2026.html",
+    "subject": "Earnings Preview · Wednesday, May 20, 2026",
+    "email_date": "May 20, 2026 · 05:30 PM ET",
+    "preview": "**Earnings Date:** Thursday, May 21, 2026 at 6:30 AM ET (before market)",
+    "sent_ts": "2026-05-20T21:30:33+00:00"
+  },
+  {
+    "filename": "nvidia-earnings-takeaways-on-the-fq1-report.html",
+    "subject": "Nvidia earnings: takeaways on the FQ1 report",
+    "email_date": "May 20, 2026 · 04:42 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-20T20:42:39+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-may-20-2026.html",
+    "subject": "Market Recap · Wednesday May 20, 2026",
+    "email_date": "May 20, 2026 · 04:04 PM ET",
+    "preview": "SPX gained +1.08% while Nasdaq climbed +1.54%. The Dow jumped 645 points (+1.31%) and R2K spiked 70 points (+2.56%). Brent crude sank ~5.70%...",
+    "sent_ts": "2026-05-20T20:04:24+00:00"
+  },
+  {
+    "filename": "fed-update-takeaways-on-the-minutes-from-the-apr-28-29-fomc-meeting.html",
+    "subject": "Fed update: takeaways on the minutes from the Apr 28-29 FOMC meeting",
+    "email_date": "May 20, 2026 · 02:19 PM ET",
+    "preview": "Market data not provided in this Fed minutes-focused commentary.",
+    "sent_ts": "2026-05-20T18:19:06+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-may-20-2026.html",
+    "subject": "Mid-Day Update · Wednesday May 20,\r\n 2026",
+    "email_date": "May 20, 2026 · 11:09 AM ET",
+    "preview": "SPX rallied +0.73% with equal-weight gaining a similar +0.72%. Nasdaq advanced +1.05% while the Dow climbed +0.64% and R2K spiked +1.95%. Tr...",
+    "sent_ts": "2026-05-20T15:09:10+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-may-20-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday May 20, 2026",
+    "email_date": "May 20, 2026 · 05:25 AM ET",
+    "preview": "US equity futures are showing strength this morning with the SPX gaining approximately +0.72%, Nasdaq up roughly +1.03%, Dow +0.21%, and R2K...",
+    "sent_ts": "2026-05-20T09:25:08+00:00"
+  },
+  {
+    "filename": "trump-vanquishes-another-foe-massie-but-takes-a-big-risk-in-texas.html",
+    "subject": "Trump vanquishes another foe (Massie), but takes a big risk in Texas",
+    "email_date": "May 19, 2026 · 09:01 PM ET",
+    "preview": "Market data not provided in this political commentary.",
+    "sent_ts": "2026-05-20T01:01:09+00:00"
+  },
+  {
+    "filename": "earnings-preview-tuesday-may-19-2026.html",
+    "subject": "Earnings Preview · Tuesday, May 19, 2026",
+    "email_date": "May 19, 2026 · 06:29 PM ET",
+    "preview": "**Earnings Date:** Wednesday, May 20, 2026 at 4:20 PM ET (after market close)",
+    "sent_ts": "2026-05-19T22:29:54+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tus-5-19-amc-adi-cava-ce-googl-jhx-keys-rblx-rrgb-tol-.html",
+    "subject": "Company-specific news for Tus 5/19 (AMC) - ADI, CAVA, CE, GOOGL, JHX, KEYS, RBLX, RRGB, TOL, VIAV",
+    "email_date": "May 19, 2026 · 04:52 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-19T20:52:24+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-may-19-2026.html",
+    "subject": "Market Recap · Tuesday May 19, 2026",
+    "email_date": "May 19, 2026 · 04:05 PM ET",
+    "preview": "The SPX dropped -0.67% while the Nasdaq fell -0.84%. The Dow declined 321 points and the R2K tanked -1.01%. Brent dipped modestly to ~$111.4...",
+    "sent_ts": "2026-05-19T20:05:25+00:00"
+  },
+  {
+    "filename": "mid-day-update-tuesday-may-19-2026.html",
+    "subject": "Mid-Day Update · Tuesday May 19,\r\n 2026",
+    "email_date": "May 19, 2026 · 11:13 AM ET",
+    "preview": "The SPX dropped -0.69% while the Nasdaq fell -1.07%. The Dow declined 147 points (-0.29%) and the R2K tumbled 43 points (-1.54%). Treasuries...",
+    "sent_ts": "2026-05-19T15:13:45+00:00"
+  },
+  {
+    "filename": "driven-brands-provides-2026-guidance-that-falls-short-of-expectations.html",
+    "subject": "Driven Brands provides 2026 guidance that falls short of expectations",
+    "email_date": "May 19, 2026 · 07:38 AM ET",
+    "preview": "No market data provided in source material.",
+    "sent_ts": "2026-05-19T11:38:36+00:00"
+  },
+  {
+    "filename": "retail-earnings-amer-sports-beat-and-raise-and-home-depot-beat-and-reiterate.html",
+    "subject": "Retail earnings: Amer Sports (beat-and-raise) and Home Depot (beat-and-reiterate)",
+    "email_date": "May 19, 2026 · 06:18 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-19T10:18:30+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-may-19-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday May 19, 2026",
+    "email_date": "May 19, 2026 · 05:27 AM ET",
+    "preview": "US equity futures are down this morning with S&P -0.36%, Dow -0.06%, Nasdaq -0.40%, and R2K -0.25%. Major Eurozone indices are up ~80bp with...",
+    "sent_ts": "2026-05-19T09:27:59+00:00"
+  },
+  {
+    "filename": "earnings-preview-monday-may-18-2026.html",
+    "subject": "Earnings Preview · Monday, May 18, 2026",
+    "email_date": "May 18, 2026 · 07:00 PM ET",
+    "preview": "**Earnings Report:** Tuesday, May 19, 2026 at 6:00 AM ET (before market)",
+    "sent_ts": "2026-05-18T23:00:11+00:00"
+  },
+  {
+    "filename": "market-recap-monday-may-18-2026.html",
+    "subject": "Market Recap · Monday May 18, 2026",
+    "email_date": "May 18, 2026 · 04:05 PM ET",
+    "preview": "The SPX closed down -0.07% while the Nasdaq fell -0.51% and the R2K sank -0.65%. However, the Dow rose +0.32% while equal-weight S&P climbed...",
+    "sent_ts": "2026-05-18T20:05:15+00:00"
+  },
+  {
+    "filename": "mid-day-update-monday-may-18-2026.html",
+    "subject": "Mid-Day Update · Monday May 18,\r\n 2026",
+    "email_date": "May 18, 2026 · 11:14 AM ET",
+    "preview": "The SPX fell -0.26% while the Nasdaq dropped -0.48%. The Dow held up better with just a -0.09% decline, and the R2K slid -0.50%. The equal-w...",
+    "sent_ts": "2026-05-18T15:14:35+00:00"
+  },
+  {
+    "filename": "nextera-confirms-dominion-bid-plus-other-company-specific-news-brc-bsx-f-and-lul.html",
+    "subject": "NextEra confirms Dominion bid, plus other company-specific news (BRC, BSX, F, and LULU)",
+    "email_date": "May 18, 2026 · 07:45 AM ET",
+    "preview": "Market data not provided in today's newsletter.",
+    "sent_ts": "2026-05-18T11:45:15+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-monday-may-18-2026.html",
+    "subject": "Morning Intelligentsia · Monday May 18, 2026",
+    "email_date": "May 18, 2026 · 05:24 AM ET",
+    "preview": "US equity futures showing losses Monday morning: SPX -0.59%, Nasdaq -0.07%. Dow -293 points, R2K -27 basis points. European indices down 20-...",
+    "sent_ts": "2026-05-18T09:24:05+00:00"
+  },
+  {
+    "filename": "weekend-sun-5-17-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 5/17/2026) - getting ready for the week ahead",
+    "email_date": "May 17, 2026 · 09:39 AM ET",
+    "preview": "Market data not provided in this weekend update.",
+    "sent_ts": "2026-05-17T13:39:40+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-may-18-2026.html",
+    "subject": "Earnings Calendar · Monday, May 18,\r\n 2026",
+    "email_date": "May 16, 2026 · 09:15 AM ET",
+    "preview": "**Monday, May 18, 2026 at 4:00 AM ET (before market)**",
+    "sent_ts": "2026-05-16T13:15:57+00:00"
+  },
+  {
+    "filename": "earnings-preview-friday-may-15-2026.html",
+    "subject": "Earnings Preview · Friday, May 15, 2026",
+    "email_date": "May 15, 2026 · 07:04 PM ET",
+    "preview": "**Earnings Date:** Monday, May 18, 2026 at approximately 4:00 AM ET (before market)",
+    "sent_ts": "2026-05-15T23:04:14+00:00"
+  },
+  {
+    "filename": "berkshire-q1-13f-thoughts-aapl-and-goog-googl-now-make-up-9-of-the-berkshire-mar.html",
+    "subject": "Berkshire Q1 13F thoughts (AAPL and GOOG/GOOGL now make up ~9% of the Berkshire market cap)",
+    "email_date": "May 15, 2026 · 06:21 PM ET",
+    "preview": "No index performance data provided in this intraday commentary.",
+    "sent_ts": "2026-05-15T22:21:44+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-may-15-2026.html",
+    "subject": "Mid-Day Update · Friday May 15,\r\n 2026",
+    "email_date": "May 15, 2026 · 11:03 AM ET",
+    "preview": "The SPX dropped -1.26% while the Nasdaq fell -1.35%, leading a broad market selloff. The Dow declined 430 points (-0.85%) and the R2K tumble...",
+    "sent_ts": "2026-05-15T15:03:48+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-5-18-china-data-fomc-minutes-flash-pmis-google-dell-c.html",
+    "subject": "Catalyst Watch (week of Mon 5/18) - China data, FOMC minutes, flash PMIs, Google/Dell conferences, and lots of earnings (ADI, DE, HD, NVDA, TGT, TJX, WDAY, WMT, and more)",
+    "email_date": "May 15, 2026 · 08:41 AM ET",
+    "preview": "Market data not provided in this earnings preview.",
+    "sent_ts": "2026-05-15T12:41:28+00:00"
+  },
+  {
+    "filename": "market-recap-friday-may-15-2026.html",
+    "subject": "Market Recap · Friday May 15, 2026",
+    "email_date": "May 15, 2026 · 08:34 AM ET",
+    "preview": "The SPX climbed approximately +4.0% month-to-date while the Nasdaq surged +7.0%, though equal-weight S&P remained flat, highlighting dangero...",
+    "sent_ts": "2026-05-15T12:34:36+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-may-15-2026.html",
+    "subject": "Morning Intelligentsia · Friday May 15, 2026",
+    "email_date": "May 15, 2026 · 05:21 AM ET",
+    "preview": "S&P -0.75%, Dow -0.60%, Nasdaq -1.44%, R2K -1.10%. Eurozone indices down 125-170bp with mining stocks particularly weak (SXPP -4%). Asian ma...",
+    "sent_ts": "2026-05-15T09:21:41+00:00"
+  },
+  {
+    "filename": "earnings-preview-thursday-may-14-2026.html",
+    "subject": "Earnings Preview · Thursday, May 14, 2026",
+    "email_date": "May 14, 2026 · 07:39 PM ET",
+    "preview": "**Report Date:** Friday, May 15, 2026 before market open",
+    "sent_ts": "2026-05-14T23:39:48+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-5-14-amc-amat-boot-dxcm-fig-glob-pzza.html",
+    "subject": "Company-specific news for Thurs 5/14 (AMC) - AMAT, BOOT, DXCM, FIG, GLOB, PZZA",
+    "email_date": "May 14, 2026 · 04:34 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-14T20:34:29+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-may-14-2026.html",
+    "subject": "Market Recap · Thursday May 14, 2026",
+    "email_date": "May 14, 2026 · 04:04 PM ET",
+    "preview": "The SPX jumped +1.53% while the Nasdaq ramped +1.47%, both extending their gains as tech enthusiasm continued to drive markets higher. The D...",
+    "sent_ts": "2026-05-14T20:04:53+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-may-14-2026.html",
+    "subject": "Mid-Day Update · Thursday May 14,\r\n 2026",
+    "email_date": "May 14, 2026 · 11:11 AM ET",
+    "preview": "SPX +0.74%, Nasdaq +0.87%. The Dow rallied 370 points (+0.74%) while the R2K advanced 17 points (+0.60%). The DXY rallied 15 basis points. B...",
+    "sent_ts": "2026-05-14T15:11:19+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-5-14-bmo-akam-dds-fisv-goos-klar-vik-vsnt-www-ye.html",
+    "subject": "Company-specific news for Thurs 5/14 (BMO) - AKAM, DDS, FISV, GOOS, KLAR, VIK, VSNT, WWW, YETI",
+    "email_date": "May 14, 2026 · 07:39 AM ET",
+    "preview": "No broad market data provided in this earnings-focused update.",
+    "sent_ts": "2026-05-14T11:39:02+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-may-14-2026.html",
+    "subject": "Morning Intelligentsia · Thursday May 14, 2026",
+    "email_date": "May 14, 2026 · 05:24 AM ET",
+    "preview": "US equity futures rallying this morning with SPX futures up +0.67%, Nasdaq +0.87%, Dow +0.47%. **CSCO** surging ~18% pre-market while **NVDA...",
+    "sent_ts": "2026-05-14T09:24:08+00:00"
+  },
+  {
+    "filename": "nvidia-h200-china-sales-and-a-look-at-next-week-s-earnings.html",
+    "subject": "Nvidia: H200, China sales, and a look at next week's earnings",
+    "email_date": "May 14, 2026 · 04:14 AM ET",
+    "preview": "Market data not provided in this intraday commentary focused on Nvidia developments.",
+    "sent_ts": "2026-05-14T08:14:27+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-5-13-amc-cerebras-csco-docs-dox-eqpt-go-jack-khc-l.html",
+    "subject": "Company-specific news for Wed 5/13 (AMC) - Cerebras, CSCO, DOCS, DOX, EQPT, GO, JACK, KHC, LULU, MSFT, PBH, STAA, STUB",
+    "email_date": "May 13, 2026 · 04:48 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-13T20:48:40+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-may-13-2026.html",
+    "subject": "Market Recap · Wednesday May 13, 2026",
+    "email_date": "May 13, 2026 · 04:04 PM ET",
+    "preview": "The SPX climbed +0.58% to 7444 while the Nasdaq spiked +1.20% on tech strength. The Dow dropped -0.14% and R2K ended flat, with equal-weight...",
+    "sent_ts": "2026-05-13T20:04:59+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-may-13-2026.html",
+    "subject": "Mid-Day Update · Wednesday May 13,\r\n 2026",
+    "email_date": "May 13, 2026 · 11:11 AM ET",
+    "preview": "The SPX climbed +0.15% while the Nasdaq surged +0.64%, though underlying breadth was weak with the Dow falling -0.60%, equal-weight S&P down...",
+    "sent_ts": "2026-05-13T15:11:33+00:00"
+  },
+  {
+    "filename": "alibaba-fq4-mar-results-are-underwhelming-on-overall-sales-earnings-but-cloud-ai.html",
+    "subject": "Alibaba FQ4/Mar results are underwhelming on overall sales/earnings, but Cloud/AI results are solid",
+    "email_date": "May 13, 2026 · 05:48 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-13T09:48:23+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-may-13-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday May 13, 2026",
+    "email_date": "May 13, 2026 · 05:29 AM ET",
+    "preview": "SPX futures +0.21%, Nasdaq +0.72%, Dow -0.22%, R2K +0.24%. DXY climbing another 0.23%, Brent ticking down ~0.15% to ~$107.60, Gold sliding -...",
+    "sent_ts": "2026-05-13T09:29:53+00:00"
+  },
+  {
+    "filename": "geopolitical-headlines-iran-ukraine.html",
+    "subject": "Geopolitical headlines: Iran & Ukraine",
+    "email_date": "May 12, 2026 · 08:22 PM ET",
+    "preview": "Market data not provided in this geopolitical-focused update.",
+    "sent_ts": "2026-05-13T00:22:24+00:00"
+  },
+  {
+    "filename": "earnings-preview-tuesday-may-12-2026.html",
+    "subject": "Earnings Preview · Tuesday, May 12, 2026",
+    "email_date": "May 12, 2026 · 06:02 PM ET",
+    "preview": "- **Earnings Date:** Wednesday, May 13, 2026 at 8:35 AM ET",
+    "sent_ts": "2026-05-12T22:02:56+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-may-12-2026.html",
+    "subject": "Market Recap · Tuesday May 12, 2026",
+    "email_date": "May 12, 2026 · 04:05 PM ET",
+    "preview": "SPX closed -0.16% while the Nasdaq dropped -0.71%. R2K slumped -0.97% and Dow ticked up +0.11%. Brent spiked ~3.40% to ~$107.80, gold fell -...",
+    "sent_ts": "2026-05-12T20:05:00+00:00"
+  },
+  {
+    "filename": "mid-day-update-tuesday-may-12-2026.html",
+    "subject": "Mid-Day Update · Tuesday May 12,\r\n 2026",
+    "email_date": "May 12, 2026 · 11:12 AM ET",
+    "preview": "SPX fell -0.72% while the equal-weight version dropped -0.74%. The Nasdaq slumped -1.22%, Dow declined -0.49%, and R2K tumbled -1.96%. Brent...",
+    "sent_ts": "2026-05-12T15:12:54+00:00"
+  },
+  {
+    "filename": "us-inflation-runs-hot-in-april-the-big-surprise-was-shelter-not-energy-or-food.html",
+    "subject": "US inflation runs hot in April (the big surprise was shelter, not energy or food)",
+    "email_date": "May 12, 2026 · 08:49 AM ET",
+    "preview": "Market data not provided in this inflation-focused commentary.",
+    "sent_ts": "2026-05-12T12:49:36+00:00"
+  },
+  {
+    "filename": "company-specific-news-part-ii-for-tues-5-12-bmo-armk-se-uaa-zbh-zbra.html",
+    "subject": "Company-specific news part II for Tues 5/12 (BMO) - ARMK, SE, UAA, ZBH, ZBRA",
+    "email_date": "May 12, 2026 · 07:07 AM ET",
+    "preview": "Market data not provided in this earnings-focused update.",
+    "sent_ts": "2026-05-12T11:07:05+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-5-12-bmo-amzn-ebay-jd-onon-q-tme-vg.html",
+    "subject": "Company-specific news for Tues 5/12 (BMO) - AMZN, EBAY, JD, ONON, Q, TME, VG",
+    "email_date": "May 12, 2026 · 06:17 AM ET",
+    "preview": "No market data provided in source material.",
+    "sent_ts": "2026-05-12T10:17:25+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-may-12-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday May 12, 2026",
+    "email_date": "May 12, 2026 · 05:22 AM ET",
+    "preview": "S&P futures down -0.74%, Nasdaq -0.78%, Dow -0.14%, R2K -0.42%. Eurozone indices sliding 75-90 basis points with broad sector weakness. Asia...",
+    "sent_ts": "2026-05-12T09:22:20+00:00"
+  },
+  {
+    "filename": "earnings-preview-monday-may-11-2026.html",
+    "subject": "Earnings Preview · Monday, May 11, 2026",
+    "email_date": "May 11, 2026 · 07:32 PM ET",
+    "preview": "**Earnings Date:** Tuesday, May 12, 2026 at 7:00 AM ET",
+    "sent_ts": "2026-05-11T23:32:05+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-5-11-amc-acm-asts-bzfd-bzh-cndt-gpro-gtlb-gtm-has-.html",
+    "subject": "Company-specific news for Mon 5/11 (AMC) - ACM, ASTS, BZFD, BZH, CNDT, GPRO, GTLB, GTM, HAS, HIMS, HLIT, PD, PHR, PLUG, SPG, STE",
+    "email_date": "May 11, 2026 · 05:12 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-11T21:12:25+00:00"
+  },
+  {
+    "filename": "market-recap-monday-may-11-2026.html",
+    "subject": "Market Recap · Monday May 11, 2026",
+    "email_date": "May 11, 2026 · 04:05 PM ET",
+    "preview": "The SPX rose +0.19% while the Nasdaq advanced +0.10%. The Dow gained 95 points (+0.19%), the R2K climbed 9.4 points (+0.33%). Brent oil spik...",
+    "sent_ts": "2026-05-11T20:05:30+00:00"
+  },
+  {
+    "filename": "mid-day-update-monday-may-11-2026.html",
+    "subject": "Mid-Day Update · Monday May 11,\r\n 2026",
+    "email_date": "May 11, 2026 · 11:11 AM ET",
+    "preview": "SPX +0.26%, Nasdaq +0.21%, Dow +0.05%, R2K +0.73%. Treasuries under pressure with yields up 4-5 basis points across the curve. Brent jumped ...",
+    "sent_ts": "2026-05-11T15:11:20+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-5-11-bmo-b-bzh-ceg-crcl-dole-fsk-mos-prks-sats.html",
+    "subject": "Company-specific news for Mon 5/11 (BMO) - B, BZH, CEG, CRCL, DOLE, FSK, MOS, PRKS, SATS",
+    "email_date": "May 11, 2026 · 07:20 AM ET",
+    "preview": "Market data not provided in this earnings-focused report.",
+    "sent_ts": "2026-05-11T11:20:28+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-monday-may-11-2026.html",
+    "subject": "Morning Intelligentsia · Monday May 11, 2026",
+    "email_date": "May 11, 2026 · 05:23 AM ET",
+    "preview": "US equity futures down modestly with S&P -0.06%, Nasdaq -0.04%, Dow -0.05%. Mixed Asian session with Korea KOSPI surging +4.32% on semicondu...",
+    "sent_ts": "2026-05-11T09:23:55+00:00"
+  },
+  {
+    "filename": "sunday-afternoon-headlines-totally-unacceptable-war-is-not-over-checkmate-in-ira.html",
+    "subject": "Sunday afternoon headlines: \"totally unacceptable\", war is \"not over\", \"checkmate in Iran\", and a potential gas tax suspension",
+    "email_date": "May 10, 2026 · 07:43 PM ET",
+    "preview": "Markets were closed Sunday. No trading data available.",
+    "sent_ts": "2026-05-10T23:43:59+00:00"
+  },
+  {
+    "filename": "weekend-sun-5-10-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 5/10/2026) - getting ready for the week ahead",
+    "email_date": "May 10, 2026 · 09:49 AM ET",
+    "preview": "No specific market performance data provided for SPX, Nasdaq, or other major indices.",
+    "sent_ts": "2026-05-10T13:49:59+00:00"
+  },
+  {
+    "filename": "mega-caps-a-look-at-where-things-stand-with-the-market-s-largest-companies-exiti.html",
+    "subject": "Mega caps: a look at where things stand with the market's largest companies exiting CQ1 earnings",
+    "email_date": "May 09, 2026 · 07:56 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-09T11:56:38+00:00"
+  },
+  {
+    "filename": "earnings-preview-friday-may-8-2026.html",
+    "subject": "Earnings Preview · Friday, May 8, 2026",
+    "email_date": "May 08, 2026 · 04:42 PM ET",
+    "preview": "**Earnings Date:** Monday, May 11, 2026 after market close (4:05 PM ET)",
+    "sent_ts": "2026-05-08T20:42:09+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-may-8-2026.html",
+    "subject": "Mid-Day Update · Friday May 8,\r\n 2026",
+    "email_date": "May 08, 2026 · 11:05 AM ET",
+    "preview": "SPX rallied +0.79% while the Nasdaq spiked +1.34%, outpacing the Dow's modest +0.15% gain. R2K managed +0.38% as tech did the heavy lifting....",
+    "sent_ts": "2026-05-08T15:05:26+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-5-8-us-inflation-trump-s-china-trip-china-internet-ea.html",
+    "subject": "Catalyst Watch (week of Mon 5/8) - US inflation, Trump's China trip, China internet earnings (BABA, Tencent), Apr-end earnings (CSCO and AMAT), and more",
+    "email_date": "May 08, 2026 · 09:49 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-08T13:49:14+00:00"
+  },
+  {
+    "filename": "market-recap-friday-may-8-2026.html",
+    "subject": "Market Recap · Friday May 8, 2026",
+    "email_date": "May 08, 2026 · 08:54 AM ET",
+    "preview": "SPX surged ~17% since March 30th trough around 6300, with the rally being driven by the \"smallest number of stocks on record\" according to m...",
+    "sent_ts": "2026-05-08T12:54:23+00:00"
+  },
+  {
+    "filename": "us-employment-headline-numbers-are-bullish-goldilocks-establishment-job-creation.html",
+    "subject": "US employment: headline numbers are bullish (goldilocks Establishment job creation and cooler wage growth), but Household details raise some red flags",
+    "email_date": "May 08, 2026 · 08:49 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-08T12:49:42+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-fri-5-8-bmo-bam-flr-osk-road-wen.html",
+    "subject": "Company-specific news for Fri 5/8 (BMO) - BAM, FLR, OSK, ROAD, WEN",
+    "email_date": "May 08, 2026 · 07:25 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-08T11:25:27+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-may-8-2026.html",
+    "subject": "Morning Intelligentsia · Friday May 8, 2026",
+    "email_date": "May 08, 2026 · 05:25 AM ET",
+    "preview": "S&P futures +0.48%, Nasdaq +0.72%, Dow +136 points, R2K +39bp. European indices down 80-90bp with broad selling across industrials, luxury, ...",
+    "sent_ts": "2026-05-08T09:25:42+00:00"
+  },
+  {
+    "filename": "earnings-preview-thursday-may-7-2026.html",
+    "subject": "Earnings Preview · Thursday, May 7, 2026",
+    "email_date": "May 07, 2026 · 09:02 PM ET",
+    "preview": "Earnings report: Friday, May 8, 2026 at 7:00 AM ET",
+    "sent_ts": "2026-05-08T01:02:43+00:00"
+  },
+  {
+    "filename": "the-number-of-big-layoff-announcements-is-getting-rather-large.html",
+    "subject": "The number of big layoff announcements is getting rather large",
+    "email_date": "May 07, 2026 · 08:35 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-08T00:35:41+00:00"
+  },
+  {
+    "filename": "iran-tariffs-and-company-specific-news-abnb-afrm-akam-coin-crwv-expe-meli-mnst-t.html",
+    "subject": "Iran, tariffs, and company-specific news (ABNB, AFRM, AKAM, COIN, CRWV, EXPE, MELI, MNST, TOST, XYZ, and much more)",
+    "email_date": "May 07, 2026 · 05:51 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-07T21:51:28+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-may-7-2026.html",
+    "subject": "Market Recap · Thursday May 7, 2026",
+    "email_date": "May 07, 2026 · 04:04 PM ET",
+    "preview": "SPX fell -0.38%, Nasdaq down -0.14%. Broader weakness elsewhere: Dow -313 points, R2K -1.63%, equal-weight S&P -0.65%. Brent crude up 0.50% ...",
+    "sent_ts": "2026-05-07T20:04:53+00:00"
+  },
+  {
+    "filename": "us-jobs-thoughts-ahead-of-the-apr-bls-report-on-friday.html",
+    "subject": "US jobs: thoughts ahead of the Apr BLS report on Friday",
+    "email_date": "May 07, 2026 · 11:46 AM ET",
+    "preview": "Limited market data available in this commentary piece.",
+    "sent_ts": "2026-05-07T15:46:41+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-may-7-2026.html",
+    "subject": "Mid-Day Update · Thursday May 7,\r\n 2026",
+    "email_date": "May 07, 2026 · 11:16 AM ET",
+    "preview": "SPX climbed +0.15% while Nasdaq gained +0.52%, though underlying action was weaker with the Dow unchanged and R2K down 0.53%. DXY slid 0.20%...",
+    "sent_ts": "2026-05-07T15:16:19+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-5-7-bmo-bdx-c-ddog-htz-hwm-mcd-plnt-shak-tpr-vit.html",
+    "subject": "Company-specific news for Thurs 5/7 (BMO) - BDX, C, DDOG, HTZ, HWM, MCD, PLNT, SHAK, TPR, VITL, ZTS, and many more",
+    "email_date": "May 07, 2026 · 08:09 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-07T12:09:57+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-may-7-2026.html",
+    "subject": "Morning Intelligentsia · Thursday May 7, 2026",
+    "email_date": "May 07, 2026 · 05:22 AM ET",
+    "preview": "US equity futures are largely unchanged this morning with SPX futures showing minimal movement. European markets are mixed with autos, luxur...",
+    "sent_ts": "2026-05-07T09:22:58+00:00"
+  },
+  {
+    "filename": "earnings-preview-wednesday-may-6-2026.html",
+    "subject": "Earnings Preview · Wednesday, May 6, 2026",
+    "email_date": "May 06, 2026 · 09:29 PM ET",
+    "preview": "- **Earnings Date:** Thursday, May 7, 2026 at 4:05 PM ET",
+    "sent_ts": "2026-05-07T01:29:24+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-5-6-amc-alb-app-arm-axon-bros-cf-cohr-dash-flut-fs.html",
+    "subject": "Company-specific news for Wed 5/6 (AMC) - ALB, APP, ARM, AXON, BROS, CF, COHR, DASH, FLUT, FSLY, FTNT, WHR, ZG, and many more",
+    "email_date": "May 06, 2026 · 05:43 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-06T21:43:30+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-may-6-2026.html",
+    "subject": "Market Recap · Wednesday May 6, 2026",
+    "email_date": "May 06, 2026 · 04:04 PM ET",
+    "preview": "The SPX surged +1.46% while the Nasdaq jumped +2.02%. The Dow climbed +1.24% and R2K spiked +1.47%. Brent oil plummeted -7.75% to ~$101.40. ...",
+    "sent_ts": "2026-05-06T20:04:48+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-may-6-2026.html",
+    "subject": "Mid-Day Update · Wednesday May 6,\r\n 2026",
+    "email_date": "May 06, 2026 · 11:10 AM ET",
+    "preview": "SPX +1.22%, Nasdaq +1.43%, Dow +1.29%, R2K +1.00%. Brent crude plunged -7.20% to ~$102 amid Iran deal optimism. Gold climbed +3.30%, silver ...",
+    "sent_ts": "2026-05-06T15:10:39+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-5-6-bmo-apo-cart-cdw-cvs-dis-glw-jci-khc-mar-mdln-.html",
+    "subject": "Company-specific news for Wed 5/6 (BMO) - APO, CART, CDW, CVS, DIS, GLW, JCI, KHC, MAR, MDLN, UBER, and much more",
+    "email_date": "May 06, 2026 · 07:40 AM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-06T11:40:28+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-may-6-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday May 6, 2026",
+    "email_date": "May 06, 2026 · 05:28 AM ET",
+    "preview": "S&P futures are up +0.57%, Nasdaq +1.13%, with Dow +250 points and R2K +0.94%. European markets are spiking 210-220 basis points on strong e...",
+    "sent_ts": "2026-05-06T09:28:25+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-5-5-amc-alab-amd-anet-flex-googl-lite-smci-and-ma.html",
+    "subject": "Company-specific news for Tues 5/5 (AMC) - ALAB, AMD, ANET, FLEX, GOOGL, LITE, SMCI, and many more",
+    "email_date": "May 05, 2026 · 05:50 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-05T21:50:27+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-may-5-2026.html",
+    "subject": "Market Recap · Tuesday May 5, 2026",
+    "email_date": "May 05, 2026 · 04:05 PM ET",
+    "preview": "SPX +0.81%, Nasdaq +1.03%, Dow +0.74%, R2K +1.75%. Brent slumped 3.80%, reversing part of Monday's 5.80% surge. Gold rose 0.70%, silver inch...",
+    "sent_ts": "2026-05-05T20:05:14+00:00"
+  },
+  {
+    "filename": "mid-day-update-tuesday-may-5-2026.html",
+    "subject": "Mid-Day Update · Tuesday May 5,\r\n 2026",
+    "email_date": "May 05, 2026 · 11:09 AM ET",
+    "preview": "SPX up +0.80%, Nasdaq up +0.97%, Dow up 357 points (+0.73%), R2K surging +1.53%. Brent crude dips 3% to ~$111. Gold and silver both climbing...",
+    "sent_ts": "2026-05-05T15:09:58+00:00"
+  },
+  {
+    "filename": "services-ism-for-apr-is-slightly-net-negative-given-the-slump-in-new-orders-and-.html",
+    "subject": "Services ISM for Apr is slightly net negative given the slump in new orders and elevated prices index",
+    "email_date": "May 05, 2026 · 10:08 AM ET",
+    "preview": "Market data not provided in this intraday commentary.",
+    "sent_ts": "2026-05-05T14:08:52+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-5-5-bmo-brbr-cmi-coin-dd-etn-gfs-meta-pypl-rok-sh.html",
+    "subject": "Company-specific news for Tues 5/5 (BMO) - BRBR, CMI, COIN, DD, ETN, GFS, META, PYPL, ROK, SHOP, and much more",
+    "email_date": "May 05, 2026 · 07:54 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-05T11:54:04+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-may-5-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday May 5, 2026",
+    "email_date": "May 05, 2026 · 05:21 AM ET",
+    "preview": "SPX futures +0.62%, Nasdaq +0.76%, Dow +0.55%, R2K +0.62%. Eurozone indices up 50-120 basis points, led by industrials and tech. Asian marke...",
+    "sent_ts": "2026-05-05T09:21:50+00:00"
+  },
+  {
+    "filename": "earnings-preview-monday-may-4-2026.html",
+    "subject": "Earnings Preview · Monday, May 4, 2026",
+    "email_date": "May 04, 2026 · 07:32 PM ET",
+    "preview": "**Earnings Date:** Tuesday, May 5, 2026 at 4:15 PM ET (after market close)",
+    "sent_ts": "2026-05-04T23:32:56+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-5-4-amc-fn-lscc-on-pins-pltr-psky-and-many-more.html",
+    "subject": "Company-specific news for Mon 5/4 (AMC) - FN, LSCC, ON, PINS, PLTR, PSKY, and many more",
+    "email_date": "May 04, 2026 · 05:28 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-04T21:28:25+00:00"
+  },
+  {
+    "filename": "market-recap-monday-may-4-2026.html",
+    "subject": "Market Recap · Monday May 4, 2026",
+    "email_date": "May 04, 2026 · 04:04 PM ET",
+    "preview": "The SPX dropped -0.40% to 7200, while the Nasdaq fell a modest -0.19%. The equal-weight S&P declined -0.58%, the Dow plunged -1.13%, and the...",
+    "sent_ts": "2026-05-04T20:04:55+00:00"
+  },
+  {
+    "filename": "mid-day-update-monday-may-4-2026.html",
+    "subject": "Mid-Day Update · Monday May 4,\r\n 2026",
+    "email_date": "May 04, 2026 · 11:06 AM ET",
+    "preview": "The SPX gained +0.06% while the Nasdaq climbed +0.22%. The R2K jumped +0.32% but the Dow fell -0.42%. Brent crude surged ~300 basis points t...",
+    "sent_ts": "2026-05-04T15:06:59+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-5-4-bmo-gbtg-hubb-nclh-tsn.html",
+    "subject": "Company-specific news for Mon 5/4 (BMO) - GBTG, HUBB, NCLH, TSN",
+    "email_date": "May 04, 2026 · 07:41 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-04T11:41:22+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-monday-may-4-2026.html",
+    "subject": "Morning Intelligentsia · Monday May 4, 2026",
+    "email_date": "May 04, 2026 · 05:23 AM ET",
+    "preview": "US equity futures mixed this morning: SPX +0.15%, Nasdaq +0.34%, Dow -0.25%, R2K flat. Major European indices down 30-75 basis points, with ...",
+    "sent_ts": "2026-05-04T09:23:42+00:00"
+  },
+  {
+    "filename": "us-iran-thoughts-on-project-freedom.html",
+    "subject": "US/Iran: thoughts on Project Freedom",
+    "email_date": "May 03, 2026 · 08:02 PM ET",
+    "preview": "No market data provided in this intraday commentary.",
+    "sent_ts": "2026-05-04T00:02:45+00:00"
+  },
+  {
+    "filename": "weekend-sun-5-3-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 5/3/2026) - getting ready for the week ahead",
+    "email_date": "May 03, 2026 · 09:33 AM ET",
+    "preview": "I notice this newsletter appears to be from May 2026 and contains speculative/fictional content about future events (including references to...",
+    "sent_ts": "2026-05-03T13:33:10+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-may-4-2026.html",
+    "subject": "Earnings Calendar · Monday, May 4, 2026",
+    "email_date": "May 02, 2026 · 11:29 AM ET",
+    "preview": "**Week of May 4, 2026**",
+    "sent_ts": "2026-05-02T15:29:53+00:00"
+  },
+  {
+    "filename": "berkshire-q1-earnings-takeaways-the-cash-hoard-is-now-larger-than-the-market-cap.html",
+    "subject": "Berkshire Q1 earnings takeaways; the cash hoard is now larger than the market caps of all but 24 companies in the S&P 500",
+    "email_date": "May 02, 2026 · 08:38 AM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-05-02T12:38:43+00:00"
+  },
+  {
+    "filename": "earnings-preview-friday-may-1-2026.html",
+    "subject": "Earnings Preview · Friday, May 1, 2026",
+    "email_date": "May 01, 2026 · 06:20 PM ET",
+    "preview": "**Earnings Report:** Monday, May 4, 2026 after market close (approximately 4:05 PM ET)",
+    "sent_ts": "2026-05-01T22:20:01+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-may-1-2026.html",
+    "subject": "Mid-Day Update · Friday May 1,\r\n 2026",
+    "email_date": "May 01, 2026 · 11:02 AM ET",
+    "preview": "The SPX climbed +0.62% while the Nasdaq surged +0.98%. The Dow managed a modest +0.26% gain and R2K barely budged at +0.09%. Treasuries held...",
+    "sent_ts": "2026-05-01T15:02:05+00:00"
+  },
+  {
+    "filename": "manufacturing-ism-for-apr-signals-resilient-demand-and-surging-inflation.html",
+    "subject": "Manufacturing ISM for Apr signals resilient demand and surging inflation",
+    "email_date": "May 01, 2026 · 10:07 AM ET",
+    "preview": "Market data not provided in this manufacturing-focused commentary.",
+    "sent_ts": "2026-05-01T14:07:45+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-5-4-us-jobs-and-more-earnings-abnb-crwv-dash-dis-khc-.html",
+    "subject": "Catalyst Watch (week of Mon 5/4) - US jobs and more earnings (ABNB, CRWV, DASH, DIS, KHC, MCD, PFE, PLTR, PYPL, SHOP, UBER, and many more)",
+    "email_date": "May 01, 2026 · 08:29 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-01T12:29:39+00:00"
+  },
+  {
+    "filename": "market-recap-friday-may-1-2026.html",
+    "subject": "Market Recap · Friday May 1, 2026",
+    "email_date": "May 01, 2026 · 08:22 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-01T12:22:06+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-fri-5-1-bmo-cl-cvx-el-lyb-nvt-xom-and-many-more.html",
+    "subject": "Company-specific news for Fri 5/1 (BMO) - CL, CVX, EL, LYB, NVT, XOM, and many more",
+    "email_date": "May 01, 2026 · 07:29 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-05-01T11:29:17+00:00"
+  },
+  {
+    "filename": "estee-lauder-shares-spike-in-pre-market-trading-on-earnings.html",
+    "subject": "Estee Lauder shares spike in pre-market trading on earnings",
+    "email_date": "May 01, 2026 · 06:16 AM ET",
+    "preview": "Market data not provided in this earnings-focused update.",
+    "sent_ts": "2026-05-01T10:16:51+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-may-1-2026.html",
+    "subject": "Morning Intelligentsia · Friday May 1, 2026",
+    "email_date": "May 01, 2026 · 05:24 AM ET",
+    "preview": "US equity futures are mixed this morning with S&P +0.08%, Nasdaq -1.59%, Dow +0.23%, and R2K -0.19%. London's FTSE 100 is down 0.78% (NatWes...",
+    "sent_ts": "2026-05-01T09:24:43+00:00"
+  },
+  {
+    "filename": "earnings-preview-thursday-april-30-2026.html",
+    "subject": "Earnings Preview · Thursday, April 30, 2026",
+    "email_date": "Apr 30, 2026 · 08:05 PM ET",
+    "preview": "**Earnings Date:** Friday, May 1, 2026 at 6:15 AM ET (before market)",
+    "sent_ts": "2026-05-01T00:05:49+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-4-30-amc-aapl-rddt-rblx-wdc-and-many-more.html",
+    "subject": "Company-specific news for Thurs 4/30 (AMC) - AAPL, RDDT, RBLX, WDC, and many more",
+    "email_date": "Apr 30, 2026 · 05:58 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-30T21:58:48+00:00"
+  },
+  {
+    "filename": "apple-fq2-earnings-takeaways-a-pretty-boring-report.html",
+    "subject": "Apple FQ2 earnings takeaways: a pretty boring report",
+    "email_date": "Apr 30, 2026 · 04:43 PM ET",
+    "preview": "Market data not provided in this earnings-focused update.",
+    "sent_ts": "2026-04-30T20:43:56+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-april-30-2026.html",
+    "subject": "Market Recap · Thursday April 30, 2026",
+    "email_date": "Apr 30, 2026 · 04:04 PM ET",
+    "preview": "SPX +1.02%, Nasdaq +0.89%, Dow +1.62%, R2K +2.20%. DXY fell 90 basis points with USD tanking 245 basis points vs JPY following Japanese inte...",
+    "sent_ts": "2026-04-30T20:04:26+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-april-30-2026.html",
+    "subject": "Mid-Day Update · Thursday April\r\n 30, 2026",
+    "email_date": "Apr 30, 2026 · 11:14 AM ET",
+    "preview": "SPX +0.44%, Nasdaq +0.20%, but broader markets showed more strength with equal-weight S&P +0.94%, Dow +1.13%, and R2K +1.24%. Brent crude fe...",
+    "sent_ts": "2026-04-30T15:14:15+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-4-30-bmo-too-many-earnings-tickers-to-list.html",
+    "subject": "Company-specific news for Thurs 4/30 (BMO) - too many earnings tickers to list",
+    "email_date": "Apr 30, 2026 · 08:24 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-30T12:24:49+00:00"
+  },
+  {
+    "filename": "pharma-earnings-takeaways-bmy-lly-and-mrk.html",
+    "subject": "Pharma earnings takeaways: BMY, LLY, and MRK",
+    "email_date": "Apr 30, 2026 · 07:11 AM ET",
+    "preview": "No broad market data provided in this pharma-focused earnings update.",
+    "sent_ts": "2026-04-30T11:11:38+00:00"
+  },
+  {
+    "filename": "caterpillar-posts-very-strong-results-and-increases-the-sales-guide-but-the-rele.html",
+    "subject": "Caterpillar posts very strong results and increases the sales guide, but the release wasn't perfect",
+    "email_date": "Apr 30, 2026 · 06:48 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-30T10:48:44+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-april-30-2026.html",
+    "subject": "Morning Intelligentsia · Thursday April 30, 2026",
+    "email_date": "Apr 30, 2026 · 05:28 AM ET",
+    "preview": "SPX -0.07%, Nasdaq +0.09%, Dow -0.45%, R2K -0.22%. European indices struggled with SX5E down 0.75%. Asian markets mostly declined: TPX -1.19...",
+    "sent_ts": "2026-04-30T09:28:36+00:00"
+  },
+  {
+    "filename": "earnings-preview-wednesday-april-29-2026.html",
+    "subject": "Earnings Preview · Wednesday, April 29, 2026",
+    "email_date": "Apr 29, 2026 · 08:07 PM ET",
+    "preview": "**Earnings Date:** Thursday, April 30, 2026 after market close (4:30 PM ET)",
+    "sent_ts": "2026-04-30T00:07:02+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-4-29-amc-afl-algn-all-amzn-cake-chrw-cmg-cvna-ebay.html",
+    "subject": "Company-specific news for Wed 4/29 (AMC) - AFL, ALGN, ALL, AMZN, CAKE, CHRW, CMG, CVNA, EBAY, EQIX, F, FLS, FMC, GOOGL, INVH, KLAC, MAA, MAT, META, MGM, MSFT, ORLY, PI, PPC, QCOM, SBAC, SFM, TTMI, VIAV",
+    "email_date": "Apr 29, 2026 · 06:20 PM ET",
+    "preview": "Market data not provided in the newsletter content.",
+    "sent_ts": "2026-04-29T22:20:33+00:00"
+  },
+  {
+    "filename": "mega-cap-tech-earnings-amzn-googl-meta-and-msft.html",
+    "subject": "Mega-cap tech earnings: AMZN, GOOGL, META, and MSFT",
+    "email_date": "Apr 29, 2026 · 04:35 PM ET",
+    "preview": "Market data not provided in this earnings-focused report.",
+    "sent_ts": "2026-04-29T20:35:12+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-april-29-2026.html",
+    "subject": "Market Recap · Wednesday April 29, 2026",
+    "email_date": "Apr 29, 2026 · 04:04 PM ET",
+    "preview": "SPX finished about flat while Nasdaq gained +0.04%. Dow fell 279 points, R2K dropped 16 points. Brent oil surged 775 basis points to ~$120. ...",
+    "sent_ts": "2026-04-29T20:04:39+00:00"
+  },
+  {
+    "filename": "fed-update-takeaways-from-the-4-29-decision-and-press-conf.html",
+    "subject": "Fed update: takeaways from the 4/29 decision and press conf.",
+    "email_date": "Apr 29, 2026 · 03:27 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-29T19:27:09+00:00"
+  },
+  {
+    "filename": "fed-statement-is-notable-for-the-high-number-of-dissents.html",
+    "subject": "Fed statement is notable for the high number of dissents",
+    "email_date": "Apr 29, 2026 · 02:10 PM ET",
+    "preview": "Market data not provided in this Fed-focused commentary.",
+    "sent_ts": "2026-04-29T18:10:22+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-april-29-2026.html",
+    "subject": "Mid-Day Update · Wednesday April\r\n 29, 2026",
+    "email_date": "Apr 29, 2026 · 11:03 AM ET",
+    "preview": "SPX is roughly flat while Nasdaq climbs +0.12%. The Dow is down 250 points, R2K sinking 25 basis points. Brent oil is spiking over 5% to abo...",
+    "sent_ts": "2026-04-29T15:03:38+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-4-29-bmo-abbv-adp-aph-avt-avtr-bg-biib-car-ctsh-da.html",
+    "subject": "Company-specific news for Wed 4/29 (BMO) - ABBV, ADP, APH, AVT, AVTR, BG, BIIB, CAR, CTSH, DAN, EAT, EME, ETSY, FVRR, GD, GEHC, GNRC, GRMN, HUM, ICLR, IEX, LII, LULU, OpenAI, SLGN, SMG, SOFI, SWK, TEVA, VMC, WING, YUM, YUMC",
+    "email_date": "Apr 29, 2026 · 08:12 AM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-04-29T12:12:46+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-april-29-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday April 29, 2026",
+    "email_date": "Apr 29, 2026 · 05:27 AM ET",
+    "preview": "S&P futures +0.07%, Nasdaq +0.33%, Dow flat, R2K flat. Brent surging another 300 basis points to ~$114.50. DXY flat, Gold -0.40%, Silver -0....",
+    "sent_ts": "2026-04-29T09:27:52+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-4-28-amc-acgl-be-bf-b-bkng-bxp-csgp-czr-dis-enph-.html",
+    "subject": "Company-specific news for Tues 4/28 (AMC) - ACGL, BE, BF'B, BKNG, BXP, CSGP, CZR, DIS, ENPH, EQR, ESS, FFIV, FICO, HOOD, IR, LRN, LSTR, MDLZ, NXPI, OI, OMC, PPG, SBUX, STX, TER, TMUS, V, VLTO",
+    "email_date": "Apr 28, 2026 · 05:41 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-28T21:41:59+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-april-28-2026.html",
+    "subject": "Market Recap · Tuesday April 28, 2026",
+    "email_date": "Apr 28, 2026 · 04:04 PM ET",
+    "preview": "The SPX fell -0.49% while the Nasdaq dropped -0.90%. The Dow dipped -0.06% and the R2K sank -1.15%. Brent surged 265 basis points to ~$111, ...",
+    "sent_ts": "2026-04-28T20:04:12+00:00"
+  },
+  {
+    "filename": "mid-day-update-tuesday-april-28-2026.html",
+    "subject": "Mid-Day Update · Tuesday April 28,\r\n 2026",
+    "email_date": "Apr 28, 2026 · 11:10 AM ET",
+    "preview": "The SPX dropped -0.65% while the Nasdaq fell -1.27%, both weighed down by tech weakness and rising oil prices. The Dow bucked the trend with...",
+    "sent_ts": "2026-04-28T15:10:15+00:00"
+  },
+  {
+    "filename": "housing-price-disinflation-intensifies.html",
+    "subject": "Housing price disinflation intensifies",
+    "email_date": "Apr 28, 2026 · 09:34 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-28T13:34:29+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-4-28-bmo-ait-alle-amt-avy-awi-cnc-glw-gm-hlt-hri-.html",
+    "subject": "Company-specific news for Tues 4/28 (BMO) - AIT, ALLE, AMT, AVY, AWI, CNC, GLW, GM, HLT, HRI, JBLU, KMB, KO, PII, PNR, SHW, SPGI, SPOT, Subway, TRU, UPS, WSO, XYL, ZBH",
+    "email_date": "Apr 28, 2026 · 07:51 AM ET",
+    "preview": "Market futures started resilient but began buckling under pressure from multiple negative headlines. Specific index moves not provided, but ...",
+    "sent_ts": "2026-04-28T11:51:25+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-april-28-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday April 28, 2026",
+    "email_date": "Apr 28, 2026 · 05:20 AM ET",
+    "preview": "SPX futures down -0.15%, Nasdaq down -0.36%, Dow up +0.18%. R2K flat. Brent crude surging +2.40% to $110.85. Gold off -1.15%, silver slides ...",
+    "sent_ts": "2026-04-28T09:20:13+00:00"
+  },
+  {
+    "filename": "earnings-preview-monday-april-27-2026.html",
+    "subject": "Earnings Preview · Monday, April 27, 2026",
+    "email_date": "Apr 27, 2026 · 07:19 PM ET",
+    "preview": "**Earnings Date:** Tuesday, April 28, 2026 after market close (4:05 PM ET)",
+    "sent_ts": "2026-04-27T23:19:55+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-4-27-amc-amkr-are-avb-bro-cck-cdns-cinf-cls-cr-lc-.html",
+    "subject": "Company-specific news for Mon 4/27 (AMC) - AMKR, ARE, AVB, BRO, CCK, CDNS, CINF, CLS, CR, LC, NUE, PSA, QGEN, RMBS, SANM, UHS",
+    "email_date": "Apr 27, 2026 · 05:11 PM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-04-27T21:11:03+00:00"
+  },
+  {
+    "filename": "market-recap-monday-april-27-2026.html",
+    "subject": "Market Recap · Monday April 27, 2026",
+    "email_date": "Apr 27, 2026 · 04:04 PM ET",
+    "preview": "The SPX closed up +0.12% while the Nasdaq gained +0.20%. The Dow fell 62 points (-0.13%) and R2K finished flat. Brent crude extended gains, ...",
+    "sent_ts": "2026-04-27T20:04:26+00:00"
+  },
+  {
+    "filename": "mid-day-update-monday-april-27-2026.html",
+    "subject": "Mid-Day Update · Monday April 27,\r\n 2026",
+    "email_date": "Apr 27, 2026 · 11:03 AM ET",
+    "preview": "SPX is essentially unchanged while Nasdaq dipped -0.20%. The Dow fell similar ground with R2K also near flat. Treasury yields rose ~2 basis ...",
+    "sent_ts": "2026-04-27T15:03:43+00:00"
+  },
+  {
+    "filename": "microsoft-and-openai-update-the-terms-of-their-relationship.html",
+    "subject": "Microsoft and OpenAI update the terms of their relationship",
+    "email_date": "Apr 27, 2026 · 09:25 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-27T13:25:25+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-4-27-bmo-dpz-and-vz.html",
+    "subject": "Company-specific news for Mon 4/27 (BMO) - DPZ and VZ",
+    "email_date": "Apr 27, 2026 · 07:19 AM ET",
+    "preview": "Market data not provided in this earnings-focused update.",
+    "sent_ts": "2026-04-27T11:19:09+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-monday-april-27-2026.html",
+    "subject": "Morning Intelligentsia · Monday April 27, 2026",
+    "email_date": "Apr 27, 2026 · 05:20 AM ET",
+    "preview": "SPX futures -0.11%, Nasdaq +0.03%, Dow -0.11%, R2K flat. Brent rallying 2.5% to ~$108, Gold flat, Silver -0.20%, Bitcoin -0.55% to ~$77.8K, ...",
+    "sent_ts": "2026-04-27T09:20:37+00:00"
+  },
+  {
+    "filename": "weekend-sun-4-26-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 4/26/2026) - getting ready for the week ahead",
+    "email_date": "Apr 26, 2026 · 09:08 AM ET",
+    "preview": "Market data not provided in this weekend newsletter update.",
+    "sent_ts": "2026-04-26T13:08:36+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-april-27-2026.html",
+    "subject": "Earnings Calendar · Monday, April 27,\r\n 2026",
+    "email_date": "Apr 25, 2026 · 09:06 AM ET",
+    "preview": "**Earnings Date:** Monday, April 27, 2026 at 6:30 AM ET",
+    "sent_ts": "2026-04-25T13:06:52+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-april-24-2026.html",
+    "subject": "Mid-Day Update · Friday April 24,\r\n 2026",
+    "email_date": "Apr 24, 2026 · 11:11 AM ET",
+    "preview": "The SPX gained +0.43% while the Nasdaq surged +1.04%, with the R2K adding +0.14%. However, the Dow dragged lower by -0.42% and the equal-wei...",
+    "sent_ts": "2026-04-24T15:11:48+00:00"
+  },
+  {
+    "filename": "amazon-underscores-how-critical-the-cpu-is-for-agentic-ai-plus-a-look-at-mog-a-a.html",
+    "subject": "Amazon underscores how critical the CPU is for agentic AI (plus a look at MOG'A and NSC earnings)",
+    "email_date": "Apr 24, 2026 · 08:16 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-24T12:16:53+00:00"
+  },
+  {
+    "filename": "market-recap-friday-april-24-2026.html",
+    "subject": "Market Recap · Friday April 24, 2026",
+    "email_date": "Apr 24, 2026 · 08:01 AM ET",
+    "preview": "Market data not provided in percentage terms for this recap period.",
+    "sent_ts": "2026-04-24T12:01:13+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-4-27-super-busy-week-with-cbs-boe-boj-ecb-fomc-data-us-gd.html",
+    "subject": "Catalyst Watch (week of 4/27) - super busy week with CBs (BOE, BOJ, ECB, FOMC), data (US GDP/PCE), and a ton of earnings (AAPL, AMZN, CAT, GOOGL, META, MSFT, UPS, XOM, and many more)",
+    "email_date": "Apr 24, 2026 · 07:50 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-24T11:50:29+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-april-24-2026.html",
+    "subject": "Morning Intelligentsia · Friday April 24, 2026",
+    "email_date": "Apr 24, 2026 · 05:25 AM ET",
+    "preview": "S&P flat, Nasdaq +0.59%, Dow -179 points, R2K -7.5 points. Brent extending gains +1.70% to $106.85. Gold flat, Silver -0.70%, Bitcoin -0.35%...",
+    "sent_ts": "2026-04-24T09:25:11+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-4-23-amc-amp-bkr-byd-cour-dlr-ew-fix-hig-intc-mx.html",
+    "subject": "Company-specific news for Thurs 4/23 (AMC) - AMP, BKR, BYD, COUR, DLR, EW, FIX, HIG, INTC, MXL, NEM, SAP, SLM, SSNC",
+    "email_date": "Apr 23, 2026 · 05:13 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-23T21:13:46+00:00"
+  },
+  {
+    "filename": "sap-should-help-erase-some-of-the-bad-servicenow-ibm-memories.html",
+    "subject": "SAP should help erase (some of) the bad ServiceNow/IBM memories",
+    "email_date": "Apr 23, 2026 · 04:30 PM ET",
+    "preview": "Limited market data available in source material.",
+    "sent_ts": "2026-04-23T20:30:56+00:00"
+  },
+  {
+    "filename": "intel-is-the-latest-chip-company-to-report-blow-out-results.html",
+    "subject": "Intel is the latest chip company to report blow-out results",
+    "email_date": "Apr 23, 2026 · 04:16 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-23T20:16:17+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-april-23-2026.html",
+    "subject": "Market Recap · Thursday April 23, 2026",
+    "email_date": "Apr 23, 2026 · 04:04 PM ET",
+    "preview": "The SPX fell -0.41% while the Nasdaq sank -0.89%. The Dow dipped -0.37% and the R2K ticked down -0.37%. Treasuries saw modest pressure. The ...",
+    "sent_ts": "2026-04-23T20:04:35+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-april-23-2026.html",
+    "subject": "Mid-Day Update · Thursday April\r\n 23, 2026",
+    "email_date": "Apr 23, 2026 · 11:14 AM ET",
+    "preview": "The SPX climbed +0.07% while the Nasdaq declined -0.05%. The Dow fell 41 points (-0.10%) and the R2K gained 8.6 points (+0.31%). Treasuries ...",
+    "sent_ts": "2026-04-23T15:14:48+00:00"
+  },
+  {
+    "filename": "iran-is-dominating-the-conversation-but-investors-should-be-paying-more-attentio.html",
+    "subject": "Iran is dominating the conversation, but investors should be paying more attention to earnings (which are coming in strong)",
+    "email_date": "Apr 23, 2026 · 08:50 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-23T12:50:15+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-4-23-bmo-aal-axp-bx-cbre-cmcsa-cx-dov-has-hlx-ho.html",
+    "subject": "Company-specific news for Thurs 4/23 (BMO) - AAL, AXP, BX, CBRE, CMCSA, CX, DOV, HAS, HLX, HON, KDP, LMT, MBLY, NFLX, PENN, PHM, POOL, ROP, SNA, THRM, TMO, UNP, VC, WST",
+    "email_date": "Apr 23, 2026 · 07:50 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-23T11:50:17+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-april-23-2026.html",
+    "subject": "Morning Intelligentsia · Thursday April 23, 2026",
+    "email_date": "Apr 23, 2026 · 05:25 AM ET",
+    "preview": "S&P futures down -0.61%, Nasdaq down -0.68%, Dow down -0.68%, Russell 2000 down -0.80%. European indices declined 40-75 basis points with we...",
+    "sent_ts": "2026-04-23T09:25:00+00:00"
+  },
+  {
+    "filename": "earnings-preview-wednesday-april-22-2026.html",
+    "subject": "Earnings Preview · Wednesday, April 22, 2026",
+    "email_date": "Apr 22, 2026 · 06:02 PM ET",
+    "preview": "**Earnings Date:** Thursday, April 23, 2026 after market close (approximately 4:00 PM ET)",
+    "sent_ts": "2026-04-22T22:02:01+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-4-22-amc-asgn-caci-cci-csx-hxl-ibm-lrcx-lulu-luv-l.html",
+    "subject": "Company-specific news for Wed 4/22 (AMC) - ASGN, CACI, CCI, CSX, HXL, IBM, LRCX, LULU, LUV, LVS, MEDP, MOH, PKG, PUBM, TSLA, TXN, URI",
+    "email_date": "Apr 22, 2026 · 05:18 PM ET",
+    "preview": "Data not provided in source material.",
+    "sent_ts": "2026-04-22T21:18:37+00:00"
+  },
+  {
+    "filename": "tesla-q1-earnings-thoughts-on-the-results.html",
+    "subject": "Tesla Q1 earnings: thoughts on the results",
+    "email_date": "Apr 22, 2026 · 04:17 PM ET",
+    "preview": "No broad market data provided in this earnings-focused update.",
+    "sent_ts": "2026-04-22T20:17:35+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-april-22-2026.html",
+    "subject": "Market Recap · Wednesday April 22, 2026",
+    "email_date": "Apr 22, 2026 · 04:04 PM ET",
+    "preview": "SPX surged +1.05% to 7137 while Nasdaq jumped +1.64% and Dow gained +0.69%. R2K advanced +0.74%. Brent oil rose 3.00% to $101.50, gold climb...",
+    "sent_ts": "2026-04-22T20:04:25+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-april-22-2026.html",
+    "subject": "Mid-Day Update · Wednesday April\r\n 22, 2026",
+    "email_date": "Apr 22, 2026 · 11:13 AM ET",
+    "preview": "The SPX climbed +0.83% while the Nasdaq surged +1.19%. The Dow rallied 380 points (+0.78%) and the R2K gained 17.7 points (+0.64%). Brent cr...",
+    "sent_ts": "2026-04-22T15:13:26+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-4-22-bmo-ba-bby-bsx-cme-deepseek-elv-gev-mas-mco-o.html",
+    "subject": "Company-specific news for Wed 4/22 (BMO) - BA, BBY, BSX, CME, DeepSeek, ELV, GEV, MAS, MCO, OTIS, PM, T, TDY, TEL, TMHC, TNL, VRT, WAB",
+    "email_date": "Apr 22, 2026 · 07:39 AM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-04-22T11:39:40+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-april-22-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday April 22, 2026",
+    "email_date": "Apr 22, 2026 · 05:21 AM ET",
+    "preview": "S&P +0.86%, Nasdaq +0.80%, Dow +0.51%, R2K +0.91%. Brent +110bp, Gold +90bp, Silver +200bp, BTC +310bp to ~$78K.",
+    "sent_ts": "2026-04-22T09:21:57+00:00"
+  },
+  {
+    "filename": "spacex-enhances-the-appeal-of-xai-with-the-potential-purchase-of-cursor.html",
+    "subject": "SpaceX enhances the appeal of xAI with the (potential) purchase of Cursor",
+    "email_date": "Apr 21, 2026 · 07:25 PM ET",
+    "preview": "No market data provided in source material.",
+    "sent_ts": "2026-04-21T23:25:51+00:00"
+  },
+  {
+    "filename": "earnings-preview-tuesday-april-21-2026.html",
+    "subject": "Earnings Preview · Tuesday, April 21, 2026",
+    "email_date": "Apr 21, 2026 · 05:38 PM ET",
+    "preview": "**Report Date:** Wednesday, April 22, 2026 at 4:05 PM ET (after market)",
+    "sent_ts": "2026-04-21T21:38:33+00:00"
+  },
+  {
+    "filename": "iran-update-company-specific-news-adbe-calx-cb-cof-drvn-ibkr-ipar-isrg-manh-mcri.html",
+    "subject": "Iran update + company-specific news (ADBE, CALX, CB, COF, DRVN, IBKR, IPAR, ISRG, MANH, MCRI, PRU, SON, UAL, WFRD, WRB)",
+    "email_date": "Apr 21, 2026 · 05:17 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-21T21:17:11+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-april-21-2026.html",
+    "subject": "Market Recap · Tuesday April 21, 2026",
+    "email_date": "Apr 21, 2026 · 04:04 PM ET",
+    "preview": "The SPX dropped -0.63% while the Nasdaq fell -0.59%. The Dow slumped 293 points (-0.59%), the R2K tumbled 28 points (-1.00%). Brent crude ju...",
+    "sent_ts": "2026-04-21T20:04:09+00:00"
+  },
+  {
+    "filename": "mid-day-update-tuesday-april-21-2026.html",
+    "subject": "Mid-Day Update · Tuesday April 21,\r\n 2026",
+    "email_date": "Apr 21, 2026 · 11:11 AM ET",
+    "preview": "The SPX dropped -0.05% while the Nasdaq slipped -0.13% on Tuesday as stocks opened higher on Iran hopes and decent earnings but faded throug...",
+    "sent_ts": "2026-04-21T15:11:46+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia.html",
+    "subject": "Morning Intelligentsia",
+    "email_date": "Apr 21, 2026 · 07:28 AM ET",
+    "preview": "Market data not provided in earnings-focused newsletter.",
+    "sent_ts": "2026-04-21T11:28:07+00:00"
+  },
+  {
+    "filename": "earnings-round-i-for-tues-4-21-dhr-syf-unh.html",
+    "subject": "Earnings round I for Tues 4/21 - DHR, SYF, UNH",
+    "email_date": "Apr 21, 2026 · 06:17 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-21T10:17:52+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-april-21-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday April 21, 2026",
+    "email_date": "Apr 21, 2026 · 05:16 AM ET",
+    "preview": "S&P futures +0.08%, Nasdaq +0.30%, Dow +0.18%, R2K +0.11%. European indices up 15-35 basis points led by autos and tech. Asian markets mixed...",
+    "sent_ts": "2026-04-21T09:16:50+00:00"
+  },
+  {
+    "filename": "earnings-preview-monday-april-20-2026.html",
+    "subject": "Earnings Preview · Monday, April 20, 2026",
+    "email_date": "Apr 20, 2026 · 08:45 PM ET",
+    "preview": "**Earnings Date:** Tuesday, April 21, 2026 at 5:55 AM ET",
+    "sent_ts": "2026-04-21T00:45:43+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-4-20-amc-acgl-agnc-alk-snap-stld-zion.html",
+    "subject": "Company-specific news for Mon 4/20 (AMC) - ACGL, AGNC, ALK, SNAP, STLD, ZION",
+    "email_date": "Apr 20, 2026 · 05:23 PM ET",
+    "preview": "Market data not provided in this earnings-focused update.",
+    "sent_ts": "2026-04-20T21:23:19+00:00"
+  },
+  {
+    "filename": "apple-names-a-new-ceo-and-amazon-expands-its-anthropic-relationship.html",
+    "subject": "Apple names a new CEO and Amazon expands its Anthropic relationship",
+    "email_date": "Apr 20, 2026 · 04:52 PM ET",
+    "preview": "Market data not provided in this intraday commentary focused on individual company news.",
+    "sent_ts": "2026-04-20T20:52:56+00:00"
+  },
+  {
+    "filename": "market-recap-monday-april-20-2026.html",
+    "subject": "Market Recap · Monday April 20, 2026",
+    "email_date": "Apr 20, 2026 · 04:04 PM ET",
+    "preview": "SPX closed down -0.24% while the Nasdaq dropped -0.26%. The Dow finished roughly flat, but small caps showed strength with the R2K jumping +...",
+    "sent_ts": "2026-04-20T20:04:28+00:00"
+  },
+  {
+    "filename": "warsh-doesn-t-say-much-in-his-senate-testimony-opening-statement.html",
+    "subject": "Warsh doesn't say much in his Senate testimony opening statement",
+    "email_date": "Apr 20, 2026 · 01:00 PM ET",
+    "preview": "Market data not provided in this commentary.",
+    "sent_ts": "2026-04-20T17:00:47+00:00"
+  },
+  {
+    "filename": "mid-day-update-monday-april-20-2026.html",
+    "subject": "Mid-Day Update · Monday April 20,\r\n 2026",
+    "email_date": "Apr 20, 2026 · 11:18 AM ET",
+    "preview": "The SPX fell -0.50% while the Nasdaq dropped -0.82% and the Dow declined -0.28%. The equal-weight S&P bucked the trend with a +0.17% gain, w...",
+    "sent_ts": "2026-04-20T15:18:19+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-mon-4-20-bmo-brc-clf-swk-usar.html",
+    "subject": "Company-specific news for Mon 4/20 (BMO) - BRC, CLF, SWK, USAR",
+    "email_date": "Apr 20, 2026 · 07:18 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-20T11:18:34+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-monday-april-20-2026.html",
+    "subject": "Morning Intelligentsia · Monday April 20, 2026",
+    "email_date": "Apr 20, 2026 · 05:19 AM ET",
+    "preview": "SPX -0.45%, Nasdaq -0.46%, Dow -0.54%, R2K -0.81%. Major Eurozone indices down 110-140 basis points with weakness in autos, industrials, and...",
+    "sent_ts": "2026-04-20T09:19:38+00:00"
+  },
+  {
+    "filename": "housing-m-a-17b-deal-in-building-products-distribution-plus-google-looks-to-dive.html",
+    "subject": "Housing M&A ($17B deal in building products distribution) plus Google looks to diversify away from Broadcom",
+    "email_date": "Apr 19, 2026 · 01:39 PM ET",
+    "preview": "Market data not provided in this intraday commentary.",
+    "sent_ts": "2026-04-19T17:39:21+00:00"
+  },
+  {
+    "filename": "weekend-sun-4-19-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 4/19/2026) - getting ready for the week ahead",
+    "email_date": "Apr 19, 2026 · 08:52 AM ET",
+    "preview": "SPX rallied more than +13% in less than a month (reaching ~7100-7150 vs. ~6315 on 3/30). No specific session data provided.",
+    "sent_ts": "2026-04-19T12:52:06+00:00"
+  },
+  {
+    "filename": "iran-update-bull-vs-bear-views-on-recent-news.html",
+    "subject": "Iran update: bull vs. bear views on recent news",
+    "email_date": "Apr 19, 2026 · 06:34 AM ET",
+    "preview": "Market data not provided in newsletter content.",
+    "sent_ts": "2026-04-19T10:34:17+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-april-20-2026.html",
+    "subject": "Earnings Calendar · Monday, April 20,\r\n 2026",
+    "email_date": "Apr 18, 2026 · 09:59 AM ET",
+    "preview": "**Monday, April 20, 2026 at 6:00 AM ET**",
+    "sent_ts": "2026-04-18T13:59:26+00:00"
+  },
+  {
+    "filename": "earnings-preview-friday-april-17-2026.html",
+    "subject": "Earnings Preview · Friday, April 17, 2026",
+    "email_date": "Apr 17, 2026 · 08:25 PM ET",
+    "preview": "**Earnings Date:** Monday, April 20, 2026 at 6:00 AM ET (before market)",
+    "sent_ts": "2026-04-18T00:25:45+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-fri-4-17-bmo-ally-alv-fitb-rf-stt-tfc.html",
+    "subject": "Company-specific news for Fri 4/17 (BMO) - ALLY, ALV, FITB, RF, STT, TFC",
+    "email_date": "Apr 17, 2026 · 07:40 AM ET",
+    "preview": "Market data not provided in this earnings-focused newsletter.",
+    "sent_ts": "2026-04-17T11:40:48+00:00"
+  },
+  {
+    "filename": "market-recap-friday-april-17-2026.html",
+    "subject": "Market Recap · Friday April 17, 2026",
+    "email_date": "Apr 17, 2026 · 06:08 AM ET",
+    "preview": "No specific percentage changes provided for SPX and Nasdaq in this newsletter. The author notes SPX is up ~11% trough-to-peak over less than...",
+    "sent_ts": "2026-04-17T10:08:37+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-4-20-warsh-confirmation-hearing-flash-pmis-and-a-ton-of-e.html",
+    "subject": "Catalyst Watch (week of 4/20) - Warsh confirmation hearing, flash PMIs, and a ton of earnings (AXP, BX, GEV, IBM, INTC, LRCX, NOW, PG, SAP, TEL, TSLA, TXN, VRT, and many more)",
+    "email_date": "Apr 17, 2026 · 06:03 AM ET",
+    "preview": "No current market data provided in this week-ahead preview.",
+    "sent_ts": "2026-04-17T10:03:09+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-april-17-2026.html",
+    "subject": "Morning Intelligentsia · Friday April 17, 2026",
+    "email_date": "Apr 17, 2026 · 05:27 AM ET",
+    "preview": "S&P futures +0.18%, Nasdaq +0.11%, Dow +0.31%, R2K +0.38%. European indices up 0.25-0.50% led by tech and luxury. Asian markets mostly decli...",
+    "sent_ts": "2026-04-17T09:27:58+00:00"
+  },
+  {
+    "filename": "earnings-preview-thursday-april-16-2026.html",
+    "subject": "Earnings Preview · Thursday, April 16, 2026",
+    "email_date": "Apr 16, 2026 · 07:06 PM ET",
+    "preview": "**Earnings Date:** Friday, April 17, 2026 at 6:30 AM ET",
+    "sent_ts": "2026-04-16T23:06:01+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-4-16-amc-aa-knx-nflx.html",
+    "subject": "Company-specific news for Thurs 4/16 (AMC) - AA, KNX, NFLX",
+    "email_date": "Apr 16, 2026 · 04:26 PM ET",
+    "preview": "Market data not provided in the source material.",
+    "sent_ts": "2026-04-16T20:26:20+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-april-16-2026.html",
+    "subject": "Market Recap · Thursday April 16, 2026",
+    "email_date": "Apr 16, 2026 · 04:03 PM ET",
+    "preview": "SPX rose +0.26% while equal-weight climbed +0.49%. Dow advanced +0.24%, Nasdaq jumped +0.36%, and R2K ticked up +0.22%. Brent surged +3.40% ...",
+    "sent_ts": "2026-04-16T20:03:59+00:00"
+  },
+  {
+    "filename": "earnings-preview.html",
+    "subject": "Earnings Preview",
+    "email_date": "Apr 16, 2026 · 11:42 AM ET",
+    "preview": "I've reviewed the newsletter content thoroughly, but it does not contain any earnings preview information for companies reporting earnings. ...",
+    "sent_ts": "2026-04-16T15:42:46+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-april-16-2026.html",
+    "subject": "Mid-Day Update · Thursday April\r\n 16, 2026",
+    "email_date": "Apr 16, 2026 · 11:07 AM ET",
+    "preview": "SPX +0.10%, equal-weight S&P +0.34%, Dow -0.04%, R2K -0.18%. Treasury yields flat to up 1 basis point while the DXY climbs 0.18%. Brent adva...",
+    "sent_ts": "2026-04-16T15:07:01+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-4-16-bmo-abt-bk-cfg-key-man-mrsh-pep-schw-trv-us.html",
+    "subject": "Company-specific news for Thurs 4/16 (BMO) - ABT, BK, CFG, KEY, MAN, MRSH, PEP, SCHW, TRV, USB",
+    "email_date": "Apr 16, 2026 · 07:46 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-16T11:46:33+00:00"
+  },
+  {
+    "filename": "pepsi-reports-upside-in-q1-and-reiterates-guidance.html",
+    "subject": "Pepsi reports upside in Q1 and reiterates guidance",
+    "email_date": "Apr 16, 2026 · 06:15 AM ET",
+    "preview": "Market data not provided in this earnings-focused update.",
+    "sent_ts": "2026-04-16T10:15:35+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-april-16-2026.html",
+    "subject": "Morning Intelligentsia · Thursday April 16, 2026",
+    "email_date": "Apr 16, 2026 · 05:17 AM ET",
+    "preview": "US equity futures are mixed: SPX +0.07%, Dow +0.05%, Nasdaq +0.33%, R2K flat. Asian markets rallied with Japan's Nikkei +2.38%, Hong Kong's ...",
+    "sent_ts": "2026-04-16T09:17:55+00:00"
+  },
+  {
+    "filename": "tsmc-reports-solid-q1-margin-eps-upside-and-issued-positive-guidance.html",
+    "subject": "TSMC reports solid Q1 margin/EPS upside and issued positive guidance",
+    "email_date": "Apr 16, 2026 · 04:23 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-16T08:23:13+00:00"
+  },
+  {
+    "filename": "jbht-reports-solid-upside-on-sales-and-eps-and-mgmt-provides-bullish-macro-remar.html",
+    "subject": "JBHT reports solid upside on sales and EPS, and mgmt. provides bullish macro remarks on the environment (truckload might be at a positive inflection point)",
+    "email_date": "Apr 15, 2026 · 05:31 PM ET",
+    "preview": "No market data provided in this newsletter.",
+    "sent_ts": "2026-04-15T21:31:50+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-4-15-amc-f-ppg-qdel-slg.html",
+    "subject": "Company-specific news for Wed 4/15 (AMC) - F, PPG, QDEL, SLG",
+    "email_date": "Apr 15, 2026 · 04:45 PM ET",
+    "preview": "No market data provided in this earnings-focused update.",
+    "sent_ts": "2026-04-15T20:45:00+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-april-15-2026.html",
+    "subject": "Market Recap · Wednesday April 15, 2026",
+    "email_date": "Apr 15, 2026 · 04:05 PM ET",
+    "preview": "The SPX surged +0.80% while the Nasdaq jumped +1.59%, extending gains on ceasefire hopes and solid earnings. The Dow dropped -0.15% and R2K ...",
+    "sent_ts": "2026-04-15T20:05:07+00:00"
+  },
+  {
+    "filename": "beige-book-encouragingly-signals-status-quo-economy-despite-iran-uncertainty.html",
+    "subject": "Beige Book encouragingly signals status quo economy despite Iran uncertainty",
+    "email_date": "Apr 15, 2026 · 02:09 PM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-15T18:09:46+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-april-15-2026.html",
+    "subject": "Mid-Day Update · Wednesday April\r\n 15, 2026",
+    "email_date": "Apr 15, 2026 · 10:58 AM ET",
+    "preview": "The SPX gained +0.34% while the Nasdaq jumped +0.91%, though underlying breadth remained weak with the equal-weight S&P falling -0.20% and D...",
+    "sent_ts": "2026-04-15T14:58:30+00:00"
+  },
+  {
+    "filename": "software-rally-continues-what-s-driving-it.html",
+    "subject": "Software rally continues - what's driving it?",
+    "email_date": "Apr 15, 2026 · 10:14 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-15T14:14:54+00:00"
+  },
+  {
+    "filename": "bank-earnings-bac-ms-and-pnc.html",
+    "subject": "Bank earnings: BAC, MS, and PNC",
+    "email_date": "Apr 15, 2026 · 07:34 AM ET",
+    "preview": "Market data not provided in source material.",
+    "sent_ts": "2026-04-15T11:34:59+00:00"
+  },
+  {
+    "filename": "snap-will-slash-its-headcount-by-16-thoughts-on-the-news.html",
+    "subject": "Snap will slash its headcount by 16% - thoughts on the news",
+    "email_date": "Apr 15, 2026 · 06:18 AM ET",
+    "preview": "Market data not provided in this intraday commentary focused on **SNAP**.",
+    "sent_ts": "2026-04-15T10:18:39+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-april-15-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday April 15, 2026",
+    "email_date": "Apr 15, 2026 · 05:19 AM ET",
+    "preview": "US equity futures remain largely flat this morning with the S&P up just +0.03%, Nasdaq +0.08%, Dow -0.06%, and Russell 2000 -0.07%. European...",
+    "sent_ts": "2026-04-15T09:19:28+00:00"
+  },
+  {
+    "filename": "earnings-preview-tuesday-april-14-2026.html",
+    "subject": "Earnings Preview · Tuesday, April 14, 2026",
+    "email_date": "Apr 14, 2026 · 04:55 PM ET",
+    "preview": "**Earnings Date:** Wednesday, April 15, 2026 at 1:00 AM ET",
+    "sent_ts": "2026-04-14T20:55:20+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-april-14-2026.html",
+    "subject": "Market Recap · Tuesday April 14, 2026",
+    "email_date": "Apr 14, 2026 · 04:04 PM ET",
+    "preview": "SPX +1.18%, Nasdaq +1.96%, Dow +0.66%, R2K +1.32%. Brent dropped 4.25% to ~$95.15. Gold climbed 2.20%, silver rose 5.25%, and bitcoin jumped...",
+    "sent_ts": "2026-04-14T20:04:53+00:00"
+  },
+  {
     "filename": "mid-day-update-tuesday-april-14-2026.html",
     "subject": "Mid-Day Update · Tuesday April 14,\r\n 2026",
     "email_date": "Apr 14, 2026 · 11:07 AM ET",

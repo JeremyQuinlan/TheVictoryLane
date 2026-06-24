@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Recap · Wednesday June 24, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Market Recap · Wednesday June 24, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Market Recap · Wednesday June 24, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a1a1a;
+    color: #af4c4c;
+    border: 1px solid #af4c4c44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">RECAP</div>
+  <h1>Market Recap · Wednesday June 24, 2026</h1>
+  <div class="meta">Jun 24, 2026 · 04:04 PM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p><strong>SPX:</strong> -0.09% | <strong>Nasdaq:</strong> -0.43% | <strong>Dow:</strong> +184 points (+0.36%) | <strong>R2K:</strong> +0.38% | <strong>Brent:</strong> ~$73.30 (-4.9%) | <strong>Gold:</strong> -3.12% | <strong>Silver:</strong> -7.30% | <strong>BTC:</strong> ~$59,750 (-4.25%) | <strong>DXY:</strong> not reported</p>
+<p>---</p>
+<h2>RATES & FED</h2>
+<p>Treasuries rallied solidly, with yields falling 6–9 basis points across the curve as collapsing oil prices finally began filtering into rates. That said, markets are still pricing roughly 35 basis points of Fed hikes in H2, so the relief is partial — yields remain above pre-war levels and investors aren't ready to declare the inflation scare over.</p>
+<p>---</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The equal-weight S&P telling a very different story than the cap-weighted index is meaningful — when energy costs fall, the real economy benefits, and Wednesday's rotation into housing, consumer discretionary, and travel showed that plainly. The problem is tech, which is cracking under its own weight: enterprise pushback on AI pricing, rising competition from cheaper Chinese open-source models, and capital markets beginning to lose patience with a sector that burns cash faster than it generates it. The CBRS round-trip from $185 to $300 and back is a warning shot — if equity markets tighten the spigot on data center funding, capex slows and the entire AI infrastructure thesis gets stress-tested. Bulls have a credible case if oil keeps falling and the US-Iran MOU holds, but the '90s analog so many are reaching for rests on three pillars — shrinking deficits, a peace dividend, and deflationary globalization — that are all running in reverse today.</p>
+<p>---</p>
+<h2>GEOPOLITICAL</h2>
+<p>- The US and Iran continue moving toward sustained détente, with oil supplies expanding on multiple fronts: the Hormuz reopening, removal of Iranian energy sanctions, higher OPEC+ quotas, the UAE's OPEC exit, and rising Venezuelan production — US Energy Secretary Wright said Venezuelan exports could reach 2M BPD by the end of the Trump administration (roughly double current levels).</p>
+<p>- Israel and Lebanon are in active talks about a US-backed proposal for Israel to cede some southern territory back to Lebanon, a meaningful de-escalation signal (Reuters).</p>
+<p>- Qatar's PM said normal LNG production would resume within weeks (FT).</p>
+<p>- Russia is under intensifying pressure as it loses ground in Ukraine; Moscow has reportedly asked Kazakhstan for gasoline to ease domestic fuel shortages caused by Ukrainian drone strikes, and a major Moscow refinery will be offline for at least six months following Ukrainian drone damage (Reuters).</p>
+<p>- Venezuela will disclose a national debt stock of ~$240B — well above the $150–200B previously forecast — as it embarks on the largest sovereign restructuring in history (FT).</p>
+<p>---</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>CBRS</strong> (Cerebras) posted FQ1 op. loss of just $3.5M vs. the Street's $31.5M forecast, with core revenue +92% Y/Y to $191.3M (vs. $181.4M expected). Q2 guidance of $194M in core sales and full-year $860M both topped consensus. Despite the beats, shares collapsed — CBRS priced its IPO just over a month ago at $185, spiked above $300, and has fully round-tripped. The market read: elevated expectations, frothy IPO pricing, and a broader crisis of confidence in AI-linked new issuance.</p>
+<p><strong>FDX</strong> (FedEx) delivered FQ4 EPS of $6.31 with revenue of $25B, nearly $1B above the $24.06B consensus, but operating margin of 8.4% missed by roughly 25 basis points, sending shares lower.</p>
+<p><strong>MU</strong> (Micron) reported after Wednesday's close — the focus of Thursday's open.</p>
+<p><strong>PAYX</strong> (Paychex) reported FQ4 EPS of $1.32 and revenue of $1.605B, essentially inline with Street estimates of $1.31/$1.602B. FY27 guidance calls for sales growth of +5–6% and EPS growth of +7–9%, with operating margins of 44% vs. the Street's 43%.</p>
+<p><strong>KBH</strong> (KB Home) posted a small FQ2 EPS miss (43c vs. 45c expected), but KPIs were mostly inline and full-year guidance was respectable given housing headwinds: 10.5–11K home deliveries with GMs of 16.1–16.5%, above the ~15.8% Street forecast.</p>
+<p><strong>ICLR</strong> (ICON) reported strong FQ1 results with a standout book-to-bill of 1.42x and reiterated full-year guidance; shares spiked.</p>
+<p><strong>NKE</strong> (Nike) flagged a CFO transition — David Denton (ex-Pfizer CFO) replaces Matthew Friend in August — and said FQ4 EPS will beat due to a tariff refund excluded from prior guidance. Underlying results are expected inline. FQ4 reports Tuesday June 30 AMC. Separately, Nike may be dropped from the Dow Jones in favor of <strong>BRK/B</strong> (Berkshire), per Barron's, while <strong>GOOGL</strong> (Google) officially replaces <strong>VZ</strong> (Verizon) in the Dow effective June 29.</p>
+<p><strong>AVGO</strong> (Broadcom) delivered Jalapeno, the first AI accelerator chip co-developed with OpenAI.</p>
+<p><strong>QCOM</strong> (Qualcomm) agreed to acquire Modular for ~$3.9B in stock (19.2M shares), adding an open AI-native software stack. Qualcomm is also in talks to provide custom chip-design services to ByteDance (Reuters).</p>
+<p><strong>HTZ</strong> (Hertz) warned EBITDA will come in at $50–80M vs. the $93M Street estimate due to unexpected softness in the used car market driving higher depreciation, though rental days and revenue per day are tracking inline or slightly above prior outlook.</p>
+<p><strong>BABA</strong> (Alibaba) was accused by Anthropic of illicitly accessing Claude model secrets via distillation (Bloomberg).</p>
+<p><strong>INTC</strong> (Intel) — any Apple chip collaboration is likely years away from production (Reuters).</p>
+<p><strong>WBD</strong> (Warner Bros. Discovery) and <strong>PSKY</strong> (Paramount) are set to receive EU approval for their merger (FT).</p>
+<p><strong>Samsung Electronics</strong> is planning a buyback program worth approximately $59B (Reuters). <strong>SK Hynix</strong> plans to raise ~$29.4B via a US ADR listing with trading expected to begin July 10 (Reuters) — a potential net negative for memory sentiment given the supply it could fund.</p>
+<p><strong>PLD</strong> (Prologis) made a ~$16.6B takeover approach for UK's Segro PLC, which was rejected (WSJ).</p>
+<p>---</p>
+<h2>MACRO & FED DATES</h2>
+<p><strong>Thu Jun 25</strong> — US PCE for May (8:30am ET); also Personal Income/Spending, Durable/Capital Goods, and Weekly Claims. Street expects both core and headline PCE to accelerate vs. April — the real question is how much the US-Iran MOU can cool inflation over the summer and fall.</p>
+<p><strong>Wed Jul 1</strong> — Fed Chair Warsh appears on panel at ECB's Sintra conference (9:30am ET); US Manufacturing ISM for June (10am ET).</p>
+<p><strong>Thu Jul 2</strong> — US Jobs Report for June (8:30am ET). Critical read on labor market health amid ongoing geopolitical uncertainty.</p>
+<p><strong>Mon Jul 6</strong> — US</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. SPX: -0.09% | Nasdaq: -0.43% | Dow: +184 points (+0.36%) | R2K: +0.38% | Brent: ~$73.30 (-4.9%) | Gold: -3.12% | Silver: -7.30% | BTC: ~$59,750 (-4.25%) | DXY: not reported --- RATES & FED. Treasuries rallied solidly, with yields falling 6–9 basis points across the curve as collapsing oil prices finally began filtering into rates. That said, markets are still pricing roughly 35 basis points of Fed hikes in H2, so the relief is partial — yields remain above pre-war levels and investors aren't ready to declare the inflation scare over. --- MARKET OUTLOOK. The equal-weight S&P telling a very different story than the cap-weighted index is meaningful — when energy costs fall, the real economy benefits, and Wednesday's rotation into housing, consumer discretionary, and travel showed that plainly. The problem is tech, which is cracking under its own weight: enterprise pushback on AI pricing, rising competition from cheaper Chinese open-source models, and capital markets beginning to lose patience with a sector that burns cash faster than it generates it. The CBRS round-trip from $185 to $300 and back is a warning shot — if equity markets tighten the spigot on data center funding, capex slows and the entire AI infrastructure thesis gets stress-tested. Bulls have a credible case if oil keeps falling and the US-Iran MOU holds, but the '90s analog so many are reaching for rests on three pillars — shrinking deficits, a peace dividend, and deflationary globalization — that are all running in reverse today. --- GEOPOLITICAL. - The US and Iran continue moving toward sustained détente, with oil supplies expanding on multiple fronts: the Hormuz reopening, removal of Iranian energy sanctions, higher OPEC+ quotas, the UAE's OPEC exit, and rising Venezuelan production — US Energy Secretary Wright said Venezuelan exports could reach 2M BPD by the end of the Trump administration (roughly double current levels). - Israel and Lebanon are in active talks about a US-backed proposal for Israel to cede some southern territory back to Lebanon, a meaningful de-escalation signal. - Qatar's PM said normal LNG production would resume within weeks. - Russia is under intensifying pressure as it loses ground in Ukraine; Moscow has reportedly asked Kazakhstan for gasoline to ease domestic fuel shortages caused by Ukrainian drone strikes, and a major Moscow refinery will be offline for at least six months following Ukrainian drone damage. - Venezuela will disclose a national debt stock of ~$240B — well above the $150–200B previously forecast — as it embarks on the largest sovereign restructuring in history. --- COMPANY NEWS. CBRS (Cerebras) posted FQ1 op. loss of just $3.5M vs. the Street's $31.5M forecast, with core revenue +92% year over year to $191.3M (vs. $181.4M expected). Q2 guidance of $194M in core sales and full-year $860M both topped consensus. Despite the beats, shares collapsed — CBRS priced its IPO just over a month ago at $185, spiked above $300, and has fully round-tripped. The market read: elevated expectations, frothy IPO pricing, and a broader crisis of confidence in AI-linked new issuance. FDX (FedEx) delivered FQ4 earnings per share of $6.31 with revenue of $25B, nearly $1B above the $24.06B consensus, but operating margin of 8.4% missed by roughly 25 basis points, sending shares lower. MU (Micron) reported after Wednesday's close — the focus of Thursday's open. PAYX (Paychex) reported FQ4 earnings per share of $1.32 and revenue of $1.605B, essentially inline with Street estimates of $1.31/$1.602B. FY27 guidance calls for sales growth of +5–6% and earnings per share growth of +7–9%, with operating margins of 44% vs. the Street's 43%. KBH (KB Home) posted a small FQ2 earnings per share miss (43c vs. 45c expected), but KPIs were mostly inline and full-year guidance was respectable given housing headwinds: 10.5–11K home deliveries with GMs of 16.1–16.5%, above the ~15.8% Street forecast. ICLR (ICON) reported strong FQ1 results with a standout book-to-bill of 1.42x and reiterated full-year guidance; shares spiked. NKE (Nike) flagged a CFO transition — David Denton (ex-Pfizer CFO) replaces Matthew Friend in August — and said FQ4 earnings per share will beat due to a tariff refund excluded from prior guidance. Underlying results are expected inline. FQ4 reports Tuesday June 30 AMC. Separately, Nike may be dropped from the Dow Jones in favor of BRK/B (Berkshire), per Barron's, while GOOGL (Google) officially replaces VZ (Verizon) in the Dow effective June 29. AVGO (Broadcom) delivered Jalapeno, the first AI accelerator chip co-developed with OpenAI. QCOM (Qualcomm) agreed to acquire Modular for ~$3.9B in stock (19.2M shares), adding an open AI-native software stack. Qualcomm is also in talks to provide custom chip-design services to ByteDance. HTZ (Hertz) warned EBITDA will come in at $50–80M vs. the $93M Street estimate due to unexpected softness in the used car market driving higher depreciation, though rental days and revenue per day are tracking inline or slightly above prior outlook. BABA (Alibaba) was accused by Anthropic of illicitly accessing Claude model secrets via distillation. INTC (Intel) — any Apple chip collaboration is likely years away from production. WBD (Warner Bros. Discovery) and PSKY (Paramount) are set to receive EU approval for their merger. Samsung Electronics is planning a buyback program worth approximately $59B. SK Hynix plans to raise ~$29.4B via a US ADR listing with trading expected to begin July 10 — a potential net negative for memory sentiment given the supply it could fund. PLD (Prologis) made a ~$16.6B takeover approach for UK's Segro PLC, which was rejected. --- MACRO & FED DATES. Thu Jun 25 — US PCE for May (8:30am Eastern time); also Personal Income/Spending, Durable/Capital Goods, and Weekly Claims. Street expects both core and headline PCE to accelerate vs. April — the real question is how much the US-Iran MOU can cool inflation over the summer and fall. Wed Jul 1 — Fed Chair Warsh appears on panel at ECB's Sintra conference (9:30am Eastern time); US Manufacturing ISM for June (10am Eastern time). Thu Jul 2 — US Jobs Report for June (8:30am Eastern time). Critical read on labor market health amid ongoing geopolitical uncertainty. Mon Jul 6 — US";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

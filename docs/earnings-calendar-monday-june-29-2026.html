@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Calendar · Monday, June 29,
+ 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Earnings Calendar · Monday, June 29,
+ 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Earnings Calendar · Monday, June 29,
+ 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a2a1a;
+    color: #c9b97a;
+    border: 1px solid #c9b97a44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">EARNINGS</div>
+  <h1>Earnings Calendar · Monday, June 29,
+ 2026</h1>
+  <div class="meta">Jun 27, 2026 · 10:33 AM ET</div>
+</header>
+<hr class="divider">
+
+<div style="margin-bottom:28px; text-align:center;">
+  <img src="earnings-calendar-monday-june-29-2026-calendar.png" alt="Earnings Calendar" style="max-width:100%; border-radius:6px; border:1px solid #1a1a1a;">
+</div>
+<p># Victory Lane — Earnings Preview</p>
+<p>### Week of June 29, 2026</p>
+<p>---</p>
+<h2>AVAV — AeroVironment, Inc.</h2>
+<p>- <strong>Report Date:</strong> Monday, June 29, 2026 — After market close (~4:10 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $1.53 | <strong>Revenue:</strong> $563.14M</p>
+<p>- <strong>Whisper Number:</strong> $1.49 (below consensus — miss expected)</p>
+<p>- <strong>YoY Revenue Growth:</strong> +104.7%</p>
+<p>- <strong>Company Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 55% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Up 39.6% since last earnings</p>
+<p>- <strong>Options Implied Move:</strong> 5.2% vs. 11.3% historical average (options significantly underpricing expected move)</p>
+<p>- <strong>Unusual Options Activity:</strong> 1,512 contracts of the $111.00 call bought on June 25, expiring July 2</p>
+<p>- <strong>Estimate Revisions:</strong> Revised lower</p>
+<p>---</p>
+<h2>NKE — Nike Inc.</h2>
+<p>- <strong>Report Date:</strong> Tuesday, June 30, 2026 — After market close (~4:15 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $0.11 | <strong>Revenue:</strong> $10.88B</p>
+<p>- <strong>Whisper Number:</strong> $0.36 (materially above consensus — beat expected)</p>
+<p>- <strong>YoY Revenue Growth:</strong> -2.0%</p>
+<p>- <strong>Company Guidance:</strong> $10.65B–$10.88B revenue (consensus at top end of range)</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 70% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Up 33.5% since last earnings</p>
+<p>- <strong>Options Implied Move:</strong> 5.1% vs. 8.9% historical average (options underpricing expected move)</p>
+<p>- <strong>Unusual Options Activity:</strong> 13,188 contracts of the $45.00 call bought on June 26, expiring July 2 — notable size</p>
+<p>- <strong>Estimate Revisions:</strong> Revised lower</p>
+<p>---</p>
+<h2>STZ — Constellation Brands, Inc.</h2>
+<p>- <strong>Report Date:</strong> Tuesday, June 30, 2026 — After market close (~4:05 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $3.22 | <strong>Revenue:</strong> $2.42B</p>
+<p>- <strong>Whisper Number:</strong> $3.39 (above consensus — beat expected)</p>
+<p>- <strong>YoY Revenue Growth:</strong> -9.6%</p>
+<p>- <strong>Company Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — only 30% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Down 0.1% since last earnings (essentially flat)</p>
+<p>- <strong>Options Implied Move:</strong> 2.1% vs. 6.2% historical average (options significantly underpricing expected move)</p>
+<p>- <strong>Unusual Options Activity:</strong> 754 contracts of the $140.00 put bought on June 8, expiring July 24 — bearish lean</p>
+<p>- <strong>Estimate Revisions:</strong> Revised lower</p>
+<p>---</p>
+<h2>PRGS — Progress Software Corp.</h2>
+<p>- <strong>Report Date:</strong> Tuesday, June 30, 2026 — After market close (~4:05 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $1.49 | <strong>Revenue:</strong> $241.70M</p>
+<p>- <strong>Whisper Number:</strong> $1.53 (above consensus — beat expected)</p>
+<p>- <strong>YoY Revenue Growth:</strong> +1.8%</p>
+<p>- <strong>Company Guidance:</strong> EPS $1.47–$1.53; Revenue $240.0M–$246.0M (whisper at top of guidance range)</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 100% expecting a beat despite bearish classification</p>
+<p>- <strong>Short Interest:</strong> Down 11.4% since last earnings</p>
+<p>- <strong>Options Implied Move:</strong> 10.1% vs. 9.7% historical average (fairly priced)</p>
+<p>- <strong>Unusual Options Activity:</strong> 601 contracts of the $35.00 call bought on June 22, expiring July 17</p>
+<p>- <strong>Estimate Revisions:</strong> Revised higher</p>
+<p>---</p>
+<h2>GIS — General Mills, Inc.</h2>
+<p>- <strong>Report Date:</strong> Wednesday, July 1, 2026 — Before market open (~7:00 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $0.82 | <strong>Revenue:</strong> $4.60B</p>
+<p>- <strong>Whisper Number:</strong> $0.85 (above consensus — beat expected)</p>
+<p>- <strong>YoY Revenue Growth:</strong> +1.0%</p>
+<p>- <strong>Company Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 50% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Up 47.6% since last earnings — significant build</p>
+<p>- <strong>Options Implied Move:</strong> 8.8% vs. 2.9% historical average (options dramatically overpricing expected move)</p>
+<p>- <strong>Unusual Options Activity:</strong> 1,803 contracts of the $35.00 call bought on June 22, expiring August 21</p>
+<p>- <strong>Estimate Revisions:</strong> Revised lower</p>
+<p>---</p>
+<h2>FDS — FactSet Research Systems, Inc.</h2>
+<p>- <strong>Report Date:</strong> Wednesday, July 1, 2026 — Before market open (~7:00 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $4.44 | <strong>Revenue:</strong> $617.19M</p>
+<p>- <strong>Whisper Number:</strong> $4.46 (slightly above consensus — beat expected)</p>
+<p>- <strong>YoY Revenue Growth:</strong> +5.4%</p>
+<p>- <strong>Company Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 60% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Up 59.4% since last earnings — largest short build on the calendar</p>
+<p>- <strong>Options Implied Move:</strong> 9.0% vs. 5.5% historical average (options overpricing expected move)</p>
+<p>- <strong>Unusual Options Activity:</strong> None noted</p>
+<p>- <strong>Estimate Revisions:</strong> Revised higher — one of two names on the calendar with upward revisions</p>
+<p>---</p>
+<h2>FC — Franklin Covey Co.</h2>
+<p>- <strong>Report Date:</strong> Wednesday, July 1, 2026 — After market close (~4:10 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $0.24 | <strong>Revenue:</strong> $68.08M</p>
+<p>- <strong>Whisper Number:</strong> Not available (no whisper noted)</p>
+<p>- <strong>YoY Revenue Growth:</strong> +1.4%</p>
+<p>- <strong>Company Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 60% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Down 46.2% since last earnings — aggressive short covering</p>
+<p>- <strong>Options Implied Move:</strong> Not available</p>
+<p>- <strong>Historical Average Move:</strong> 16.9%</p>
+<p>- <strong>Unusual Options Activity:</strong> None noted</p>
+<p>- <strong>Estimate Revisions:</strong> Revised lower</p>
+<p>---</p>
+<h2>CNXC — Concentrix Corporation</h2>
+<p>- <strong>Report Date:</strong> Wednesday, July 1, 2026 — After market close</p>
+<p>- <strong>Consensus EPS:</strong> $2.63 | <strong>Revenue:</strong> $2.47B</p>
+<p>- <strong>Whisper Number:</strong> $2.69 (above consensus — beat expected)</p>
+<p>- <strong>YoY Revenue Growth:</strong> +2.2%</p>
+<p>- <strong>Company Guidance:</strong> EPS $2.57–$2.69; Revenue $2.46B–$2.49B (whisper at top of EPS guidance range)</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 60% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Down 6.0% since last earnings</p>
+<p>- <strong>Options Implied Move:</strong> 32.0% vs. 14.6% historical average (options pricing in extreme move — more than double historical)</p>
+<p>- <strong>Unusual Options Activity:</strong> 614 contracts of the $22.50 call bought on June 25, expiring July 17</p>
+<p>- <strong>Estimate Revisions:</strong> Revised lower</p>
+<p>---</p>
+<h2>BSET — Bassett Furniture Industries, Inc.</h2>
+<p>- <strong>Report Date:</strong> Wednesday, July 1, 2026 — After market close (~4:00 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $0.20 | <strong>Revenue:</strong> $83.43M</p>
+<p>- <strong>Whisper Number:</strong> $0.20 (in-line with consensus)</p>
+<p>- <strong>YoY Revenue Growth:</strong> -1.1%</p>
+<p>- <strong>Company Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 50% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Up 4.1% since last earnings</p>
+<p>- <strong>Options Implied Move:</strong> 10.4% vs. 4.3% historical average (options significantly overpricing expected move)</p>
+<p>- <strong>Unusual Options Activity:</strong> None noted</p>
+<p>- <strong>Estimate Revisions:</strong> Revised lower</p>
+<p>---</p>
+<h2>CULP — Culp, Inc.</h2>
+<p>- <strong>Report Date:</strong> Wednesday, July 1, 2026 — After market close (~4:15 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> -$0.11 (loss) | <strong>Revenue:</strong> $50.13M</p>
+<p>- <strong>Whisper Number:</strong> Not available</p>
+<p>- <strong>YoY Revenue Growth:</strong> +2.8%</p>
+<p>- <strong>Company Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish — 66.7% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Down 18.1% since last earnings</p>
+<p>- <strong>Options Implied Move:</strong> Not available</p>
+<p>- <strong>Historical Average Move:</strong> 5.6%</p>
+<p>- <strong>Unusual Options Activity:</strong> None noted</p>
+<p>- <strong>Estimate Revisions:</strong> Revised lower</p>
+<p>---</p>
+<h2>GBX — Greenbrier Companies Inc.</h2>
+<p>- <strong>Report Date:</strong> Wednesday, July 1, 2026 — After market close (~4:15 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $0.57 | <strong>Revenue:</strong> Not provided</p>
+<p>- <strong>Whisper Number:</strong> Not available</p>
+<p>- <strong>YoY Revenue Growth:</strong> Not provided</p>
+<p>- <strong>Company Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish — 66.7% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Up 18.7% since last earnings</p>
+<p>- <strong>Options Implied Move:</strong> 11.2% vs. 9.5% historical average (modest premium to historical)</p>
+<p>- <strong>Unusual Options Activity:</strong> None noted</p>
+<p>- <strong>Estimate Revisions:</strong> Unchanged since last earnings</p>
+<p>---</p>
+<p>*Note: Micron (MU) and FedEx (FDX) results from the prior week are excluded from the forward preview per scope. BlackBerry (BB) results are similarly excluded.*</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "# Victory Lane — Earnings Preview ### Week of June 29, 2026 --- AVAV — AeroVironment, Inc.. - Report Date: Monday, June 29, 2026 — After market close (~4:10 PM Eastern time) - Consensus earnings per share: $1.53 | Revenue: $563.14M - Whisper Number: $1.49 (below consensus — miss expected) - year over year Revenue Growth: +104.7% - Company Guidance: Not provided - Investor Sentiment: Bearish — 55% expecting a beat - Short Interest: Up 39.6% since last earnings - Options Implied Move: 5.2% vs. 11.3% historical average (options significantly underpricing expected move) - Unusual Options Activity: 1,512 contracts of the $111.00 call bought on June 25, expiring July 2 - Estimate Revisions: Revised lower --- NKE — Nike Inc.. - Report Date: Tuesday, June 30, 2026 — After market close (~4:15 PM Eastern time) - Consensus earnings per share: $0.11 | Revenue: $10.88B - Whisper Number: $0.36 (materially above consensus — beat expected) - year over year Revenue Growth: -2.0% - Company Guidance: $10.65B–$10.88B revenue (consensus at top end of range) - Investor Sentiment: Bearish — 70% expecting a beat - Short Interest: Up 33.5% since last earnings - Options Implied Move: 5.1% vs. 8.9% historical average (options underpricing expected move) - Unusual Options Activity: 13,188 contracts of the $45.00 call bought on June 26, expiring July 2 — notable size - Estimate Revisions: Revised lower --- STZ — Constellation Brands, Inc.. - Report Date: Tuesday, June 30, 2026 — After market close (~4:05 PM Eastern time) - Consensus earnings per share: $3.22 | Revenue: $2.42B - Whisper Number: $3.39 (above consensus — beat expected) - year over year Revenue Growth: -9.6% - Company Guidance: Not provided - Investor Sentiment: Bearish — only 30% expecting a beat - Short Interest: Down 0.1% since last earnings (essentially flat) - Options Implied Move: 2.1% vs. 6.2% historical average (options significantly underpricing expected move) - Unusual Options Activity: 754 contracts of the $140.00 put bought on June 8, expiring July 24 — bearish lean - Estimate Revisions: Revised lower --- PRGS — Progress Software Corp.. - Report Date: Tuesday, June 30, 2026 — After market close (~4:05 PM Eastern time) - Consensus earnings per share: $1.49 | Revenue: $241.70M - Whisper Number: $1.53 (above consensus — beat expected) - year over year Revenue Growth: +1.8% - Company Guidance: earnings per share $1.47–$1.53; Revenue $240.0M–$246.0M (whisper at top of guidance range) - Investor Sentiment: Bearish — 100% expecting a beat despite bearish classification - Short Interest: Down 11.4% since last earnings - Options Implied Move: 10.1% vs. 9.7% historical average (fairly priced) - Unusual Options Activity: 601 contracts of the $35.00 call bought on June 22, expiring July 17 - Estimate Revisions: Revised higher --- GIS — General Mills, Inc.. - Report Date: Wednesday, July 1, 2026 — Before market open (~7:00 AM Eastern time) - Consensus earnings per share: $0.82 | Revenue: $4.60B - Whisper Number: $0.85 (above consensus — beat expected) - year over year Revenue Growth: +1.0% - Company Guidance: Not provided - Investor Sentiment: Bearish — 50% expecting a beat - Short Interest: Up 47.6% since last earnings — significant build - Options Implied Move: 8.8% vs. 2.9% historical average (options dramatically overpricing expected move) - Unusual Options Activity: 1,803 contracts of the $35.00 call bought on June 22, expiring August 21 - Estimate Revisions: Revised lower --- FDS — FactSet Research Systems, Inc.. - Report Date: Wednesday, July 1, 2026 — Before market open (~7:00 AM Eastern time) - Consensus earnings per share: $4.44 | Revenue: $617.19M - Whisper Number: $4.46 (slightly above consensus — beat expected) - year over year Revenue Growth: +5.4% - Company Guidance: Not provided - Investor Sentiment: Bearish — 60% expecting a beat - Short Interest: Up 59.4% since last earnings — largest short build on the calendar - Options Implied Move: 9.0% vs. 5.5% historical average (options overpricing expected move) - Unusual Options Activity: None noted - Estimate Revisions: Revised higher — one of two names on the calendar with upward revisions --- FC — Franklin Covey Co.. - Report Date: Wednesday, July 1, 2026 — After market close (~4:10 PM Eastern time) - Consensus earnings per share: $0.24 | Revenue: $68.08M - Whisper Number: Not available (no whisper noted) - year over year Revenue Growth: +1.4% - Company Guidance: Not provided - Investor Sentiment: Bearish — 60% expecting a beat - Short Interest: Down 46.2% since last earnings — aggressive short covering - Options Implied Move: Not available - Historical Average Move: 16.9% - Unusual Options Activity: None noted - Estimate Revisions: Revised lower --- CNXC — Concentrix Corporation. - Report Date: Wednesday, July 1, 2026 — After market close - Consensus earnings per share: $2.63 | Revenue: $2.47B - Whisper Number: $2.69 (above consensus — beat expected) - year over year Revenue Growth: +2.2% - Company Guidance: earnings per share $2.57–$2.69; Revenue $2.46B–$2.49B (whisper at top of earnings per share guidance range) - Investor Sentiment: Bearish — 60% expecting a beat - Short Interest: Down 6.0% since last earnings - Options Implied Move: 32.0% vs. 14.6% historical average (options pricing in extreme move — more than double historical) - Unusual Options Activity: 614 contracts of the $22.50 call bought on June 25, expiring July 17 - Estimate Revisions: Revised lower --- BSET — Bassett Furniture Industries, Inc.. - Report Date: Wednesday, July 1, 2026 — After market close (~4:00 PM Eastern time) - Consensus earnings per share: $0.20 | Revenue: $83.43M - Whisper Number: $0.20 (in-line with consensus) - year over year Revenue Growth: -1.1% - Company Guidance: Not provided - Investor Sentiment: Bearish — 50% expecting a beat - Short Interest: Up 4.1% since last earnings - Options Implied Move: 10.4% vs. 4.3% historical average (options significantly overpricing expected move) - Unusual Options Activity: None noted - Estimate Revisions: Revised lower --- CULP — Culp, Inc.. - Report Date: Wednesday, July 1, 2026 — After market close (~4:15 PM Eastern time) - Consensus earnings per share: -$0.11 (loss) | Revenue: $50.13M - Whisper Number: Not available - year over year Revenue Growth: +2.8% - Company Guidance: Not provided - Investor Sentiment: Bullish — 66.7% expecting a beat - Short Interest: Down 18.1% since last earnings - Options Implied Move: Not available - Historical Average Move: 5.6% - Unusual Options Activity: None noted - Estimate Revisions: Revised lower --- GBX — Greenbrier Companies Inc.. - Report Date: Wednesday, July 1, 2026 — After market close (~4:15 PM Eastern time) - Consensus earnings per share: $0.57 | Revenue: Not provided - Whisper Number: Not available - year over year Revenue Growth: Not provided - Company Guidance: Not provided - Investor Sentiment: Bearish — 66.7% expecting a beat - Short Interest: Up 18.7% since last earnings - Options Implied Move: 11.2% vs. 9.5% historical average (modest premium to historical) - Unusual Options Activity: None noted - Estimate Revisions: Unchanged since last earnings --- *Note: Micron (MU) and FedEx (FDX) results from the prior week are excluded from the forward preview per scope. BlackBerry (BB) results are similarly excluded.*";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

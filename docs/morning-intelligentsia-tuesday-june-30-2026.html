@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Intelligentsia · Tuesday June 30, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Morning Intelligentsia · Tuesday June 30, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Morning Intelligentsia · Tuesday June 30, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #1a3a2a;
+    color: #4caf82;
+    border: 1px solid #4caf8244;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">MORNING</div>
+  <h1>Morning Intelligentsia · Tuesday June 30, 2026</h1>
+  <div class="meta">Jun 30, 2026 · 05:25 AM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>SPX: ~flat (+0.02%). Nasdaq: ~flat (+0.03%). Dow: +49 points. R2K: -0.05%. Brent: -0.35% to $72.90. Gold: flat. Silver: +0.55%. BTC: -1.60% to ~$59.2K. DXY: +25 basis points. JPY sliding to 40-year lows. European indices +65-75 basis points, led by industrials, basic resources, and chips. Asia mixed: TSMC +1.7%, SK Hynix +0.88%, Samsung +2.1%, Softbank +1.1%; Hang Seng -0.63%.</p>
+<h2>RATES & FED</h2>
+<p>Treasuries have a modest bid with yields flat to down 1 basis point. Markets are pricing roughly 33 basis points of H2 hikes, holding fairly steady. The SCOTUS ruling on Lisa Cook is seen as bolstering Fed Chair Warsh's independence from White House pressure, though Trump reiterated his vow to fire Cook anyway (WSJ, NYT).</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The single biggest driver of US equities remains AI, and the hyperscaler-vs-pick-and-shovel rotation is the trade to watch — the crowded pick-and-shovel bet is vulnerable the moment any major cloud spender hints at capex moderation, which could trigger a violent unwind. Q2 earnings season will be the proving ground, with hyperscaler capex guidance the defining question. On the macro side, the US-Iran détente trajectory and falling oil prices are the most important disinflationary tailwinds markets have going for them right now. If Brent keeps drifting lower, central banks get cover — but Ukraine's drone campaign against Russian energy infrastructure is a real upside risk to oil that shouldn't be ignored.</p>
+<h2>GEOPOLITICAL</h2>
+<p>- A potential US-Iran meeting in Doha is the day's most watched geopolitical event; both sides appear reluctant to resume full hostilities, and the bull case for expanded oil supply (higher OPEC quotas, UAE/Iraq exits, removal of Iranian sanctions, Hormuz bypass infrastructure) remains intact. Bears point to continued kinetic clashes and discrepant rhetoric between the two sides as reasons the Middle East stays a risk factor (Reuters).</p>
+<p>- Ukraine's aggressive drone strikes against Russian energy infrastructure pose an upside risk to global oil and gas prices that could complicate central bank efforts to cool inflation.</p>
+<p>- The BOJ faces growing political pressure to slow its tightening pace, even as the yen slides to 40-year lows and Japan retains FX intervention rhetoric without acting (Reuters).</p>
+<p>- Trade uncertainty is rising as the White House moves to restore pre-SCOTUS average tariff levels and the USMCA enters extended limbo.</p>
+<p>- South Korea has tightened home-buying restrictions as the memory chip boom pushes property prices higher (Bloomberg).</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>AVAV</strong> (AeroVironment) shares spiked after FQ4 results crushed estimates: EPS $1.84 vs. Street $1.41, EBITDA $140MM vs. $126.1MM, revenue $641.6MM vs. $556.4MM, and a book-to-bill of 1.4x. The only blemish was F27 EBITDA guidance of $315MM vs. the Street's $346MM — not enough to offset an otherwise impressive print.</p>
+<p><strong>CNXC</strong> (Concentrix) reported FQ2 EPS and revenue essentially in line with consensus but slashed full-year guidance to EPS $10.83-$11.18 (from $11.48-$12.07) and FX-neutral sales growth of +0.25-1.25% (from +1.5-3%).</p>
+<p><strong>DLR</strong> (Digital Realty) is acquiring from Blackstone interests in three fully leased data centers at a gross value of $7.8B — DLR pays $3.5B, split $1.2B cash and $2.3B stock.</p>
+<p><strong>SMCI</strong> (Supermicro) shares tumbled after Taiwanese authorities raided its offices, the latest escalation in a probe over alleged Nvidia chip smuggling into China (Bloomberg).</p>
+<p><strong>OC</strong> (Owens Corning) received an unsolicited takeout bid from <strong>CSL</strong> (Carlisle) at a "significant premium" to earlier trading levels; OC management has not meaningfully engaged (WSJ).</p>
+<p><strong>ALKT</strong> (Alkami) faces renewed activist pressure after Jana Partners boosted its stake and is pushing for a sale of the company (Bloomberg).</p>
+<p><strong>FBIN</strong> (Fortune Brands) activist Ed Garden endorsed the company's newly announced CEO after having previously derailed the prior succession process (Bloomberg).</p>
+<p><strong>BRK/B</strong> (Berkshire Hathaway): Buffett is delaying his usual mid-year donation to the Gates Foundation pending a review of the foundation's ties to Jeffrey Epstein (WSJ).</p>
+<p><strong>UBER</strong> has ended its autonomous driving partnership with Waymo in the Phoenix market and is expected to announce a new partner (Bloomberg).</p>
+<h2>MACRO & FED DATES</h2>
+<p><strong>Tue 6/30</strong> — JOLTs report for May (10amET); Conference Board confidence for June (10amET); NKE and STZ earnings after close.</p>
+<p><strong>Wed 7/1</strong> — ADP jobs report (8:15amET); Warsh panel at ECB Sintra conf. (9amET); US manufacturing ISM for June (10amET). Watch Warsh's tone carefully for any signal on the Fed's reaction function.</p>
+<p><strong>Thu 7/2</strong> — US jobs report for June (8:30amET); Street modeling +113K payrolls vs. +172K in May. This is the week's most important data point.</p>
+<p><strong>Mon 7/6</strong> — US services ISM for June (10amET).</p>
+<p><strong>Wed 7/8</strong> — FOMC meeting minutes (2pmET); China CPI/PPI for June.</p>
+<p><strong>Tue 7/14</strong> — US CPI for June (8:30amET); Warsh testimony before House Financial Services Committee (10amET); first major day of Q2 bank earnings (BAC, C, GS, JPM, WFC).</p>
+<h2>EARNINGS THIS WEEK</h2>
+<p><strong>Tuesday 6/30 — After Close:</strong> NKE, STZ</p>
+<p><strong>Wednesday 7/1 — Before Open:</strong> FDS, GIS, MSM</p>
+<p><strong>Thursday 7/2 — Before Open:</strong> No major reports listed.</p>
+<p><strong>Friday 7/3:</strong> No major reports listed.</p>
+<h2>EARNINGS NEXT 2 WEEKS</h2>
+<p><strong>Tuesday 7/7 — After Close:</strong> EPAC, PENG</p>
+<p><strong>Wednesday 7/8 — After Close:</strong> AZZ, LEVI, PSMT</p>
+<p><strong>Thursday 7/9 — Before Open:</strong> PEP, SMPL | <strong>After Close:</strong> SLP, WDFC</p>
+<p><strong>Friday 7/10 — Before Open:</strong> DAL</p>
+<p><strong>Monday 7/13 — Before Open:</strong> FAST</p>
+<p><strong>Tuesday 7/14 — Before Open:</strong> BAC, C, GS, JPM, WFC (also DNB Bank, Ericsson pre-EU open)</p>
+<p><strong>Wednesday 7/15 — Before Open:</strong> BNY, CAG, FHN, JNJ, MS, MTB, PNC | <strong>After Close:</strong> HOMB, UAL</p>
+<p><strong>Thursday 7/16 — Before Open:</strong> ABT, CBSH, CFG, GE, PLD, STT, UNH, USB | <strong>After Close:</strong> AA, ISRG, NFLX</p>
+<p><strong>Friday 7/17 — Before Open:</strong> ALV, FITB, RF,</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. SPX: ~flat (+0.02%). Nasdaq: ~flat (+0.03%). Dow: +49 points. R2K: -0.05%. Brent: -0.35% to $72.90. Gold: flat. Silver: +0.55%. BTC: -1.60% to ~$59.2K. DXY: +25 basis points. JPY sliding to 40-year lows. European indices +65-75 basis points, led by industrials, basic resources, and chips. Asia mixed: TSMC +1.7%, SK Hynix +0.88%, Samsung +2.1%, Softbank +1.1%; Hang Seng -0.63%. RATES & FED. Treasuries have a modest bid with yields flat to down 1 basis point. Markets are pricing roughly 33 basis points of H2 hikes, holding fairly steady. The SCOTUS ruling on Lisa Cook is seen as bolstering Fed Chair Warsh's independence from White House pressure, though Trump reiterated his vow to fire Cook anyway (WSJ, NYT). MARKET OUTLOOK. The single biggest driver of US equities remains AI, and the hyperscaler-vs-pick-and-shovel rotation is the trade to watch — the crowded pick-and-shovel bet is vulnerable the moment any major cloud spender hints at capex moderation, which could trigger a violent unwind. Q2 earnings season will be the proving ground, with hyperscaler capex guidance the defining question. On the macro side, the US-Iran détente trajectory and falling oil prices are the most important disinflationary tailwinds markets have going for them right now. If Brent keeps drifting lower, central banks get cover — but Ukraine's drone campaign against Russian energy infrastructure is a real upside risk to oil that shouldn't be ignored. GEOPOLITICAL. - A potential US-Iran meeting in Doha is the day's most watched geopolitical event; both sides appear reluctant to resume full hostilities, and the bull case for expanded oil supply (higher OPEC quotas, UAE/Iraq exits, removal of Iranian sanctions, Hormuz bypass infrastructure) remains intact. Bears point to continued kinetic clashes and discrepant rhetoric between the two sides as reasons the Middle East stays a risk factor. - Ukraine's aggressive drone strikes against Russian energy infrastructure pose an upside risk to global oil and gas prices that could complicate central bank efforts to cool inflation. - The BOJ faces growing political pressure to slow its tightening pace, even as the yen slides to 40-year lows and Japan retains FX intervention rhetoric without acting. - Trade uncertainty is rising as the White House moves to restore pre-SCOTUS average tariff levels and the USMCA enters extended limbo. - South Korea has tightened home-buying restrictions as the memory chip boom pushes property prices higher. COMPANY NEWS. AVAV (AeroVironment) shares spiked after FQ4 results crushed estimates: earnings per share $1.84 vs. Street $1.41, EBITDA $140MM vs. $126.1MM, revenue $641.6MM vs. $556.4MM, and a book-to-bill of 1.4x. The only blemish was F27 EBITDA guidance of $315MM vs. the Street's $346MM — not enough to offset an otherwise impressive print. CNXC (Concentrix) reported FQ2 earnings per share and revenue essentially in line with consensus but slashed full-year guidance to earnings per share $10.83-$11.18 (from $11.48-$12.07) and FX-neutral sales growth of +0.25-1.25% (from +1.5-3%). DLR (Digital Realty) is acquiring from Blackstone interests in three fully leased data centers at a gross value of $7.8B — DLR pays $3.5B, split $1.2B cash and $2.3B stock. SMCI (Supermicro) shares tumbled after Taiwanese authorities raided its offices, the latest escalation in a probe over alleged Nvidia chip smuggling into China. OC (Owens Corning) received an unsolicited takeout bid from CSL (Carlisle) at a \"significant premium\" to earlier trading levels; OC management has not meaningfully engaged. ALKT (Alkami) faces renewed activist pressure after Jana Partners boosted its stake and is pushing for a sale of the company. FBIN (Fortune Brands) activist Ed Garden endorsed the company's newly announced CEO after having previously derailed the prior succession process. BRK/B (Berkshire Hathaway): Buffett is delaying his usual mid-year donation to the Gates Foundation pending a review of the foundation's ties to Jeffrey Epstein. UBER has ended its autonomous driving partnership with Waymo in the Phoenix market and is expected to announce a new partner. MACRO & FED DATES. Tue 6/30 — JOLTs report for May (10amET); Conference Board confidence for June (10amET); NKE and STZ earnings after close. Wed 7/1 — ADP jobs report (8:15amET); Warsh panel at ECB Sintra conf. (9amET); US manufacturing ISM for June (10amET). Watch Warsh's tone carefully for any signal on the Fed's reaction function. Thu 7/2 — US jobs report for June (8:30amET); Street modeling +113K payrolls vs. +172K in May. This is the week's most important data point. Mon 7/6 — US services ISM for June (10amET). Wed 7/8 — FOMC meeting minutes (2pmET); China CPI/PPI for June. Tue 7/14 — US CPI for June (8:30amET); Warsh testimony before House Financial Services Committee (10amET); first major day of Q2 bank earnings (BAC, C, GS, JPM, WFC). EARNINGS THIS WEEK. Tuesday 6/30 — After Close: NKE, STZ Wednesday 7/1 — Before Open: FDS, GIS, MSM Thursday 7/2 — Before Open: No major reports listed. Friday 7/3: No major reports listed. EARNINGS NEXT 2 WEEKS. Tuesday 7/7 — After Close: EPAC, PENG Wednesday 7/8 — After Close: AZZ, LEVI, PSMT Thursday 7/9 — Before Open: PEP, SMPL | After Close: SLP, WDFC Friday 7/10 — Before Open: DAL Monday 7/13 — Before Open: FAST Tuesday 7/14 — Before Open: BAC, C, GS, JPM, WFC (also DNB Bank, Ericsson pre-EU open) Wednesday 7/15 — Before Open: BNY, CAG, FHN, JNJ, MS, MTB, PNC | After Close: HOMB, UAL Thursday 7/16 — Before Open: ABT, CBSH, CFG, GE, PLD, STT, UNH, USB | After Close: AA, ISRG, NFLX Friday 7/17 — Before Open: ALV, FITB, RF,";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

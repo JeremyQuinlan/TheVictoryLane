@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Intelligentsia · Thursday July 2, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Morning Intelligentsia · Thursday July 2, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Morning Intelligentsia · Thursday July 2, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #1a3a2a;
+    color: #4caf82;
+    border: 1px solid #4caf8244;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">MORNING</div>
+  <h1>Morning Intelligentsia · Thursday July 2, 2026</h1>
+  <div class="meta">Jul 02, 2026 · 05:21 AM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>SPX: -0.09% | Nasdaq: -0.41% | Dow: +13 points | R2K: ~flat | Brent: ~$70.80 (-1.10%) | Gold: +1.00% | Silver: +1.50% | BTC: ~$60.4K (+0.60%) | DXY: -0.45%</p>
+<p>---</p>
+<h2>RATES & FED</h2>
+<p>Treasury yields are flat to up 1 basis point ahead of the June jobs report, with the market still pricing roughly 35 basis points of rate cuts this year. Fed Chair Warsh's Sintra remarks were broadly upbeat — he flagged a sharp drop in inflation expectations, credited AI as a non-inflationary growth driver, and signaled imminent task force appointments (former BOE Governor Mervyn King will co-chair the communications task force).</p>
+<p>---</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The chip selloff is real but the rotation story is more important — money isn't leaving equities, it's moving from pick-and-shovel AI hardware names into software, hyperscalers, and non-tech sectors, which is exactly why European indices are green while Nasdaq futures lag. The catalyst cocktail (Meta neocloud report, Apple sourcing Chinese memory, Samsung/SK Hynix capacity expansions, and GLM-5.2's DeepSeek-style shock) is hitting a positioning structure that was dangerously crowded. The complacency among chip bulls — many still calling this a buyable dip — suggests the drawdown has further to run. Meanwhile, software and hyperscalers could continue to squeeze higher. The June jobs print (+113K consensus vs. +172K prior) and Tesla Q2 deliveries (~400K consensus) are the last meaningful catalysts this week.</p>
+<p>---</p>
+<h2>GEOPOLITICAL</h2>
+<p>- Russia launched a massive missile and drone barrage against Kyiv and other Ukrainian cities overnight — over 2 million troops have been wounded or killed since the war began, including ~450K Russian fatalities (WSJ, NYT).</p>
+<p>- Russia is now buying gasoline from India to offset shortages caused by Ukrainian strikes on energy infrastructure (Reuters).</p>
+<p>- Saudi Aramco is accelerating crude exports from Ras Tanura as Hormuz traffic improves, flooding Asia with supply (Reuters).</p>
+<p>- Iran: Trump spoke positively about US-Iran nuclear negotiations, but material gaps remain on the MOU's interpretation, Hormuz transit fees are still live, and Lebanon remains a wildcard. The author's view: Russia/Ukraine is the bigger geopolitical risk right now, not Iran.</p>
+<p>- Japan has shifted to "ambush" FX intervention tactics, abandoning its prior practice of telegraphing moves to markets (Reuters).</p>
+<p>- The NATO summit is scheduled for July 7–8 in Turkey.</p>
+<p>- The World Bank will phase out lending to China by 2031 under pressure from the Trump White House (FT).</p>
+<p>---</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>AAPL</strong> is planning five new iPhone models for H2:26 and H1:27 — including higher volumes of foldables — to exploit the component supply crunch and take market share, per Nikkei. Separately, Apple is in talks to source DRAM and NAND from China's CXMT and YMT for devices sold in China to protect margins amid surging memory costs (Bloomberg).</p>
+<p><strong>GOOGL</strong> lost its appeal at Europe's top court, which upheld the EU's €4.1B Android antitrust fine imposed by the European Commission (CNBC).</p>
+<p><strong>KO</strong> is moving forward with an IPO of its Indian bottling unit, targeting roughly $1B in proceeds (Bloomberg). Carlsberg separately filed confidentially for a ~$700M India unit IPO (Bloomberg).</p>
+<p><strong>NVDA</strong> will offer GPU access to startups in exchange for a cut of future cloud revenues, extending its balance sheet to drive sales growth (The Information).</p>
+<p><strong>SMCI</strong> pushed back on reports about a Taiwan chip-smuggling investigation, asserting it is cooperating with officials and that individual employees — not the company — are the targets (Digitimes).</p>
+<p><strong>META</strong> has shifted toward a hyperscaler/neocloud model, a move that raised fresh questions about data center capacity constraints across the industry.</p>
+<p><strong>SAP</strong> is restricting hiring and travel to fund what it calls a "significant" AI product push (Bloomberg).</p>
+<p><strong>SPCX</strong> (SpaceX): the working assumption among those close to Musk is that SpaceX will acquire a US mobile carrier — T-Mobile cited as a possibility — to expand in communications (Sources). WSJ separately reported SpaceX showed investors a prototype AI device.</p>
+<p>OpenAI has discussed offering the US government a 5% equity stake to ease White House tensions (FT). SoftBank is renewing its push for a $10B margin loan secured by its OpenAI stake, with additional concessions offered to lenders (Reuters).</p>
+<p><strong>CBOE</strong> is seeking to list prediction market-style binary contracts tied to corporate earnings metrics (Bloomberg). UBS is exploring offering retail banking services in the US to capture wealthy American clients (FT).</p>
+<p>Takeda struck an AI drug-discovery deal with InSilico worth up to $600M (WSJ). Bayer consolidated its US glyphosate business into a new entity called Ruveon LLC, widely seen as a liability-capping move (Bloomberg). KNDS, the European tank maker, has delayed its IPO citing unfavorable market conditions (FT).</p>
+<p><strong>AEO</strong> announced a CFO transition and reiterated Q2 and full-year guidance.</p>
+<p>---</p>
+<h2>MACRO & FED DATES</h2>
+<p><strong>Jul 2 (Today)</strong> — US June jobs report, 8:30amET; consensus +113K vs. +172K prior. Watch for any softness that gives the Fed cover to cut.</p>
+<p><strong>Jul 6</strong> — US Services ISM for June, 10amET; German factory orders; Eurozone retail sales.</p>
+<p><strong>Jul 7–8</strong> — NATO Summit, Turkey.</p>
+<p><strong>Jul 8</strong> — FOMC meeting minutes, 2pmET; China CPI/PPI for June.</p>
+<p><strong>Jul 9</strong> — PEP earnings BMO; ECB minutes 7:30amET; US weekly jobless claims; US existing home sales.</p>
+<p><strong>Jul 10</strong> — DAL earnings BMO.</p>
+<p><strong>Jul 14</strong> — US CPI for June, 8:30amET (the marquee print of the month); Warsh testimony before House Financial Services, 10amET; China Q2 GDP + June retail sales/industrial production.</p>
+<p><strong>Jul 15</strong> — US PPI, 8:30amET; Bank of Canada rate decision; US Beige Book, 2pmET; ASML earnings BMO.</p>
+<p><strong>Jul 16</strong> — US retail sales for June, 8:30amET; TSM and ABT earnings BMO.</p>
+<p><strong>Jul 17</strong> — Michigan Sentiment for July, 10amET.</p>
+<p>---</p>
+<h2>EARNINGS THIS WEEK</h2>
+<p class="ticker-line">Thursday 7/3</p>
+<p>- BMO: PEP, SMPL</p>
+<p>- AMC: SLP, WDFC</p>
+<p><strong>Friday 7/4</strong> — US markets closed (Independence Day)</p>
+<p>---</p>
+<h2>EARNINGS NEXT 2 WEEKS</h2>
+<p class="ticker-line">Week of July 6</p>
+<p>- Wed 7/8 AMC: AZZ, LEVI, PSMT</p>
+<p>- Thu 7/9 BMO: PEP, SMPL</p>
+<p>- Fri 7/10 BMO: DAL</p>
+<p class="ticker-line">Week of July 13</p>
+<p>- Mon 7/13 BMO: FAST</p>
+<p>- Tue 7/14 BMO: BAC, C, GS, JPM, WFC; EU: Ericsson</p>
+<p>- Wed 7/15 BMO: BNY, CAG, CTAS, JNJ, MS, PNC; EU</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. SPX: -0.09% | Nasdaq: -0.41% | Dow: +13 points | R2K: ~flat | Brent: ~$70.80 (-1.10%) | Gold: +1.00% | Silver: +1.50% | BTC: ~$60.4K (+0.60%) | DXY: -0.45% --- RATES & FED. Treasury yields are flat to up 1 basis point ahead of the June jobs report, with the market still pricing roughly 35 basis points of rate cuts this year. Fed Chair Warsh's Sintra remarks were broadly upbeat — he flagged a sharp drop in inflation expectations, credited AI as a non-inflationary growth driver, and signaled imminent task force appointments (former BOE Governor Mervyn King will co-chair the communications task force). --- MARKET OUTLOOK. The chip selloff is real but the rotation story is more important — money isn't leaving equities, it's moving from pick-and-shovel AI hardware names into software, hyperscalers, and non-tech sectors, which is exactly why European indices are green while Nasdaq futures lag. The catalyst cocktail (Meta neocloud report, Apple sourcing Chinese memory, Samsung/SK Hynix capacity expansions, and GLM-5.2's DeepSeek-style shock) is hitting a positioning structure that was dangerously crowded. The complacency among chip bulls — many still calling this a buyable dip — suggests the drawdown has further to run. Meanwhile, software and hyperscalers could continue to squeeze higher. The June jobs print (+113K consensus vs. +172K prior) and Tesla Q2 deliveries (~400K consensus) are the last meaningful catalysts this week. --- GEOPOLITICAL. - Russia launched a massive missile and drone barrage against Kyiv and other Ukrainian cities overnight — over 2 million troops have been wounded or killed since the war began, including ~450K Russian fatalities (WSJ, NYT). - Russia is now buying gasoline from India to offset shortages caused by Ukrainian strikes on energy infrastructure. - Saudi Aramco is accelerating crude exports from Ras Tanura as Hormuz traffic improves, flooding Asia with supply. - Iran: Trump spoke positively about US-Iran nuclear negotiations, but material gaps remain on the MOU's interpretation, Hormuz transit fees are still live, and Lebanon remains a wildcard. The author's view: Russia/Ukraine is the bigger geopolitical risk right now, not Iran. - Japan has shifted to \"ambush\" FX intervention tactics, abandoning its prior practice of telegraphing moves to markets. - The NATO summit is scheduled for July 7–8 in Turkey. - The World Bank will phase out lending to China by 2031 under pressure from the Trump White House. --- COMPANY NEWS. AAPL is planning five new iPhone models for H2:26 and H1:27 — including higher volumes of foldables — to exploit the component supply crunch and take market share, per Nikkei. Separately, Apple is in talks to source DRAM and NAND from China's CXMT and YMT for devices sold in China to protect margins amid surging memory costs. GOOGL lost its appeal at Europe's top court, which upheld the EU's €4.1B Android antitrust fine imposed by the European Commission. KO is moving forward with an IPO of its Indian bottling unit, targeting roughly $1B in proceeds. Carlsberg separately filed confidentially for a ~$700M India unit IPO. NVDA will offer GPU access to startups in exchange for a cut of future cloud revenues, extending its balance sheet to drive sales growth (The Information). SMCI pushed back on reports about a Taiwan chip-smuggling investigation, asserting it is cooperating with officials and that individual employees — not the company — are the targets (Digitimes). META has shifted toward a hyperscaler/neocloud model, a move that raised fresh questions about data center capacity constraints across the industry. SAP is restricting hiring and travel to fund what it calls a \"significant\" AI product push. SPCX (SpaceX): the working assumption among those close to Musk is that SpaceX will acquire a US mobile carrier — T-Mobile cited as a possibility — to expand in communications (Sources). WSJ separately reported SpaceX showed investors a prototype AI device. OpenAI has discussed offering the US government a 5% equity stake to ease White House tensions. SoftBank is renewing its push for a $10B margin loan secured by its OpenAI stake, with additional concessions offered to lenders. CBOE is seeking to list prediction market-style binary contracts tied to corporate earnings metrics. UBS is exploring offering retail banking services in the US to capture wealthy American clients. Takeda struck an AI drug-discovery deal with InSilico worth up to $600M. Bayer consolidated its US glyphosate business into a new entity called Ruveon LLC, widely seen as a liability-capping move. KNDS, the European tank maker, has delayed its IPO citing unfavorable market conditions. AEO announced a CFO transition and reiterated Q2 and full-year guidance. --- MACRO & FED DATES. Jul 2 (Today) — US June jobs report, 8:30amET; consensus +113K vs. +172K prior. Watch for any softness that gives the Fed cover to cut. Jul 6 — US Services ISM for June, 10amET; German factory orders; Eurozone retail sales. Jul 7–8 — NATO Summit, Turkey. Jul 8 — FOMC meeting minutes, 2pmET; China CPI/PPI for June. Jul 9 — PEP earnings BMO; ECB minutes 7:30amET; US weekly jobless claims; US existing home sales. Jul 10 — DAL earnings BMO. Jul 14 — US CPI for June, 8:30amET (the marquee print of the month); Warsh testimony before House Financial Services, 10amET; China Q2 GDP + June retail sales/industrial production. Jul 15 — US PPI, 8:30amET; Bank of Canada rate decision; US Beige Book, 2pmET; ASML earnings BMO. Jul 16 — US retail sales for June, 8:30amET; TSM and ABT earnings BMO. Jul 17 — Michigan Sentiment for July, 10amET. --- EARNINGS NEXT 2 WEEKS. Week of July 6 - Wed 7/8 AMC: AZZ, LEVI, PSMT - Thu 7/9 BMO: PEP, SMPL - Fri 7/10 BMO: DAL Week of July 13 - Mon 7/13 BMO: FAST - Tue 7/14 BMO: BAC, C, GS, JPM, WFC; EU: Ericsson - Wed 7/15 BMO: BNY, CAG, CTAS, JNJ, MS, PNC; EU";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

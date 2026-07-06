@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company-specific news for Mon 7/6 (BMO) - AVGO, CLVT, CXW, ESI/SOLS, KLAR, LMT, Maersk/Hapag-Lloyd, MSTR, MU, RAIL, RCI, WULF · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Company-specific news for Mon 7/6 (BMO) - AVGO, CLVT, CXW, ESI/SOLS, KLAR, LMT, Maersk/Hapag-Lloyd, MSTR, MU, RAIL, RCI, WULF">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Company-specific news for Mon 7/6 (BMO) - AVGO, CLVT, CXW, ESI/SOLS, KLAR, LMT, Maersk/Hapag-Lloyd, MSTR, MU, RAIL, RCI, WULF">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a1a3a;
+    color: #8f4caf;
+    border: 1px solid #8f4caf44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">UPDATE</div>
+  <h1>Company-specific news for Mon 7/6 (BMO) - AVGO, CLVT, CXW, ESI/SOLS, KLAR, LMT, Maersk/Hapag-Lloyd, MSTR, MU, RAIL, RCI, WULF</h1>
+  <div class="meta">Jul 06, 2026 · 08:40 AM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>No index pricing data was included in this edition. SPX, Nasdaq, Dow, R2K, crypto, commodities, and FX levels were not reported.</p>
+<h2>RATES & FED</h2>
+<p>No Treasury or Fed commentary was included in this edition. Watch for upcoming data releases to drive rate expectations into the back half of July.</p>
+<h2>MARKET OUTLOOK</h2>
+<p>This edition is a pure company-news drop ahead of Monday's open — no editorial macro view was offered. That said, the deal flow is heavy and broadly constructive: defense consolidation, tech supply chain extensions, and a data center infrastructure boom all point to continued capex-driven momentum. The Maersk/Hapag-Lloyd Suez rerouting is a quietly significant signal that Red Sea risk premium is fading, which is a net positive for global trade and inflation. Stay long quality; the macro backdrop hasn't broken anything yet.</p>
+<h2>GEOPOLITICAL</h2>
+<p>- Maersk and Hapag-Lloyd announced they are shifting the AE15 Gemini service back through the Suez Canal, away from the Cape of Good Hope routing that had been in place since February 2025 — citing materially improved security conditions in the Middle East (Maersk press release, 7/6).</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>AVGO</strong> (Broadcom) extended its deep-rooted chip partnership with Apple through 2031, with Broadcom set to develop and supply custom ASIC silicon products across multiple generations of Apple hardware — a deal that cements Broadcom's role as a cornerstone supplier in Apple's silicon strategy.</p>
+<p><strong>CLVT</strong> (Clarivate) is divesting its Life Sciences & Healthcare segment to Altaris for $600MM, while reaffirming prior guidance — a clean portfolio trim that should sharpen the company's focus on its core IP and analytics businesses.</p>
+<p><strong>CXW</strong> (CoreCivic) closed the sale of two detention facilities for approximately $1.5B gross, with anticipated net proceeds of $1.1B — a meaningful balance sheet event for the private prison operator.</p>
+<p><strong>ESI/SOLS</strong> — Element Solutions (<strong>ESI</strong>) is being acquired by Solstice (<strong>SOLS</strong>) in a cash-and-stock deal valued at $14.5B. ESI holders receive $10/share in cash plus 0.5 SOLS shares, representing total consideration of $50.10 per share.</p>
+<p><strong>KLAR</strong> (Klarna) has filed for a U.S. banking charter, a move that would allow the BNPL giant to bring its domestic banking operations in-house. Klarna has held a European banking license since 2017 and currently serves U.S. customers through partner banks.</p>
+<p><strong>LMT</strong> (Lockheed Martin) is acquiring Ultra Maritime — a next-generation undersea warfare solutions provider — from Advent for $3.5B, bolstering its naval defense portfolio at a moment of heightened global submarine competition.</p>
+<p><strong>MSTR</strong> (Strategy) disclosed sales of 1,363 bitcoin during June 29–30 and an additional 2,225 bitcoin during July 1–5, and reported an $8.32B loss on digital assets for Q2 ending June 30 — of which $8.31B was unrealized.</p>
+<p><strong>MU</strong> (Micron) announced a long-term Strategic Customer Agreement with Ford for memory supply. Notably, Micron had already flagged a slate of SCAs on its recent earnings call, and that disclosure likely encompassed both the Ford deal and last week's GM agreement.</p>
+<p><strong>RAIL</strong> (FreightCar America) secured a new multi-year order for 1,900 railcars from a key customer, with deliveries scheduled through 2028 — a solid backlog addition for the manufacturer.</p>
+<p><strong>RCI</strong> (Rogers Communications) is buying the remaining 25% stake in Maple Leaf Sports & Entertainment from Kilmer Sports for C$4.35B, taking full ownership of one of Canada's premier sports and entertainment properties.</p>
+<p><strong>WULF</strong> (TeraWulf) signed a 20-year lease with Anthropic at its Justified Data campus in Hawesville, Kentucky, expected to generate approximately $19B in contracted revenue over the initial term. Separately, WULF is selling its 50.1% interest in the Abernathy Joint Venture to an investor group led by joint venture partner Fluidstack.</p>
+<h2>MACRO & FED DATES</h2>
+<p>No macro calendar or Fed dates were included in this edition.</p>
+<h2>EARNINGS THIS WEEK</h2>
+<p>No earnings calendar was included in this edition.</p>
+<h2>EARNINGS NEXT 2 WEEKS</h2>
+<p>No forward earnings calendar was included in this edition.</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. No index pricing data was included in this edition. SPX, Nasdaq, Dow, R2K, crypto, commodities, and FX levels were not reported. RATES & FED. No Treasury or Fed commentary was included in this edition. Watch for upcoming data releases to drive rate expectations into the back half of July. MARKET OUTLOOK. This edition is a pure company-news drop ahead of Monday's open — no editorial macro view was offered. That said, the deal flow is heavy and broadly constructive: defense consolidation, tech supply chain extensions, and a data center infrastructure boom all point to continued capex-driven momentum. The Maersk/Hapag-Lloyd Suez rerouting is a quietly significant signal that Red Sea risk premium is fading, which is a net positive for global trade and inflation. Stay long quality; the macro backdrop hasn't broken anything yet. GEOPOLITICAL. - Maersk and Hapag-Lloyd announced they are shifting the AE15 Gemini service back through the Suez Canal, away from the Cape of Good Hope routing that had been in place since February 2025 — citing materially improved security conditions in the Middle East (Maersk press release, 7/6). COMPANY NEWS. AVGO (Broadcom) extended its deep-rooted chip partnership with Apple through 2031, with Broadcom set to develop and supply custom ASIC silicon products across multiple generations of Apple hardware — a deal that cements Broadcom's role as a cornerstone supplier in Apple's silicon strategy. CLVT (Clarivate) is divesting its Life Sciences & Healthcare segment to Altaris for $600MM, while reaffirming prior guidance — a clean portfolio trim that should sharpen the company's focus on its core IP and analytics businesses. CXW (CoreCivic) closed the sale of two detention facilities for approximately $1.5B gross, with anticipated net proceeds of $1.1B — a meaningful balance sheet event for the private prison operator. ESI/SOLS — Element Solutions ( ESI ) is being acquired by Solstice ( SOLS ) in a cash-and-stock deal valued at $14.5B. ESI holders receive $10/share in cash plus 0.5 SOLS shares, representing total consideration of $50.10 per share. KLAR (Klarna) has filed for a U.S. banking charter, a move that would allow the BNPL giant to bring its domestic banking operations in-house. Klarna has held a European banking license since 2017 and currently serves U.S. customers through partner banks. LMT (Lockheed Martin) is acquiring Ultra Maritime — a next-generation undersea warfare solutions provider — from Advent for $3.5B, bolstering its naval defense portfolio at a moment of heightened global submarine competition. MSTR (Strategy) disclosed sales of 1,363 bitcoin during June 29–30 and an additional 2,225 bitcoin during July 1–5, and reported an $8.32B loss on digital assets for Q2 ending June 30 — of which $8.31B was unrealized. MU (Micron) announced a long-term Strategic Customer Agreement with Ford for memory supply. Notably, Micron had already flagged a slate of SCAs on its recent earnings call, and that disclosure likely encompassed both the Ford deal and last week's GM agreement. RAIL (FreightCar America) secured a new multi-year order for 1,900 railcars from a key customer, with deliveries scheduled through 2028 — a solid backlog addition for the manufacturer. RCI (Rogers Communications) is buying the remaining 25% stake in Maple Leaf Sports & Entertainment from Kilmer Sports for C$4.35B, taking full ownership of one of Canada's premier sports and entertainment properties. WULF (TeraWulf) signed a 20-year lease with Anthropic at its Justified Data campus in Hawesville, Kentucky, expected to generate approximately $19B in contracted revenue over the initial term. Separately, WULF is selling its 50.1% interest in the Abernathy Joint Venture to an investor group led by joint venture partner Fluidstack.";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

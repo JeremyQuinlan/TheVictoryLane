@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Preview · Tuesday, July 7, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Earnings Preview · Tuesday, July 7, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Earnings Preview · Tuesday, July 7, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a2a1a;
+    color: #c9b97a;
+    border: 1px solid #c9b97a44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">EARNINGS</div>
+  <h1>Earnings Preview · Tuesday, July 7, 2026</h1>
+  <div class="meta">Jul 07, 2026 · 06:57 PM ET</div>
+</header>
+<hr class="divider">
+
+<p># Victory Lane — Earnings Preview</p>
+<p class="ticker-line">Tuesday, July 8, 2026</p>
+<p>---</p>
+<h2>PENG — Penguin Solutions</h2>
+<p class="ticker-line">Already Reported | Fiscal Q3 ended May 2026</p>
+<p>- <strong>EPS:</strong> Reported $0.84 vs. consensus $0.63 — beat by 21.7%. Whisper number was $0.69.</p>
+<p>- <strong>Revenue:</strong> Reported $478.71M vs. consensus $435.00M — beat by a wide margin. Revenue grew <strong>47.6% year-over-year</strong>.</p>
+<p>- <strong>Full-Year Guidance (FY2026):</strong> Company raised guidance to $2.55–$2.65 EPS on revenue of $1.64B–$1.70B. Prior guidance was $2.00–$2.30 EPS on $1.31B–$1.60B revenue. Current consensus stood at $2.30 EPS / $1.60B revenue — guidance now <strong>meaningfully above consensus</strong> on both metrics.</p>
+<p>- <strong>Key Driver:</strong> Integrated Memory net sales more than doubled year-over-year; AI Infrastructure momentum cited as primary growth engine.</p>
+<p>---</p>
+<h2>KRUS — Kura Sushi USA</h2>
+<p class="ticker-line">Already Reported | Fiscal Q3 ended May 2026</p>
+<p>- <strong>EPS:</strong> Reported $0.03 vs. consensus estimate of -$0.05 — beat by 400%. Whisper number was -$0.01.</p>
+<p>- <strong>Revenue:</strong> Reported $85.92M vs. consensus $86.27M — slight miss on the top line. Revenue grew <strong>16.2% year-over-year</strong>.</p>
+<p>- <strong>Full-Year Guidance (FY2026):</strong> Company reaffirmed revenue guidance of $330.5M–$331.5M. Current consensus is $333.8M — guidance runs <strong>slightly below consensus</strong>.</p>
+<p>- <strong>Margin Note:</strong> Restaurant-level operating margin improved 90 bps year-over-year to 19.1% despite a 200 bps tariff headwind on cost of goods sold. Adjusted EBITDA margin expanded 40 bps to 7.7%.</p>
+<p>---</p>
+<h2>SAR — Saratoga Investment</h2>
+<p class="ticker-line">Already Reported | Fiscal Q1 ended May 2026</p>
+<p>- <strong>EPS:</strong> Reported $0.47 vs. consensus $0.54 — missed by 13.0%. No whisper number provided.</p>
+<p>- <strong>Revenue:</strong> Reported $30.78M vs. consensus $31.67M. Revenue fell <strong>4.8% year-over-year</strong>.</p>
+<p>- <strong>Guidance:</strong> No forward guidance issued.</p>
+<p>- <strong>Context:</strong> Management cited sector-wide private credit pressure. AUM grew 1.6% to $1.126B on $31M in net originations. Core BDC portfolio fair value remains within 0.2% of cost.</p>
+<p>---</p>
+<h2>COSM — Cosmos Health</h2>
+<p class="ticker-line">Guidance Update Only | Q2 ending June 30, 2026</p>
+<p>- <strong>Revenue Guidance:</strong> Company guided Q2 revenue to approximately $19.40M vs. consensus $19.72M — <strong>below consensus</strong> by roughly $320K.</p>
+<p>- No EPS guidance or full-year update provided.</p>
+<p>---</p>
+<h2>NYXH — Nyxoah SA</h2>
+<p class="ticker-line">Guidance Update Only | Q2 ending June 30, 2026</p>
+<p>- <strong>Q2 Revenue Guidance:</strong> Approximately $8.79M vs. consensus $9.06M — <strong>below consensus</strong> for the quarter.</p>
+<p>- <strong>Full-Year 2026 Guidance:</strong> Reaffirmed at $41.09M–$45.66M vs. current consensus of $44.56M — <strong>full-year guidance in line</strong> with Street expectations.</p>
+<p>- Focus area: Obstructive Sleep Apnea treatment devices.</p>
+<p>---</p>
+<h2>LEVI — Levi Strauss & Co.</h2>
+<p class="ticker-line">Reports: Wednesday, July 8, 2026 | After Market Close (~4:10 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $0.24 per share</p>
+<p>- <strong>Whisper Number:</strong> $0.27 per share — <strong>above consensus</strong>, signaling elevated buy-side expectations</p>
+<p>- <strong>Consensus Revenue:</strong> $1.52B</p>
+<p>- <strong>Year-over-Year Revenue Growth:</strong> Expected at <strong>5.1%</strong></p>
+<p>- <strong>Company Guidance vs. Consensus:</strong> No updated guidance in this report; prior company guidance not detailed in available data</p>
+<p>- <strong>Investor Sentiment:</strong> <strong>40% bullish</strong> heading into the print — majority skewing cautious</p>
+<p>- <strong>Options Implied Move:</strong> <strong>7.7%</strong> vs. historical average move of <strong>7.8%</strong> — options are priced essentially in line with historical norms; no premium or discount being assigned</p>
+<p>- <strong>Estimate Revisions / Unusual Activity:</strong> No unusual options activity or revision trend data provided in available sourcing</p>
+<p>---</p>
+<p>*Note: Short interest change data and earnings estimate revision trends were not available in the source material for this edition. All other data points reflect latest available figures.*</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "# Victory Lane — Earnings Preview Tuesday, July 8, 2026 --- PENG — Penguin Solutions. Already Reported | Fiscal Q3 ended May 2026 - earnings per share: Reported $0.84 vs. consensus $0.63 — beat by 21.7%. Whisper number was $0.69. - Revenue: Reported $478.71M vs. consensus $435.00M — beat by a wide margin. Revenue grew 47.6% year-over-year . - Full-Year Guidance (FY2026): Company raised guidance to $2.55–$2.65 earnings per share on revenue of $1.64B–$1.70B. Prior guidance was $2.00–$2.30 earnings per share on $1.31B–$1.60B revenue. Current consensus stood at $2.30 earnings per share / $1.60B revenue — guidance now meaningfully above consensus on both metrics. - Key Driver: Integrated Memory net sales more than doubled year-over-year; AI Infrastructure momentum cited as primary growth engine. --- KRUS — Kura Sushi USA. Already Reported | Fiscal Q3 ended May 2026 - earnings per share: Reported $0.03 vs. consensus estimate of -$0.05 — beat by 400%. Whisper number was -$0.01. - Revenue: Reported $85.92M vs. consensus $86.27M — slight miss on the top line. Revenue grew 16.2% year-over-year . - Full-Year Guidance (FY2026): Company reaffirmed revenue guidance of $330.5M–$331.5M. Current consensus is $333.8M — guidance runs slightly below consensus . - Margin Note: Restaurant-level operating margin improved 90 bps year-over-year to 19.1% despite a 200 bps tariff headwind on cost of goods sold. Adjusted EBITDA margin expanded 40 bps to 7.7%. --- SAR — Saratoga Investment. Already Reported | Fiscal Q1 ended May 2026 - earnings per share: Reported $0.47 vs. consensus $0.54 — missed by 13.0%. No whisper number provided. - Revenue: Reported $30.78M vs. consensus $31.67M. Revenue fell 4.8% year-over-year . - Guidance: No forward guidance issued. - Context: Management cited sector-wide private credit pressure. AUM grew 1.6% to $1.126B on $31M in net originations. Core BDC portfolio fair value remains within 0.2% of cost. --- COSM — Cosmos Health. Guidance Update Only | Q2 ending June 30, 2026 - Revenue Guidance: Company guided Q2 revenue to approximately $19.40M vs. consensus $19.72M — below consensus by roughly $320K. - No earnings per share guidance or full-year update provided. --- NYXH — Nyxoah SA. Guidance Update Only | Q2 ending June 30, 2026 - Q2 Revenue Guidance: Approximately $8.79M vs. consensus $9.06M — below consensus for the quarter. - Full-Year 2026 Guidance: Reaffirmed at $41.09M–$45.66M vs. current consensus of $44.56M — full-year guidance in line with Street expectations. - Focus area: Obstructive Sleep Apnea treatment devices. --- LEVI — Levi Strauss & Co.. Reports: Wednesday, July 8, 2026 | After Market Close (~4:10 PM Eastern time) - Consensus earnings per share: $0.24 per share - Whisper Number: $0.27 per share — above consensus , signaling elevated buy-side expectations - Consensus Revenue: $1.52B - Year-over-Year Revenue Growth: Expected at 5.1% - Company Guidance vs. Consensus: No updated guidance in this report; prior company guidance not detailed in available data - Investor Sentiment: 40% bullish heading into the print — majority skewing cautious - Options Implied Move: 7.7% vs. historical average move of 7.8% — options are priced essentially in line with historical norms; no premium or discount being assigned - Estimate Revisions / Unusual Activity: No unusual options activity or revision trend data provided in available sourcing --- *Note: Short interest change data and earnings estimate revision trends were not available in the source material for this edition. All other data points reflect latest available figures.*";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

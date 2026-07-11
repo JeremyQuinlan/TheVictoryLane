@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Calendar · Monday, July 13,
+ 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Earnings Calendar · Monday, July 13,
+ 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Earnings Calendar · Monday, July 13,
+ 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a2a1a;
+    color: #c9b97a;
+    border: 1px solid #c9b97a44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">EARNINGS</div>
+  <h1>Earnings Calendar · Monday, July 13,
+ 2026</h1>
+  <div class="meta">Jul 11, 2026 · 08:10 AM ET</div>
+</header>
+<hr class="divider">
+
+<div style="margin-bottom:28px; text-align:center;">
+  <img src="earnings-calendar-monday-july-13-2026-calendar.png" alt="Earnings Calendar" style="max-width:100%; border-radius:6px; border:1px solid #1a1a1a;">
+</div>
+<p># Victory Lane Earnings Preview — Week of July 13, 2026</p>
+<p>---</p>
+<h2>C — Citigroup, Inc.</h2>
+<p><strong>Report Date:</strong> Tuesday, July 14, 2026 — Before market open (~8:00 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $2.72 | <strong>Whisper:</strong> $2.79</p>
+<p>- <strong>Consensus Revenue:</strong> $23.46B</p>
+<p>- <strong>YoY Revenue Growth:</strong> -44.6%</p>
+<p>- <strong>Guidance vs. Consensus:</strong> No formal EPS guidance provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish — 78.9% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Increased 7.6% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> June 22 — 12,710 contracts of the $150.00 call bought, expiring July 17, 2026</p>
+<p>---</p>
+<h2>GS — Goldman Sachs Group, Inc.</h2>
+<p><strong>Report Date:</strong> Tuesday, July 14, 2026 — Before market open (~7:25 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $14.47 | <strong>Whisper:</strong> $15.21</p>
+<p>- <strong>Consensus Revenue:</strong> $16.31B</p>
+<p>- <strong>YoY Revenue Growth:</strong> -47.8%</p>
+<p>- <strong>Guidance vs. Consensus:</strong> No formal guidance provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish overall, but 70.6% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Increased 6.0% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> July 2 — 5,427 contracts of the $1,200.00 call bought, expiring July 17, 2026</p>
+<p>---</p>
+<h2>JPM — JPMorgan Chase & Co.</h2>
+<p><strong>Report Date:</strong> Tuesday, July 14, 2026 — Before market open (~6:35 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $5.52 | <strong>Whisper:</strong> $5.61</p>
+<p>- <strong>Consensus Revenue:</strong> $48.71B</p>
+<p>- <strong>YoY Revenue Growth:</strong> -30.4%</p>
+<p>- <strong>Guidance vs. Consensus:</strong> No formal guidance provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish overall, but 61.5% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Increased 15.4% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> June 25 — 36,657 contracts of the $285.00 put bought, expiring July 17, 2026</p>
+<p>---</p>
+<h2>BAC — Bank of America Corp.</h2>
+<p><strong>Report Date:</strong> Tuesday, July 14, 2026 — Before market open (~6:45 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $1.13 | <strong>Whisper:</strong> $1.15</p>
+<p>- <strong>Consensus Revenue:</strong> $30.26B</p>
+<p>- <strong>YoY Revenue Growth:</strong> -35.2%</p>
+<p>- <strong>Guidance vs. Consensus:</strong> No formal guidance provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish — 59.1% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Decreased 3.4% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> July 7 — 11,040 contracts of the $62.00 call bought, expiring July 31, 2026</p>
+<p>---</p>
+<h2>AEHR — Aehr Test Systems</h2>
+<p><strong>Report Date:</strong> Tuesday, July 14, 2026 — After market close (~4:05 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> -$0.01 (loss) | <strong>Whisper:</strong> $0.02</p>
+<p>- <strong>Consensus Revenue:</strong> $18.70M</p>
+<p>- <strong>YoY Revenue Growth:</strong> +32.7%</p>
+<p>- <strong>Company Guidance:</strong> EPS range of -$0.04 to breakeven; revenue $14.69M–$19.69M — consensus sits at the upper end of the revenue range</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish — 66.7% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Decreased 9.7% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> July 2 — 815 contracts of the $100.00 call bought, expiring July 17, 2026</p>
+<p>---</p>
+<h2>ANGO — AngioDynamics</h2>
+<p><strong>Report Date:</strong> Tuesday, July 14, 2026 — Before market open (~6:00 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> -$0.11 (loss)</p>
+<p>- <strong>Consensus Revenue:</strong> $80.49M</p>
+<p>- <strong>YoY Revenue Growth:</strong> +0.4%</p>
+<p>- <strong>Guidance vs. Consensus:</strong> No formal guidance provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish, but market expects in-line results</p>
+<p>- <strong>Short Interest:</strong> Decreased 1.6% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> None reported</p>
+<p>---</p>
+<h2>ASML — ASML Holding</h2>
+<p><strong>Report Date:</strong> Wednesday, July 15, 2026 — Pre-market (~1:00 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $7.98 | <strong>Whisper:</strong> $8.32</p>
+<p>- <strong>Consensus Revenue:</strong> $10.28B</p>
+<p>- <strong>YoY Revenue Growth:</strong> +17.8%</p>
+<p>- <strong>Company Guidance:</strong> Revenue $9.89B–$10.60B — consensus of $10.28B falls within range</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish — 75.8% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Increased 139.6% since last earnings — significant red flag</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> July 7 — 1,439 contracts of the $2,000.00 call bought, expiring July 17, 2026</p>
+<p>---</p>
+<h2>PGR — Progressive Corp.</h2>
+<p><strong>Report Date:</strong> Wednesday, July 15, 2026 — Before market open (~8:25 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $4.58 | <strong>Whisper:</strong> $4.78</p>
+<p>- <strong>Consensus Revenue:</strong> $23.12B</p>
+<p>- <strong>YoY Revenue Growth:</strong> +5.1%</p>
+<p>- <strong>Guidance vs. Consensus:</strong> No formal guidance provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bearish overall, but 73.9% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Increased 4.8% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> June 3 — 3,163 contracts of the $230.00 call bought, expiring January 15, 2027</p>
+<p>---</p>
+<h2>NFLX — Netflix, Inc.</h2>
+<p><strong>Report Date:</strong> Thursday, July 16, 2026 — After market close (~4:05 PM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $0.79 | <strong>Whisper:</strong> $0.84</p>
+<p>- <strong>Consensus Revenue:</strong> $12.57B</p>
+<p>- <strong>YoY Revenue Growth:</strong> +13.5%</p>
+<p>- <strong>Company Guidance:</strong> ~$0.78 EPS on ~$12.57B revenue — consensus is essentially in-line with guidance on revenue, slightly above on EPS</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish — 67.1% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Increased 25.7% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> <strong>Unchanged</strong> since last earnings</p>
+<p>- <strong>Notable Options Activity:</strong> June 23 — 55,059 contracts of the $65.00 put bought, expiring January 15, 2027 — notably large bearish position</p>
+<p>---</p>
+<h2>UNH — UnitedHealth Group, Inc.</h2>
+<p><strong>Report Date:</strong> Thursday, July 16, 2026 — Before market open (~5:55 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $4.84 | <strong>Whisper:</strong> $5.00</p>
+<p>- <strong>Consensus Revenue:</strong> $110.05B</p>
+<p>- <strong>YoY Revenue Growth:</strong> -1.4%</p>
+<p>- <strong>Guidance vs. Consensus:</strong> No formal guidance provided</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish — 75.0% expecting a beat</p>
+<p>- <strong>Short Interest:</strong> Decreased 2.9% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> July 8 — 3,245 contracts of the $150.00 put bought, expiring September 18, 2026</p>
+<p>---</p>
+<h2>TSM — Taiwan Semiconductor Manufacturing Co.</h2>
+<p><strong>Report Date:</strong> Thursday, July 16, 2026 — Pre-market (~2:00 AM ET)</p>
+<p>- <strong>Consensus EPS:</strong> $3.80 | <strong>Whisper:</strong> $3.98</p>
+<p>- <strong>Consensus Revenue:</strong> $39.76B</p>
+<p>- <strong>YoY Revenue Growth:</strong> +32.2%</p>
+<p>- <strong>Company Guidance:</strong> Revenue $39.00B–$40.20B — consensus of $39.76B sits comfortably within range</p>
+<p>- <strong>Investor Sentiment:</strong> Bullish — 90.0% expecting a beat, highest conviction name on the calendar</p>
+<p>- <strong>Short Interest:</strong> Increased 9.5% since last earnings</p>
+<p>- <strong>Estimate Revision Trend:</strong> Revised <strong>higher</strong></p>
+<p>- <strong>Notable Options Activity:</strong> July 9 — 12,476 contracts of the $405.00 put bought, expiring July 17, 2026 — notable downside hedge ahead of print</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "# Victory Lane Earnings Preview — Week of July 13, 2026 --- C — Citigroup, Inc.. Report Date: Tuesday, July 14, 2026 — Before market open (~8:00 AM Eastern time) - Consensus earnings per share: $2.72 | Whisper: $2.79 - Consensus Revenue: $23.46B - year over year Revenue Growth: -44.6% - Guidance vs. Consensus: No formal earnings per share guidance provided - Investor Sentiment: Bullish — 78.9% expecting a beat - Short Interest: Increased 7.6% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: June 22 — 12,710 contracts of the $150.00 call bought, expiring July 17, 2026 --- GS — Goldman Sachs Group, Inc.. Report Date: Tuesday, July 14, 2026 — Before market open (~7:25 AM Eastern time) - Consensus earnings per share: $14.47 | Whisper: $15.21 - Consensus Revenue: $16.31B - year over year Revenue Growth: -47.8% - Guidance vs. Consensus: No formal guidance provided - Investor Sentiment: Bearish overall, but 70.6% expecting a beat - Short Interest: Increased 6.0% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: July 2 — 5,427 contracts of the $1,200.00 call bought, expiring July 17, 2026 --- JPM — JPMorgan Chase & Co.. Report Date: Tuesday, July 14, 2026 — Before market open (~6:35 AM Eastern time) - Consensus earnings per share: $5.52 | Whisper: $5.61 - Consensus Revenue: $48.71B - year over year Revenue Growth: -30.4% - Guidance vs. Consensus: No formal guidance provided - Investor Sentiment: Bearish overall, but 61.5% expecting a beat - Short Interest: Increased 15.4% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: June 25 — 36,657 contracts of the $285.00 put bought, expiring July 17, 2026 --- BAC — Bank of America Corp.. Report Date: Tuesday, July 14, 2026 — Before market open (~6:45 AM Eastern time) - Consensus earnings per share: $1.13 | Whisper: $1.15 - Consensus Revenue: $30.26B - year over year Revenue Growth: -35.2% - Guidance vs. Consensus: No formal guidance provided - Investor Sentiment: Bullish — 59.1% expecting a beat - Short Interest: Decreased 3.4% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: July 7 — 11,040 contracts of the $62.00 call bought, expiring July 31, 2026 --- AEHR — Aehr Test Systems. Report Date: Tuesday, July 14, 2026 — After market close (~4:05 PM Eastern time) - Consensus earnings per share: -$0.01 (loss) | Whisper: $0.02 - Consensus Revenue: $18.70M - year over year Revenue Growth: +32.7% - Company Guidance: earnings per share range of -$0.04 to breakeven; revenue $14.69M–$19.69M — consensus sits at the upper end of the revenue range - Investor Sentiment: Bullish — 66.7% expecting a beat - Short Interest: Decreased 9.7% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: July 2 — 815 contracts of the $100.00 call bought, expiring July 17, 2026 --- ANGO — AngioDynamics. Report Date: Tuesday, July 14, 2026 — Before market open (~6:00 AM Eastern time) - Consensus earnings per share: -$0.11 (loss) - Consensus Revenue: $80.49M - year over year Revenue Growth: +0.4% - Guidance vs. Consensus: No formal guidance provided - Investor Sentiment: Bullish, but market expects in-line results - Short Interest: Decreased 1.6% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: None reported --- ASML — ASML Holding. Report Date: Wednesday, July 15, 2026 — Pre-market (~1:00 AM Eastern time) - Consensus earnings per share: $7.98 | Whisper: $8.32 - Consensus Revenue: $10.28B - year over year Revenue Growth: +17.8% - Company Guidance: Revenue $9.89B–$10.60B — consensus of $10.28B falls within range - Investor Sentiment: Bullish — 75.8% expecting a beat - Short Interest: Increased 139.6% since last earnings — significant red flag - Estimate Revision Trend: Revised higher - Notable Options Activity: July 7 — 1,439 contracts of the $2,000.00 call bought, expiring July 17, 2026 --- PGR — Progressive Corp.. Report Date: Wednesday, July 15, 2026 — Before market open (~8:25 AM Eastern time) - Consensus earnings per share: $4.58 | Whisper: $4.78 - Consensus Revenue: $23.12B - year over year Revenue Growth: +5.1% - Guidance vs. Consensus: No formal guidance provided - Investor Sentiment: Bearish overall, but 73.9% expecting a beat - Short Interest: Increased 4.8% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: June 3 — 3,163 contracts of the $230.00 call bought, expiring January 15, 2027 --- NFLX — Netflix, Inc.. Report Date: Thursday, July 16, 2026 — After market close (~4:05 PM Eastern time) - Consensus earnings per share: $0.79 | Whisper: $0.84 - Consensus Revenue: $12.57B - year over year Revenue Growth: +13.5% - Company Guidance: ~$0.78 earnings per share on ~$12.57B revenue — consensus is essentially in-line with guidance on revenue, slightly above on earnings per share - Investor Sentiment: Bullish — 67.1% expecting a beat - Short Interest: Increased 25.7% since last earnings - Estimate Revision Trend: Unchanged since last earnings - Notable Options Activity: June 23 — 55,059 contracts of the $65.00 put bought, expiring January 15, 2027 — notably large bearish position --- UNH — UnitedHealth Group, Inc.. Report Date: Thursday, July 16, 2026 — Before market open (~5:55 AM Eastern time) - Consensus earnings per share: $4.84 | Whisper: $5.00 - Consensus Revenue: $110.05B - year over year Revenue Growth: -1.4% - Guidance vs. Consensus: No formal guidance provided - Investor Sentiment: Bullish — 75.0% expecting a beat - Short Interest: Decreased 2.9% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: July 8 — 3,245 contracts of the $150.00 put bought, expiring September 18, 2026 --- TSM — Taiwan Semiconductor Manufacturing Co.. Report Date: Thursday, July 16, 2026 — Pre-market (~2:00 AM Eastern time) - Consensus earnings per share: $3.80 | Whisper: $3.98 - Consensus Revenue: $39.76B - year over year Revenue Growth: +32.2% - Company Guidance: Revenue $39.00B–$40.20B — consensus of $39.76B sits comfortably within range - Investor Sentiment: Bullish — 90.0% expecting a beat, highest conviction name on the calendar - Short Interest: Increased 9.5% since last earnings - Estimate Revision Trend: Revised higher - Notable Options Activity: July 9 — 12,476 contracts of the $405.00 put bought, expiring July 17, 2026 — notable downside hedge ahead of print";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

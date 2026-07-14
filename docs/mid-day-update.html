@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mid-Day Update · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Mid-Day Update">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mid-Day Update">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #1a2a3a;
+    color: #4c8faf;
+    border: 1px solid #4c8faf44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">MID-DAY</div>
+  <h1>Mid-Day Update</h1>
+  <div class="meta">Jul 14, 2026 · 11:14 AM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>SPX +0.48%, Nasdaq +1.00%, Dow +47 points, R2K +15.5 points. Brent +1.40% to ~$84.50 (off morning highs near $87.50). Gold +2.30%, Silver +3.20%, BTC +3.30%. Equal-weight S&P slightly negative.</p>
+<p>---</p>
+<h2>RATES & FED</h2>
+<p>Treasuries are rallying hard, with yields down 3–11 basis points across the curve following the cooler-than-expected June CPI print. The market is now pricing roughly 31 basis points of Fed cuts in H2, down from ~43 basis points pre-CPI. Fed Chair Warsh's congressional testimony was largely a non-event — he reiterated the same hawkish inflation stance delivered at Sintra, no new signals.</p>
+<p>---</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The CPI relief is real but don't get complacent — the macro tape is full of cross-currents that make the bull case harder to run straight. Bank earnings are blowout-level strong, which matters, but IBM's profit warning is a serious gut-punch to the software/services complex and HCA's uninsured-mix warning introduces a genuine policy-driven headwind into healthcare. Oil remains a wild card as Iran stays stalemated and China's inventory posture could quickly flip the script. The sector rotation — into chips, banks, industrials, and materials, out of software and healthcare — tells you investors are repositioning rather than broadly pressing risk. Stay selective.</p>
+<p>---</p>
+<h2>GEOPOLITICAL</h2>
+<p>- Trump sent a fresh war notice to Congress on July 7 restarting a 60-day clock on U.S. military action against Iran; his latest de-escalation proposal — vague "trade and investment deals" — replaces the prior 20% ship tax idea, both widely seen as unworkable (Politico).</p>
+<p>- China's strategic oil inventory drawdowns over recent months have suppressed Brent prices, but if Beijing reverses course and begins restocking, the upside risk to crude could become severe (NYT).</p>
+<p>- NY Governor Hochul signed an executive order banning large new data center construction in the state for up to a year, a meaningful headwind for AI infrastructure buildout (WSJ).</p>
+<p>- The White House is discussing taking equity stakes in AI companies, though no formal plan exists yet (NYT).</p>
+<p>- Japanese officials again floated the idea of pension funds shifting allocations toward domestic assets — a recurring theme with real long-term FX and JGB implications (Reuters).</p>
+<p>---</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>BAC</strong> reported Q2 EPS of $1.21 vs. Street $1.13, on revenue of $31.5B vs. $30.8B expected. NII was roughly inline; the beat came from noninterest income strength, cost discipline, and provisions of $1.36B vs. $1.51B expected.</p>
+<p><strong>C</strong> delivered a strong Q2 with EPS of $3.15 vs. Street $2.74, revenue of $24.8B vs. $23.7B, and an efficiency ratio of 57.4% — improving roughly 530 basis points year-over-year.</p>
+<p><strong>GS</strong> posted a blowout Q2: EPS $20.98 vs. Street $14.49, revenue +39% year-over-year to $20.3B vs. $16.34B expected, with an efficiency ratio of 57.4% — several hundred basis points better than consensus.</p>
+<p><strong>JPM</strong> beat Q2 estimates across the board driven by robust noninterest income, expense controls, and lower provisions. Specific EPS figures not broken out separately in the release but the upside was described as solid.</p>
+<p><strong>WFC</strong> earned $2.00 in Q2 EPS vs. Street $1.71. Noninterest income rose 13% (including a ~$250M JV gain), efficiency ratio of 60% was several hundred basis points better than expected, and provisions came in at $914M vs. ~$1.2B forecast.</p>
+<p><strong>IBM</strong> pre-announced a significant revenue miss — Q2 revenue guided to $17.2B (up just 1% year-over-year) vs. Street ~$17.9B, with gross margins down 70 basis points and EPS of $2.93 vs. $3.02 expected. The stock is crashing and dragging software/services peers with it.</p>
+<p><strong>HCA</strong> cut full-year guidance, citing a payer mix shift driven by rising uninsured volumes — patients losing health exchange coverage. The warning is rippling through the broader healthcare sector.</p>
+<p><strong>NVDA</strong> H200 chip shipments to China have commenced but in very low volumes (Reuters). Separately, Nvidia has cut the number of authorized Asian buyers as part of a compliance crackdown to curb chip trafficking into China (FT).</p>
+<p><strong>UBER</strong> is in advanced talks to acquire Delivery Hero, with a deal potentially closing this week (Bloomberg).</p>
+<p><strong>TRI</strong> will sell a 51% stake in its Global Print business to KKR for ~$500M in gross proceeds, retaining a 49% stake.</p>
+<p><strong>LBRT/SLB</strong> formed a strategic alliance to provide infrastructure and power generation solutions for data centers.</p>
+<p><strong>BRK/B</strong> — Buffett stated his goal is to dispose of all his Berkshire shares within eight years.</p>
+<p><strong>TREX</strong> issued an upside Q2 preannouncement citing strong consumer sell-through and raised full-year guidance.</p>
+<p><strong>YUM</strong> — federal and state health officials are investigating whether Taco Bell's lettuce supply is linked to a multi-state cyclosporiasis outbreak (Washington Post).</p>
+<p><strong>BF/B</strong> CEO Lawson Whiting is stepping down; the company reaffirmed F27 guidance.</p>
+<p>---</p>
+<h2>MACRO & FED DATES</h2>
+<p><strong>Wed Jul 15</strong> — Eurozone industrial production for May (5am ET); US Empire Manufacturing Index for July and PPI for June (8:30am ET); Bank of Canada rate decision (9:45am ET); Warsh testifies before House Financial Services Committee (10am ET); Beige Book (2pm ET); South Korea monetary policy decision overnight.</p>
+<p><strong>Thu Jul 16</strong> — UK GDP and industrial production for May (2am ET); US Philly Fed Index, retail sales for June, and weekly jobless claims (8:30am ET); NAHB housing index, pending home sales, and business inventories (10am ET). Retail sales will be closely watched given the HCA consumer mix warning.</p>
+<p><strong>Fri Jul 17</strong> — US import/export price index, housing starts and building permits for June (8:30am ET); industrial/manufacturing production for June (9:15am ET); Michigan sentiment for July (10am ET).</p>
+<p>---</p>
+<h2>EARNINGS THIS WEEK</h2>
+<p class="ticker-line">Wednesday 7/15</p>
+<p>- Pre-market: ASML (EU open), BLK, BNY, CAG, CTAS, ELV, FHN, JNJ, MS, MTB, PGR, PNC</p>
+<p>- Post-market: HOMB, JBHT, UAL</p>
+<p class="ticker-line">Thursday 7/16</p>
+<p>- Pre-market: ABB, Essity, Nordea, Telenor, TSM (EU open); ABT, CBSH, CFG, GE, MAN, PLD, STT, UNH, USB</p>
+<p>- Post-market: AA, ISRG, NFLX</p>
+<p class="ticker-line">Friday 7/17</p>
+<p>- Pre-market: EQT, Saab, Sandvik, SKF, Telia, Volvo, Yara (EU open); ALV, FITB, RF, TFC, TRV</p>
+<p>---</p>
+<h2>EARNINGS NEXT 2 WEEKS</h2>
+<p>Not provided in this edition.</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. SPX +0.48%, Nasdaq +1.00%, Dow +47 points, R2K +15.5 points. Brent +1.40% to ~$84.50 (off morning highs near $87.50). Gold +2.30%, Silver +3.20%, BTC +3.30%. Equal-weight S&P slightly negative. --- RATES & FED. Treasuries are rallying hard, with yields down 3–11 basis points across the curve following the cooler-than-expected June CPI print. The market is now pricing roughly 31 basis points of Fed cuts in H2, down from ~43 basis points pre-CPI. Fed Chair Warsh's congressional testimony was largely a non-event — he reiterated the same hawkish inflation stance delivered at Sintra, no new signals. --- MARKET OUTLOOK. The CPI relief is real but don't get complacent — the macro tape is full of cross-currents that make the bull case harder to run straight. Bank earnings are blowout-level strong, which matters, but IBM's profit warning is a serious gut-punch to the software/services complex and HCA's uninsured-mix warning introduces a genuine policy-driven headwind into healthcare. Oil remains a wild card as Iran stays stalemated and China's inventory posture could quickly flip the script. The sector rotation — into chips, banks, industrials, and materials, out of software and healthcare — tells you investors are repositioning rather than broadly pressing risk. Stay selective. --- GEOPOLITICAL. - Trump sent a fresh war notice to Congress on July 7 restarting a 60-day clock on U.S. military action against Iran; his latest de-escalation proposal — vague \"trade and investment deals\" — replaces the prior 20% ship tax idea, both widely seen as unworkable (Politico). - China's strategic oil inventory drawdowns over recent months have suppressed Brent prices, but if Beijing reverses course and begins restocking, the upside risk to crude could become severe. - NY Governor Hochul signed an executive order banning large new data center construction in the state for up to a year, a meaningful headwind for AI infrastructure buildout. - The White House is discussing taking equity stakes in AI companies, though no formal plan exists yet. - Japanese officials again floated the idea of pension funds shifting allocations toward domestic assets — a recurring theme with real long-term FX and JGB implications. --- COMPANY NEWS. BAC reported Q2 earnings per share of $1.21 vs. Street $1.13, on revenue of $31.5B vs. $30.8B expected. NII was roughly inline; the beat came from noninterest income strength, cost discipline, and provisions of $1.36B vs. $1.51B expected. C delivered a strong Q2 with earnings per share of $3.15 vs. Street $2.74, revenue of $24.8B vs. $23.7B, and an efficiency ratio of 57.4% — improving roughly 530 basis points year-over-year. GS posted a blowout Q2: earnings per share $20.98 vs. Street $14.49, revenue +39% year-over-year to $20.3B vs. $16.34B expected, with an efficiency ratio of 57.4% — several hundred basis points better than consensus. JPM beat Q2 estimates across the board driven by robust noninterest income, expense controls, and lower provisions. Specific earnings per share figures not broken out separately in the release but the upside was described as solid. WFC earned $2.00 in Q2 earnings per share vs. Street $1.71. Noninterest income rose 13% (including a ~$250M JV gain), efficiency ratio of 60% was several hundred basis points better than expected, and provisions came in at $914M vs. ~$1.2B forecast. IBM pre-announced a significant revenue miss — Q2 revenue guided to $17.2B (up just 1% year-over-year) vs. Street ~$17.9B, with gross margins down 70 basis points and earnings per share of $2.93 vs. $3.02 expected. The stock is crashing and dragging software/services peers with it. HCA cut full-year guidance, citing a payer mix shift driven by rising uninsured volumes — patients losing health exchange coverage. The warning is rippling through the broader healthcare sector. NVDA H200 chip shipments to China have commenced but in very low volumes. Separately, Nvidia has cut the number of authorized Asian buyers as part of a compliance crackdown to curb chip trafficking into China. UBER is in advanced talks to acquire Delivery Hero, with a deal potentially closing this week. TRI will sell a 51% stake in its Global Print business to KKR for ~$500M in gross proceeds, retaining a 49% stake. LBRT/SLB formed a strategic alliance to provide infrastructure and power generation solutions for data centers. BRK/B — Buffett stated his goal is to dispose of all his Berkshire shares within eight years. TREX issued an upside Q2 preannouncement citing strong consumer sell-through and raised full-year guidance. YUM — federal and state health officials are investigating whether Taco Bell's lettuce supply is linked to a multi-state cyclosporiasis outbreak (Washington Post). BF/B CEO Lawson Whiting is stepping down; the company reaffirmed F27 guidance. --- MACRO & FED DATES. Wed Jul 15 — Eurozone industrial production for May (5am Eastern time); US Empire Manufacturing Index for July and PPI for June (8:30am Eastern time); Bank of Canada rate decision (9:45am Eastern time); Warsh testifies before House Financial Services Committee (10am Eastern time); Beige Book (2pm Eastern time); South Korea monetary policy decision overnight. Thu Jul 16 — UK GDP and industrial production for May (2am Eastern time); US Philly Fed Index, retail sales for June, and weekly jobless claims (8:30am Eastern time); NAHB housing index, pending home sales, and business inventories (10am Eastern time). Retail sales will be closely watched given the HCA consumer mix warning. Fri Jul 17 — US import/export price index, housing starts and building permits for June (8:30am Eastern time); industrial/manufacturing production for June (9:15am Eastern time); Michigan sentiment for July (10am Eastern time). --- EARNINGS THIS WEEK. Wednesday 7/15 - Pre-market: ASML (EU open), BLK, BNY, CAG, CTAS, ELV, FHN, JNJ, MS, MTB, PGR, PNC - Post-market: HOMB, JBHT, UAL Thursday 7/16 - Pre-market: ABB, Essity, Nordea, Telenor, TSM (EU open); ABT, CBSH, CFG, GE, MAN, PLD, STT, UNH, USB - Post-market: AA, ISRG, NFLX Friday 7/17 - Pre-market: EQT, Saab, Sandvik, SKF, Telia, Volvo, Yara (EU open); ALV, FITB, RF, TFC, TRV ---";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

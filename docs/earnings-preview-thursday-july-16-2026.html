@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Preview · Thursday, July 16, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Earnings Preview · Thursday, July 16, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Earnings Preview · Thursday, July 16, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a2a1a;
+    color: #c9b97a;
+    border: 1px solid #c9b97a44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">EARNINGS</div>
+  <h1>Earnings Preview · Thursday, July 16, 2026</h1>
+  <div class="meta">Jul 16, 2026 · 05:54 PM ET</div>
+</header>
+<hr class="divider">
+
+<p># Victory Lane Earnings Preview — Thursday, July 17, 2026</p>
+<p>---</p>
+<h2>NFLX — Netflix, Inc.</h2>
+<p><strong>Report Date/Time:</strong> Reported Q2 2026 (after market, prior session)</p>
+<p>- <strong>Consensus EPS:</strong> $0.79 | <strong>Actual:</strong> $0.80 — beat by $0.01</p>
+<p>- <strong>Whisper Number:</strong> $0.84 — missed the whisper by 4.76%</p>
+<p>- <strong>Consensus Revenue:</strong> $12.57B | <strong>Actual:</strong> $12.56B — essentially in-line</p>
+<p>- <strong>Revenue Growth (YoY):</strong> +13.37%</p>
+<p>- <strong>Forward Guidance:</strong> Q3 EPS ~$0.82 on revenue ~$12.86B — <strong>below</strong> current Q3 consensus of $0.83 EPS / $13.02B revenue; guidance came in light on both lines</p>
+<p>- <strong>Sentiment/Options/Revisions:</strong> Not provided in source data</p>
+<p><strong>Bottom Line:</strong> Beat the consensus EPS by a penny but missed the whisper badly at -4.76%. Revenue was effectively flat versus estimates. Forward guidance on both EPS and revenue is trailing analyst expectations — a soft setup heading into Q3.</p>
+<p>---</p>
+<h2>UNH — UnitedHealth Group, Inc.</h2>
+<p><strong>Report Date/Time:</strong> Reported (date confirmed as July 16, 2026 session)</p>
+<p>- <strong>2026 Full-Year EPS Guidance (Raised):</strong> $19.50–$20.00 — <strong>well above</strong> prior guidance of >$18.25 and current consensus of $18.39</p>
+<p>- <strong>Revenue Estimates/Whisper/Sentiment/Options:</strong> Not provided in source data</p>
+<p><strong>Bottom Line:</strong> A significant guidance raise — the midpoint of $19.75 represents a ~7.4% beat versus the $18.39 consensus. This is a material upside revision to the full-year outlook.</p>
+<p>---</p>
+<h2>TSM — Taiwan Semiconductor Manufacturing Company</h2>
+<p><strong>Report Date/Time:</strong> Reported (date confirmed as July 16, 2026 session)</p>
+<p>- <strong>Q3 Revenue Guidance:</strong> $44.6B–$45.8B — <strong>above</strong> current Q3 consensus of $42.6B</p>
+<p>- <strong>Guidance vs. Consensus:</strong> Midpoint of $45.2B is approximately 6.1% above the Street estimate</p>
+<p>- <strong>EPS Estimates/Whisper/Sentiment/Options:</strong> Not provided in source data</p>
+<p><strong>Bottom Line:</strong> TSM guided Q3 revenue materially above consensus — a ~$2.6B beat at the midpoint. Unambiguously bullish forward outlook for the semiconductor name.</p>
+<p>---</p>
+<h2>GE — GE Aerospace</h2>
+<p><strong>Report Date/Time:</strong> Reported July 16, 2026 session</p>
+<p>- <strong>Guidance:</strong> Raised — specific figures not provided in source data</p>
+<p>- <strong>All other data points:</strong> Not provided in source data</p>
+<p>---</p>
+<h2>ABT — Abbott Laboratories</h2>
+<p><strong>Report Date/Time:</strong> Reported July 16, 2026 session</p>
+<p>- <strong>Guidance:</strong> Raised earnings guidance, but outcome remains <strong>in-line with current consensus estimates</strong></p>
+<p>- <strong>All other data points:</strong> Not provided in source data</p>
+<p>---</p>
+<h2>PLD — Prologis</h2>
+<p><strong>Report Date/Time:</strong> Reported July 16, 2026 session</p>
+<p>- <strong>Guidance:</strong> Raised — specific figures not provided in source data</p>
+<p>- <strong>All other data points:</strong> Not provided in source data</p>
+<p>---</p>
+<h2>CFG — Citizens Financial Group</h2>
+<p><strong>Report Date/Time:</strong> Reported July 16, 2026 session</p>
+<p>- <strong>Revenue Guidance:</strong> Above consensus estimates — specific figures not provided in source data</p>
+<p>- <strong>All other data points:</strong> Not provided in source data</p>
+<p>---</p>
+<h2>USB — U.S. Bancorp</h2>
+<p><strong>Report Date/Time:</strong> Reported July 16, 2026 session</p>
+<p>- <strong>Guidance:</strong> Raised earnings guidance, but outcome remains <strong>in-line with current consensus estimates</strong></p>
+<p>- <strong>All other data points:</strong> Not provided in source data</p>
+<p>---</p>
+<h2>IIIN — Insteel Industries</h2>
+<p><strong>Report Date/Time:</strong> Reported fiscal Q3 2026 (July 16, 2026 session)</p>
+<p>- <strong>Consensus EPS:</strong> $0.45 | <strong>Actual:</strong> $0.46</p>
+<p>- <strong>Whisper Number:</strong> $0.38 — beat the whisper by <strong>21.05%</strong></p>
+<p>- <strong>Consensus Revenue:</strong> $188.63M | <strong>Actual:</strong> $197.66M — beat by ~$9M</p>
+<p>- <strong>Revenue Growth (YoY):</strong> +9.88%</p>
+<p>- <strong>Sentiment/Options/Revisions:</strong> Not provided in source data</p>
+<p><strong>Bottom Line:</strong> Clean beat across the board. The whisper was significantly below consensus here, making the actual result an outsized positive surprise versus buy-side expectations. Revenue beat was also solid at +$9M above estimates.</p>
+<p>---</p>
+<h2>BSVN — Bank7 Corp.</h2>
+<p><strong>Report Date/Time:</strong> Reported Q2 2026 (July 16, 2026 session)</p>
+<p>- <strong>Consensus EPS:</strong> $1.03 | <strong>Actual:</strong> $0.87 — missed by <strong>15.53%</strong></p>
+<p>- <strong>Consensus Revenue:</strong> $24.20M | <strong>Actual:</strong> $31.93M — beat revenue estimates</p>
+<p>- <strong>Revenue Growth (YoY):</strong> -7.40%</p>
+<p>- <strong>Sentiment/Options/Revisions:</strong> Not provided in source data</p>
+<p><strong>Bottom Line:</strong> A significant EPS miss at -15.53% despite topping the revenue estimate. Revenue itself declining 7.4% YoY signals underlying business pressure. The EPS shortfall is the dominant story here.</p>
+<p>---</p>
+<h2>RF — Regions Financial Corporation</h2>
+<p><strong>Report Date/Time:</strong> Confirmed Friday, July 18, 2026 at ~6:00 AM ET (before market)</p>
+<p>- <strong>Consensus EPS:</strong> $0.64</p>
+<p>- <strong>Whisper Number:</strong> $0.66 — whisper running $0.02 above consensus</p>
+<p>- <strong>Consensus Revenue:</strong> $1.95B</p>
+<p>- <strong>Revenue Growth (YoY):</strong> -19.8% decline expected</p>
+<p>- <strong>Investor Sentiment:</strong> 1.6% bearish — essentially neutral with a slight lean negative</p>
+<p>- <strong>Options Implied Move:</strong> 5.0% vs. historical average move of 2.1% — options pricing in <strong>2.4x</strong> the typical earnings move</p>
+<p>- <strong>Guidance/Revisions/Short Interest:</strong> Not provided in source data</p>
+<p><strong>Bottom Line:</strong> The whisper sits modestly above consensus, suggesting some buy-side optimism, but the options market is pricing in more than double the historical average move — elevated uncertainty. The expected 19.8% YoY revenue decline is the key overhang. Watch the options pricing carefully; the implied move premium is significant relative to historical norms.</p>
+<p>---</p>
+<p>*Data sourced from July 16–17, 2026 earnings reports. Fields marked "not provided" reflect data absent from the source newsletter.*</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "# Victory Lane Earnings Preview — Thursday, July 17, 2026 --- NFLX — Netflix, Inc.. Report Date/Time: Reported Q2 2026 (after market, prior session) - Consensus earnings per share: $0.79 | Actual: $0.80 — beat by $0.01 - Whisper Number: $0.84 — missed the whisper by 4.76% - Consensus Revenue: $12.57B | Actual: $12.56B — essentially in-line - Revenue Growth (year over year): +13.37% - Forward Guidance: Q3 earnings per share ~$0.82 on revenue ~$12.86B — below current Q3 consensus of $0.83 earnings per share / $13.02B revenue; guidance came in light on both lines - Sentiment/Options/Revisions: Not provided in source data Bottom Line: Beat the consensus earnings per share by a penny but missed the whisper badly at -4.76%. Revenue was effectively flat versus estimates. Forward guidance on both earnings per share and revenue is trailing analyst expectations — a soft setup heading into Q3. --- UNH — UnitedHealth Group, Inc.. Report Date/Time: Reported (date confirmed as July 16, 2026 session) - 2026 Full-Year earnings per share Guidance (Raised): $19.50–$20.00 — well above prior guidance of >$18.25 and current consensus of $18.39 - Revenue Estimates/Whisper/Sentiment/Options: Not provided in source data Bottom Line: A significant guidance raise — the midpoint of $19.75 represents a ~7.4% beat versus the $18.39 consensus. This is a material upside revision to the full-year outlook. --- TSM — Taiwan Semiconductor Manufacturing Company. Report Date/Time: Reported (date confirmed as July 16, 2026 session) - Q3 Revenue Guidance: $44.6B–$45.8B — above current Q3 consensus of $42.6B - Guidance vs. Consensus: Midpoint of $45.2B is approximately 6.1% above the Street estimate - earnings per share Estimates/Whisper/Sentiment/Options: Not provided in source data Bottom Line: TSM guided Q3 revenue materially above consensus — a ~$2.6B beat at the midpoint. Unambiguously bullish forward outlook for the semiconductor name. --- GE — GE Aerospace. Report Date/Time: Reported July 16, 2026 session - Guidance: Raised — specific figures not provided in source data - All other data points: Not provided in source data --- ABT — Abbott Laboratories. Report Date/Time: Reported July 16, 2026 session - Guidance: Raised earnings guidance, but outcome remains in-line with current consensus estimates - All other data points: Not provided in source data --- PLD — Prologis. Report Date/Time: Reported July 16, 2026 session - Guidance: Raised — specific figures not provided in source data - All other data points: Not provided in source data --- CFG — Citizens Financial Group. Report Date/Time: Reported July 16, 2026 session - Revenue Guidance: Above consensus estimates — specific figures not provided in source data - All other data points: Not provided in source data --- USB — U.S. Bancorp. Report Date/Time: Reported July 16, 2026 session - Guidance: Raised earnings guidance, but outcome remains in-line with current consensus estimates - All other data points: Not provided in source data --- IIIN — Insteel Industries. Report Date/Time: Reported fiscal Q3 2026 (July 16, 2026 session) - Consensus earnings per share: $0.45 | Actual: $0.46 - Whisper Number: $0.38 — beat the whisper by 21.05% - Consensus Revenue: $188.63M | Actual: $197.66M — beat by ~$9M - Revenue Growth (year over year): +9.88% - Sentiment/Options/Revisions: Not provided in source data Bottom Line: Clean beat across the board. The whisper was significantly below consensus here, making the actual result an outsized positive surprise versus buy-side expectations. Revenue beat was also solid at +$9M above estimates. --- BSVN — Bank7 Corp.. Report Date/Time: Reported Q2 2026 (July 16, 2026 session) - Consensus earnings per share: $1.03 | Actual: $0.87 — missed by 15.53% - Consensus Revenue: $24.20M | Actual: $31.93M — beat revenue estimates - Revenue Growth (year over year): -7.40% - Sentiment/Options/Revisions: Not provided in source data Bottom Line: A significant earnings per share miss at -15.53% despite topping the revenue estimate. Revenue itself declining 7.4% year over year signals underlying business pressure. The earnings per share shortfall is the dominant story here. --- RF — Regions Financial Corporation. Report Date/Time: Confirmed Friday, July 18, 2026 at ~6:00 AM Eastern time (before market) - Consensus earnings per share: $0.64 - Whisper Number: $0.66 — whisper running $0.02 above consensus - Consensus Revenue: $1.95B - Revenue Growth (year over year): -19.8% decline expected - Investor Sentiment: 1.6% bearish — essentially neutral with a slight lean negative - Options Implied Move: 5.0% vs. historical average move of 2.1% — options pricing in 2.4x the typical earnings move - Guidance/Revisions/Short Interest: Not provided in source data Bottom Line: The whisper sits modestly above consensus, suggesting some buy-side optimism, but the options market is pricing in more than double the historical average move — elevated uncertainty. The expected 19.8% year over year revenue decline is the key overhang. Watch the options pricing carefully; the implied move premium is significant relative to historical norms. --- *Data sourced from July 16–17, 2026 earnings reports. Fields marked \"not provided\" reflect data absent from the source newsletter.*";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalyst Watch (week of Mon 7/20) - a few macro events (flash PMIs and ECB) and a ton of earnings (including AXP, GOOGL, IBM, INTC, NOW, SAP, T, TSLA, TXN, VZ, and many more) · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Catalyst Watch (week of Mon 7/20) - a few macro events (flash PMIs and ECB) and a ton of earnings (including AXP, GOOGL, IBM, INTC, NOW, SAP, T, TSLA, TXN, VZ, and many more)">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Catalyst Watch (week of Mon 7/20) - a few macro events (flash PMIs and ECB) and a ton of earnings (including AXP, GOOGL, IBM, INTC, NOW, SAP, T, TSLA, TXN, VZ, and many more)">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a1a3a;
+    color: #8f4caf;
+    border: 1px solid #8f4caf44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">UPDATE</div>
+  <h1>Catalyst Watch (week of Mon 7/20) - a few macro events (flash PMIs and ECB) and a ton of earnings (including AXP, GOOGL, IBM, INTC, NOW, SAP, T, TSLA, TXN, VZ, and many more)</h1>
+  <div class="meta">Jul 17, 2026 · 08:09 AM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>No index price data was included in this newsletter. Earnings previews only — no SPX, Nasdaq, Dow, R2K, Brent, Gold, Silver, BTC, or DXY figures reported.</p>
+<p>---</p>
+<h2>RATES & FED</h2>
+<p>No Treasury or Fed commentary was included in this edition. The ECB meets Thursday July 24, which will be the primary rates event of the week globally. UK CPI for June drops Wednesday and will inform the BOE's trajectory.</p>
+<p>---</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The week of July 20 is essentially an earnings gauntlet, and Wednesday night is the one session that matters most — <strong>GOOGL</strong> and <strong>NOW</strong> will either validate or shatter the current AI spending narrative. IBM's pre-announcement on July 14 (blaming a mainframe cycle downturn and a CTO pivot away from legacy software toward AI infrastructure) has already rattled software sentiment, and ServiceNow is now in the hot seat to disprove that thesis. If Google confirms hyperscaler capex conviction and ServiceNow posts clean RPO growth, the market gets its "all clear" on AI. If both disappoint, the software complex — already cheap but unloved — takes another leg down. Defense names look complicated: global budgets are surging, but the legacy primes face drone disruption, margin pressure, and the risk that hot conflicts (Iran, Ukraine) are past peak intensity.</p>
+<p>---</p>
+<h2>GEOPOLITICAL</h2>
+<p>- Defense spending is surging globally, but legacy contractors (<strong>LMT</strong>, <strong>NOC</strong>, <strong>RTX</strong>) face structural headwinds from the pivot toward cheap drones over expensive manned platforms, fiscal uncertainty, and the prospect of cooling conflicts — the Iran war is described as past its peak, and Ukraine may be at an inflection point.</p>
+<p>- SpaceX/Starlink is an emerging competitive threat to the Big 3 carriers (<strong>T</strong>, <strong>VZ</strong>, <strong>TMUS</strong>), though for now satellite is characterized as more complement than competitor to consumer mobile. The medium-term risk is real and weighing on valuations.</p>
+<p>- The UNP-NSC merger will face heavy regulatory scrutiny, but the base case is ultimate approval — a deal that would meaningfully concentrate pricing power across the remaining rails.</p>
+<p>---</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>GOOGL</strong> reports Wednesday night. Street is modeling total revenue (ex-TAC) +23.4% to ~$100.9B, including Search +16.6% to $63.2B, Cloud +64.2% to $22.37B, and YouTube +10.3% to $10.8B. Op. income +29% to $40.36B. Full-year 2026 capex guidance stands at $180–190B. Gemini has lost momentum since its November launch, which is a watch item.</p>
+<p><strong>IBM</strong> pre-announced on July 14 with revenue of $17.2B and EPS of $2.93, blaming mainframe cycle weakness post-z17 launch and a CTO spending shift toward data center hardware and security software. The formal Wednesday night report will focus on H2 guidance and whether management raises or cuts the full-year outlook.</p>
+<p><strong>NOW</strong> reports Wednesday night. Street expects FXN cRPO growth of ~19.5%, FXN subscription revenue growth of ~21.9%, and op. margins of 27.8%. IBM's warning makes this one of the highest-stakes prints of the season for software broadly.</p>
+<p><strong>TSLA</strong> reports Wednesday night. Street models revenue of $25.5B, aggregate GMs of 19.25%, and EPS of 47c. The author is blunt: with the vast majority of market cap tied to Optimus, FSD, Robotaxi, and a potential SpaceX merger, Q2 numbers are almost beside the point.</p>
+<p><strong>INTC</strong> reports Thursday night. Street expects revenue +11.9% to $14.38B — Datacenter/AI +39% to $5.45B, Foundry +24% to $5.48B — with GMs of ~39% and EPS of 22c. Sentiment is very bullish on a CPU-over-GPU shift in agentic AI and Apple foundry reports, though execution risk on foundry is high.</p>
+<p><strong>TXN</strong> reports Wednesday night. Street models sales +17.1% to $5.211B, GMs up 170 basis points to 59.6%, free cash flow +220% to $1.771B, and EPS of $1.92.</p>
+<p><strong>GM</strong> reports Tuesday morning. Street expects revenue -1.2% to $46.5B with EPS +26% to $3.19 — cheap valuation, solid capital returns, and government protection from Chinese competition are the bull case.</p>
+<p><strong>SCHW</strong> reports Tuesday morning. Street models EPS +32.7% to $1.51 with revenue +15.85% to $6.777B, driven by sustained asset-gathering momentum.</p>
+<p><strong>AXP</strong> reports Friday morning. Street expects revenue +10.3% to $19.7B with EPS of $4.41, supported by resilient high-end consumer spending.</p>
+<p><strong>GEV</strong> reports Wednesday morning. Street models total sales of ~$10.8B — Power organic growth ~17%, Electrification ~50% — with EPS of ~$3.10 and EBITDA of ~$1.29B. Sentiment is extremely bullish on data center demand, though the valuation leaves no room for error.</p>
+<p><strong>RTX</strong> reports Thursday morning. Street expects revenue +6% to $22.88B with EPS +6.4% to $1.66. Consensus expects a beat-and-raise, and the stock trades at a premium PE to <strong>LMT</strong> and <strong>NOC</strong> reflecting that optimism.</p>
+<p><strong>CMCSA</strong> reports Thursday morning. Street models revenue of $29.3B, EBITDA of $8.88B, free cash flow of $3.69B, domestic broadband residential net subs -163K. The NBCU split was welcomed but secular broadband headwinds dominate the narrative.</p>
+<p><strong>CHTR</strong> reports Friday morning. Street models revenue -1.75% to $13.5B, EBITDA ~$5.58B, residential broadband net subs -142K. Sentiment is extremely cautious on secular competitive pressures.</p>
+<p><strong>VZ</strong> reports Friday morning. Street expects retail postpaid phone adds of ~105K, EPS ~$1.28, revenue +2.2% to $35.2B, EBITDA ~$13.66B.</p>
+<p><strong>TMUS</strong> reports Thursday morning. Street models EPS of $2.56, EBITDA +10.4% to $9.43B, sales +8.7% to $22.977B, postpaid net account adds ~262K. Best-positioned of the Big 3 carriers.</p>
+<p><strong>BX</strong> reports Thursday morning. Street expects EPS of $1.33 with asset inflows of ~$54B. Franchise is unmatched but private credit concerns and a tepid non-tech IPO market keep sentiment cautious near-term.</p>
+<p><strong>LMT</strong> reports Thursday morning. Street models EPS -1.9% to $7.15 with sales +6.2% to $19.28B.</p>
+<p><strong>NOC</strong> reports Tuesday morning. Street models EPS -16.2% to $6.83 with sales +4.4% to $10.8B.</p>
+<p><strong>NSC</strong> reports Thursday morning. Street expects revenue +7% to $3.328B, op. ratio of 66.1%, EPS of $3.27.</p>
+<p><strong>UNP</strong> reports Thursday morning. Street expects revenue +8.2% to $6.65B, op. ratio of 59.3%, EPS of $3.19.</p>
+<p><strong>CSX</strong> reports Wednesday night. Street models revenue +7.6% to $</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. No index price data was included in this newsletter. Earnings previews only — no SPX, Nasdaq, Dow, R2K, Brent, Gold, Silver, BTC, or DXY figures reported. --- RATES & FED. No Treasury or Fed commentary was included in this edition. The ECB meets Thursday July 24, which will be the primary rates event of the week globally. UK CPI for June drops Wednesday and will inform the BOE's trajectory. --- MARKET OUTLOOK. The week of July 20 is essentially an earnings gauntlet, and Wednesday night is the one session that matters most — GOOGL and NOW will either validate or shatter the current AI spending narrative. IBM's pre-announcement on July 14 (blaming a mainframe cycle downturn and a CTO pivot away from legacy software toward AI infrastructure) has already rattled software sentiment, and ServiceNow is now in the hot seat to disprove that thesis. If Google confirms hyperscaler capex conviction and ServiceNow posts clean RPO growth, the market gets its \"all clear\" on AI. If both disappoint, the software complex — already cheap but unloved — takes another leg down. Defense names look complicated: global budgets are surging, but the legacy primes face drone disruption, margin pressure, and the risk that hot conflicts (Iran, Ukraine) are past peak intensity. --- GEOPOLITICAL. - Defense spending is surging globally, but legacy contractors ( LMT , NOC , RTX ) face structural headwinds from the pivot toward cheap drones over expensive manned platforms, fiscal uncertainty, and the prospect of cooling conflicts — the Iran war is described as past its peak, and Ukraine may be at an inflection point. - SpaceX/Starlink is an emerging competitive threat to the Big 3 carriers ( T , VZ , TMUS ), though for now satellite is characterized as more complement than competitor to consumer mobile. The medium-term risk is real and weighing on valuations. - The UNP-NSC merger will face heavy regulatory scrutiny, but the base case is ultimate approval — a deal that would meaningfully concentrate pricing power across the remaining rails. --- COMPANY NEWS. GOOGL reports Wednesday night. Street is modeling total revenue (ex-TAC) +23.4% to ~$100.9B, including Search +16.6% to $63.2B, Cloud +64.2% to $22.37B, and YouTube +10.3% to $10.8B. Op. income +29% to $40.36B. Full-year 2026 capex guidance stands at $180–190B. Gemini has lost momentum since its November launch, which is a watch item. IBM pre-announced on July 14 with revenue of $17.2B and earnings per share of $2.93, blaming mainframe cycle weakness post-z17 launch and a CTO spending shift toward data center hardware and security software. The formal Wednesday night report will focus on H2 guidance and whether management raises or cuts the full-year outlook. NOW reports Wednesday night. Street expects FXN cRPO growth of ~19.5%, FXN subscription revenue growth of ~21.9%, and op. margins of 27.8%. IBM's warning makes this one of the highest-stakes prints of the season for software broadly. TSLA reports Wednesday night. Street models revenue of $25.5B, aggregate GMs of 19.25%, and earnings per share of 47c. The author is blunt: with the vast majority of market cap tied to Optimus, FSD, Robotaxi, and a potential SpaceX merger, Q2 numbers are almost beside the point. INTC reports Thursday night. Street expects revenue +11.9% to $14.38B — Datacenter/AI +39% to $5.45B, Foundry +24% to $5.48B — with GMs of ~39% and earnings per share of 22c. Sentiment is very bullish on a CPU-over-GPU shift in agentic AI and Apple foundry reports, though execution risk on foundry is high. TXN reports Wednesday night. Street models sales +17.1% to $5.211B, GMs up 170 basis points to 59.6%, free cash flow +220% to $1.771B, and earnings per share of $1.92. GM reports Tuesday morning. Street expects revenue -1.2% to $46.5B with earnings per share +26% to $3.19 — cheap valuation, solid capital returns, and government protection from Chinese competition are the bull case. SCHW reports Tuesday morning. Street models earnings per share +32.7% to $1.51 with revenue +15.85% to $6.777B, driven by sustained asset-gathering momentum. AXP reports Friday morning. Street expects revenue +10.3% to $19.7B with earnings per share of $4.41, supported by resilient high-end consumer spending. GEV reports Wednesday morning. Street models total sales of ~$10.8B — Power organic growth ~17%, Electrification ~50% — with earnings per share of ~$3.10 and EBITDA of ~$1.29B. Sentiment is extremely bullish on data center demand, though the valuation leaves no room for error. RTX reports Thursday morning. Street expects revenue +6% to $22.88B with earnings per share +6.4% to $1.66. Consensus expects a beat-and-raise, and the stock trades at a premium PE to LMT and NOC reflecting that optimism. CMCSA reports Thursday morning. Street models revenue of $29.3B, EBITDA of $8.88B, free cash flow of $3.69B, domestic broadband residential net subs -163K. The NBCU split was welcomed but secular broadband headwinds dominate the narrative. CHTR reports Friday morning. Street models revenue -1.75% to $13.5B, EBITDA ~$5.58B, residential broadband net subs -142K. Sentiment is extremely cautious on secular competitive pressures. VZ reports Friday morning. Street expects retail postpaid phone adds of ~105K, earnings per share ~$1.28, revenue +2.2% to $35.2B, EBITDA ~$13.66B. TMUS reports Thursday morning. Street models earnings per share of $2.56, EBITDA +10.4% to $9.43B, sales +8.7% to $22.977B, postpaid net account adds ~262K. Best-positioned of the Big 3 carriers. BX reports Thursday morning. Street expects earnings per share of $1.33 with asset inflows of ~$54B. Franchise is unmatched but private credit concerns and a tepid non-tech IPO market keep sentiment cautious near-term. LMT reports Thursday morning. Street models earnings per share -1.9% to $7.15 with sales +6.2% to $19.28B. NOC reports Tuesday morning. Street models earnings per share -16.2% to $6.83 with sales +4.4% to $10.8B. NSC reports Thursday morning. Street expects revenue +7% to $3.328B, op. ratio of 66.1%, earnings per share of $3.27. UNP reports Thursday morning. Street expects revenue +8.2% to $6.65B, op. ratio of 59.3%, earnings per share of $3.19. CSX reports Wednesday night. Street models revenue +7.6% to $";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

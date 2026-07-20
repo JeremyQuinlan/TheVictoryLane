@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mid-Day Update · Monday July 20,
+ 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Mid-Day Update · Monday July 20,
+ 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mid-Day Update · Monday July 20,
+ 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #1a2a3a;
+    color: #4c8faf;
+    border: 1px solid #4c8faf44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">MID-DAY</div>
+  <h1>Mid-Day Update · Monday July 20,
+ 2026</h1>
+  <div class="meta">Jul 20, 2026 · 11:14 AM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>- <strong>SPX:</strong> +0.22%</p>
+<p>- <strong>Nasdaq:</strong> +0.49%</p>
+<p>- <strong>Dow:</strong> -156 points (-0.30%)</p>
+<p>- <strong>R2K:</strong> -6.85 points (-0.23%)</p>
+<p>- <strong>Brent:</strong> +0.45% (~$64.77)</p>
+<p>- <strong>Gold:</strong> Steady</p>
+<p>- <strong>Silver:</strong> +2.15%</p>
+<p>---</p>
+<h2>RATES & FED</h2>
+<p>Treasuries are under selling pressure with yields up roughly 3 basis points across the curve. Markets are now pricing approximately 34 basis points of rate hikes in H2 — a hawkish tilt that reflects lingering inflation concerns. A statistical overhaul to how PCE is compiled could nudge inflation modestly lower when the new format debuts with the August number on September 30, which may slightly soften the case for tightening (WSJ).</p>
+<p>---</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The SPX's equal-weight version dropping while cap-weighted holds up tells you everything — this is a narrow, tech-driven tape, not a broad bull move. The rotation back into pick-and-shovel names (chips, infrastructure) is logical given Moonshot's demand-overwhelmed subscription pause, which underscores the compute deficit thesis remains very much intact. That said, open-source Chinese models continuing to eat OpenAI and Anthropic's lunch is a real near-term risk to the capex mania narrative if it pressures those firms' revenue. Geopolitical tail risk from the US-Iran conflict and a Houthi naval blockade threat around Saudi Arabia keeps energy in play and consumer confidence fragile. Don't chase the headline index — the internals are quietly deteriorating.</p>
+<p>---</p>
+<h2>GEOPOLITICAL</h2>
+<p>- The US-Iran conflict is described as "on a knife's edge" — escalation risk is high but neither side can truly afford it, while Rubio signals openness to diplomacy (NYT).</p>
+<p>- Oil flows through the Strait of Hormuz are running at roughly two-thirds of pre-war levels per Energy Secretary Wright (Politico), and US gas prices have crossed back above $4/gallon (Reuters).</p>
+<p>- The Houthis announced plans Monday morning to impose a naval blockade around Saudi Arabia, raising supply risk for Saudi oil and Red Sea shipping lanes.</p>
+<p>- Pakistan and Qatar are reportedly circulating ceasefire proposals, offering a slim diplomatic offramp (per media reports).</p>
+<p>- Iran's currency has fallen to record lows against the USD as economic strain deepens (FT).</p>
+<p>- China is shipping roughly 20% fewer rare-earth magnets to the US versus pre-trade-war levels, despite the nominal truce (Bloomberg).</p>
+<p>- Xi is still planning a lavish US state visit in the coming months; the White House is not pursuing a probe of alleged Chinese election interference (CNN, Politico).</p>
+<p>---</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>AMC</strong> posted a blowout Q2: EBITDA +70% to $321.4MM vs. Street $202MM, free cash flow $190.1MM vs. Street $103MM, and revenue +14.2% to $1.6B vs. Street $1.5B — driven by a strong box office, share gains, and clean execution.</p>
+<p><strong>DPZ</strong> (Domino's) missed on headline EPS at $4.07 vs. Street $4.18, with soft international comps (-0.1% vs. Street +0.6%), though US comps were inline (+0.1%) and management struck a bullish tone on "meaningful" order growth trends.</p>
+<p><strong>GOOGL</strong> is developing a new AI chip called "Frozen" that embeds components of the Gemini model directly into hardware for significant efficiency gains — deployable as soon as 2028 (The Information).</p>
+<p><strong>IREN</strong> raised its year-end AI Cloud ARR target from $3.7B to over $4B.</p>
+<p><strong>LXP</strong> (LXP Industrial Trust) is being acquired by Brookfield and Canada Pension Plan for $5.2B cash, or $61.20/share.</p>
+<p><strong>NOMD</strong> (Nomad Foods) preannounced Q2 EBITDA of EU120-126MM, ahead of consensus EU112MM.</p>
+<p><strong>PSNL</strong> (Personalis) is being acquired by <strong>TEM</strong> (Tempus AI) for $16.25/share, valuing the deal at ~$1.5B.</p>
+<p><strong>PLD</strong> (Prologis) disclosed that Segro rejected an enhanced third takeover bid worth GBP13.5B (WSJ).</p>
+<p><strong>MS</strong> (Morgan Stanley) is playing a central structuring role in complex AI financing deals that are keeping the capex boom funded (FT).</p>
+<p><strong>ORCL</strong> (Oracle) was the subject of a negative investigative piece detailing significant cost overruns and delays in data center construction (The Information).</p>
+<p><strong>CMCSA</strong> — Christopher Nolan's "The Odyssey" opened to ~$125MM domestically and ~$140MM internationally, well above expectations (Variety).</p>
+<p><strong>BABA</strong> previewed its next-gen frontier model Qwen 3.8, claiming it ranks second only to Anthropic's Fable (SCMP).</p>
+<p><strong>TSM</strong> (TSMC) expects a strong, multi-year AI chip demand cycle as it ramps Arizona investment (Reuters).</p>
+<p><strong>TCOM</strong> (Trip.com) faces a potential Chinese antitrust verdict as soon as this week, with a possible fine of CNY2-6B (SCMP).</p>
+<p><strong>SPCX</strong> (SpaceX) rescheduled its Starship Flight 13 test for July 23 (Space.com).</p>
+<p>Ryanair reported FQ1 profits down 34% Y/Y on spiking fuel costs and lower fares — the company cut prices to stimulate demand as Middle East conflict drove "consumer hesitancy" — and warned fares are trending down Y/Y in FQ2 so far.</p>
+<p>---</p>
+<h2>MACRO & FED DATES</h2>
+<p><strong>Jul 20 (Mon night)</strong> — New Zealand Q2 CPI; early read on Southern Hemisphere inflation trends.</p>
+<p><strong>Jul 21 (Tue, 2am ET)</strong> — UK jobs report for May; watch for wage growth given BoE sensitivity.</p>
+<p><strong>Jul 21 (Tue, 4am ET)</strong> — Taiwan export orders for June; a key proxy for global tech demand.</p>
+<p><strong>Jul 21 (Tue, 5am ET)</strong> — German ZEW survey for July; sentiment indicator amid Europe's geopolitical stress.</p>
+<p><strong>Sept 30</strong> — New PCE inflation format debuts with August data; could nudge headline lower and soften rate-hike pressure (WSJ).</p>
+<p>---</p>
+<h2>EARNINGS THIS WEEK</h2>
+<p><strong>Monday After Close:</strong> AGNC, CALX, CCK, MCRI, STLD, WRB, ZION</p>
+<p><strong>Tuesday Pre-Market:</strong> ALLY, DHI, DHR, EFX, GM, GPC, HAL, HAS, KEY, MMM, MRSH, MSCI, NOC, SCHW, SYF, VMI</p>
+<p><strong>Tuesday After Close:</strong> AIR, ALK, CB, COF, EQT, EWBC, HWC, IBKR, NLY, OZK, PEGA, WAL, WBS, WFRD</p>
+<p><strong>Wednesday After Close:</strong> GOOGL, IBM, NOW, TSLA, TXN *(marquee reports — watch closely)*</p>
+<p>---</p>
+<h2>EARNINGS NEXT 2 WEEKS</h2>
+<p>*(European pre-market Tuesday)* Julius Baer, Lindt, Novartis, Schindler</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. - SPX: +0.22% - Nasdaq: +0.49% - Dow: -156 points (-0.30%) - R2K: -6.85 points (-0.23%) - Brent: +0.45% (~$64.77) - Gold: Steady - Silver: +2.15% --- RATES & FED. Treasuries are under selling pressure with yields up roughly 3 basis points across the curve. Markets are now pricing approximately 34 basis points of rate hikes in H2 — a hawkish tilt that reflects lingering inflation concerns. A statistical overhaul to how PCE is compiled could nudge inflation modestly lower when the new format debuts with the August number on September 30, which may slightly soften the case for tightening. --- MARKET OUTLOOK. The SPX's equal-weight version dropping while cap-weighted holds up tells you everything — this is a narrow, tech-driven tape, not a broad bull move. The rotation back into pick-and-shovel names (chips, infrastructure) is logical given Moonshot's demand-overwhelmed subscription pause, which underscores the compute deficit thesis remains very much intact. That said, open-source Chinese models continuing to eat OpenAI and Anthropic's lunch is a real near-term risk to the capex mania narrative if it pressures those firms' revenue. Geopolitical tail risk from the US-Iran conflict and a Houthi naval blockade threat around Saudi Arabia keeps energy in play and consumer confidence fragile. Don't chase the headline index — the internals are quietly deteriorating. --- GEOPOLITICAL. - The US-Iran conflict is described as \"on a knife's edge\" — escalation risk is high but neither side can truly afford it, while Rubio signals openness to diplomacy. - Oil flows through the Strait of Hormuz are running at roughly two-thirds of pre-war levels per Energy Secretary Wright (Politico), and US gas prices have crossed back above $4/gallon. - The Houthis announced plans Monday morning to impose a naval blockade around Saudi Arabia, raising supply risk for Saudi oil and Red Sea shipping lanes. - Pakistan and Qatar are reportedly circulating ceasefire proposals, offering a slim diplomatic offramp (per media reports). - Iran's currency has fallen to record lows against the USD as economic strain deepens. - China is shipping roughly 20% fewer rare-earth magnets to the US versus pre-trade-war levels, despite the nominal truce. - Xi is still planning a lavish US state visit in the coming months; the White House is not pursuing a probe of alleged Chinese election interference (CNN, Politico). --- COMPANY NEWS. AMC posted a blowout Q2: EBITDA +70% to $321.4MM vs. Street $202MM, free cash flow $190.1MM vs. Street $103MM, and revenue +14.2% to $1.6B vs. Street $1.5B — driven by a strong box office, share gains, and clean execution. DPZ (Domino's) missed on headline earnings per share at $4.07 vs. Street $4.18, with soft international comps (-0.1% vs. Street +0.6%), though US comps were inline (+0.1%) and management struck a bullish tone on \"meaningful\" order growth trends. GOOGL is developing a new AI chip called \"Frozen\" that embeds components of the Gemini model directly into hardware for significant efficiency gains — deployable as soon as 2028 (The Information). IREN raised its year-end AI Cloud ARR target from $3.7B to over $4B. LXP (LXP Industrial Trust) is being acquired by Brookfield and Canada Pension Plan for $5.2B cash, or $61.20/share. NOMD (Nomad Foods) preannounced Q2 EBITDA of EU120-126MM, ahead of consensus EU112MM. PSNL (Personalis) is being acquired by TEM (Tempus AI) for $16.25/share, valuing the deal at ~$1.5B. PLD (Prologis) disclosed that Segro rejected an enhanced third takeover bid worth GBP13.5B. MS (Morgan Stanley) is playing a central structuring role in complex AI financing deals that are keeping the capex boom funded. ORCL (Oracle) was the subject of a negative investigative piece detailing significant cost overruns and delays in data center construction (The Information). CMCSA — Christopher Nolan's \"The Odyssey\" opened to ~$125MM domestically and ~$140MM internationally, well above expectations (Variety). BABA previewed its next-gen frontier model Qwen 3.8, claiming it ranks second only to Anthropic's Fable (SCMP). TSM (TSMC) expects a strong, multi-year AI chip demand cycle as it ramps Arizona investment. TCOM (Trip.com) faces a potential Chinese antitrust verdict as soon as this week, with a possible fine of CNY2-6B (SCMP). SPCX (SpaceX) rescheduled its Starship Flight 13 test for July 23 (Space.com). Ryanair reported FQ1 profits down 34% year over year on spiking fuel costs and lower fares — the company cut prices to stimulate demand as Middle East conflict drove \"consumer hesitancy\" — and warned fares are trending down year over year in FQ2 so far. --- MACRO & FED DATES. Jul 20 (Mon night) — New Zealand Q2 CPI; early read on Southern Hemisphere inflation trends. Jul 21 (Tue, 2am Eastern time) — UK jobs report for May; watch for wage growth given BoE sensitivity. Jul 21 (Tue, 4am Eastern time) — Taiwan export orders for June; a key proxy for global tech demand. Jul 21 (Tue, 5am Eastern time) — German ZEW survey for July; sentiment indicator amid Europe's geopolitical stress. Sept 30 — New PCE inflation format debuts with August data; could nudge headline lower and soften rate-hike pressure. --- EARNINGS THIS WEEK. Monday After Close: AGNC, CALX, CCK, MCRI, STLD, WRB, ZION Tuesday Pre-Market: ALLY, DHI, DHR, EFX, GM, GPC, HAL, HAS, KEY, MMM, MRSH, MSCI, NOC, SCHW, SYF, VMI Tuesday After Close: AIR, ALK, CB, COF, EQT, EWBC, HWC, IBKR, NLY, OZK, PEGA, WAL, WBS, WFRD Wednesday After Close: GOOGL, IBM, NOW, TSLA, TXN *(marquee reports — watch closely)* ---";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

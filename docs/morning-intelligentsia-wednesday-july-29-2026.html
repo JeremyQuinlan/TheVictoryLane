@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Intelligentsia · Wednesday July 29, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Morning Intelligentsia · Wednesday July 29, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Morning Intelligentsia · Wednesday July 29, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #1a3a2a;
+    color: #4caf82;
+    border: 1px solid #4caf8244;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">MORNING</div>
+  <h1>Morning Intelligentsia · Wednesday July 29, 2026</h1>
+  <div class="meta">Jul 29, 2026 · 05:20 AM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>S&P futures: +0.23% | Nasdaq futures: +0.05% | Dow: +12 points | R2K: +7.1 points | Brent: +3.5% to ~$87 | Gold: +0.17% | Silver: +1.3% | BTC: +0.80%</p>
+<p>Europe down 20–50 basis points with tech, insurance, and retail lagging. Asia mixed: Hang Seng +1.96%, SHCOMP +0.40%, NKY -1.49%, KOSPI -5.98%, TAIEX -3.76%. SK Hynix -7.7%, Samsung -2.5% in Seoul.</p>
+<p>---</p>
+<h2>RATES & FED</h2>
+<p>Treasuries are flat to up 1 basis point ahead of today's FOMC decision. Markets are pricing roughly a 30% chance of a hike today, with 42 basis points of total increases penciled in for the year. The decision drops at 2pmET and is the dominant macro event of the week.</p>
+<p>---</p>
+<h2>MARKET OUTLOOK</h2>
+<p>S&P futures are holding up remarkably well given the overnight headlines — Iran missiles and an SK Hynix miss would normally be a recipe for a ugly open, but the resilience is telling. Iran is increasingly looking like tariffs: a persistent, background negative with periodic flare-ups rather than an acute market-breaking event, and oil knows it (Brent is well off last week's highs). The Fed hike — if it comes — would likely be net positive for equities by clearing uncertainty and signaling policy conviction. Earnings remain the real story, and the bar remains brutally high for tech; companies like STX and TER clearing it easily gives the bulls something to work with heading into META, MSFT, and QCOM tonight.</p>
+<p>---</p>
+<h2>GEOPOLITICAL</h2>
+<p>- Iran launched a surprise ballistic missile attack on American forces in Jordan — all missiles were intercepted — breaking an unofficial ceasefire that had shown early diplomatic promise (NYT). The US and Saudi Arabia responded with joint strikes on Iran-linked militia in Iraq.</p>
+<p>- Iran has rejected an Omani proposal to share control of the Strait of Hormuz, demanding more (WSJ). Europe has separately said it will not join any Hormuz patrol initiative until there is sustained peace (Politico).</p>
+<p>- Iran will receive Chinese shoulder-launched missile systems within weeks, a development that risks further straining Beijing-Washington relations (Reuters).</p>
+<p>- Washington is moving to ban imports of Chinese humanoid robots and power inverters to protect the US AI buildout (Reuters).</p>
+<p>- Ukraine is sharpening its strike strategy against Russia, targeting critical infrastructure for lasting damage rather than symbolic hits (FT).</p>
+<p>- South Korea called an emergency market meeting after the KOSPI collapsed nearly 6% — the worst performer in Asia Wednesday (Bloomberg).</p>
+<p>---</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>V</strong> (Visa) posted FQ3 EPS of $3.32 vs. Street $3.23, with strong payment volumes, cross-border growth, and value-added services up 45% Y/Y. Full-year guidance nudged higher. Separately, Visa plans to cut roughly 7% of its workforce (~2,600 employees) to improve efficiency (Reuters).</p>
+<p><strong>STX</strong> (Seagate) delivered a blowout quarter: EPS $5.71 vs. Street $5.08, revenue $3.63B vs. $3.49B, GMs more than 200 basis points above plan, and FQ1 guidance of ~$7.30 EPS vs. Street $5.80.</p>
+<p><strong>BE</strong> (Bloom Energy) crushed it: EPS 78c vs. Street 40c, revenue $1.065B vs. $838MM, and full-year EPS guide raised to $2.55–2.85 from $1.85–2.25. Every major US hyperscaler has now approved Bloom's power solutions.</p>
+<p><strong>MDLZ</strong> (Mondelez) beat on Q2 organic sales (+2.2% vs. Street +0.9%) and EPS (73c vs. 68c), raising full-year top-line guidance to "at least 2%."</p>
+<p><strong>CAKE</strong> (Cheesecake Factory) posted Q2 EPS of $1.44 vs. Street $1.18, with same-store sales +5.8% vs. Street +2%.</p>
+<p><strong>F</strong> (Ford) reported Q2 EBIT of $2.5B vs. Street $2.1B, with ICE margins expanding 480 basis points to 4.4%. Full-year EBIT guidance raised to $10–11B from $8.5–10.5B.</p>
+<p><strong>SK Hynix</strong> missed on Q2 revenue (KRW79.3T vs. Street KRW83.85B) and operating profit (KRW60.5T vs. Street KRW64.2T) despite explosive Y/Y growth. Stock fell ~7.7% but finished off lows — with the stock already more than 50% off highs at 3–4x PE, incremental sellers are scarce.</p>
+<p><strong>ACGL</strong> (Arch Capital) beat Q2 EPS ($2.56 vs. $2.47) but quality was poor — driven largely by $165MM in favorable prior-year reserve developments, with core combined ratio inline and NPW down 6.9% Y/Y.</p>
+<p><strong>BXP</strong> beat FFO ($1.78 vs. $1.70), with occupancy up 100 basis points Q/Q to 88.4% and leasing volume jumping to 1.8M sq. ft. from 1.1M in Q1.</p>
+<p><strong>OI</strong> (O-I Glass) badly missed Q2 EPS (9c vs. 24c) on European weakness and restructuring disruption; 2026 EBITDA guidance cut to $1.0–1.1B from $1.125–1.225B.</p>
+<p><strong>UBS</strong> beat Q2 estimates, reported $36B in net new wealth management assets, and announced a $3B buyback. <strong>Deutsche Bank</strong> posted strong Q2 results with FIC revenue +36% and a €500MM buyback. <strong>Standard Chartered</strong> raised full-year guidance and announced a $1B buyback on solid Wealth and Global Banking results.</p>
+<p><strong>GOOGL</strong> (Google) has largely dismantled the team behind its Nobel Prize-winning AlphaFold AI system (FT).</p>
+<p><strong>AAPL</strong> (Apple) unveiled "Apple Upgrade," a Klarna-powered leasing program for iPhone, Watch, Mac, and iPad. Apple is also planning a fresh smart home push with new TV 4K, HomePod Mini, and a Siri AI hub (Bloomberg).</p>
+<p>---</p>
+<h2>MACRO & FED DATES</h2>
+<p><strong>Jul 29 (Today)</strong> — FOMC decision, 2pmET. ~30% odds of a hike; 42 basis points of total hikes priced for the year. Press conference will be closely parsed for guidance trajectory.</p>
+<p><strong>Jul 31 (Thursday)</strong> — US PCE June, 8:30amET: Street expects headline +3.7% (vs. +4.1% prior), core +3.3% (vs. +3.4%). Also US Q2 GDP, 8:30amET: Street +2.0% vs. +2.1% prior. BOJ decision overnight — hold expected, hike odds favor September or October.</p>
+<p><strong>Jul 31 (Thursday night)</strong> — China NBS PMIs for July.</p>
+<p><strong>Aug 1 (Friday)</strong> — Eurozone CPI July, 5amET. US Employment Cost Index Q2, 8:30amET: Street +0.8%.</p>
+<p>---</p>
+<h2>EARNINGS THIS</h2>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. S&P futures: +0.23% | Nasdaq futures: +0.05% | Dow: +12 points | R2K: +7.1 points | Brent: +3.5% to ~$87 | Gold: +0.17% | Silver: +1.3% | BTC: +0.80% Europe down 20–50 basis points with tech, insurance, and retail lagging. Asia mixed: Hang Seng +1.96%, SHCOMP +0.40%, NKY -1.49%, KOSPI -5.98%, TAIEX -3.76%. SK Hynix -7.7%, Samsung -2.5% in Seoul. --- RATES & FED. Treasuries are flat to up 1 basis point ahead of today's FOMC decision. Markets are pricing roughly a 30% chance of a hike today, with 42 basis points of total increases penciled in for the year. The decision drops at 2pmET and is the dominant macro event of the week. --- MARKET OUTLOOK. S&P futures are holding up remarkably well given the overnight headlines — Iran missiles and an SK Hynix miss would normally be a recipe for a ugly open, but the resilience is telling. Iran is increasingly looking like tariffs: a persistent, background negative with periodic flare-ups rather than an acute market-breaking event, and oil knows it (Brent is well off last week's highs). The Fed hike — if it comes — would likely be net positive for equities by clearing uncertainty and signaling policy conviction. Earnings remain the real story, and the bar remains brutally high for tech; companies like STX and TER clearing it easily gives the bulls something to work with heading into META, MSFT, and QCOM tonight. --- GEOPOLITICAL. - Iran launched a surprise ballistic missile attack on American forces in Jordan — all missiles were intercepted — breaking an unofficial ceasefire that had shown early diplomatic promise. The US and Saudi Arabia responded with joint strikes on Iran-linked militia in Iraq. - Iran has rejected an Omani proposal to share control of the Strait of Hormuz, demanding more. Europe has separately said it will not join any Hormuz patrol initiative until there is sustained peace (Politico). - Iran will receive Chinese shoulder-launched missile systems within weeks, a development that risks further straining Beijing-Washington relations. - Washington is moving to ban imports of Chinese humanoid robots and power inverters to protect the US AI buildout. - Ukraine is sharpening its strike strategy against Russia, targeting critical infrastructure for lasting damage rather than symbolic hits. - South Korea called an emergency market meeting after the KOSPI collapsed nearly 6% — the worst performer in Asia Wednesday. --- COMPANY NEWS. V (Visa) posted FQ3 earnings per share of $3.32 vs. Street $3.23, with strong payment volumes, cross-border growth, and value-added services up 45% year over year. Full-year guidance nudged higher. Separately, Visa plans to cut roughly 7% of its workforce (~2,600 employees) to improve efficiency. STX (Seagate) delivered a blowout quarter: earnings per share $5.71 vs. Street $5.08, revenue $3.63B vs. $3.49B, GMs more than 200 basis points above plan, and FQ1 guidance of ~$7.30 earnings per share vs. Street $5.80. BE (Bloom Energy) crushed it: earnings per share 78c vs. Street 40c, revenue $1.065B vs. $838MM, and full-year earnings per share guide raised to $2.55–2.85 from $1.85–2.25. Every major US hyperscaler has now approved Bloom's power solutions. MDLZ (Mondelez) beat on Q2 organic sales (+2.2% vs. Street +0.9%) and earnings per share (73c vs. 68c), raising full-year top-line guidance to \"at least 2%.\" CAKE (Cheesecake Factory) posted Q2 earnings per share of $1.44 vs. Street $1.18, with same-store sales +5.8% vs. Street +2%. F (Ford) reported Q2 EBIT of $2.5B vs. Street $2.1B, with ICE margins expanding 480 basis points to 4.4%. Full-year EBIT guidance raised to $10–11B from $8.5–10.5B. SK Hynix missed on Q2 revenue (KRW79.3T vs. Street KRW83.85B) and operating profit (KRW60.5T vs. Street KRW64.2T) despite explosive year over year growth. Stock fell ~7.7% but finished off lows — with the stock already more than 50% off highs at 3–4x PE, incremental sellers are scarce. ACGL (Arch Capital) beat Q2 earnings per share ($2.56 vs. $2.47) but quality was poor — driven largely by $165MM in favorable prior-year reserve developments, with core combined ratio inline and NPW down 6.9% year over year. BXP beat FFO ($1.78 vs. $1.70), with occupancy up 100 basis points quarter over quarter to 88.4% and leasing volume jumping to 1.8M sq. ft. from 1.1M in Q1. OI (O-I Glass) badly missed Q2 earnings per share (9c vs. 24c) on European weakness and restructuring disruption; 2026 EBITDA guidance cut to $1.0–1.1B from $1.125–1.225B. UBS beat Q2 estimates, reported $36B in net new wealth management assets, and announced a $3B buyback. Deutsche Bank posted strong Q2 results with FIC revenue +36% and a €500MM buyback. Standard Chartered raised full-year guidance and announced a $1B buyback on solid Wealth and Global Banking results. GOOGL (Google) has largely dismantled the team behind its Nobel Prize-winning AlphaFold AI system. AAPL (Apple) unveiled \"Apple Upgrade,\" a Klarna-powered leasing program for iPhone, Watch, Mac, and iPad. Apple is also planning a fresh smart home push with new TV 4K, HomePod Mini, and a Siri AI hub. --- MACRO & FED DATES. Jul 29 (Today) — FOMC decision, 2pmET. ~30% odds of a hike; 42 basis points of total hikes priced for the year. Press conference will be closely parsed for guidance trajectory. Jul 31 (Thursday) — US PCE June, 8:30amET: Street expects headline +3.7% (vs. +4.1% prior), core +3.3% (vs. +3.4%). Also US Q2 GDP, 8:30amET: Street +2.0% vs. +2.1% prior. BOJ decision overnight — hold expected, hike odds favor September or October. Jul 31 (Thursday night) — China NBS PMIs for July. Aug 1 (Friday) — Eurozone CPI July, 5amET. US Employment Cost Index Q2, 8:30amET: Street +0.8%. ---";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

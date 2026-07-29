@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company-specific news for Wed 7/29 (AMC) - ALGN, ARM, CHRW, CMG, COUR, CVNA, EG, EQIX, FICO, FLS, FMC, FTNT, HOOD, LHX, LRCX, META, MSFT, ORLY, PI, PPC, PTC, QCOM, SBUX, TDOC · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Company-specific news for Wed 7/29 (AMC) - ALGN, ARM, CHRW, CMG, COUR, CVNA, EG, EQIX, FICO, FLS, FMC, FTNT, HOOD, LHX, LRCX, META, MSFT, ORLY, PI, PPC, PTC, QCOM, SBUX, TDOC">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Company-specific news for Wed 7/29 (AMC) - ALGN, ARM, CHRW, CMG, COUR, CVNA, EG, EQIX, FICO, FLS, FMC, FTNT, HOOD, LHX, LRCX, META, MSFT, ORLY, PI, PPC, PTC, QCOM, SBUX, TDOC">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a1a3a;
+    color: #8f4caf;
+    border: 1px solid #8f4caf44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">UPDATE</div>
+  <h1>Company-specific news for Wed 7/29 (AMC) - ALGN, ARM, CHRW, CMG, COUR, CVNA, EG, EQIX, FICO, FLS, FMC, FTNT, HOOD, LHX, LRCX, META, MSFT, ORLY, PI, PPC, PTC, QCOM, SBUX, TDOC</h1>
+  <div class="meta">Jul 29, 2026 · 06:19 PM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>No index-level market data was included in this newsletter. Coverage is earnings-only for Wed 7/29 AMC.</p>
+<p>---</p>
+<h2>RATES & FED</h2>
+<p>No rates or Fed data provided in this edition.</p>
+<p>---</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The after-hours tape is telling a nuanced story: Microsoft is doing everything right while Meta's cost explosion is spooking investors despite healthy top-line growth. The broader read for AI infrastructure spending remains intact — Azure at +43%, Equinix raising guidance, Lam Research guiding sharply higher — so any selloff driven by Meta noise is likely overdone. Semi and cloud names should find footing once the dust settles on the META print.</p>
+<p>---</p>
+<h2>GEOPOLITICAL</h2>
+<p>No geopolitical items were included in this edition.</p>
+<p>---</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>META</strong> reported Q2 EPS of $6.18, missing the Street's $7.15 estimate by 13%, as operating margins collapsed to 31% versus the expected 35.6% — costs surged 55% to $42B, though that figure includes $2.4B in legal charges and $1.18B in severance. Strip those out and operating income of ~$22.35B would have modestly beaten consensus. Sales rose 28% to $60.8B (inline), driven by ad impressions +14% and price per ad +12%. DAP grew 3% to 3.6B. Capex came in at $31B, below the $33.1B forecast, and free cash flow beat at +$784MM vs. Street's -$1.2B. The Q3 revenue guide midpoint of $62.5B trails consensus at $63.1B, and the capex range was tweaked to $130-145B. Zuckerberg pushed back on selling compute to third parties, saying he won't sacrifice capacity for short-term gains — a disappointment for investors hoping for a new revenue stream.</p>
+<p><strong>MSFT</strong> (Microsoft) delivered FQ4 GAAP EPS of $4.81 vs. the Street's $4.25, on revenue of $90B (+18%) against an $87.7B estimate, with all three segments beating. Intelligent Cloud grew +31% FXN (Street: +28%), Azure accelerated to +43% FXN (Street: 39.6%), and Productivity rose +14% FXN. Operating margins came in ~30 basis points better at 45%. FQ1 guidance is bullish: revenue of $90-91B with Azure growth of 45% FXN (well above the Street's 40.6%) and margins implying ~49% vs. the Street's 47.6%. Management noted it's extending data center useful life from 15 to 25 years, affecting lease accounting and shifting some capex timing — but underlying capex plans for calendar 2026 are unchanged.</p>
+<p><strong>CMG</strong> (Chipotle) posted Q2 EPS of 33c vs. 32c expected, with comps of +2.2% topping the Street's +1.3%. Full-year comp guidance raised to +1-3% from flat.</p>
+<p><strong>CVNA</strong> (Carvana) reported Q2 EBITDA roughly inline, but EBITDA margins slumped 200 basis points year-over-year, and the full-year EBITDA guidance midpoint of $2.85B fell short of the Street's $2.98B.</p>
+<p><strong>ORLY</strong> (O'Reilly) beat on EPS (87c vs. 86c) and comps (+6% vs. +5.4%), raising full-year comp guidance to +4-6% and EPS to $3.20-3.30.</p>
+<p><strong>SBUX</strong> (Starbucks) crushed FQ3 estimates with EPS of 85c vs. 65c, global comps of +7.9% vs. +5.7% expected, and operating margins up 430 basis points. Full-year EPS guidance raised to $2.55-2.65 from $2.25-2.45.</p>
+<p><strong>PPC</strong> (Pilgrim's Pride) missed Q2 EBITDA at $360MM vs. $371MM, with margins down 660 basis points year-over-year.</p>
+<p><strong>HOOD</strong> (Robinhood) reported Q2 EPS of 62c vs. 44c, with transaction-based revenue of $776MM beating the $741MM estimate — options/contracts revenue surged more than 10x.</p>
+<p><strong>FICO</strong> beat and raised, now guiding to EPS of $42.43 and revenue of $2.53B vs. prior $40.45/$2.45B, though quarterly sales slightly missed on Scores segment pressure.</p>
+<p><strong>EG</strong> (Everest Group) posted EPS of $14.85 vs. $14.47, with a combined ratio of 90% (~80 basis points better than expected), though net written premiums fell 26.3% year-over-year.</p>
+<p><strong>ARM</strong> reported FQ1 EPS of 45c vs. 40c on sales of $1.29B (+22%), with FQ2 guidance of 47c/$1.38B above consensus. AI commentary remains bullish, though AGI CPU guidance was unchanged and management flagged supply constraints as a ceiling on near-term upside.</p>
+<p><strong>LRCX</strong> (Lam Research) beat FQ4 estimates ($1.82/$6.72B vs. $1.70/$6.68B) and guided FQ1 sharply higher at $2.15/$8.1B vs. the Street's $1.84/$7.13B — a standout print in semis.</p>
+<p><strong>QCOM</strong> (Qualcomm) reported FQ3 EPS of $2.21 (inline) on revenue of $9.94B vs. $9.62B, with auto sales surging +61%. But FQ4 EPS guidance midpoint of $2.15 missed the Street's $2.35, signaling further margin pressure ahead.</p>
+<p><strong>FTNT</strong> (Fortinet) beat Q2 EPS at 90c vs. 75c, with billings spiking 33% to $2.37B vs. $2.13B. Full-year billings guidance raised to $8.8-9.1B.</p>
+<p><strong>EQIX</strong> (Equinix) beat on adjusted FFO at $11.78 vs. $11.30 and raised full-year AFFO guidance to $42.69-43.29 per share.</p>
+<p><strong>ALGN</strong> (Align) posted modest EPS upside and reiterated full-year guidance. Separately, following "constructive discussions with Elliott," the company announced new board members and an increased 2026 buyback commitment.</p>
+<p><strong>LHX</strong> (L3Harris) beat Q2 EPS at $3.13 vs. $2.80, with segment margins up 10 basis points to 16% and a book-to-bill of 1.2x. Full-year EPS guidance raised to $11.80-12.00.</p>
+<p><strong>CHRW</strong> (CH Robinson) posted EPS of $1.61, with revenue up 19.3% and operating margins expanding 360 basis points to 34.7%.</p>
+<p><strong>FLS</strong> (Flowserve) beat at 95c vs. 86c with bookings surging 26%, though the sales guide was trimmed due to Middle East-related headwinds.</p>
+<p><strong>FMC</strong> beat Q2 EBITDA ($153MM vs. $144MM) but cut full-year EBITDA guidance to $620-680MM from $670-730MM, citing a "more challenging operating environment."</p>
+<p><strong>TDOC</strong> (Te</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKET OUTLOOK. The after-hours tape is telling a nuanced story: Microsoft is doing everything right while Meta's cost explosion is spooking investors despite healthy top-line growth. The broader read for AI infrastructure spending remains intact — Azure at +43%, Equinix raising guidance, Lam Research guiding sharply higher — so any selloff driven by Meta noise is likely overdone. Semi and cloud names should find footing once the dust settles on the META print. --- COMPANY NEWS. META reported Q2 earnings per share of $6.18, missing the Street's $7.15 estimate by 13%, as operating margins collapsed to 31% versus the expected 35.6% — costs surged 55% to $42B, though that figure includes $2.4B in legal charges and $1.18B in severance. Strip those out and operating income of ~$22.35B would have modestly beaten consensus. Sales rose 28% to $60.8B (inline), driven by ad impressions +14% and price per ad +12%. DAP grew 3% to 3.6B. Capex came in at $31B, below the $33.1B forecast, and free cash flow beat at +$784MM vs. Street's -$1.2B. The Q3 revenue guide midpoint of $62.5B trails consensus at $63.1B, and the capex range was tweaked to $130-145B. Zuckerberg pushed back on selling compute to third parties, saying he won't sacrifice capacity for short-term gains — a disappointment for investors hoping for a new revenue stream. MSFT (Microsoft) delivered FQ4 GAAP earnings per share of $4.81 vs. the Street's $4.25, on revenue of $90B (+18%) against an $87.7B estimate, with all three segments beating. Intelligent Cloud grew +31% FXN (Street: +28%), Azure accelerated to +43% FXN (Street: 39.6%), and Productivity rose +14% FXN. Operating margins came in ~30 basis points better at 45%. FQ1 guidance is bullish: revenue of $90-91B with Azure growth of 45% FXN (well above the Street's 40.6%) and margins implying ~49% vs. the Street's 47.6%. Management noted it's extending data center useful life from 15 to 25 years, affecting lease accounting and shifting some capex timing — but underlying capex plans for calendar 2026 are unchanged. CMG (Chipotle) posted Q2 earnings per share of 33c vs. 32c expected, with comps of +2.2% topping the Street's +1.3%. Full-year comp guidance raised to +1-3% from flat. CVNA (Carvana) reported Q2 EBITDA roughly inline, but EBITDA margins slumped 200 basis points year-over-year, and the full-year EBITDA guidance midpoint of $2.85B fell short of the Street's $2.98B. ORLY (O'Reilly) beat on earnings per share (87c vs. 86c) and comps (+6% vs. +5.4%), raising full-year comp guidance to +4-6% and earnings per share to $3.20-3.30. SBUX (Starbucks) crushed FQ3 estimates with earnings per share of 85c vs. 65c, global comps of +7.9% vs. +5.7% expected, and operating margins up 430 basis points. Full-year earnings per share guidance raised to $2.55-2.65 from $2.25-2.45. PPC (Pilgrim's Pride) missed Q2 EBITDA at $360MM vs. $371MM, with margins down 660 basis points year-over-year. HOOD (Robinhood) reported Q2 earnings per share of 62c vs. 44c, with transaction-based revenue of $776MM beating the $741MM estimate — options/contracts revenue surged more than 10x. FICO beat and raised, now guiding to earnings per share of $42.43 and revenue of $2.53B vs. prior $40.45/$2.45B, though quarterly sales slightly missed on Scores segment pressure. EG (Everest Group) posted earnings per share of $14.85 vs. $14.47, with a combined ratio of 90% (~80 basis points better than expected), though net written premiums fell 26.3% year-over-year. ARM reported FQ1 earnings per share of 45c vs. 40c on sales of $1.29B (+22%), with FQ2 guidance of 47c/$1.38B above consensus. AI commentary remains bullish, though AGI CPU guidance was unchanged and management flagged supply constraints as a ceiling on near-term upside. LRCX (Lam Research) beat FQ4 estimates ($1.82/$6.72B vs. $1.70/$6.68B) and guided FQ1 sharply higher at $2.15/$8.1B vs. the Street's $1.84/$7.13B — a standout print in semis. QCOM (Qualcomm) reported FQ3 earnings per share of $2.21 (inline) on revenue of $9.94B vs. $9.62B, with auto sales surging +61%. But FQ4 earnings per share guidance midpoint of $2.15 missed the Street's $2.35, signaling further margin pressure ahead. FTNT (Fortinet) beat Q2 earnings per share at 90c vs. 75c, with billings spiking 33% to $2.37B vs. $2.13B. Full-year billings guidance raised to $8.8-9.1B. EQIX (Equinix) beat on adjusted FFO at $11.78 vs. $11.30 and raised full-year AFFO guidance to $42.69-43.29 per share. ALGN (Align) posted modest earnings per share upside and reiterated full-year guidance. Separately, following \"constructive discussions with Elliott,\" the company announced new board members and an increased 2026 buyback commitment. LHX (L3Harris) beat Q2 earnings per share at $3.13 vs. $2.80, with segment margins up 10 basis points to 16% and a book-to-bill of 1.2x. Full-year earnings per share guidance raised to $11.80-12.00. CHRW (CH Robinson) posted earnings per share of $1.61, with revenue up 19.3% and operating margins expanding 360 basis points to 34.7%. FLS (Flowserve) beat at 95c vs. 86c with bookings surging 26%, though the sales guide was trimmed due to Middle East-related headwinds. FMC beat Q2 EBITDA ($153MM vs. $144MM) but cut full-year EBITDA guidance to $620-680MM from $670-730MM, citing a \"more challenging operating environment.\" TDOC (Te";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Preview · Thursday, July 30, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Earnings Preview · Thursday, July 30, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Earnings Preview · Thursday, July 30, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a2a1a;
+    color: #c9b97a;
+    border: 1px solid #c9b97a44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">EARNINGS</div>
+  <h1>Earnings Preview · Thursday, July 30, 2026</h1>
+  <div class="meta">Jul 30, 2026 · 07:51 PM ET</div>
+</header>
+<hr class="divider">
+
+<p># Victory Lane Earnings Preview — Thursday, July 30, 2026</p>
+<p>---</p>
+<h2>AAPL — Apple Inc.</h2>
+<p>- <strong>Report Date:</strong> Already reported — fiscal Q3 ended June 2026 (after market)</p>
+<p>- <strong>Consensus EPS:</strong> $1.88 | <strong>Actual EPS:</strong> $1.91 ✓ Beat consensus</p>
+<p>- <strong>Whisper Number:</strong> $1.97 — company <strong>missed</strong> the whisper by 3.05%</p>
+<p>- <strong>Consensus Revenue:</strong> $108.79B | <strong>Actual Revenue:</strong> $109.42B ✓ Beat consensus</p>
+<p>- <strong>Revenue Growth (YoY):</strong> +16.36%</p>
+<p>- <strong>Q4 Guidance:</strong> Company guided $1.91–$2.04 EPS on $111.69B–$113.74B revenue vs. consensus of $2.03 EPS on $115.78B revenue — <strong>guidance came in below consensus on revenue</strong></p>
+<p>- <strong>Investor Sentiment:</strong> Not provided</p>
+<p>- <strong>Short Interest:</strong> Not provided</p>
+<p>- <strong>Implied Move vs. Historical:</strong> Not provided</p>
+<p>- <strong>Notable Options Activity:</strong> Not provided</p>
+<p>- <strong>Estimate Revision Trend:</strong> Not provided</p>
+<p><strong>Key takeaway:</strong> Beat on headline numbers but missed the whisper, and Q4 revenue guidance of $111.69B–$113.74B falls short of the $115.78B Street consensus — a meaningful gap that warrants attention.</p>
+<p>---</p>
+<h2>HIPO — Hippo Holdings Inc.</h2>
+<p>- <strong>Report Date:</strong> Already reported — Q2 ended June 2026</p>
+<p>- <strong>Consensus EPS:</strong> -$0.02 loss | <strong>Actual EPS:</strong> $0.54 — beat by <strong>2,800%</strong></p>
+<p>- <strong>Consensus Revenue:</strong> $145.20M | <strong>Actual Revenue:</strong> $144.70M — slight miss</p>
+<p>- <strong>Revenue Growth (YoY):</strong> +23.36%</p>
+<p>- <strong>Full-Year 2026 Guidance:</strong> Revenue raised to $580M–$585M vs. prior guidance of $560M–$570M and current consensus of $568.50M — <strong>guidance above consensus</strong></p>
+<p>- <strong>Investor Sentiment:</strong> Not provided</p>
+<p>- <strong>Short Interest:</strong> Not provided</p>
+<p>- <strong>Implied Move vs. Historical:</strong> Not provided</p>
+<p>- <strong>Notable Options Activity:</strong> Not provided</p>
+<p>- <strong>Estimate Revision Trend:</strong> Not provided</p>
+<p><strong>Key takeaway:</strong> Massive EPS beat — flipped from an expected loss to a $0.54 gain — combined with a raised revenue guide above consensus. The revenue line was essentially in line despite the EPS blowout.</p>
+<p>---</p>
+<h2>COIN — Coinbase Global Cl A</h2>
+<p>- <strong>Report Date:</strong> Already reported — Q2 ended June 2026</p>
+<p>- <strong>Consensus EPS:</strong> $0.14 | <strong>Actual EPS:</strong> -$0.39 loss — <strong>missed by 3,800%</strong></p>
+<p>- <strong>Whisper Number:</strong> -$0.01 — still badly missed</p>
+<p>- <strong>Consensus Revenue:</strong> $1.33B | <strong>Actual Revenue:</strong> $1.22B — missed</p>
+<p>- <strong>Revenue Growth (YoY):</strong> -18.51%</p>
+<p>- <strong>Guidance:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> Not provided</p>
+<p>- <strong>Short Interest:</strong> Not provided</p>
+<p>- <strong>Implied Move vs. Historical:</strong> Not provided</p>
+<p>- <strong>Notable Options Activity:</strong> Not provided</p>
+<p>- <strong>Estimate Revision Trend:</strong> Not provided</p>
+<p><strong>Key takeaway:</strong> A clean miss across the board. Revenue declined nearly 19% YoY, and the loss of $0.39 blew past even the more skeptical whisper number of -$0.01. No soft landing here.</p>
+<p>---</p>
+<h2>XOM — Exxon Mobil Corp.</h2>
+<p>- <strong>Report Date:</strong> Confirmed Friday, July 31, 2026 at ~6:30 AM ET (before market)</p>
+<p>- <strong>Consensus EPS:</strong> $3.80</p>
+<p>- <strong>Whisper Number:</strong> $3.95 — $0.15 above consensus, suggesting buy-side expects a beat</p>
+<p>- <strong>Consensus Revenue:</strong> $95.80B</p>
+<p>- <strong>Revenue Growth (YoY):</strong> +17.5% expected</p>
+<p>- <strong>Guidance vs. Consensus:</strong> Not provided</p>
+<p>- <strong>Investor Sentiment:</strong> 3.3% bullish — notably <strong>low conviction</strong> heading into the print</p>
+<p>- <strong>Short Interest:</strong> Not provided</p>
+<p>- <strong>Implied Move:</strong> Options pricing in a <strong>4.9%</strong> move on earnings</p>
+<p>- <strong>Historical Average Move:</strong> Not provided</p>
+<p>- <strong>Notable Options Activity:</strong> Not provided</p>
+<p>- <strong>Estimate Revision Trend:</strong> Newsletter characterizes the setup as expected to beat estimates</p>
+<p><strong>Key takeaway:</strong> Whisper sits $0.15 above consensus at $3.95, signaling buy-side optimism despite unusually low bullish sentiment at just 3.3%. The 4.9% implied move is worth sizing around. Reports pre-market Friday.</p>
+<p>---</p>
+<h2>Guidance Summary — Other Notable Companies (July 30, 2026)</h2>
+<p>| Ticker | Company | Guidance Direction |</p>
+<p>|--------|---------|-------------------|</p>
+<p>| IDCC | InterDigital | ↑ Raised — FY26 guide to $775M–$845M rev vs. prior $675M–$775M |</p>
+<p>| WU | Western Union | ↓ Lowered — EPS cut to $1.25–$1.35 from $1.75–$1.85; rev guide also trimmed |</p>
+<p>| COLM | Columbia Sportswear | ↑ Raised |</p>
+<p>| CMCO | Columbus McKinnon | ↑ Raised |</p>
+<p>| FLGT | Fulgent Genetics | Mixed — smaller loss than expected, revenue guide below estimates |</p>
+<p>| PWR | Quanta Services | ↑ Raised |</p>
+<p>| SNDR | Schneider National | ↑ Raised, but remains in-line with estimates |</p>
+<p>| MRT | Marti Technologies | ↑ Raised |</p>
+<p>| COHU | Cohu | ↑ Revenue above estimates |</p>
+<p>| RDCM | RADCOM | ↓ Lowered |</p>
+<p>| MPWR | Monolithic Power Systems | ↑ Above estimates |</p>
+<p>| STGW | Stagwell | ↑ Raised earnings guidance |</p>
+<p>| OMCL | Omnicell | ↑ Raised earnings guidance |</p>
+<p>| XHR | Xenia Hotels & Resorts | ↑ Raised |</p>
+<p>| EME | EMCOR | ↑ Raised |</p>
+<p><strong>Western Union is the most notable negative here</strong> — cutting EPS guidance by roughly 28% at the midpoint ($1.30 new vs. $1.80 prior) is a significant downward revision that puts the full-year consensus of $1.74 well outside the new guided range.</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "# Victory Lane Earnings Preview — Thursday, July 30, 2026 --- AAPL — Apple Inc.. - Report Date: Already reported — fiscal Q3 ended June 2026 (after market) - Consensus earnings per share: $1.88 | Actual earnings per share: $1.91 ✓ Beat consensus - Whisper Number: $1.97 — company missed the whisper by 3.05% - Consensus Revenue: $108.79B | Actual Revenue: $109.42B ✓ Beat consensus - Revenue Growth (year over year): +16.36% - Q4 Guidance: Company guided $1.91–$2.04 earnings per share on $111.69B–$113.74B revenue vs. consensus of $2.03 earnings per share on $115.78B revenue — guidance came in below consensus on revenue - Investor Sentiment: Not provided - Short Interest: Not provided - Implied Move vs. Historical: Not provided - Notable Options Activity: Not provided - Estimate Revision Trend: Not provided Key takeaway: Beat on headline numbers but missed the whisper, and Q4 revenue guidance of $111.69B–$113.74B falls short of the $115.78B Street consensus — a meaningful gap that warrants attention. --- HIPO — Hippo Holdings Inc.. - Report Date: Already reported — Q2 ended June 2026 - Consensus earnings per share: -$0.02 loss | Actual earnings per share: $0.54 — beat by 2,800% - Consensus Revenue: $145.20M | Actual Revenue: $144.70M — slight miss - Revenue Growth (year over year): +23.36% - Full-Year 2026 Guidance: Revenue raised to $580M–$585M vs. prior guidance of $560M–$570M and current consensus of $568.50M — guidance above consensus - Investor Sentiment: Not provided - Short Interest: Not provided - Implied Move vs. Historical: Not provided - Notable Options Activity: Not provided - Estimate Revision Trend: Not provided Key takeaway: Massive earnings per share beat — flipped from an expected loss to a $0.54 gain — combined with a raised revenue guide above consensus. The revenue line was essentially in line despite the earnings per share blowout. --- COIN — Coinbase Global Cl A. - Report Date: Already reported — Q2 ended June 2026 - Consensus earnings per share: $0.14 | Actual earnings per share: -$0.39 loss — missed by 3,800% - Whisper Number: -$0.01 — still badly missed - Consensus Revenue: $1.33B | Actual Revenue: $1.22B — missed - Revenue Growth (year over year): -18.51% - Guidance: Not provided - Investor Sentiment: Not provided - Short Interest: Not provided - Implied Move vs. Historical: Not provided - Notable Options Activity: Not provided - Estimate Revision Trend: Not provided Key takeaway: A clean miss across the board. Revenue declined nearly 19% year over year, and the loss of $0.39 blew past even the more skeptical whisper number of -$0.01. No soft landing here. --- XOM — Exxon Mobil Corp.. - Report Date: Confirmed Friday, July 31, 2026 at ~6:30 AM Eastern time (before market) - Consensus earnings per share: $3.80 - Whisper Number: $3.95 — $0.15 above consensus, suggesting buy-side expects a beat - Consensus Revenue: $95.80B - Revenue Growth (year over year): +17.5% expected - Guidance vs. Consensus: Not provided - Investor Sentiment: 3.3% bullish — notably low conviction heading into the print - Short Interest: Not provided - Implied Move: Options pricing in a 4.9% move on earnings - Historical Average Move: Not provided - Notable Options Activity: Not provided - Estimate Revision Trend: Newsletter characterizes the setup as expected to beat estimates Key takeaway: Whisper sits $0.15 above consensus at $3.95, signaling buy-side optimism despite unusually low bullish sentiment at just 3.3%. The 4.9% implied move is worth sizing around. Reports pre-market Friday. --- Guidance Summary — Other Notable Companies (July 30, 2026). | Ticker | Company | Guidance Direction | |--------|---------|-------------------| | IDCC | InterDigital | ↑ Raised — FY26 guide to $775M–$845M rev vs. prior $675M–$775M | | WU | Western Union | ↓ Lowered — earnings per share cut to $1.25–$1.35 from $1.75–$1.85; rev guide also trimmed | | COLM | Columbia Sportswear | ↑ Raised | | CMCO | Columbus McKinnon | ↑ Raised | | FLGT | Fulgent Genetics | Mixed — smaller loss than expected, revenue guide below estimates | | PWR | Quanta Services | ↑ Raised | | SNDR | Schneider National | ↑ Raised, but remains in-line with estimates | | MRT | Marti Technologies | ↑ Raised | | COHU | Cohu | ↑ Revenue above estimates | | RDCM | RADCOM | ↓ Lowered | | MPWR | Monolithic Power Systems | ↑ Above estimates | | STGW | Stagwell | ↑ Raised earnings guidance | | OMCL | Omnicell | ↑ Raised earnings guidance | | XHR | Xenia Hotels & Resorts | ↑ Raised | | EME | EMCOR | ↑ Raised | Western Union is the most notable negative here — cutting earnings per share guidance by roughly 28% at the midpoint ($1.30 new vs. $1.80 prior) is a significant downward revision that puts the full-year consensus of $1.74 well outside the new guided range.";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

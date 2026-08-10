@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company-specific news for Mon 8/10 (AMC) - ACM, ALC, BW, CELH, FRMI, HIMS, NVDA, PLUG, RKLB, RPD, SPG, UPWK · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Company-specific news for Mon 8/10 (AMC) - ACM, ALC, BW, CELH, FRMI, HIMS, NVDA, PLUG, RKLB, RPD, SPG, UPWK">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Company-specific news for Mon 8/10 (AMC) - ACM, ALC, BW, CELH, FRMI, HIMS, NVDA, PLUG, RKLB, RPD, SPG, UPWK">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a1a3a;
+    color: #8f4caf;
+    border: 1px solid #8f4caf44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">UPDATE</div>
+  <h1>Company-specific news for Mon 8/10 (AMC) - ACM, ALC, BW, CELH, FRMI, HIMS, NVDA, PLUG, RKLB, RPD, SPG, UPWK</h1>
+  <div class="meta">Aug 10, 2026 · 05:20 PM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>No broad market index data (SPX, Nasdaq, Dow, R2K, commodities, FX, crypto) was included in this newsletter. This digest covers company-specific earnings only.</p>
+<p>---</p>
+<h2>RATES & FED</h2>
+<p>No rates or Fed commentary included in this edition.</p>
+<p>---</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The earnings slate tonight reflects a bifurcated market reality: companies with clean, recurring revenue and margin discipline are being rewarded, while anything exposed to project risk, automation displacement, or demand uncertainty is getting punished hard. UPWK's active client deterioration and CELH's management upheaval suggest the post-COVID growth darlings are still working through structural headwinds. NVDA's $500B+ AI infrastructure financing confirmation remains the dominant macro signal — that's not a number you dismiss.</p>
+<p>---</p>
+<h2>GEOPOLITICAL</h2>
+<p>No geopolitical items were included in this edition.</p>
+<p>---</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>ACM</strong> (AECOM) delivered a brutal FQ3 miss — EBITDA came in at -$8MM against the Street's +$263MM, and sales of $3.5B fell 14% short of the $4.3B consensus. A $327MM pre-tax loss tied to a 2019-era construction management project (bid "under terms and conditions that would not clear our substantially transformed risk processes today") drove the damage, and full-year EPS guidance was slashed to $3.95–$4.15 from $5.90–$6.10. Management is calling it a one-time event — B2B was strong at 1.6x and underlying EPS guidance ex-construction management is unchanged — but that's a steep credibility hill to climb.</p>
+<p><strong>ALC</strong> (Alcon) was a clean beat: Q2 EPS of 84 cents topped the Street's 76-cent estimate, revenue grew 7% on an FX-neutral basis versus the 6.1% consensus, and operating margins expanded 150 basis points year-over-year to 20.6%. Full-year margin guidance tightens upward to +90–190 basis points (from +70–170) and EPS growth now guided to +12–15% versus the prior +10–13%. Exactly the kind of steady compounder performance that earns multiple expansion.</p>
+<p><strong>BW</strong> (Babcock & Wilcox) posted a dramatic top-line beat ($320MM vs. the Street's $197MM) but the quality underneath is questionable — EBITDA of $21.8MM only modestly beat $16.2MM, book-to-bill came in below 1x, backlog slipped to $2.6B from $2.7B in Q1, and the full-year EBITDA guide barely moved ($80–105MM vs. $80–100MM prior). Revenue surprise without earnings follow-through is a cautionary tale.</p>
+<p><strong>CELH</strong> (Celsius) announced the departure of President/COO Eric Hanson, coming hot on the heels of a disappointing earnings print last week and the disclosure that Rockstar Energy founder Russ Savage has accumulated a ~4.7% stake and is angling for the CEO seat. The activist overhang plus operational stumbles make this a name to watch carefully.</p>
+<p><strong>FRMI</strong> (Fermi) signed its first binding customer lease at the Project Matador campus in Carson County, Texas — 222MW with TensorWave, expected to generate approximately $6.5B in total contracted revenue over a 15-year initial term. That's a meaningful anchor tenant for what is clearly a serious AI infrastructure play.</p>
+<p><strong>HIMS</strong> (Hims & Hers) beat Q2 on both EBITDA ($60.3MM vs. $47MM) and sales ($753.2MM vs. $699MM), but the full-year EBITDA outlook was actually trimmed to $275–325MM from $275–350MM despite the beat — management is guiding EBITDA margins down to 9–10% from the prior 10–12%, which is the number the market will focus on.</p>
+<p><strong>NVDA</strong> (Nvidia) officially confirmed the $500B+ AI infrastructure financing deal. The implications are significant and wide-ranging for the broader AI capex cycle.</p>
+<p><strong>PLUG</strong> (Plug Power) reported Q2 EPS of -7 cents adjusted versus the Street's -8 cents, with sales of $178.3MM beating $169MM and gross margins coming in roughly break-even against a Street forecast of -8.2%. Management guided to 15–16% sales growth this year versus consensus of +14.6% — incremental progress for a company that has had a long road back.</p>
+<p><strong>RKLB</strong> (Rocket Lab) matched Q2 sales estimates (+62% to $234MM vs. $232MM), posted a smaller-than-feared EBITDA loss, and grew backlog to $2.36B versus $2.2B in Q1. Q3 guidance is mixed: the sales midpoint of ~$258MM clears the Street's $237MM, but the EBITDA midpoint of -$20MM disappoints against the -$12.4MM consensus.</p>
+<p><strong>RPD</strong> (Rapid7) delivered a solid Q2 with ARR and sales upside, EPS beating by a wider margin on roughly 165 basis points of operating margin outperformance, and full-year EPS guidance lifted while sales guidance was essentially reiterated.</p>
+<p><strong>SPG</strong> (Simon Property Group) reported real estate FFO of $3.29 versus the Street's $3.22 and raised full-year FFO guidance to $13.20–$13.30 from $13.10–$13.25, citing "broad-based leasing demand, accelerated traffic increases, strong retailer sales growth, and the contribution from acquisitions." Premium malls continue to defy the bears.</p>
+<p><strong>UPWK</strong> (Upwork) beat on Q2 sales and EBITDA but cut full-year revenue guidance to $730–750MM from $760–790MM and full-year EBITDA to $225–235MM from $250–260MM. Active clients fell to 763K from 784K in Q1 — management acknowledged that "lower-complexity work continues to shift toward automation." This is a structural story, not a cyclical one.</p>
+<p>---</p>
+<h2>MACRO & FED DATES</h2>
+<p>No upcoming macro or Fed dates were included in this edition.</p>
+<p>---</p>
+<h2>EARNINGS THIS WEEK</h2>
+<p><strong>Monday 8/10 (After Market Close):</strong> ACM, ALC, BW, CELH, FRMI, HIMS, NVDA, PLUG, RKLB, RPD, SPG, UPWK</p>
+<p>---</p>
+<h2>EARNINGS NEXT 2 WEEKS</h2>
+<p>No forward earnings calendar was included in this edition.</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. No broad market index data (SPX, Nasdaq, Dow, R2K, commodities, FX, crypto) was included in this newsletter. This digest covers company-specific earnings only. --- MARKET OUTLOOK. The earnings slate tonight reflects a bifurcated market reality: companies with clean, recurring revenue and margin discipline are being rewarded, while anything exposed to project risk, automation displacement, or demand uncertainty is getting punished hard. UPWK's active client deterioration and CELH's management upheaval suggest the post-COVID growth darlings are still working through structural headwinds. NVDA's $500B+ AI infrastructure financing confirmation remains the dominant macro signal — that's not a number you dismiss. --- COMPANY NEWS. ACM (AECOM) delivered a brutal FQ3 miss — EBITDA came in at -$8MM against the Street's +$263MM, and sales of $3.5B fell 14% short of the $4.3B consensus. A $327MM pre-tax loss tied to a 2019-era construction management project (bid \"under terms and conditions that would not clear our substantially transformed risk processes today\") drove the damage, and full-year earnings per share guidance was slashed to $3.95–$4.15 from $5.90–$6.10. Management is calling it a one-time event — B2B was strong at 1.6x and underlying earnings per share guidance ex-construction management is unchanged — but that's a steep credibility hill to climb. ALC (Alcon) was a clean beat: Q2 earnings per share of 84 cents topped the Street's 76-cent estimate, revenue grew 7% on an FX-neutral basis versus the 6.1% consensus, and operating margins expanded 150 basis points year-over-year to 20.6%. Full-year margin guidance tightens upward to +90–190 basis points (from +70–170) and earnings per share growth now guided to +12–15% versus the prior +10–13%. Exactly the kind of steady compounder performance that earns multiple expansion. BW (Babcock & Wilcox) posted a dramatic top-line beat ($320MM vs. the Street's $197MM) but the quality underneath is questionable — EBITDA of $21.8MM only modestly beat $16.2MM, book-to-bill came in below 1x, backlog slipped to $2.6B from $2.7B in Q1, and the full-year EBITDA guide barely moved ($80–105MM vs. $80–100MM prior). Revenue surprise without earnings follow-through is a cautionary tale. CELH (Celsius) announced the departure of President/COO Eric Hanson, coming hot on the heels of a disappointing earnings print last week and the disclosure that Rockstar Energy founder Russ Savage has accumulated a ~4.7% stake and is angling for the CEO seat. The activist overhang plus operational stumbles make this a name to watch carefully. FRMI (Fermi) signed its first binding customer lease at the Project Matador campus in Carson County, Texas — 222MW with TensorWave, expected to generate approximately $6.5B in total contracted revenue over a 15-year initial term. That's a meaningful anchor tenant for what is clearly a serious AI infrastructure play. HIMS (Hims & Hers) beat Q2 on both EBITDA ($60.3MM vs. $47MM) and sales ($753.2MM vs. $699MM), but the full-year EBITDA outlook was actually trimmed to $275–325MM from $275–350MM despite the beat — management is guiding EBITDA margins down to 9–10% from the prior 10–12%, which is the number the market will focus on. NVDA (Nvidia) officially confirmed the $500B+ AI infrastructure financing deal. The implications are significant and wide-ranging for the broader AI capex cycle. PLUG (Plug Power) reported Q2 earnings per share of -7 cents adjusted versus the Street's -8 cents, with sales of $178.3MM beating $169MM and gross margins coming in roughly break-even against a Street forecast of -8.2%. Management guided to 15–16% sales growth this year versus consensus of +14.6% — incremental progress for a company that has had a long road back. RKLB (Rocket Lab) matched Q2 sales estimates (+62% to $234MM vs. $232MM), posted a smaller-than-feared EBITDA loss, and grew backlog to $2.36B versus $2.2B in Q1. Q3 guidance is mixed: the sales midpoint of ~$258MM clears the Street's $237MM, but the EBITDA midpoint of -$20MM disappoints against the -$12.4MM consensus. RPD (Rapid7) delivered a solid Q2 with ARR and sales upside, earnings per share beating by a wider margin on roughly 165 basis points of operating margin outperformance, and full-year earnings per share guidance lifted while sales guidance was essentially reiterated. SPG (Simon Property Group) reported real estate FFO of $3.29 versus the Street's $3.22 and raised full-year FFO guidance to $13.20–$13.30 from $13.10–$13.25, citing \"broad-based leasing demand, accelerated traffic increases, strong retailer sales growth, and the contribution from acquisitions.\" Premium malls continue to defy the bears. UPWK (Upwork) beat on Q2 sales and EBITDA but cut full-year revenue guidance to $730–750MM from $760–790MM and full-year EBITDA to $225–235MM from $250–260MM. Active clients fell to 763K from 784K in Q1 — management acknowledged that \"lower-complexity work continues to shift toward automation.\" This is a structural story, not a cyclical one. ---";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

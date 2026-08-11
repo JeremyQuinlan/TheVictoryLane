@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Recap · Tuesday August 11, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Market Recap · Tuesday August 11, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Market Recap · Tuesday August 11, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a1a1a;
+    color: #af4c4c;
+    border: 1px solid #af4c4c44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">RECAP</div>
+  <h1>Market Recap · Tuesday August 11, 2026</h1>
+  <div class="meta">Aug 11, 2026 · 04:04 PM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>SPX: -0.32% | Nasdaq: -0.60% | Dow: -184 points | R2K: +0.32% | Brent: +155 basis points (~$89.10) | Gold: -55 basis points | Silver: -160 basis points | BTC: -110 basis points | DXY: ~flat</p>
+<h2>RATES & FED</h2>
+<p>Treasuries posted modest gains Tuesday, with yields flat to down 2 basis points across the curve — a quiet session given the noise elsewhere. No material Fed repricing; all eyes shift to Wednesday's July CPI print, which the market doesn't expect to deliver much relief on the inflation front.</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The Middle East narrative has swung too far toward the hawkish/hopeless end — Iran is under enormous economic pressure and both sides have genuine incentive to return to the MOU framework, which would knock oil prices lower and remove a meaningful source of upside yield pressure. The Nvidia $500B+ financing deal is a genuine two-sided debate: bulls see a win/win that turbocharges AI infrastructure without encumbering Nvidia's balance sheet, while bears worry about circular capital flows, a coming compute glut, and the reality that Nvidia may backstop up to 25% of the originated projects (The Information). The equal-weight S&P outperforming cap-weight is a subtle but important signal — breadth is healthier than the headline numbers suggest. Watch Wednesday's CPI closely; a hot print could reignite rate fears fast.</p>
+<h2>GEOPOLITICAL</h2>
+<p>- Gulf state governments are increasingly accepting Iran's control over the Strait of Hormuz as a new normal, preferring stability over renewed conflict (WSJ). Iran's new leadership simultaneously signals a harder line toward Washington (WSJ, FT).</p>
+<p>- Oil swung wildly Tuesday — spiking to ~$90 on Iran's "meet our demands or no Hormuz" posture, dipping to ~$86.60 on hopeful rhetoric from Qatar and Pakistan, then settling ~$89.10.</p>
+<p>- Trump's options remain constrained by troop aversion, depleted munition stockpiles, and thin global oil inventories.</p>
+<p>- Texas revised down its electricity demand growth forecast after ordering an audit of all data center projects seeking grid connections — a direct hit to AI infrastructure buildout assumptions (Bloomberg).</p>
+<p>- Australia's RBA held rates steady but warned another hike is "quite possible" this year given elevated inflation (Reuters, WSJ). South Korea's central bank signaled further hikes ahead on resilient growth and inflation risk (Bloomberg). Japan's BOJ faces opposing forces — inflation and yen weakness argue for hikes, but fiscal imbalances complicate balance sheet management (Reuters).</p>
+<p>- The SEC and CFTC are preparing a suite of pro-crypto rules after the Clarity Act failed in Congress (Politico).</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>NVDA</strong> (Nvidia) confirmed the $500B+ AI infrastructure financing consortium alongside <strong>APO</strong>, <strong>BX</strong>, and <strong>KKR</strong> — the asset managers were among the top performers in the market on the news. Separately, Nvidia is pushing to develop a world-leading open-weight AI model to drive chip demand, though it risks competing with its own biggest customers (The Information). <strong>CME</strong> Group announced plans with Silicon Data to launch compute futures contracts tied to H100 and B200 rental rates, hours after Nvidia called compute an "investable asset."</p>
+<p><strong>INTC</strong> (Intel) priced 210.5M shares at $95, raising $20B — well above the initial $15B target (WSJ).</p>
+<p><strong>ARMK</strong> (Aramark) beat on FQ3 EPS (52c vs. 49c consensus) with 9% organic revenue growth; FY organic sales outlook raised to +9-10% from +8-9%, including an initial data center deal in Texas.</p>
+<p><strong>CAH</strong> (Cardinal Health) posted a large FQ4 EPS beat ($2.91 vs. $2.42 consensus), partly from IEEPA tariff refunds, though even ex-refund EPS of ~$2.60 cleared the bar; FY27 EPS guidance midpoint of $12.50 tops the Street's $12.06.</p>
+<p><strong>ONON</strong> (On Running) reported a rare Q2 sales miss and trimmed full-year revenue guidance — a potential read-through for Nike's running momentum, and a datapoint on cautious consumer spending.</p>
+<p><strong>SFD</strong> (Smithfield) edged Q2 EPS (62c vs. 60c) but cut full-year operating income guidance to $1.225-1.375B from $1.325-1.475B, citing "cautious consumer spending and higher input costs."</p>
+<p><strong>ACM</strong> (AECOM) missed badly on FQ3 EBITDA (-$8MM vs. +$263MM consensus) due to a $327MM pre-tax loss on a delayed construction project; FY EPS guide cut to $3.95-4.15 from $5.90-6.10.</p>
+<p><strong>SE</strong> (Sea Limited) delivered Q2 revenue of $7.78B (+48.1%, vs. $7.1B expected) but EBITDA margins disappointed at 11.77% — about 120 basis points light — as Sales & Marketing surged 64.5%.</p>
+<p><strong>HIMS</strong> (Hims & Hers) beat Q2 on both EBITDA ($60.3MM vs. $47MM) and sales ($753.2MM vs. $699MM), but paradoxically cut full-year EBITDA guidance to $275-325MM from $275-350MM.</p>
+<p><strong>UPWK</strong> (Upwork) beat Q2 topline but slashed full-year revenue guidance to $730-750MM (from $760-790MM) and EBITDA to $225-235MM (from $250-260MM) as management acknowledged "lower-complexity work continues to shift toward automation."</p>
+<p><strong>RIOT</strong> (Riot Platforms) struck a $9.1B compute deal with Anthropic (Bloomberg). Anthropic itself is targeting a September/October IPO and has been managing investor concerns around open-weight Chinese models and data center backlash in recent roadshow meetings (WSJ).</p>
+<p><strong>AAPL</strong> (Apple) — a Monday downgrade claimed no all-glass iPhone was coming, but Bloomberg reported after the close the 20th anniversary device remains on track for 2027.</p>
+<p><strong>PSX</strong> (Phillips 66), <strong>KMI</strong> (Kinder Morgan), and <strong>DINO</strong> (HF Sinclair) announced the ~$5B Western Gateway Pipeline to move fuel from Texas to California and Arizona (WSJ).</p>
+<p><strong>META</strong> — Zuckerberg published a pro-AI manifesto, timed ahead of what sources say will be substantially stronger model releases imminently (Sources).</p>
+<p><strong>BA</strong> (Boeing) delivered 53 jets in July, up 5 year-over-year but down from 64 in June (Reuters).</p>
+<p><strong>SPG</strong> (Simon Property) beat on Q2 real estate FFO ($3.29 vs. $3.22) and raised full-year FFO guidance to $13.20-13.30 from $13.10-13.25 on broad-based leasing demand and traffic gains.</p>
+<p><strong>ETOR</strong> (eToro) will acquire TradeZero for up to $231MM to accelerate US expansion. <strong>JOBY</strong> (Joby Aviation) agreed to acquire Resonant Sciences for ~$500MM. <strong>PSKY</strong>/<strong>WBD</strong> — Paramount threatened to leave California by October unless the state enters settlement talks over its antitrust lawsuit (Variety). AstraZeneca and <strong>BMY</strong> (Bristol-Myers) came close to a deal but it unraveled after Astra shares sold off and the UK government signaled opposition</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. SPX: -0.32% | Nasdaq: -0.60% | Dow: -184 points | R2K: +0.32% | Brent: +155 basis points (~$89.10) | Gold: -55 basis points | Silver: -160 basis points | BTC: -110 basis points | DXY: ~flat RATES & FED. Treasuries posted modest gains Tuesday, with yields flat to down 2 basis points across the curve — a quiet session given the noise elsewhere. No material Fed repricing; all eyes shift to Wednesday's July CPI print, which the market doesn't expect to deliver much relief on the inflation front. MARKET OUTLOOK. The Middle East narrative has swung too far toward the hawkish/hopeless end — Iran is under enormous economic pressure and both sides have genuine incentive to return to the MOU framework, which would knock oil prices lower and remove a meaningful source of upside yield pressure. The Nvidia $500B+ financing deal is a genuine two-sided debate: bulls see a win/win that turbocharges AI infrastructure without encumbering Nvidia's balance sheet, while bears worry about circular capital flows, a coming compute glut, and the reality that Nvidia may backstop up to 25% of the originated projects (The Information). The equal-weight S&P outperforming cap-weight is a subtle but important signal — breadth is healthier than the headline numbers suggest. Watch Wednesday's CPI closely; a hot print could reignite rate fears fast. GEOPOLITICAL. - Gulf state governments are increasingly accepting Iran's control over the Strait of Hormuz as a new normal, preferring stability over renewed conflict. Iran's new leadership simultaneously signals a harder line toward Washington (WSJ, FT). - Oil swung wildly Tuesday — spiking to ~$90 on Iran's \"meet our demands or no Hormuz\" posture, dipping to ~$86.60 on hopeful rhetoric from Qatar and Pakistan, then settling ~$89.10. - Trump's options remain constrained by troop aversion, depleted munition stockpiles, and thin global oil inventories. - Texas revised down its electricity demand growth forecast after ordering an audit of all data center projects seeking grid connections — a direct hit to AI infrastructure buildout assumptions. - Australia's RBA held rates steady but warned another hike is \"quite possible\" this year given elevated inflation (Reuters, WSJ). South Korea's central bank signaled further hikes ahead on resilient growth and inflation risk. Japan's BOJ faces opposing forces — inflation and yen weakness argue for hikes, but fiscal imbalances complicate balance sheet management. - The SEC and CFTC are preparing a suite of pro-crypto rules after the Clarity Act failed in Congress (Politico). COMPANY NEWS. NVDA (Nvidia) confirmed the $500B+ AI infrastructure financing consortium alongside APO , BX , and KKR — the asset managers were among the top performers in the market on the news. Separately, Nvidia is pushing to develop a world-leading open-weight AI model to drive chip demand, though it risks competing with its own biggest customers (The Information). CME Group announced plans with Silicon Data to launch compute futures contracts tied to H100 and B200 rental rates, hours after Nvidia called compute an \"investable asset.\" INTC (Intel) priced 210.5M shares at $95, raising $20B — well above the initial $15B target. ARMK (Aramark) beat on FQ3 earnings per share (52c vs. 49c consensus) with 9% organic revenue growth; FY organic sales outlook raised to +9-10% from +8-9%, including an initial data center deal in Texas. CAH (Cardinal Health) posted a large FQ4 earnings per share beat ($2.91 vs. $2.42 consensus), partly from IEEPA tariff refunds, though even ex-refund earnings per share of ~$2.60 cleared the bar; FY27 earnings per share guidance midpoint of $12.50 tops the Street's $12.06. ONON (On Running) reported a rare Q2 sales miss and trimmed full-year revenue guidance — a potential read-through for Nike's running momentum, and a datapoint on cautious consumer spending. SFD (Smithfield) edged Q2 earnings per share (62c vs. 60c) but cut full-year operating income guidance to $1.225-1.375B from $1.325-1.475B, citing \"cautious consumer spending and higher input costs.\" ACM (AECOM) missed badly on FQ3 EBITDA (-$8MM vs. +$263MM consensus) due to a $327MM pre-tax loss on a delayed construction project; FY earnings per share guide cut to $3.95-4.15 from $5.90-6.10. SE (Sea Limited) delivered Q2 revenue of $7.78B (+48.1%, vs. $7.1B expected) but EBITDA margins disappointed at 11.77% — about 120 basis points light — as Sales & Marketing surged 64.5%. HIMS (Hims & Hers) beat Q2 on both EBITDA ($60.3MM vs. $47MM) and sales ($753.2MM vs. $699MM), but paradoxically cut full-year EBITDA guidance to $275-325MM from $275-350MM. UPWK (Upwork) beat Q2 topline but slashed full-year revenue guidance to $730-750MM (from $760-790MM) and EBITDA to $225-235MM (from $250-260MM) as management acknowledged \"lower-complexity work continues to shift toward automation.\" RIOT (Riot Platforms) struck a $9.1B compute deal with Anthropic. Anthropic itself is targeting a September/October IPO and has been managing investor concerns around open-weight Chinese models and data center backlash in recent roadshow meetings. AAPL (Apple) — a Monday downgrade claimed no all-glass iPhone was coming, but Bloomberg reported after the close the 20th anniversary device remains on track for 2027. PSX (Phillips 66), KMI (Kinder Morgan), and DINO (HF Sinclair) announced the ~$5B Western Gateway Pipeline to move fuel from Texas to California and Arizona. META — Zuckerberg published a pro-AI manifesto, timed ahead of what sources say will be substantially stronger model releases imminently (Sources). BA (Boeing) delivered 53 jets in July, up 5 year-over-year but down from 64 in June. SPG (Simon Property) beat on Q2 real estate FFO ($3.29 vs. $3.22) and raised full-year FFO guidance to $13.20-13.30 from $13.10-13.25 on broad-based leasing demand and traffic gains. ETOR (eToro) will acquire TradeZero for up to $231MM to accelerate US expansion. JOBY (Joby Aviation) agreed to acquire Resonant Sciences for ~$500MM. PSKY / WBD — Paramount threatened to leave California by October unless the state enters settlement talks over its antitrust lawsuit (Variety). AstraZeneca and BMY (Bristol-Myers) came close to a deal but it unraveled after Astra shares sold off and the UK government signaled opposition";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

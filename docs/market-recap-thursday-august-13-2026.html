@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Recap · Thursday August 13, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Market Recap · Thursday August 13, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Market Recap · Thursday August 13, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a1a1a;
+    color: #af4c4c;
+    border: 1px solid #af4c4c44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">RECAP</div>
+  <h1>Market Recap · Thursday August 13, 2026</h1>
+  <div class="meta">Aug 13, 2026 · 04:04 PM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>SPX: +0.65% | Nasdaq: +0.81% | Dow: +0.13% | R2K: +0.24%</p>
+<p>Brent: ~$87 (-2.20%) | Gold: -1.30% | Silver: -1.45% | BTC: -0.30% | DXY: ~flat</p>
+<h2>RATES & FED</h2>
+<p>Treasuries rallied solidly Thursday, with yields falling 4–7 basis points across the curve. Markets are now pricing just 23 basis points of hikes across the Fed's final three meetings of the year, with only 35% odds of a move on September 16. Cleveland Fed's Hammack pushed back, reiterating rates should rise now despite the modest inflation cooling, while Richmond's Barkin argued the opposite — that disinflation can happen without further tightening.</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The bull case is holding up better than the bears want to admit — AI spending data keeps coming in strong, inflation is directionally improving, and buyout activity in software signals that smart money sees value. That said, don't get complacent: core PPI ran firmer than expected, the Atlanta Fed wage tracker accelerated to +3.8% in July, and yields have deeply structural upward forces — fiscal imbalances, AI-driven debt issuance, tariffs, and a shrinking workforce among them. The real test comes the week of August 25: PCE Wednesday morning, Nvidia earnings Wednesday night, and Fed Chair Warsh at Jackson Hole Friday. Until then, AI momentum and cooling headline inflation give the bulls enough to work with.</p>
+<h2>GEOPOLITICAL</h2>
+<p>- Iran remains intransigent, effectively holding the Strait of Hormuz hostage while its economy digs in against U.S. sanctions and regional proxies grow more aggressive. Energy Secretary Wright claimed more oil is flowing through Hormuz than markets realize (Bloomberg), which helped push Brent lower Thursday — but the structural risk hasn't gone away.</p>
+<p>- Russia is escalating attacks on Ukrainian ports and Black Sea shipping lanes, threatening global food supplies as Ukrainian farmers can't move their harvests (Reuters, NYT).</p>
+<p>- The Houthis continue assaulting Red Sea traffic, compounding shipping disruptions that feed inflationary pressure globally.</p>
+<p>- Mexico is pushing Washington to lower tariffs on North American autos as part of ongoing bilateral trade negotiations, a move that could reduce vehicle retail prices (WSJ).</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>WDAY</strong> (Workday): Silver Lake is in talks to acquire Workday in what would rank among the largest software buyouts in history, per a Reuters report that broke around 2:30pm ET Thursday. Shares spiked on the news.</p>
+<p><strong>CSCO</strong> (Cisco): Reported FQ4 EPS of $1.22 vs. Street $1.17, with sales up 18% to $17.3B and operating margins of 35.9%. F27 guide calls for EPS of $5.08 vs. Street $4.84 and sales of $72.8B vs. Street $69.1B. Management described a "networking supercycle" with broadening demand well beyond hyperscalers — yet shares fell on elevated expectations.</p>
+<p><strong>COHR</strong> (Coherent): FQ4 EPS of $1.74 vs. Street $1.62; sales +33.8% to $2.046B vs. Street $1.99B, with gross and operating margins up 215 and 381 basis points Y/Y. FQ1 guide of $1.95 EPS/$2.3B revenue beats consensus. Sold off anyway.</p>
+<p><strong>CBRS</strong> (Cerebras): Core revenue +103% to $209.9MM vs. Street $194MM; gross margins 41% vs. Street 36.7%. Full-year guidance raised, but RPOs barely moved quarter-over-quarter and expectations were sky-high. Shares declined.</p>
+<p><strong>SNDK</strong> (Sandisk): At its analyst meeting, guided for 15–19% annual revenue growth F28–F30 with gross margins ~80% and operating margins ~75% — a more conservative long-term picture than the Street had modeled. Shares jumped on the clarity.</p>
+<p><strong>TPR</strong> (Tapestry): FQ4 EPS $1.32 vs. Street $1.27, with gross margins +180 basis points and operating margins +250 basis points. Coach grew 14% FXN, Kate Spade -7%. F27 EPS/revenue guide midpoints of $7.85/$8.45B came in just shy of consensus $7.87/$8.47B. Shares tumbled.</p>
+<p><strong>YETI</strong>: Q2 EPS 67c vs. Street 54c, with ~8c from tariff refunds. Adjusted gross margins +170 basis points; company repurchased 2.8M shares for $130MM. Sales roughly inline. Full-year EPS outlook raised. Shares fell despite the beat.</p>
+<p><strong>DDS</strong> (Dillard's): FQ2 EPS $6.25 vs. Street $4.05, though $1.82 of that came from tariff refunds; ex-refunds, EPS was $4.43. Same-store sales +1% vs. Street +0.85%.</p>
+<p><strong>Databricks</strong>: Raised $5B at a $190B valuation (Bloomberg).</p>
+<p><strong>Anthropic</strong>: Investors expect a $2–3T valuation at its October IPO, with ARR potentially reaching $100–120B by year-end — up more than 10x in a year (FT). Separately, Anthropic is in talks to acquire AI startup Decart for ~$6B (Bloomberg). DeepSeek raised prices steeply on its flagship V4 models, a broadly positive signal for AI industry economics (Bloomberg).</p>
+<p><strong>HTZ</strong> (Hertz): Shares slumped after Pershing Square disclosed it had fully exited its stake (Barron's).</p>
+<p><strong>IBM</strong>: Announced a strategic partnership with OpenAI to deploy AI at scale across enterprise operations and complex workflows.</p>
+<p><strong>WWW</strong> (Wolverine): Q2 EPS 40c vs. Street 38c; sales +6.1% to $506.4MM, with Merrell +10.3% and Saucony +9%. Full-year EPS raised to $1.60 from ~$1.50.</p>
+<p><strong>Lenovo</strong>: Blowout FQ1 — sales +43% to $36.9B vs. Street $22.4B; ISG revenue +98% to $8.5B. Gross margins expanded 180 basis points to 16.5%.</p>
+<p><strong>DT</strong> (Dynatrace): Acquiring Arize AI for $915MM in cash and stock; deal expected to add ~200 basis points to ARR growth but dilute non-GAAP operating margins by ~175 basis points in fiscal 2027.</p>
+<p><strong>OpenAI</strong>: Chief Revenue Officer Denise Dresser is departing after less than a year, the latest in a series of high-profile exits (WSJ).</p>
+<h2>MACRO & FED DATES</h2>
+<p><strong>Fri Aug 14</strong> — U.S. Retail Sales for July (8:30am ET); Michigan Consumer Sentiment for August (10am ET). Watch for consumption resilience signals given the mixed jobs/inflation backdrop.</p>
+<p><strong>Wed Aug 19</strong> — FOMC Meeting Minutes (2pm ET). Key read on how unified or divided the committee is on the September hike decision.</p>
+<p><strong>Fri Aug 21</strong> — U.S. Flash PMIs for August (9:45am ET). Early look at whether the economy is holding up into Q3.</p>
+<p><strong>Wed Aug 26</strong> — July PCE (morning); <strong>Nvidia earnings</strong> (after close). The most anticipated data-plus-earnings combo of the summer</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. SPX: +0.65% | Nasdaq: +0.81% | Dow: +0.13% | R2K: +0.24% Brent: ~$87 (-2.20%) | Gold: -1.30% | Silver: -1.45% | BTC: -0.30% | DXY: ~flat RATES & FED. Treasuries rallied solidly Thursday, with yields falling 4–7 basis points across the curve. Markets are now pricing just 23 basis points of hikes across the Fed's final three meetings of the year, with only 35% odds of a move on September 16. Cleveland Fed's Hammack pushed back, reiterating rates should rise now despite the modest inflation cooling, while Richmond's Barkin argued the opposite — that disinflation can happen without further tightening. MARKET OUTLOOK. The bull case is holding up better than the bears want to admit — AI spending data keeps coming in strong, inflation is directionally improving, and buyout activity in software signals that smart money sees value. That said, don't get complacent: core PPI ran firmer than expected, the Atlanta Fed wage tracker accelerated to +3.8% in July, and yields have deeply structural upward forces — fiscal imbalances, AI-driven debt issuance, tariffs, and a shrinking workforce among them. The real test comes the week of August 25: PCE Wednesday morning, Nvidia earnings Wednesday night, and Fed Chair Warsh at Jackson Hole Friday. Until then, AI momentum and cooling headline inflation give the bulls enough to work with. GEOPOLITICAL. - Iran remains intransigent, effectively holding the Strait of Hormuz hostage while its economy digs in against U.S. sanctions and regional proxies grow more aggressive. Energy Secretary Wright claimed more oil is flowing through Hormuz than markets realize, which helped push Brent lower Thursday — but the structural risk hasn't gone away. - Russia is escalating attacks on Ukrainian ports and Black Sea shipping lanes, threatening global food supplies as Ukrainian farmers can't move their harvests (Reuters, NYT). - The Houthis continue assaulting Red Sea traffic, compounding shipping disruptions that feed inflationary pressure globally. - Mexico is pushing Washington to lower tariffs on North American autos as part of ongoing bilateral trade negotiations, a move that could reduce vehicle retail prices. COMPANY NEWS. WDAY (Workday): Silver Lake is in talks to acquire Workday in what would rank among the largest software buyouts in history, per a Reuters report that broke around 2:30pm Eastern time Thursday. Shares spiked on the news. CSCO (Cisco): Reported FQ4 earnings per share of $1.22 vs. Street $1.17, with sales up 18% to $17.3B and operating margins of 35.9%. F27 guide calls for earnings per share of $5.08 vs. Street $4.84 and sales of $72.8B vs. Street $69.1B. Management described a \"networking supercycle\" with broadening demand well beyond hyperscalers — yet shares fell on elevated expectations. COHR (Coherent): FQ4 earnings per share of $1.74 vs. Street $1.62; sales +33.8% to $2.046B vs. Street $1.99B, with gross and operating margins up 215 and 381 basis points year over year. FQ1 guide of $1.95 earnings per share/$2.3B revenue beats consensus. Sold off anyway. CBRS (Cerebras): Core revenue +103% to $209.9MM vs. Street $194MM; gross margins 41% vs. Street 36.7%. Full-year guidance raised, but RPOs barely moved quarter-over-quarter and expectations were sky-high. Shares declined. SNDK (Sandisk): At its analyst meeting, guided for 15–19% annual revenue growth F28–F30 with gross margins ~80% and operating margins ~75% — a more conservative long-term picture than the Street had modeled. Shares jumped on the clarity. TPR (Tapestry): FQ4 earnings per share $1.32 vs. Street $1.27, with gross margins +180 basis points and operating margins +250 basis points. Coach grew 14% FXN, Kate Spade -7%. F27 earnings per share/revenue guide midpoints of $7.85/$8.45B came in just shy of consensus $7.87/$8.47B. Shares tumbled. YETI : Q2 earnings per share 67c vs. Street 54c, with ~8c from tariff refunds. Adjusted gross margins +170 basis points; company repurchased 2.8M shares for $130MM. Sales roughly inline. Full-year earnings per share outlook raised. Shares fell despite the beat. DDS (Dillard's): FQ2 earnings per share $6.25 vs. Street $4.05, though $1.82 of that came from tariff refunds; ex-refunds, earnings per share was $4.43. Same-store sales +1% vs. Street +0.85%. Databricks : Raised $5B at a $190B valuation. Anthropic : Investors expect a $2–3T valuation at its October IPO, with ARR potentially reaching $100–120B by year-end — up more than 10x in a year. Separately, Anthropic is in talks to acquire AI startup Decart for ~$6B. DeepSeek raised prices steeply on its flagship V4 models, a broadly positive signal for AI industry economics. HTZ (Hertz): Shares slumped after Pershing Square disclosed it had fully exited its stake. IBM : Announced a strategic partnership with OpenAI to deploy AI at scale across enterprise operations and complex workflows. WWW (Wolverine): Q2 earnings per share 40c vs. Street 38c; sales +6.1% to $506.4MM, with Merrell +10.3% and Saucony +9%. Full-year earnings per share raised to $1.60 from ~$1.50. Lenovo : Blowout FQ1 — sales +43% to $36.9B vs. Street $22.4B; ISG revenue +98% to $8.5B. Gross margins expanded 180 basis points to 16.5%. DT (Dynatrace): Acquiring Arize AI for $915MM in cash and stock; deal expected to add ~200 basis points to ARR growth but dilute non-GAAP operating margins by ~175 basis points in fiscal 2027. OpenAI : Chief Revenue Officer Denise Dresser is departing after less than a year, the latest in a series of high-profile exits. MACRO & FED DATES. Fri Aug 14 — U.S. Retail Sales for July (8:30am Eastern time); Michigan Consumer Sentiment for August (10am Eastern time). Watch for consumption resilience signals given the mixed jobs/inflation backdrop. Wed Aug 19 — FOMC Meeting Minutes (2pm Eastern time). Key read on how unified or divided the committee is on the September hike decision. Fri Aug 21 — U.S. Flash PMIs for August (9:45am Eastern time). Early look at whether the economy is holding up into Q3. Wed Aug 26 — July PCE (morning); Nvidia earnings (after close). The most anticipated data-plus-earnings combo of the summer";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

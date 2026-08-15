@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnings Calendar · Monday, August 17,
+ 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Earnings Calendar · Monday, August 17,
+ 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Earnings Calendar · Monday, August 17,
+ 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #2a2a1a;
+    color: #c9b97a;
+    border: 1px solid #c9b97a44;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">EARNINGS</div>
+  <h1>Earnings Calendar · Monday, August 17,
+ 2026</h1>
+  <div class="meta">Aug 15, 2026 · 10:02 AM ET</div>
+</header>
+<hr class="divider">
+
+<div style="margin-bottom:28px; text-align:center;">
+  <img src="earnings-calendar-monday-august-17-2026-calendar.png" alt="Earnings Calendar" style="max-width:100%; border-radius:6px; border:1px solid #1a1a1a;">
+</div>
+<p># Victory Lane Earnings Preview — Week of August 17, 2026</p>
+<p>---</p>
+<h2>HTHT — H World Group Limited</h2>
+<p><strong>Report Date:</strong> Monday, August 18, 2026, ~6:15 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> $0.65 | <strong>Revenue:</strong> $982.80M</p>
+<p><strong>Whisper Number:</strong> Not materially different from consensus</p>
+<p><strong>YoY Revenue Growth:</strong> +9.6%</p>
+<p><strong>Company Guidance:</strong> None noted; management held full-year revenue outlook steady rather than raising it</p>
+<p><strong>Investor Sentiment:</strong> Bearish lean, though 60% still expect a beat</p>
+<p><strong>Short Interest:</strong> Down 26.1% since last earnings — shorts backing off</p>
+<p><strong>Options Activity:</strong> 704 of the $45.00 calls expiring August 21 were picked up on August 14 — small but directional bullish bet</p>
+<p><strong>Estimate Revisions:</strong> Trending lower — bar has come down heading in</p>
+<p><strong>Key Watch:</strong> Core RevPAR finally flipped positive (+3.0%) last quarter after extended weakness, with adjusted net income up 38.6%. International expansion underway (Vietnam, Laos, Singapore HQ). Overhang is the legacy Hanting budget hotel drag and management's reluctance to raise the full-year guide.</p>
+<p>---</p>
+<h2>BIDU — Baidu, Inc.</h2>
+<p><strong>Report Date:</strong> Tuesday, August 18, 2026, ~5:00 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> $1.51 | <strong>Revenue:</strong> $4.65B</p>
+<p><strong>Whisper Number:</strong> $1.57 — meaningfully above consensus</p>
+<p><strong>YoY Revenue Growth:</strong> +1.8%</p>
+<p><strong>Company Guidance:</strong> Not specified</p>
+<p><strong>Investor Sentiment:</strong> Bearish heading in, yet 80% still expect a beat</p>
+<p><strong>Short Interest:</strong> Up 16.4% since last earnings — shorts piling in aggressively</p>
+<p><strong>Options Activity:</strong> 11,510 of the $91.00 puts expiring August 21 purchased on August 14 — significant bearish positioning</p>
+<p><strong>Estimate Revisions:</strong> Not specified</p>
+<p><strong>Key Watch:</strong> Last quarter marked the first time AI-powered business crossed 50% of core revenue, pulling the segment back to positive growth. AI cloud infrastructure revenue +79%, GPU revenue +184%, with improving margins. Ernie 5.1 ranked top model in China. Risks: slight Robotaxi softness, weak iQIYI, chip supply constraints. The disconnect between the operational story and bearish market positioning is the central tension here.</p>
+<p>---</p>
+<h2>HD — Home Depot, Inc.</h2>
+<p><strong>Report Date:</strong> Tuesday, August 18, 2026, ~6:00 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> $4.71 | <strong>Revenue:</strong> $47.50B</p>
+<p><strong>Whisper Number:</strong> $4.72 — essentially in line with consensus</p>
+<p><strong>YoY Revenue Growth:</strong> +4.9%</p>
+<p><strong>Company Guidance:</strong> Not specified</p>
+<p><strong>Investor Sentiment:</strong> Bearish lean, yet 87.5% expect a beat</p>
+<p><strong>Short Interest:</strong> Up 11.3% since last earnings</p>
+<p><strong>Options Activity:</strong> 2,391 of the $295 puts expiring September 18 purchased on August 3 — defensive positioning</p>
+<p><strong>Estimate Revisions:</strong> Nudged lower</p>
+<p><strong>Key Watch:</strong> Top line holding but margins keep leaking. Last quarter gross margin thinned ~75bps and ROIC fell to 25.4% from 31.3% a year ago. Pro segment and online are carrying the load while big discretionary projects remain stuck on affordability. Tariffs and higher fuel/energy costs flagged as headwinds. Mingledorff's HVAC acquisition opens a new market. Management commentary on cost outlook matters more than the headline print.</p>
+<p>---</p>
+<h2>KLAR — Klarna Group plc</h2>
+<p><strong>Report Date:</strong> Tuesday, August 18, 2026, ~7:30 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> -$0.07 (loss) | <strong>Revenue:</strong> $987.94M</p>
+<p><strong>Whisper Number:</strong> -$0.03 — smaller loss than consensus expects</p>
+<p><strong>YoY Revenue Growth:</strong> Not specified</p>
+<p><strong>Company Guidance:</strong> Revenue $960M–$1.0B</p>
+<p><strong>Investor Sentiment:</strong> Bearish lean, yet 80% expect a beat</p>
+<p><strong>Short Interest:</strong> Up 18.9% since last earnings</p>
+<p><strong>Options Activity:</strong> 5,809 of the $25.00 calls expiring January 15, 2027 purchased on August 10 — notable longer-dated bullish bet</p>
+<p><strong>Estimate Revisions:</strong> Trending higher</p>
+<p><strong>Key Watch:</strong> Last quarter was the inflection — operating income swung to +$68M, net income hit +$1M, and revenue crossed $1B (+44%). Credit quality improving, not deteriorating. Card users at 5M; new partners include JP Morgan Payments, WorldPay, Google Pay, and Stripe. Key risk: management only reiterated full-year guidance, didn't raise it, and H2 faces currency headwind fade and tougher comps from prior large partnerships.</p>
+<p>---</p>
+<h2>ADI — Analog Devices, Inc.</h2>
+<p><strong>Report Date:</strong> Wednesday, August 19, 2026, ~7:00 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> $3.33 | <strong>Revenue:</strong> $3.92B</p>
+<p><strong>Whisper Number:</strong> $3.45 — well above consensus</p>
+<p><strong>YoY Revenue Growth:</strong> +36.1%</p>
+<p><strong>Company Guidance:</strong> EPS $3.15–$3.45 on revenue $3.80B–$4.00B; whisper is at the top of the guide</p>
+<p><strong>Investor Sentiment:</strong> Bullish — 83.3% expect a beat</p>
+<p><strong>Short Interest:</strong> Down 10.2% since last earnings — shorts retreating</p>
+<p><strong>Options Activity:</strong> 1,081 of the $330.00 puts expiring September 18 purchased on August 11 — modest hedging activity</p>
+<p><strong>Estimate Revisions:</strong> Trending higher across the board</p>
+<p><strong>Key Watch:</strong> Last quarter was a record revenue quarter with guide raised on revenue, margins, and earnings simultaneously. Industrial (50% of sales, +56% YoY) and data center (+90%+) are the twin engines. Empower Semiconductor acquisition targets AI accelerator power tech with 2027 payoff. Watch gross margin — guided slightly lower due to factory utilization constraints and consumer segment softness from memory shortages. Bar is high; question is whether ADI can keep clearing it.</p>
+<p>---</p>
+<h2>BILL — BILL Holdings, Inc.</h2>
+<p><strong>Report Date:</strong> Wednesday, August 19, 2026, ~4:00 PM ET (after market)</p>
+<p><strong>Consensus EPS:</strong> $0.71 | <strong>Revenue:</strong> $429.71M</p>
+<p><strong>Whisper Number:</strong> $0.73 — slightly above consensus</p>
+<p><strong>YoY Revenue Growth:</strong> +12.1%</p>
+<p><strong>Company Guidance:</strong> EPS $0.69–$0.72 on revenue $425M–$435M; whisper sits above guidance range</p>
+<p><strong>Investor Sentiment:</strong> Bearish lean, yet 90% expect a beat</p>
+<p><strong>Short Interest:</strong> Down 24.4% since last earnings — significant short covering</p>
+<p><strong>Options Activity:</strong> 2,012 of the $50 calls expiring September 18 purchased on July 29 — bullish positioning</p>
+<p><strong>Estimate Revisions:</strong> Not specified</p>
+<p><strong>Key Watch:</strong> First-ever GAAP profit last quarter, operating margin at 20%, buyback doubled to $1B. Company announced up to 30% workforce reduction targeting ~$110M in savings as AI is named the top strategic priority. Core growth is decelerating — APAR segment at +12%, same-store payment volume only +4%. Watch margin trajectory and whether the aggressive restructuring generates any operational friction.</p>
+<p>---</p>
+<h2>LOW — Lowe's Companies, Inc.</h2>
+<p><strong>Report Date:</strong> Wednesday, August 19, 2026, ~6:00 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> $4.22 | <strong>Revenue:</strong> $26.18B</p>
+<p><strong>Whisper Number:</strong> $4.26 — modestly above consensus</p>
+<p><strong>YoY Revenue Growth:</strong> +9.3%</p>
+<p><strong>Company Guidance:</strong> Not fully specified in available data</p>
+<p><strong>Investor Sentiment:</strong> Bullish — 88.9% expect a beat</p>
+<p><strong>Short Interest:</strong> Data cut off in source; noted as declining</p>
+<p><strong>Options Activity:</strong> Not specified in available data</p>
+<p><strong>Estimate Revisions:</strong> Not fully specified</p>
+<p><strong>Key Watch:</strong> Online segment showing strong momentum. Margin trajectory is the primary watch item heading in. Sentiment is notably more constructive than cross-town rival Home Depot.</p>
+<p>---</p>
+<h2>TGT — Target Corporation</h2>
+<p><strong>Report Date:</strong> Wednesday, August 19, 2026, ~6:30 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> $2.26 | <strong>Revenue:</strong> $26.00B</p>
+<p><strong>Whisper Number:</strong> $2.35 — meaningfully above consensus</p>
+<p><strong>YoY Revenue Growth:</strong> +3.1%</p>
+<p><strong>Company Guidance:</strong> Company signaled sales growth could cool to ~1% for the remainder of the year</p>
+<p><strong>Investor Sentiment:</strong> Grumpy heading in, yet 58% still expect a beat</p>
+<p><strong>Short Interest:</strong> Up 8.1% since last earnings</p>
+<p><strong>Options Activity:</strong> 17,413 of the $80 calls expiring January 2027 purchased on August 11 — large, longer-dated bullish wager</p>
+<p><strong>Estimate Revisions:</strong> Creeping higher</p>
+<p><strong>Key Watch:</strong> Last quarter delivered the first positive comp in over a year (+5.6%), powered by Pokémon collaborations, baby aisle resets, and food department overhaul. This quarter is the hardest comparison of the year — lapping the Nintendo Switch 2 launch. Management already guided to ~1% sales growth for the back half, citing fading tax refund spending and a cautious consumer. The question is whether Q1 was the start of a real trend or a one-quarter phenomenon.</p>
+<p>---</p>
+<h2>BABA — Alibaba Group Holding Limited</h2>
+<p><strong>Report Date:</strong> Thursday, August 20, 2026, ~5:30 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> $1.94 | <strong>Revenue:</strong> $38.63B</p>
+<p><strong>Whisper Number:</strong> $1.85 — below consensus, a notable divergence</p>
+<p><strong>YoY Revenue Growth:</strong> +11.7%</p>
+<p><strong>Company Guidance:</strong> Not specified</p>
+<p><strong>Investor Sentiment:</strong> Bearish — majority lean negative heading in, though over 50% still expect a beat</p>
+<p><strong>Short Interest:</strong> Up 7.1% since last earnings</p>
+<p><strong>Options Activity:</strong> 7,569 of the $165.00 calls expiring September 18 purchased on August 11 — significant contrarian bullish bet</p>
+<p><strong>Estimate Revisions:</strong> Analysts trimming estimates</p>
+<p><strong>Key Watch:</strong> Cloud revenue accelerating to +40% growth; AI revenue up more than 10x since November. The cost of that growth is the central tension — a key profit measure fell ~84% last quarter and free cash flow turned negative as capex into chips and data centers surges. The bull/bear debate is binary: is the AI growth story compelling enough to justify the collapsing near-term profitability? Shorts say no. The $165 call buyer disagrees loudly.</p>
+<p>---</p>
+<h2>WMT — Walmart Inc.</h2>
+<p><strong>Report Date:</strong> Thursday, August 20, 2026, ~7:00 AM ET (before market)</p>
+<p><strong>Consensus EPS:</strong> $0.73 | <strong>Revenue:</strong> $186.32B</p>
+<p><strong>Whisper Number:</strong> $0.75 — above consensus</p>
+<p><strong>YoY Revenue Growth:</strong> +5.0%</p>
+<p><strong>Company Guidance:</strong> EPS $0.72–$0.74 on revenue $184.50B–$186.27B; whisper sits above the guidance ceiling</p>
+<p><strong>Investor Sentiment:</strong> Positive — 57.1% expecting a beat</p>
+<p><strong>Short Interest:</strong> Up 1.0% since last earnings — slight uptick</p>
+<p><strong>Options Activity:</strong> 20,948 of the $119.00 puts expiring August 21 purchased on August 5 — large, near-term bearish hedge</p>
+<p><strong>Estimate Revisions:</strong> Creeping lower</p>
+<p><strong>Key Watch:</strong> Last quarter delivered the best U.S. merchandise margins in 18 quarters, strongest traffic in 6 quarters, and high-margin businesses (advertising, memberships, marketplace) now represent roughly one-third of operating profit. The fuel headwind is real — pricier gas is squeezing lower-income shoppers, with fill-ups under 10 gallons appearing for the first time since 2022. The key signal to watch: does management nudge full-year guidance higher rather than simply reiterate it? That's the tell on whether the profit acceleration story has legs into the back half.</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "# Victory Lane Earnings Preview — Week of August 17, 2026 --- HTHT — H World Group Limited. Report Date: Monday, August 18, 2026, ~6:15 AM Eastern time (before market) Consensus earnings per share: $0.65 | Revenue: $982.80M Whisper Number: Not materially different from consensus year over year Revenue Growth: +9.6% Company Guidance: None noted; management held full-year revenue outlook steady rather than raising it Investor Sentiment: Bearish lean, though 60% still expect a beat Short Interest: Down 26.1% since last earnings — shorts backing off Options Activity: 704 of the $45.00 calls expiring August 21 were picked up on August 14 — small but directional bullish bet Estimate Revisions: Trending lower — bar has come down heading in Key Watch: Core RevPAR finally flipped positive (+3.0%) last quarter after extended weakness, with adjusted net income up 38.6%. International expansion underway (Vietnam, Laos, Singapore HQ). Overhang is the legacy Hanting budget hotel drag and management's reluctance to raise the full-year guide. --- BIDU — Baidu, Inc.. Report Date: Tuesday, August 18, 2026, ~5:00 AM Eastern time (before market) Consensus earnings per share: $1.51 | Revenue: $4.65B Whisper Number: $1.57 — meaningfully above consensus year over year Revenue Growth: +1.8% Company Guidance: Not specified Investor Sentiment: Bearish heading in, yet 80% still expect a beat Short Interest: Up 16.4% since last earnings — shorts piling in aggressively Options Activity: 11,510 of the $91.00 puts expiring August 21 purchased on August 14 — significant bearish positioning Estimate Revisions: Not specified Key Watch: Last quarter marked the first time AI-powered business crossed 50% of core revenue, pulling the segment back to positive growth. AI cloud infrastructure revenue +79%, GPU revenue +184%, with improving margins. Ernie 5.1 ranked top model in China. Risks: slight Robotaxi softness, weak iQIYI, chip supply constraints. The disconnect between the operational story and bearish market positioning is the central tension here. --- HD — Home Depot, Inc.. Report Date: Tuesday, August 18, 2026, ~6:00 AM Eastern time (before market) Consensus earnings per share: $4.71 | Revenue: $47.50B Whisper Number: $4.72 — essentially in line with consensus year over year Revenue Growth: +4.9% Company Guidance: Not specified Investor Sentiment: Bearish lean, yet 87.5% expect a beat Short Interest: Up 11.3% since last earnings Options Activity: 2,391 of the $295 puts expiring September 18 purchased on August 3 — defensive positioning Estimate Revisions: Nudged lower Key Watch: Top line holding but margins keep leaking. Last quarter gross margin thinned ~75bps and ROIC fell to 25.4% from 31.3% a year ago. Pro segment and online are carrying the load while big discretionary projects remain stuck on affordability. Tariffs and higher fuel/energy costs flagged as headwinds. Mingledorff's HVAC acquisition opens a new market. Management commentary on cost outlook matters more than the headline print. --- KLAR — Klarna Group plc. Report Date: Tuesday, August 18, 2026, ~7:30 AM Eastern time (before market) Consensus earnings per share: -$0.07 (loss) | Revenue: $987.94M Whisper Number: -$0.03 — smaller loss than consensus expects year over year Revenue Growth: Not specified Company Guidance: Revenue $960M–$1.0B Investor Sentiment: Bearish lean, yet 80% expect a beat Short Interest: Up 18.9% since last earnings Options Activity: 5,809 of the $25.00 calls expiring January 15, 2027 purchased on August 10 — notable longer-dated bullish bet Estimate Revisions: Trending higher Key Watch: Last quarter was the inflection — operating income swung to +$68M, net income hit +$1M, and revenue crossed $1B (+44%). Credit quality improving, not deteriorating. Card users at 5M; new partners include JP Morgan Payments, WorldPay, Google Pay, and Stripe. Key risk: management only reiterated full-year guidance, didn't raise it, and H2 faces currency headwind fade and tougher comps from prior large partnerships. --- ADI — Analog Devices, Inc.. Report Date: Wednesday, August 19, 2026, ~7:00 AM Eastern time (before market) Consensus earnings per share: $3.33 | Revenue: $3.92B Whisper Number: $3.45 — well above consensus year over year Revenue Growth: +36.1% Company Guidance: earnings per share $3.15–$3.45 on revenue $3.80B–$4.00B; whisper is at the top of the guide Investor Sentiment: Bullish — 83.3% expect a beat Short Interest: Down 10.2% since last earnings — shorts retreating Options Activity: 1,081 of the $330.00 puts expiring September 18 purchased on August 11 — modest hedging activity Estimate Revisions: Trending higher across the board Key Watch: Last quarter was a record revenue quarter with guide raised on revenue, margins, and earnings simultaneously. Industrial (50% of sales, +56% year over year) and data center (+90%+) are the twin engines. Empower Semiconductor acquisition targets AI accelerator power tech with 2027 payoff. Watch gross margin — guided slightly lower due to factory utilization constraints and consumer segment softness from memory shortages. Bar is high; question is whether ADI can keep clearing it. --- BILL — BILL Holdings, Inc.. Report Date: Wednesday, August 19, 2026, ~4:00 PM Eastern time (after market) Consensus earnings per share: $0.71 | Revenue: $429.71M Whisper Number: $0.73 — slightly above consensus year over year Revenue Growth: +12.1% Company Guidance: earnings per share $0.69–$0.72 on revenue $425M–$435M; whisper sits above guidance range Investor Sentiment: Bearish lean, yet 90% expect a beat Short Interest: Down 24.4% since last earnings — significant short covering Options Activity: 2,012 of the $50 calls expiring September 18 purchased on July 29 — bullish positioning Estimate Revisions: Not specified Key Watch: First-ever GAAP profit last quarter, operating margin at 20%, buyback doubled to $1B. Company announced up to 30% workforce reduction targeting ~$110M in savings as AI is named the top strategic priority. Core growth is decelerating — APAR segment at +12%, same-store payment volume only +4%. Watch margin trajectory and whether the aggressive restructuring generates any operational friction. --- LOW — Lowe's Companies, Inc.. Report Date: Wednesday, August 19, 2026, ~6:00 AM Eastern time (before market) Consensus earnings per share: $4.22 | Revenue: $26.18B Whisper Number: $4.26 — modestly above consensus year over year Revenue Growth: +9.3% Company Guidance: Not fully specified in available data Investor Sentiment: Bullish — 88.9% expect a beat Short Interest: Data cut off in source; noted as declining Options Activity: Not specified in available data Estimate Revisions: Not fully specified Key Watch: Online segment showing strong momentum. Margin trajectory is the primary watch item heading in. Sentiment is notably more constructive than cross-town rival Home Depot. --- TGT — Target Corporation. Report Date: Wednesday, August 19, 2026, ~6:30 AM Eastern time (before market) Consensus earnings per share: $2.26 | Revenue: $26.00B Whisper Number: $2.35 — meaningfully above consensus year over year Revenue Growth: +3.1% Company Guidance: Company signaled sales growth could cool to ~1% for the remainder of the year Investor Sentiment: Grumpy heading in, yet 58% still expect a beat Short Interest: Up 8.1% since last earnings Options Activity: 17,413 of the $80 calls expiring January 2027 purchased on August 11 — large, longer-dated bullish wager Estimate Revisions: Creeping higher Key Watch: Last quarter delivered the first positive comp in over a year (+5.6%), powered by Pokémon collaborations, baby aisle resets, and food department overhaul. This quarter is the hardest comparison of the year — lapping the Nintendo Switch 2 launch. Management already guided to ~1% sales growth for the back half, citing fading tax refund spending and a cautious consumer. The question is whether Q1 was the start of a real trend or a one-quarter phenomenon. --- BABA — Alibaba Group Holding Limited. Report Date: Thursday, August 20, 2026, ~5:30 AM Eastern time (before market) Consensus earnings per share: $1.94 | Revenue: $38.63B Whisper Number: $1.85 — below consensus, a notable divergence year over year Revenue Growth: +11.7% Company Guidance: Not specified Investor Sentiment: Bearish — majority lean negative heading in, though over 50% still expect a beat Short Interest: Up 7.1% since last earnings Options Activity: 7,569 of the $165.00 calls expiring September 18 purchased on August 11 — significant contrarian bullish bet Estimate Revisions: Analysts trimming estimates Key Watch: Cloud revenue accelerating to +40% growth; AI revenue up more than 10x since November. The cost of that growth is the central tension — a key profit measure fell ~84% last quarter and free cash flow turned negative as capex into chips and data centers surges. The bull/bear debate is binary: is the AI growth story compelling enough to justify the collapsing near-term profitability? Shorts say no. The $165 call buyer disagrees loudly. --- WMT — Walmart Inc.. Report Date: Thursday, August 20, 2026, ~7:00 AM Eastern time (before market) Consensus earnings per share: $0.73 | Revenue: $186.32B Whisper Number: $0.75 — above consensus year over year Revenue Growth: +5.0% Company Guidance: earnings per share $0.72–$0.74 on revenue $184.50B–$186.27B; whisper sits above the guidance ceiling Investor Sentiment: Positive — 57.1% expecting a beat Short Interest: Up 1.0% since last earnings — slight uptick Options Activity: 20,948 of the $119.00 puts expiring August 21 purchased on August 5 — large, near-term bearish hedge Estimate Revisions: Creeping lower Key Watch: Last quarter delivered the best U.S. merchandise margins in 18 quarters, strongest traffic in 6 quarters, and high-margin businesses (advertising, memberships, marketplace) now represent roughly one-third of operating profit. The fuel headwind is real — pricier gas is squeezing lower-income shoppers, with fill-ups under 10 gallons appearing for the first time since 2022. The key signal to watch: does management nudge full-year guidance higher rather than simply reiterate it? That's the tell on whether the profit acceleration story has legs into the back half.";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

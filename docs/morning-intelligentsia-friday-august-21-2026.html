@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Intelligentsia · Friday August 21, 2026 · The Victory Lane</title>
+<meta http-equiv="refresh" content="180">
+<meta property="og:title" content="Morning Intelligentsia · Friday August 21, 2026">
+<meta property="og:description" content="The Victory Lane · Market Intelligentsia">
+<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Morning Intelligentsia · Friday August 21, 2026">
+<meta name="twitter:description" content="The Victory Lane · Market Intelligentsia">
+<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #0a0a0a;
+    color: #e8e4d9;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 32px 100px;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 0;
+    background: #0a0a0a;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .back-link {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+  .back-link:hover { color: #c9b97a; }
+  .site-name {
+    font-size: 12px;
+    color: #333;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+  }
+  header { margin-bottom: 28px; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background: #1a3a2a;
+    color: #4caf82;
+    border: 1px solid #4caf8244;
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 0.02em;
+    color: #c9b97a;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  header .meta {
+    font-size: 13px;
+    color: #555;
+    font-family: 'Courier New', monospace;
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 20px 0 28px;
+  }
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  p { margin-bottom: 12px; color: #ccc8bc; }
+  strong { color: #c9b97a; font-weight: bold; }
+  .ticker-line { color: #c9b97a; font-weight: bold; }
+  #tts-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    flex-wrap: wrap;
+  }
+  #tts-bar button {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #e8e4d9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  #tts-bar button:hover { background: #2a2a2a; }
+  #tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+  #tts-bar button.skip { color: #777; }
+  #tts-bar button.skip:hover { color: #e8e4d9; }
+  .speed-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .speed-group label {
+    color: #555;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  #speed-slider {
+    width: 80px;
+    accent-color: #c9b97a;
+  }
+  #speed-val {
+    color: #c9b97a;
+    font-size: 11px;
+    min-width: 28px;
+  }
+  #tts-status { color: #555; flex: 1; font-size: 11px; min-width: 120px; }
+  .notify-btn {
+    margin-left: auto;
+    background: #1a1a2a !important;
+    border-color: #334 !important;
+    color: #668 !important;
+  }
+  .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+
+<header>
+  <div class="tag">MORNING</div>
+  <h1>Morning Intelligentsia · Friday August 21, 2026</h1>
+  <div class="meta">Aug 21, 2026 · 05:25 AM ET</div>
+</header>
+<hr class="divider">
+
+<h2>MARKETS</h2>
+<p>S&P futures: +0.28% | Nasdaq futures: +0.43% | Dow: +201 points | R2K: +17.8 points | DXY: -0.30% | Brent: -1.10% | Gold: +1.80% | Silver: +2.75% | BTC: +7.20% to $77.8K</p>
+<h2>RATES & FED</h2>
+<p>Treasuries have a modest bid this morning with yields down 1–2 basis points across the curve. The market is still pricing roughly 22 basis points worth of cuts across the Fed's final three meetings of the year. All eyes now turn to Warsh's Jackson Hole speech Friday, August 28 at 10am ET — the question is whether he softens his anti-QE rhetoric enough to put any downward pressure on the long end.</p>
+<h2>MARKET OUTLOOK</h2>
+<p>The near-term setup is cautiously constructive — yields ticking down and oil pulling back gives equities some breathing room into the weekend. But the structural problem hasn't changed: a tidal wave of AI-linked corporate issuance (see: Broadcom's ~$100B debt deal) and extreme fiscal imbalances are the dominant force pushing long rates higher, and Bessent's buyback expansion is, as the FT puts it, a "band-aid on a bullet hole." Warsh at Jackson Hole is the single most important catalyst of the next two weeks — if he signals any flexibility on the balance sheet, that's a genuine relief valve for rates. If he doesn't, the pressure on equities resumes. Watch PCE on Wednesday August 26 and NVDA/CRM earnings that same evening as the next major sentiment tests.</p>
+<h2>GEOPOLITICAL</h2>
+<p>- Trump is signaling an aggressive pivot away from large-scale military action against Iran, but that pivot limits his leverage and raises the risk Tehran decides to escalate kinetically instead (NYT). Bessent will hold a press conference Monday August 24 to unveil intensified financial pressure, though its effectiveness is questionable absent meaningful penalties on China, Iran's primary financial lifeline.</p>
+<p>- America's allies are growing increasingly skeptical of the US security umbrella as the Pentagon struggles to shield Middle East shipping lanes from Iranian retaliation (WSJ).</p>
+<p>- Piracy is surging in parallel — two hijackings in four days off Somalia as bad actors exploit the regional chaos (NYT).</p>
+<p>- Ukraine is seeking Elon Musk's help to use Starlink for targeting Russian ballistic missile launchers (FT).</p>
+<p>- Grain prices are rising following an escalation in Russia-Ukraine port strikes, adding another inflationary layer beyond oil.</p>
+<h2>COMPANY NEWS</h2>
+<p><strong>ROST</strong> (Ross Stores) delivered the best retailer print of the July-end cycle: FQ2 EPS of $2.66 vs. the Street's $1.96. Even stripping out tariff refunds, EPS would have been $2.06 — still a beat — driven by comparable sales up 10%, roughly 240 basis points ahead of consensus. Q3 comp guidance of +6.5% (Street: +3.2%) and Q4 comps of +4.5% (Street: +2.5%). New store opening plan is being expanded.</p>
+<p><strong>AVGO</strong> (Broadcom) is in talks with lenders to raise ~$100B in AI chip-linked financing, with Broadcom potentially guaranteeing a senior tranche worth $60–70B, benefiting Anthropic and others (Bloomberg). This is arguably the single biggest structural driver of higher long-term yields right now.</p>
+<p><strong>FLO</strong> (Flowers Foods) missed on FQ2 EPS ($0.21 vs. $0.22 Street) and EBITDA ($111.3MM vs. $118.4MM), with sales down 4% to $1.193B vs. $1.228B expected. Full-year EPS guidance cut to $0.75–$0.85 from $0.80–$0.90.</p>
+<p><strong>AAPL</strong> (Apple) may pivot under new CEO John Ternus toward significantly higher R&D and capex spending as it races to stay competitive in AI (Barron's).</p>
+<p><strong>MU</strong> (Micron) CEO told CNBC that AI has permanently reduced the cyclicality of the memory industry, with DRAM far more central to the AI buildout than prior tech cycles.</p>
+<p><strong>NVDA</strong> (Nvidia) is in talks with South Korean AI chip designer Rebellions about a potential partnership or outright acquisition (Bloomberg).</p>
+<p><strong>ASTS</strong> (AST SpaceMobile) and SpaceX are pursuing a ~$6B spectrum acquisition from Grain Management to support space-based wireless phone services (Bloomberg).</p>
+<p><strong>ABT</strong> (Abbott) will pay $670MM to settle litigation related to specialty formulas for premature infants (WSJ).</p>
+<p><strong>MS</strong> (Morgan Stanley) has selected Dallas for a major expansion, anchoring a new $1.3B skyscraper (NY Post).</p>
+<p><strong>GM</strong> (General Motors) risks losing its title as the top-selling US auto OEM to Toyota, though the market may not care much as GM focuses on margins over volume (WSJ).</p>
+<p><strong>VIRT</strong> (Virtu) is exploring a sale of its agency brokerage and algo business, potentially worth $3.5–4B (Bloomberg).</p>
+<p><strong>PSKY/WBD</strong> — California AG Bonta said states suing to block the Paramount-Warner Bros. Discovery deal would consider settlement, but only with "robust structural remedies" (CNBC).</p>
+<p>Samsung Electronics outlined $65–80B in shareholder returns for 2026 (Bloomberg, Reuters).</p>
+<h2>MACRO & FED DATES</h2>
+<p><strong>Mon Aug 24</strong> — Bessent Iran sanctions press conference. Watch for scope of financial measures and any indication China is targeted.</p>
+<p><strong>Wed Aug 26, 8:30am ET</strong> — US PCE for July. Key inflation read ahead of Jackson Hole.</p>
+<p><strong>Wed Aug 26, after close</strong> — NVDA, CRM, CRWD earnings. Most critical prints of the week.</p>
+<p><strong>Fri Aug 28, 10am ET</strong> — Fed Chair Warsh speaks at Jackson Hole. The dominant market event of the next two weeks.</p>
+<h2>EARNINGS THIS WEEK</h2>
+<p><strong>Friday Aug 21 (Pre-market):</strong> BJ, BKE</p>
+<p><strong>Tuesday Aug 26 (After close):</strong> INTU, ZM</p>
+<p><strong>Wednesday Aug 27 (Pre-market):</strong> ANF, BBWI, KSS, SJM</p>
+<p><strong>Wednesday Aug 27 (After close):</strong> A, CRM, CRWD, HPQ, NVDA, SNPS, URBN, VEEV</p>
+<p><strong>Thursday Aug 28 (Pre-market):</strong> BURL, DG, DLTR, HRL</p>
+<p><strong>Thursday Aug 28 (After close):</strong> ADSK, AFRM, GAP, MRVL, ULTA, WDAY</p>
+<h2>EARNINGS NEXT 2 WEEKS</h2>
+<p>No additional earnings beyond the current week were specified in today's note.</p>
+
+<div id="tts-bar">
+  <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
+  <button class="skip" onclick="skipBack()">&#8592; 10s</button>
+  <button class="skip" onclick="skipForward()">10s &#8594;</button>
+  <button onclick="stopReading()">&#9632; Stop</button>
+  <button onclick="replayReading()">&#8635; Replay</button>
+  <div class="speed-group">
+    <label>Speed</label>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
+  </div>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>
+
+<script>
+  const digestText = "MARKETS. S&P futures: +0.28% | Nasdaq futures: +0.43% | Dow: +201 points | R2K: +17.8 points | DXY: -0.30% | Brent: -1.10% | Gold: +1.80% | Silver: +2.75% | BTC: +7.20% to $77.8K RATES & FED. Treasuries have a modest bid this morning with yields down 1–2 basis points across the curve. The market is still pricing roughly 22 basis points worth of cuts across the Fed's final three meetings of the year. All eyes now turn to Warsh's Jackson Hole speech Friday, August 28 at 10am Eastern time — the question is whether he softens his anti-QE rhetoric enough to put any downward pressure on the long end. MARKET OUTLOOK. The near-term setup is cautiously constructive — yields ticking down and oil pulling back gives equities some breathing room into the weekend. But the structural problem hasn't changed: a tidal wave of AI-linked corporate issuance (see: Broadcom's ~$100B debt deal) and extreme fiscal imbalances are the dominant force pushing long rates higher, and Bessent's buyback expansion is, as the FT puts it, a \"band-aid on a bullet hole.\" Warsh at Jackson Hole is the single most important catalyst of the next two weeks — if he signals any flexibility on the balance sheet, that's a genuine relief valve for rates. If he doesn't, the pressure on equities resumes. Watch PCE on Wednesday August 26 and NVDA/CRM earnings that same evening as the next major sentiment tests. GEOPOLITICAL. - Trump is signaling an aggressive pivot away from large-scale military action against Iran, but that pivot limits his leverage and raises the risk Tehran decides to escalate kinetically instead. Bessent will hold a press conference Monday August 24 to unveil intensified financial pressure, though its effectiveness is questionable absent meaningful penalties on China, Iran's primary financial lifeline. - America's allies are growing increasingly skeptical of the US security umbrella as the Pentagon struggles to shield Middle East shipping lanes from Iranian retaliation. - Piracy is surging in parallel — two hijackings in four days off Somalia as bad actors exploit the regional chaos. - Ukraine is seeking Elon Musk's help to use Starlink for targeting Russian ballistic missile launchers. - Grain prices are rising following an escalation in Russia-Ukraine port strikes, adding another inflationary layer beyond oil. COMPANY NEWS. ROST (Ross Stores) delivered the best retailer print of the July-end cycle: FQ2 earnings per share of $2.66 vs. the Street's $1.96. Even stripping out tariff refunds, earnings per share would have been $2.06 — still a beat — driven by comparable sales up 10%, roughly 240 basis points ahead of consensus. Q3 comp guidance of +6.5% (Street: +3.2%) and Q4 comps of +4.5% (Street: +2.5%). New store opening plan is being expanded. AVGO (Broadcom) is in talks with lenders to raise ~$100B in AI chip-linked financing, with Broadcom potentially guaranteeing a senior tranche worth $60–70B, benefiting Anthropic and others. This is arguably the single biggest structural driver of higher long-term yields right now. FLO (Flowers Foods) missed on FQ2 earnings per share ($0.21 vs. $0.22 Street) and EBITDA ($111.3MM vs. $118.4MM), with sales down 4% to $1.193B vs. $1.228B expected. Full-year earnings per share guidance cut to $0.75–$0.85 from $0.80–$0.90. AAPL (Apple) may pivot under new CEO John Ternus toward significantly higher R&D and capex spending as it races to stay competitive in AI. MU (Micron) CEO told CNBC that AI has permanently reduced the cyclicality of the memory industry, with DRAM far more central to the AI buildout than prior tech cycles. NVDA (Nvidia) is in talks with South Korean AI chip designer Rebellions about a potential partnership or outright acquisition. ASTS (AST SpaceMobile) and SpaceX are pursuing a ~$6B spectrum acquisition from Grain Management to support space-based wireless phone services. ABT (Abbott) will pay $670MM to settle litigation related to specialty formulas for premature infants. MS (Morgan Stanley) has selected Dallas for a major expansion, anchoring a new $1.3B skyscraper (NY Post). GM (General Motors) risks losing its title as the top-selling US auto OEM to Toyota, though the market may not care much as GM focuses on margins over volume. VIRT (Virtu) is exploring a sale of its agency brokerage and algo business, potentially worth $3.5–4B. PSKY/WBD — California AG Bonta said states suing to block the Paramount-Warner Bros. Discovery deal would consider settlement, but only with \"robust structural remedies\". Samsung Electronics outlined $65–80B in shareholder returns for 2026 (Bloomberg, Reuters). MACRO & FED DATES. Mon Aug 24 — Bessent Iran sanctions press conference. Watch for scope of financial measures and any indication China is targeted. Wed Aug 26, 8:30am Eastern time — US PCE for July. Key inflation read ahead of Jackson Hole. Wed Aug 26, after close — NVDA, CRM, CRWD earnings. Most critical prints of the week. Fri Aug 28, 10am Eastern time — Fed Chair Warsh speaks at Jackson Hole. The dominant market event of the next two weeks. EARNINGS THIS WEEK. Friday Aug 21 (Pre-market): BJ, BKE Tuesday Aug 26 (After close): INTU, ZM Wednesday Aug 27 (Pre-market): ANF, BBWI, KSS, SJM Wednesday Aug 27 (After close): A, CRM, CRWD, HPQ, NVDA, SNPS, URBN, VEEV Thursday Aug 28 (Pre-market): BURL, DG, DLTR, HRL Thursday Aug 28 (After close): ADSK, AFRM, GAP, MRVL, ULTA, WDAY";
+  const CHARS_PER_10S = 162;
+  const CHUNK_SIZE = 4000;
+  let rate = 1.3;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  // Split text into chunks at sentence boundaries
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        // Find last sentence break before the limit
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  const chunks = getChunks(digestText);
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
+      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
+      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
+      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
+      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
+      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en-US"))        ||
+      voices.find(v => v.lang.startsWith("en"))           ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance("");
+    warm.volume = 0;
+    window.speechSynthesis.speak(warm);
+    iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) {
+      speakFrom(charIndex);
+    }
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  function findChunkIndex(charPos) {
+    for (let i = chunks.length - 1; i >= 0; i--) {
+      if (charPos >= chunks[i].start) return i;
+    }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    if (chunkIdx >= chunks.length || isPaused) {
+      if (!isPaused && chunkIdx >= chunks.length) {
+        charIndex = 0;
+        setPlayBtn(false);
+        setStatus("Done \u2014 press Replay to listen again");
+      }
+      return;
+    }
+    const chunk = chunks[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    // Adjust first chunk to start from the right position
+    if (startChar > chunks[chunkIdx].start) {
+      const offset = startChar - chunks[chunkIdx].start;
+      const origText = chunks[chunkIdx].text;
+      chunks[chunkIdx] = { text: origText.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      // Restore chunk for future use
+      chunks[chunkIdx] = { text: origText, start: chunks[chunkIdx].start - offset + offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else { setStatus("Skipped forward \u2014 press Play to resume"); }
+  }
+
+  function skipBack() {
+    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (wasPlaying) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else { setStatus("Skipped back \u2014 press Play to resume"); }
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setPlayBtn(false);
+    setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0;
+    window.speechSynthesis.cancel();
+    setStatus("Restarting...");
+    setTimeout(() => speakFrom(0), 300);
+  }
+
+  // Audio chime for new dispatches
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (Notification.permission === "granted") {
+      btn.textContent = "Notifications on";
+      btn.classList.add("enabled");
+    } else if (Notification.permission === "denied") {
+      btn.textContent = "Notifications blocked";
+    } else {
+      btn.textContent = "Notify me";
+      btn.classList.remove("enabled");
+    }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(permission => {
+      updateNotifyBtn();
+      if (permission === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  function checkForNewDigest() {
+    fetch("digests.json?t=" + Date.now())
+      .then(r => r.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const latest = data[0];
+          const lastSeen = localStorage.getItem("lastSeenDigest");
+          if (lastSeen !== latest.filename) {
+            localStorage.setItem("lastSeenDigest", latest.filename);
+            if (lastSeen !== null) {
+              // Play chime for new dispatch
+              playChime();
+              if (Notification.permission === "granted") {
+                const n = new Notification("The Victory Lane", {
+                  body: latest.subject + " \u00b7 " + latest.email_date,
+                });
+                n.onclick = () => { window.open(latest.filename); };
+              }
+            }
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
+  // Auto-return to index after 5 minutes
+  let autoReturnTimer = setTimeout(() => {
+    window.location.href = "index.html";
+  }, 5 * 60 * 1000);
+
+  // Reset timer on user interaction
+  document.addEventListener("click", () => {
+    clearTimeout(autoReturnTimer);
+    autoReturnTimer = setTimeout(() => { window.location.href = "index.html"; }, 5 * 60 * 1000);
+  });
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
+    checkForNewDigest();
+    setInterval(checkForNewDigest, 3 * 60 * 1000);
+    if (isIOS) {
+      setStatus("Tap Play to start");
+    } else {
+      setTimeout(() => speakFrom(0), 1800);
+    }
+  });
+  window.addEventListener("pagehide", () => { window.speechSynthesis.cancel(); });
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
+</script>
+
+</body>
+</html>

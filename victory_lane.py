@@ -41,7 +41,7 @@ CONFIG = {
     "anthropic_api_key":        os.environ.get("ANTHROPIC_API_KEY",  "YOUR_ANTHROPIC_API_KEY"),
     "notion_token":             os.environ.get("NOTION_TOKEN",        ""),
     "stocks_on_watch_db_id":    "2ee48333-7409-81a3-a830-000b9ce19118",
-    "lookback_hours":           168,
+    "lookback_hours":           48,
     "html_output":              r"C:\Tools\VitalRecap\digest.html",
     "state_file":               r"C:\Tools\VitalRecap\processed_ids.json",
     "edge_exe":                 r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",

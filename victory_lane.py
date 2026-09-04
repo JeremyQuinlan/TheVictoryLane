@@ -3,6 +3,8 @@ The Victory Lane — Market Intelligence Digest
 ----------------------------------------------
 Polls Yahoo Mail via IMAP for newsletters, summarizes them with Claude,
 saves styled HTML digests, and commits to GitHub Pages.
+Also grades every email for Changing Fundamentals significance and
+pushes flagged items to Notion's Stocks On Watch database.
 
 Folder: C:\\Tools\\TheVictoryLane\\
 Setup:
@@ -10,7 +12,7 @@ Setup:
   Then configure the CONFIG block below for local use.
 
 TO RUN LOCALLY:
-  python vital_knowledge_digest.py
+  python victory_lane.py
 """
 
 import imaplib
@@ -34,15 +36,17 @@ EASTERN = ZoneInfo("America/New_York")
 # CONFIG
 # ─────────────────────────────────────────────
 CONFIG = {
-    "yahoo_email":        os.environ.get("YAHOO_EMAIL",        "YOUR_EMAIL@yahoo.com"),
-    "yahoo_app_password": os.environ.get("YAHOO_APP_PASSWORD", "YOUR_APP_PASSWORD"),
-    "anthropic_api_key":  os.environ.get("ANTHROPIC_API_KEY",  "YOUR_ANTHROPIC_API_KEY"),
-    "lookback_hours":     168,
-    "html_output":        r"C:\Tools\VitalRecap\digest.html",
-    "state_file":         r"C:\Tools\VitalRecap\processed_ids.json",
-    "edge_exe":           r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-    "tts_rate":           1.3,
-    "github_actions":     os.environ.get("GITHUB_ACTIONS", "false").lower() == "true",
+    "yahoo_email":              os.environ.get("YAHOO_EMAIL",        "YOUR_EMAIL@yahoo.com"),
+    "yahoo_app_password":       os.environ.get("YAHOO_APP_PASSWORD", "YOUR_APP_PASSWORD"),
+    "anthropic_api_key":        os.environ.get("ANTHROPIC_API_KEY",  "YOUR_ANTHROPIC_API_KEY"),
+    "notion_token":             os.environ.get("NOTION_TOKEN",        ""),
+    "stocks_on_watch_db_id":    "2ee48333-7409-81a3-a830-000b9ce19118",
+    "lookback_hours":           168,
+    "html_output":              r"C:\Tools\VitalRecap\digest.html",
+    "state_file":               r"C:\Tools\VitalRecap\processed_ids.json",
+    "edge_exe":                 r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    "tts_rate":                 1.3,
+    "github_actions":           os.environ.get("GITHUB_ACTIONS", "false").lower() == "true",
 }
 
 # ── Email sources ──
@@ -56,6 +60,11 @@ EMAIL_SOURCES = [
         "name": "earningswhispers",
         "sender_filter": "earningswhispers",
         "source_type": "ew",
+    },
+    {
+        "name": "hammerstone",
+        "sender_filter": os.environ.get("HAMMERSTONE_SENDER", "hammerstone"),
+        "source_type": "hs",
     },
 ]
 # ─────────────────────────────────────────────
@@ -150,6 +159,200 @@ Important rules:
 - Do not include ads, subscription info, or promotional content"""
 
 
+HS_SUMMARIZE_PROMPT = """You are summarizing a Hammerstone Markets real-time news alert for a trading team called Victory Lane.
+Your job is to produce a concise digest of the key news items. Write in a direct, confident voice.
+
+Structure your response using these section headers as applicable:
+
+## MACRO / FED
+Any Fed speak, economic data, rates developments, or broad macro surprises.
+
+## SECTOR
+Any earnings, guidance, or news items that have sector-wide repricing implications.
+
+## STOCKS
+Individual stock news items with ticker in bold. Include price reaction, magnitude of move, and catalyst.
+
+Newsletter content:
+{body}
+
+Important rules:
+- Write in a direct, confident voice throughout
+- Do NOT mention "Hammerstone" anywhere in your output
+- Include specific numbers, price levels, and percentage moves
+- Tickers in bold
+- Keep each item to 2-3 sentences max
+- Do not include ads, subscription info, or promotional content"""
+
+
+CF_GRADING_PROMPT = """You are a senior equity trader and analyst. Your job is to scan this financial news email
+and identify any items that represent a CHANGING FUNDAMENTAL (CF) — news that forces institutional
+repositioning because it materially changes the earnings power, competitive position, or risk profile
+of a company, sector, or the macro environment.
+
+Ignore ordinary daily noise. Flag only items that are genuinely out of step with the consensus or
+that create a new narrative. A CF event typically causes a stock to trade differently for weeks or months.
+
+For each flagged item, return structured data. Respond ONLY with a valid JSON object in this exact format:
+
+{
+  "items": [
+    {
+      "ticker": "AAPL",
+      "type": "STOCK",
+      "grade": "A",
+      "catalyst": "Earnings Beat",
+      "setup": "Day 1 Earnings",
+      "notes": "Beat by $0.18 EPS on strong services growth; guided above consensus for next quarter. Classic episodic pivot setup.",
+      "trade_plan": "Watch for gap-and-go or base building off the earnings gap level",
+      "key_levels": "195 support (earnings gap); 210 resistance"
+    }
+  ]
+}
+
+Field definitions:
+- ticker: Stock ticker (e.g. "AAPL") OR "MACRO" for macro/Fed items OR "SECTOR:XLK" for sector items
+- type: One of STOCK, SECTOR, MACRO
+- grade: Significance grade — one of: "A+", "A", "A-", "B+", "B", "B-"
+  - A+: Massive, rare event. M&A announced, FDA approval/rejection, blowout quarter that reprices the whole sector, Fed pivot.
+  - A: Strong CF event. Big earnings beat/miss, major capex announcement, leadership change at large-cap, sector ETF event.
+  - A-: Meaningful event. Solid beat with raised guidance, notable guidance cut, partnership or contract win, activist entry.
+  - B+: Notable but less urgent. Inline beat, moderate guidance raise, small M&A, analyst upgrade on new thesis.
+  - B: Watch list level. Slight beat, mixed results, minor news. May develop into something.
+  - B-: Low conviction. Noise or minimal significance. Only flag if still marginally notable.
+- catalyst: One of: Earnings Beat, Earnings Miss, Guidance Raise, Guidance Cut, M&A, FDA Approval, FDA Rejection,
+  Massive Capex, Leadership Change, Partnership, Activist Entry, Short Report, Macro Surprise, Fed Pivot,
+  Sector Reprice, Buyback, Dividend Cut, Legal Settlement, Regulatory Action, Product Launch, Contract Win,
+  Bankruptcy, Restructuring, Other
+- setup: One of: Changing Fundamentals, Day 1 Earnings, Day 1 News, Breaking News, Macro Event Swing,
+  HTF Reversal, Short Squeeze, Sector Rotation, Other
+- notes: 2-3 sentence description of WHY this is significant. Be specific — include numbers.
+- trade_plan: Brief trading framework (1-2 sentences). Can be empty string if unclear.
+- key_levels: Key technical levels to watch (1 sentence). Can be empty string if unknown.
+
+GRADING RULES:
+- Only grade A- or higher if the news is genuinely out of step with consensus expectations.
+- An expected earnings beat is B+. A massive beat with sector implications is A or A+.
+- Macro items: only flag if they represent a genuine surprise or policy shift, not routine data.
+- Sector items: flag when one company's news reprices expectations for the whole group.
+- If nothing in the email meets even B- threshold, return: {"items": []}
+- Return AT MOST 5 items per email. If more qualify, pick the highest-grade ones.
+- Return ONLY the JSON — no preamble, no explanation, no markdown fences.
+
+Email subject: {subject}
+
+Email content:
+{body}"""
+
+
+def grade_for_cf(body, subject, api_key):
+    """Run CF grading pass on email body. Returns list of flagged items (dicts) or []."""
+    client = anthropic.Anthropic(api_key=api_key)
+    try:
+        message = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=2000,
+            messages=[{
+                "role": "user",
+                "content": CF_GRADING_PROMPT.format(subject=subject, body=body[:25000])
+            }]
+        )
+        raw = message.content[0].text.strip()
+        # Strip markdown fences if model added them anyway
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw)
+        data = json.loads(raw)
+        items = data.get("items", [])
+        print(f"  CF grading: {len(items)} flagged item(s)")
+        return items
+    except Exception as e:
+        print(f"  CF grading error: {e}")
+        return []
+
+
+def push_to_notion_stocks_on_watch(items, notion_token, db_id, target_date=None):
+    """Push CF-graded items to Notion Stocks On Watch database."""
+    if not notion_token:
+        print("  Notion: NOTION_TOKEN not set — skipping push")
+        return
+    if not items:
+        return
+
+    if target_date is None:
+        target_date = datetime.now(EASTERN).strftime("%Y-%m-%d")
+
+    headers = {
+        "Authorization": f"Bearer {notion_token}",
+        "Content-Type": "application/json",
+        "Notion-Version": "2022-06-28",
+    }
+
+    pushed = 0
+    for item in items:
+        ticker = item.get("ticker", "").strip()
+        if not ticker:
+            continue
+
+        # Build multi-select options (Notion requires [{name: ...}] format)
+        catalyst_val = item.get("catalyst", "").strip()
+        grade_val = item.get("grade", "").strip()
+        setup_val = item.get("setup", "").strip()
+
+        # Build rich_text helper
+        def rt(text):
+            return [{"type": "text", "text": {"content": text[:2000]}}] if text else []
+
+        properties = {
+            "Ticker": {
+                "title": rt(ticker)
+            },
+            "Date": {
+                "date": {"start": target_date}
+            },
+        }
+
+        if catalyst_val:
+            properties["Catalyst"] = {"multi_select": [{"name": catalyst_val}]}
+        if grade_val:
+            properties["Grade"] = {"multi_select": [{"name": grade_val}]}
+        if setup_val:
+            properties["Setup"] = {"multi_select": [{"name": setup_val}]}
+
+        notes = item.get("notes", "").strip()
+        if notes:
+            properties["Notes"] = {"rich_text": rt(notes)}
+
+        trade_plan = item.get("trade_plan", "").strip()
+        if trade_plan:
+            properties["Trade Plan"] = {"rich_text": rt(trade_plan)}
+
+        key_levels = item.get("key_levels", "").strip()
+        if key_levels:
+            properties["Key Levels"] = {"rich_text": rt(key_levels)}
+
+        payload = {
+            "parent": {"database_id": db_id},
+            "properties": properties,
+        }
+
+        try:
+            resp = requests.post(
+                "https://api.notion.com/v1/pages",
+                headers=headers,
+                json=payload,
+                timeout=15,
+            )
+            if resp.status_code in (200, 201):
+                pushed += 1
+                print(f"  ✓ Notion: pushed {ticker} ({grade_val})")
+            else:
+                print(f"  ✗ Notion push failed for {ticker}: {resp.status_code} — {resp.text[:200]}")
+        except Exception as e:
+            print(f"  ✗ Notion push error for {ticker}: {e}")
+
+    print(f"  Notion: {pushed}/{len(items)} item(s) pushed to Stocks On Watch")
+
+
 def clean_subject(raw_subject, source_type="vk"):
     """Rewrite email subject to Victory Lane branding, stripping source references."""
     if source_type == "ew":
@@ -164,6 +367,16 @@ def clean_subject(raw_subject, source_type="vk"):
             return f"Earnings Calendar · {date_str}".strip(" ·")
         else:
             return f"Earnings Preview · {date_str}".strip(" ·")
+
+    if source_type == "hs":
+        # Hammerstone: strip the brand, keep the content
+        s = re.sub(r"(?i)^hammerstone\s*[-:·]?\s*", "", raw_subject).strip()
+        s = re.sub(r"(?i)\bhammerstone\b", "", s).strip(" -·")
+        date_match = re.search(r"\d{1,2}/\d{1,2}(?:/\d{2,4})?", s)
+        date_str = date_match.group(0) if date_match else ""
+        if not s or s == date_str:
+            s = f"Market Alert · {date_str}".strip(" ·")
+        return s
 
     s = re.sub(r"^Vital Knowledge:\s*", "", raw_subject).strip()
 
@@ -192,6 +405,8 @@ def get_category_tag(subject):
         return "EARNINGS"
     elif "earnings preview" in s:
         return "EARNINGS"
+    elif "market alert" in s or "alert" in s:
+        return "ALERT"
     elif "morning intelligentsia" in s or "morning" in s:
         return "MORNING"
     elif "mid-day" in s or "midday" in s:
@@ -212,6 +427,7 @@ def get_tag_color(tag):
         "INTRADAY": ("#2a2a1a", "#af9f4c"),
         "UPDATE":   ("#2a1a3a", "#8f4caf"),
         "EARNINGS": ("#2a2a1a", "#c9b97a"),
+        "ALERT":    ("#2a1a1a", "#e07050"),
     }
     return colors.get(tag, ("#1a1a1a", "#888888"))
 
@@ -412,8 +628,15 @@ def fetch_new_emails(config):
 
 def summarize_with_claude(body, api_key, source_type="vk"):
     client = anthropic.Anthropic(api_key=api_key)
-    prompt = EW_SUMMARIZE_PROMPT if source_type == "ew" else SUMMARIZE_PROMPT
-    max_tok = 3000 if source_type == "ew" else 1800
+    if source_type == "ew":
+        prompt = EW_SUMMARIZE_PROMPT
+        max_tok = 3000
+    elif source_type == "hs":
+        prompt = HS_SUMMARIZE_PROMPT
+        max_tok = 1500
+    else:
+        prompt = SUMMARIZE_PROMPT
+        max_tok = 1800
     message = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=max_tok,
@@ -1185,6 +1408,22 @@ def run():
                 new_ids.add(uid)
                 continue
 
+            # ── CF Grading pass (runs on ALL source types) ──
+            print("  Grading for Changing Fundamentals...")
+            cf_items = grade_for_cf(body, subject, config["anthropic_api_key"])
+
+            if cf_items:
+                target_date = sent_utc.astimezone(EASTERN).strftime("%Y-%m-%d")
+                push_to_notion_stocks_on_watch(
+                    cf_items,
+                    config["notion_token"],
+                    config["stocks_on_watch_db_id"],
+                    target_date=target_date,
+                )
+            else:
+                print("  CF grading: nothing flagged above threshold")
+
+            # ── Summarize for HTML digest ──
             print("  Summarizing with Claude...")
             digest = summarize_with_claude(body, config["anthropic_api_key"], source_type)
             preview = get_preview(digest)

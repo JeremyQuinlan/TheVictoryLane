@@ -1,5 +1,530 @@
 [
   {
+    "filename": "weekend-sun-9-20-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 9/20/2026) - getting ready for the week ahead",
+    "email_date": "Sep 20, 2026 · 09:30 AM ET",
+    "preview": "No closing price data provided for this weekend edition. Week-ahead positioning note: AI sector headwinds and escalating Middle East risk ar...",
+    "sent_ts": "2026-09-20T13:30:00+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-september-21-2026.html",
+    "subject": "Earnings Calendar · Monday, September\r\n 21, 2026",
+    "email_date": "Sep 19, 2026 · 08:58 AM ET",
+    "preview": "---",
+    "sent_ts": "2026-09-19T12:58:52+00:00"
+  },
+  {
+    "filename": "nscale-takeaways-from-the-s1.html",
+    "subject": "Nscale: takeaways from the S1",
+    "email_date": "Sep 18, 2026 · 04:37 PM ET",
+    "preview": "No broad market data provided in this edition.",
+    "sent_ts": "2026-09-18T20:37:49+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-september-18-2026.html",
+    "subject": "Mid-Day Update · Friday September 18,\r\n 2026",
+    "email_date": "Sep 18, 2026 · 11:15 AM ET",
+    "preview": "SPX: -0.15% | Nasdaq: -0.06% | Dow: -232 points (-0.45%) | R2K: -0.88% | Brent: -0.40% | Gold: +0.20% | Silver: +1.65% | BTC: +5.35% | Equal...",
+    "sent_ts": "2026-09-18T15:15:35+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-9-21-trump-xi-un-ga-flash-pmis-meta-connect-some-earn.html",
+    "subject": "Catalyst Watch (week of Mon 9/21) - Trump/Xi, UN GA, flash PMIs, Meta Connect, some earnings (AZO, COST, DRI, GIS, and PAYX), and more",
+    "email_date": "Sep 18, 2026 · 08:27 AM ET",
+    "preview": "No market price data was included in this newsletter. SPX, Nasdaq, and other asset levels not reported.",
+    "sent_ts": "2026-09-18T12:27:41+00:00"
+  },
+  {
+    "filename": "market-recap-friday-september-18-2026.html",
+    "subject": "Market Recap · Friday September 18, 2026",
+    "email_date": "Sep 18, 2026 · 08:21 AM ET",
+    "preview": "No specific index closes were provided in this recap, so precise percentage moves aren't quotable. The week's tone: bulls eked out a narrow ...",
+    "sent_ts": "2026-09-18T12:21:34+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-september-18-2026.html",
+    "subject": "Morning Intelligentsia · Friday September 18, 2026",
+    "email_date": "Sep 18, 2026 · 05:25 AM ET",
+    "preview": "S&P futures: **+0.26%** | Nasdaq futures: **+0.50%** | Dow: +94 points | R2K: +2.3 points | Brent: -2.2% (~$102) | Gold: +1.20% | Silver: +3...",
+    "sent_ts": "2026-09-18T09:25:46+00:00"
+  },
+  {
+    "filename": "steel-earnings-nue-and-stld-provide-q3-eps-updates.html",
+    "subject": "Steel earnings: NUE and STLD provide Q3 EPS updates",
+    "email_date": "Sep 17, 2026 · 04:54 PM ET",
+    "preview": "No broad market data reported in this edition.",
+    "sent_ts": "2026-09-17T20:54:30+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-september-17-2026.html",
+    "subject": "Market Recap · Thursday September 17,\r\n 2026",
+    "email_date": "Sep 17, 2026 · 04:05 PM ET",
+    "preview": "SPX +1.14%, Nasdaq +1.69%. Dow +318 points, R2K +15.8 points. Brent -1.80% (~$104). Gold +2.00%, Silver +3.70%, BTC +0.60%. DXY mixed — down...",
+    "sent_ts": "2026-09-17T20:05:27+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-september-17-2026.html",
+    "subject": "Mid-Day Update · Thursday\r\n September 17, 2026",
+    "email_date": "Sep 17, 2026 · 11:00 AM ET",
+    "preview": "- **SPX:** +0.90%",
+    "sent_ts": "2026-09-17T15:00:44+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-thurs-9-17-bmo-crwv-eat-yeti.html",
+    "subject": "Company-specific news for Thurs 9/17 (BMO) - CRWV, EAT, YETI",
+    "email_date": "Sep 17, 2026 · 08:09 AM ET",
+    "preview": "No index data provided in this edition.",
+    "sent_ts": "2026-09-17T12:09:13+00:00"
+  },
+  {
+    "filename": "bull-vs-bear-debate-as-of-thurs-9-17-26-how-each-side-is-looking-at-the-market.html",
+    "subject": "Bull vs. bear debate as of Thurs 9/17/26 - how each side is looking at the market",
+    "email_date": "Sep 17, 2026 · 07:46 AM ET",
+    "preview": "No index price data was included in this edition. The content is a pure strategy/narrative piece — no SPX, Nasdaq, Dow, R2K, Brent, Gold, Si...",
+    "sent_ts": "2026-09-17T11:46:30+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-september-17-2026.html",
+    "subject": "Morning Intelligentsia · Thursday September 17, 2026",
+    "email_date": "Sep 17, 2026 · 05:21 AM ET",
+    "preview": "S&P futures: **+0.82%** | Nasdaq futures: **+1.08%** | Dow: +376 points | R2K: +22 points | Brent: -1.50% (still north of $100) | Gold: +1.2...",
+    "sent_ts": "2026-09-17T09:21:32+00:00"
+  },
+  {
+    "filename": "tech-headlines-holtec-data-center-pushback-and-salesforce.html",
+    "subject": "Tech headlines: Holtec, data center pushback, and Salesforce",
+    "email_date": "Sep 16, 2026 · 08:41 PM ET",
+    "preview": "No broad market index data (SPX, Nasdaq, Dow, R2K, commodities, FX, crypto) was included in this newsletter edition.",
+    "sent_ts": "2026-09-17T00:41:13+00:00"
+  },
+  {
+    "filename": "conference-takeaways-and-update-on-geopolitics.html",
+    "subject": "Conference takeaways & and update on geopolitics",
+    "email_date": "Sep 16, 2026 · 08:15 PM ET",
+    "preview": "No market price data was included in this newsletter. SPX, Nasdaq, and other asset levels were not reported.",
+    "sent_ts": "2026-09-17T00:15:26+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-9-16-amc-as-gnrc-len.html",
+    "subject": "Company-specific news for Wed 9/16 (AMC) - AS, GNRC, LEN",
+    "email_date": "Sep 16, 2026 · 04:50 PM ET",
+    "preview": "No index data provided in this edition.",
+    "sent_ts": "2026-09-16T20:50:54+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-september-16-2026.html",
+    "subject": "Market Recap · Wednesday September 16,\r\n 2026",
+    "email_date": "Sep 16, 2026 · 04:05 PM ET",
+    "preview": "**SPX:** -0.44% | **Nasdaq:** ~0.00% | **Dow:** -630 points | **R2K:** -0.40% | **DXY:** +0.63% | **Brent:** -3.25% | **Gold:** -0.50% | **S...",
+    "sent_ts": "2026-09-16T20:05:06+00:00"
+  },
+  {
+    "filename": "fed-update-takeaways-on-the-9-16-decision-and-press-conf.html",
+    "subject": "Fed update: takeaways on the 9/16 decision and press conf.",
+    "email_date": "Sep 16, 2026 · 03:05 PM ET",
+    "preview": "No index price data reported in this edition.",
+    "sent_ts": "2026-09-16T19:05:33+00:00"
+  },
+  {
+    "filename": "fed-takeaways-biggest-surprise-is-the-dovish-2027-dot-but-in-this-market-dovish-.html",
+    "subject": "Fed takeaways: biggest surprise is the dovish 2027 dot (but in this market, dovish isn't necessarily positive)",
+    "email_date": "Sep 16, 2026 · 02:18 PM ET",
+    "preview": "No index price data reported in this update.",
+    "sent_ts": "2026-09-16T18:18:25+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-september-16-2026.html",
+    "subject": "Mid-Day Update · Wednesday\r\n September 16, 2026",
+    "email_date": "Sep 16, 2026 · 10:57 AM ET",
+    "preview": "- **SPX:** +0.30%",
+    "sent_ts": "2026-09-16T14:57:54+00:00"
+  },
+  {
+    "filename": "retail-sales-for-aug-were-strong.html",
+    "subject": "Retail sales for Aug were strong",
+    "email_date": "Sep 16, 2026 · 08:39 AM ET",
+    "preview": "No market price data provided in this note.",
+    "sent_ts": "2026-09-16T12:39:44+00:00"
+  },
+  {
+    "filename": "jb-hunt-warns-of-q3-cost-headwinds-including-from-fuel.html",
+    "subject": "JB Hunt warns of Q3 cost headwinds (including from fuel)",
+    "email_date": "Sep 16, 2026 · 05:53 AM ET",
+    "preview": "No index data reported in this commentary.",
+    "sent_ts": "2026-09-16T09:53:57+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-september-16-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday September 16, 2026",
+    "email_date": "Sep 16, 2026 · 05:19 AM ET",
+    "preview": "S&P futures: +0.22% | Nasdaq futures: +0.45% | Dow: +54 points | R2K: +4.5 points | Brent: ~$108 (flat to slightly down) | Gold: +0.90% | Si...",
+    "sent_ts": "2026-09-16T09:19:47+00:00"
+  },
+  {
+    "filename": "norfolk-southern-cfo-calls-fuel-prices-like-something-out-of-science-fiction-as-.html",
+    "subject": "Norfolk Southern CFO calls fuel prices like something out of \"science fiction\" as it warns of a huge cost headwind from diesel",
+    "email_date": "Sep 15, 2026 · 08:28 PM ET",
+    "preview": "No broad market data reported in this note.",
+    "sent_ts": "2026-09-16T00:28:27+00:00"
+  },
+  {
+    "filename": "earnings-preview-tuesday-september-15-2026.html",
+    "subject": "Earnings Preview · Tuesday, September 15, 2026",
+    "email_date": "Sep 15, 2026 · 06:49 PM ET",
+    "preview": "**Tuesday, September 15, 2026**",
+    "sent_ts": "2026-09-15T22:49:25+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-september-15-2026.html",
+    "subject": "Market Recap · Tuesday September 15, 2026",
+    "email_date": "Sep 15, 2026 · 04:04 PM ET",
+    "preview": "SPX: -0.45% | Nasdaq: -0.78% | Dow: -328 points | R2K: -22 points | Brent: +2.75% to >$108 | Gold: ~flat | Silver: +0.65% | BTC: -3.90% | DX...",
+    "sent_ts": "2026-09-15T20:04:44+00:00"
+  },
+  {
+    "filename": "mid-day-update-tuesday-september-15-2026.html",
+    "subject": "Mid-Day Update · Tuesday September\r\n 15, 2026",
+    "email_date": "Sep 15, 2026 · 11:10 AM ET",
+    "preview": "- **SPX:** -0.49%",
+    "sent_ts": "2026-09-15T15:10:04+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-september-15-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday September 15, 2026",
+    "email_date": "Sep 15, 2026 · 05:27 AM ET",
+    "preview": "S&P futures: **-0.57%** | Nasdaq futures: **-0.67%** | Dow: -366 points | R2K: -19.7 points | Brent: +190 basis points to >$107 | Gold: -80 ...",
+    "sent_ts": "2026-09-15T09:27:42+00:00"
+  },
+  {
+    "filename": "earnings-preview-monday-september-14-2026.html",
+    "subject": "Earnings Preview · Monday, September 14, 2026",
+    "email_date": "Sep 14, 2026 · 07:44 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-09-14T23:44:30+00:00"
+  },
+  {
+    "filename": "market-recap-monday-september-14-2026.html",
+    "subject": "Market Recap · Monday September 14, 2026",
+    "email_date": "Sep 14, 2026 · 04:03 PM ET",
+    "preview": "**SPX:** -0.48% | **Nasdaq:** -0.56% | **Dow:** -152 points | **R2K:** -0.40% | **Brent:** +1.40% (~$106) | **Gold:** -1.50% | **Silver:** -...",
+    "sent_ts": "2026-09-14T20:03:50+00:00"
+  },
+  {
+    "filename": "bank-america-warns-that-q3-trading-is-tracking-below-expectations.html",
+    "subject": "Bank America warns that Q3 trading is tracking below expectations",
+    "email_date": "Sep 14, 2026 · 01:27 PM ET",
+    "preview": "No broad market data (SPX, Nasdaq, Dow, etc.) reported in this edition.",
+    "sent_ts": "2026-09-14T17:27:27+00:00"
+  },
+  {
+    "filename": "mid-day-update-monday-september-14-2026.html",
+    "subject": "Mid-Day Update · Monday September\r\n 14, 2026",
+    "email_date": "Sep 14, 2026 · 11:08 AM ET",
+    "preview": "**SPX:** -0.78% | **Nasdaq:** -1.02% | **Dow:** -268 pts | **R2K:** -16.5 pts | **Brent:** +3.85% (>$108) | **Gold:** -1.65% | **Silver:** -...",
+    "sent_ts": "2026-09-14T15:08:05+00:00"
+  },
+  {
+    "filename": "fed-preview-how-we-re-thinking-about-the-wed-fomc-decision.html",
+    "subject": "Fed preview: how we're thinking about the Wed FOMC decision",
+    "email_date": "Sep 14, 2026 · 08:07 AM ET",
+    "preview": "No market data provided in this edition.",
+    "sent_ts": "2026-09-14T12:07:13+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-monday-september-14-2026.html",
+    "subject": "Morning Intelligentsia · Monday September 14, 2026",
+    "email_date": "Sep 14, 2026 · 05:19 AM ET",
+    "preview": "S&P futures: **-0.67%** | Nasdaq futures: **-1.71%** | Dow: -94 points | R2K: -6.8 points | Brent: +3.40% to >$108 | Gold: -0.90% | Silver: ...",
+    "sent_ts": "2026-09-14T09:19:49+00:00"
+  },
+  {
+    "filename": "weekend-sun-9-13-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 9/13/2026) - getting ready for the week ahead",
+    "email_date": "Sep 13, 2026 · 09:46 AM ET",
+    "preview": "No Friday close data provided in this newsletter — weekend edition focused on positioning for the week ahead. Watch for Monday pressure on N...",
+    "sent_ts": "2026-09-13T13:46:24+00:00"
+  },
+  {
+    "filename": "pacing-the-frontier-thoughts-on-dario-s-essay.html",
+    "subject": "Pacing the frontier: thoughts on Dario's essay",
+    "email_date": "Sep 12, 2026 · 02:59 PM ET",
+    "preview": "No market data provided in this newsletter.",
+    "sent_ts": "2026-09-12T18:59:28+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-september-14-2026.html",
+    "subject": "Earnings Calendar · Monday, September\r\n 14, 2026",
+    "email_date": "Sep 12, 2026 · 08:14 AM ET",
+    "preview": "---",
+    "sent_ts": "2026-09-12T12:14:42+00:00"
+  },
+  {
+    "filename": "earnings-preview-friday-september-11-2026.html",
+    "subject": "Earnings Preview · Friday, September 11, 2026",
+    "email_date": "Sep 11, 2026 · 06:22 PM ET",
+    "preview": "**Friday, September 11, 2026 | Results & Upcoming Releases**",
+    "sent_ts": "2026-09-11T22:22:37+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-september-11-2026.html",
+    "subject": "Mid-Day Update · Friday September\r\n 11, 2026",
+    "email_date": "Sep 11, 2026 · 11:09 AM ET",
+    "preview": "SPX: +0.97% | Nasdaq: +1.15% | Dow: +489 points | R2K: +60 basis points | Brent: -2.80% to $104.60 | Gold: +1.20% | Silver: +1.40% | BTC: +1...",
+    "sent_ts": "2026-09-11T15:09:55+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-9-14-critical-gcc-iran-meeting-fomc-boj-decisions-chi.html",
+    "subject": "Catalyst Watch (week of Mon 9/14) - critical GCC/Iran meeting, FOMC/BOJ decisions, China eco data, several sell-side conferences, couple of earnings, and (potentially) the Anthropic S1",
+    "email_date": "Sep 11, 2026 · 10:18 AM ET",
+    "preview": "No market price data provided in this edition.",
+    "sent_ts": "2026-09-11T14:18:12+00:00"
+  },
+  {
+    "filename": "market-recap-friday-september-11-2026.html",
+    "subject": "Market Recap · Friday September 11, 2026",
+    "email_date": "Sep 11, 2026 · 09:46 AM ET",
+    "preview": "Specific index percentage changes were not provided in this newsletter. The directional takeaway is clear: **bears won the week decisively**...",
+    "sent_ts": "2026-09-11T13:46:51+00:00"
+  },
+  {
+    "filename": "aug-cpi-should-cement-expectations-for-a-fed-hike.html",
+    "subject": "Aug CPI should cement expectations for a Fed hike",
+    "email_date": "Sep 11, 2026 · 08:46 AM ET",
+    "preview": "No index levels reported in this dispatch. CPI reaction will drive intraday direction — watch equities carefully into the open.",
+    "sent_ts": "2026-09-11T12:46:38+00:00"
+  },
+  {
+    "filename": "kroger-fq2-earnings-takeaways.html",
+    "subject": "Kroger FQ2 earnings takeaways",
+    "email_date": "Sep 11, 2026 · 07:02 AM ET",
+    "preview": "No broad market data provided in today's note.",
+    "sent_ts": "2026-09-11T11:02:37+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-september-11-2026.html",
+    "subject": "Morning Intelligentsia · Friday September 11, 2026",
+    "email_date": "Sep 11, 2026 · 05:22 AM ET",
+    "preview": "S&P futures: +0.57% | Nasdaq futures: +0.61% | Dow: +278 points | R2K: +17.7 points | Brent: ~$104 (pulling back ~330 basis points) | Gold: ...",
+    "sent_ts": "2026-09-11T09:22:51+00:00"
+  },
+  {
+    "filename": "earnings-preview-thursday-september-10-2026.html",
+    "subject": "Earnings Preview · Thursday, September 10, 2026",
+    "email_date": "Sep 10, 2026 · 07:02 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-09-10T23:02:40+00:00"
+  },
+  {
+    "filename": "consumer-news-rh-earnings-and-vik-s-buyback.html",
+    "subject": "Consumer news: RH earnings and VIK's buyback",
+    "email_date": "Sep 10, 2026 · 04:55 PM ET",
+    "preview": "No broad market index data reported in this edition.",
+    "sent_ts": "2026-09-10T20:55:10+00:00"
+  },
+  {
+    "filename": "software-earnings-takeaways-on-the-adbe-and-orcl-results-and-orcl-s-new-product-.html",
+    "subject": "Software earnings: takeaways on the ADBE and ORCL results (and ORCL's new product that competes w/PLTR)",
+    "email_date": "Sep 10, 2026 · 04:28 PM ET",
+    "preview": "No broad market data (SPX, Nasdaq, Dow, etc.) was included in this newsletter. Coverage is earnings-focused only.",
+    "sent_ts": "2026-09-10T20:28:53+00:00"
+  },
+  {
+    "filename": "market-recap-thursday-september-10-2026.html",
+    "subject": "Market Recap · Thursday September 10,\r\n 2026",
+    "email_date": "Sep 10, 2026 · 04:04 PM ET",
+    "preview": "SPX: -0.58% | Nasdaq: -0.65% | Dow: -316 points | R2K: -30 points | Brent: +6.75% to ~$108 | Gold: -1.70% | Silver: -5.30% | BTC: -1.50% | D...",
+    "sent_ts": "2026-09-10T20:04:34+00:00"
+  },
+  {
+    "filename": "mid-day-update-thursday-september-10-2026.html",
+    "subject": "Mid-Day Update · Thursday\r\n September 10, 2026",
+    "email_date": "Sep 10, 2026 · 11:15 AM ET",
+    "preview": "- **SPX:** -0.40%",
+    "sent_ts": "2026-09-10T15:15:05+00:00"
+  },
+  {
+    "filename": "ecb-ppi-and-oil.html",
+    "subject": "ECB, PPI, and oil",
+    "email_date": "Sep 10, 2026 · 08:45 AM ET",
+    "preview": "No index data provided in this edition.",
+    "sent_ts": "2026-09-10T12:45:58+00:00"
+  },
+  {
+    "filename": "macy-s-jetblue-houthis-and-tariffs.html",
+    "subject": "Macy's, JetBlue, Houthis, and tariffs",
+    "email_date": "Sep 10, 2026 · 07:13 AM ET",
+    "preview": "No index data provided in this edition.",
+    "sent_ts": "2026-09-10T11:13:47+00:00"
+  },
+  {
+    "filename": "another-neg-footwear-data-point-as-anticipation-builds-for-nke-on-10-1.html",
+    "subject": "Another neg. footwear data point as anticipation builds for NKE on 10/1",
+    "email_date": "Sep 10, 2026 · 06:27 AM ET",
+    "preview": "No index data provided in today's note.",
+    "sent_ts": "2026-09-10T10:27:23+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-thursday-september-10-2026.html",
+    "subject": "Morning Intelligentsia · Thursday September 10, 2026",
+    "email_date": "Sep 10, 2026 · 05:18 AM ET",
+    "preview": "S&P futures: **+0.13%** | Nasdaq futures: **-0.08%** | Dow: +112 points | R2K: +1.2 points | Brent: ~$102 (+0.90%) | Gold: flat | Silver: -0...",
+    "sent_ts": "2026-09-10T09:18:20+00:00"
+  },
+  {
+    "filename": "earnings-preview-wednesday-september-9-2026.html",
+    "subject": "Earnings Preview · Wednesday, September 9, 2026",
+    "email_date": "Sep 09, 2026 · 06:30 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-09-09T22:30:27+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-9-9-amc-aeo-avav-coo.html",
+    "subject": "Company-specific news for Wed 9/9 (AMC) - AEO, AVAV, COO",
+    "email_date": "Sep 09, 2026 · 04:27 PM ET",
+    "preview": "No index data provided in this newsletter.",
+    "sent_ts": "2026-09-09T20:27:27+00:00"
+  },
+  {
+    "filename": "market-recap-wednesday-september-9-2026.html",
+    "subject": "Market Recap · Wednesday September 9,\r\n 2026",
+    "email_date": "Sep 09, 2026 · 04:04 PM ET",
+    "preview": "SPX: -0.48% | Nasdaq: -0.64% | Dow: -405 points | R2K: -132 basis points | Brent: +3.50% to ~$101.30 | Gold: +1.00% | Silver: +2.30% | BTC: ...",
+    "sent_ts": "2026-09-09T20:04:37+00:00"
+  },
+  {
+    "filename": "apple-thoughts-on-the-wed-product-launch-event.html",
+    "subject": "Apple: thoughts on the Wed product launch event",
+    "email_date": "Sep 09, 2026 · 02:35 PM ET",
+    "preview": "No market data provided in this edition.",
+    "sent_ts": "2026-09-09T18:35:29+00:00"
+  },
+  {
+    "filename": "mid-day-update-wednesday-september-9-2026.html",
+    "subject": "Mid-Day Update · Wednesday\r\n September 9, 2026",
+    "email_date": "Sep 09, 2026 · 11:08 AM ET",
+    "preview": "SPX: -0.39% | Nasdaq: -0.50% | Dow: -379 points | R2K: -27 points | Brent: +3.30% (~$101) | Gold: +1.00% | Silver: +2.80% | BTC: +0.35%",
+    "sent_ts": "2026-09-09T15:08:08+00:00"
+  },
+  {
+    "filename": "consumer-news-review-for-wed-some-positive-and-some-negative.html",
+    "subject": "Consumer news review for Wed: some positive, and some negative",
+    "email_date": "Sep 09, 2026 · 08:39 AM ET",
+    "preview": "No market price data was included in this newsletter.",
+    "sent_ts": "2026-09-09T12:39:56+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-wed-9-9-bmo-aci-chwy-csr-irt-jmke-odd-sail-sig-sunb-sy.html",
+    "subject": "Company-specific news for Wed 9/9 (BMO) - ACI, CHWY, CSR/IRT, JMKE, ODD, SAIL, SIG, SUNB, SYY",
+    "email_date": "Sep 09, 2026 · 07:34 AM ET",
+    "preview": "No market index data provided in this newsletter.",
+    "sent_ts": "2026-09-09T11:34:03+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-wednesday-september-9-2026.html",
+    "subject": "Morning Intelligentsia · Wednesday September 9, 2026",
+    "email_date": "Sep 09, 2026 · 05:20 AM ET",
+    "preview": "S&P 500: flat | Nasdaq: flat | Dow: -90 points | R2K: -4 points | Brent: ~$100 (+~210 basis points) | Gold: +100 basis points | Silver: +140...",
+    "sent_ts": "2026-09-09T09:20:26+00:00"
+  },
+  {
+    "filename": "earnings-preview-tuesday-september-8-2026.html",
+    "subject": "Earnings Preview · Tuesday, September 8, 2026",
+    "email_date": "Sep 08, 2026 · 05:13 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-09-08T21:13:32+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-9-8-amc-brze-casy-chym-sfd-stz-t-ttan.html",
+    "subject": "Company-specific news for Tues 9/8 (AMC) - BRZE, CASY, CHYM, SFD, STZ, T, TTAN",
+    "email_date": "Sep 08, 2026 · 04:42 PM ET",
+    "preview": "No index or macro price data provided in this edition.",
+    "sent_ts": "2026-09-08T20:42:46+00:00"
+  },
+  {
+    "filename": "market-recap-tuesday-september-8-2026.html",
+    "subject": "Market Recap · Tuesday September 8, 2026",
+    "email_date": "Sep 08, 2026 · 04:04 PM ET",
+    "preview": "**SPX:** -0.58% | **Nasdaq:** -0.32% | **Dow:** -626 points | **R2K:** -15.4 points | **Brent:** +1.40% to $98.33 | **Gold:** -0.95% | **Sil...",
+    "sent_ts": "2026-09-08T20:04:41+00:00"
+  },
+  {
+    "filename": "mid-day-update-tuesday-september-8-2026.html",
+    "subject": "Mid-Day Update · Tuesday September\r\n 8, 2026",
+    "email_date": "Sep 08, 2026 · 11:14 AM ET",
+    "preview": "SPX: -0.29% | Nasdaq: -0.18% | Dow: -516 points | R2K: -0.25% | Brent: +0.80% to $97.80 | Gold: flat | Silver: +0.40% | BTC: -0.80%",
+    "sent_ts": "2026-09-08T15:14:56+00:00"
+  },
+  {
+    "filename": "company-specific-news-for-tues-9-8-bmo-abm-bsx-unfi.html",
+    "subject": "Company-specific news for Tues 9/8 (BMO) - ABM, BSX, UNFI",
+    "email_date": "Sep 08, 2026 · 07:12 AM ET",
+    "preview": "No broad market data provided in this edition.",
+    "sent_ts": "2026-09-08T11:12:20+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-tuesday-september-8-2026.html",
+    "subject": "Morning Intelligentsia · Tuesday September 8, 2026",
+    "email_date": "Sep 08, 2026 · 05:20 AM ET",
+    "preview": "SPX: -0.37% | Nasdaq: -0.17% | Dow: -445 pts | R2K: -0.52% | Brent: +2.30% (~$99.25) | Gold: -0.20% | Silver: -0.40% | BTC: -1.10% (~$78.3K)...",
+    "sent_ts": "2026-09-08T09:20:06+00:00"
+  },
+  {
+    "filename": "weekend-sun-9-6-2026-getting-ready-for-the-week-ahead.html",
+    "subject": "Weekend (Sun 9/6/2026) - getting ready for the week ahead",
+    "email_date": "Sep 06, 2026 · 08:34 AM ET",
+    "preview": "No intraday market data (SPX, Nasdaq, Dow, R2K, Brent, Gold, Silver, BTC, DXY) was included in this weekend edition. Watch Monday's open for...",
+    "sent_ts": "2026-09-06T12:34:07+00:00"
+  },
+  {
+    "filename": "earnings-calendar-monday-september-7-2026.html",
+    "subject": "Earnings Calendar · Monday, September\r\n 7, 2026",
+    "email_date": "Sep 05, 2026 · 03:51 PM ET",
+    "preview": "---",
+    "sent_ts": "2026-09-05T19:51:29+00:00"
+  },
+  {
+    "filename": "us-iran-an-update-on-saturday-s-developments.html",
+    "subject": "US/Iran - an update on Saturday's developments",
+    "email_date": "Sep 05, 2026 · 12:01 PM ET",
+    "preview": "No market data provided in this edition.",
+    "sent_ts": "2026-09-05T16:01:28+00:00"
+  },
+  {
+    "filename": "mid-day-update-friday-september-4-2026.html",
+    "subject": "Mid-Day Update · Friday September\r\n 4, 2026",
+    "email_date": "Sep 04, 2026 · 11:12 AM ET",
+    "preview": "- **SPX:** -0.45%",
+    "sent_ts": "2026-09-04T15:12:56+00:00"
+  },
+  {
+    "filename": "catalyst-watch-week-of-mon-9-7-us-inflation-ecb-decision-earnings-adbe-kr-and-or.html",
+    "subject": "Catalyst Watch (week of Mon 9/7) - US inflation, ECB decision, earnings (ADBE, KR, and ORCL), iPhone event, conference presentations, and (maybe) Anthropic S1",
+    "email_date": "Sep 04, 2026 · 09:17 AM ET",
+    "preview": "No index price data was included in this newsletter. SPX, Nasdaq, Dow, R2K, Brent, Gold, Silver, BTC, and DXY figures are not available for ...",
+    "sent_ts": "2026-09-04T13:17:27+00:00"
+  },
+  {
+    "filename": "market-recap-friday-september-4-2026.html",
+    "subject": "Market Recap · Friday September 4, 2026",
+    "email_date": "Sep 04, 2026 · 09:13 AM ET",
+    "preview": "No index price data (SPX, Nasdaq, Dow, R2K) was included in this newsletter. The following asset color was referenced narratively:",
+    "sent_ts": "2026-09-04T13:13:54+00:00"
+  },
+  {
+    "filename": "us-jobs-the-aug-report-was-a-blow-out.html",
+    "subject": "US jobs: the Aug report was a blow-out",
+    "email_date": "Sep 04, 2026 · 08:47 AM ET",
+    "preview": "No index close data provided in this dispatch — this is an intraday note published pre-market following the August jobs release.",
+    "sent_ts": "2026-09-04T12:47:00+00:00"
+  },
+  {
+    "filename": "morning-intelligentsia-friday-september-4-2026.html",
+    "subject": "Morning Intelligentsia · Friday September 4, 2026",
+    "email_date": "Sep 04, 2026 · 05:27 AM ET",
+    "preview": "S&P: +0.05% | Nasdaq: +0.37% | Dow: -30 pts | R2K: flat | Brent: -0.20% | Gold: flat | Silver: -0.20% | BTC: -0.25% | DXY: +0.17",
+    "sent_ts": "2026-09-04T09:27:33+00:00"
+  },
+  {
     "filename": "company-specific-news-for-thurs-9-3-amc-adbe-amba-bbcp-docu-flex-gwre-iot-lulu-n.html",
     "subject": "Company-specific news for Thurs 9/3 (AMC) - ADBE, AMBA, BBCP, DOCU, FLEX, GWRE, IOT, LULU, NX, OXM, PATH, PL, ZS",
     "email_date": "Sep 03, 2026 · 04:56 PM ET",
@@ -161,6 +686,13 @@
     "sent_ts": "2026-08-28T22:27:55+00:00"
   },
   {
+    "filename": "closing-recap-2026-08-28.html",
+    "subject": "Closing Recap 2026-08-28",
+    "email_date": "Aug 28, 2026 · 04:04 PM ET",
+    "preview": "Fed Chair Warsh delivered his Jackson Hole remarks, signaling the Fed \"will have work to do\" if inflation confidence doesn't materialize — h...",
+    "sent_ts": "2026-08-28T20:04:28+00:00"
+  },
+  {
     "filename": "mid-day-update-friday-august-28-2026.html",
     "subject": "Mid-Day Update · Friday August 28,\r\n 2026",
     "email_date": "Aug 28, 2026 · 11:05 AM ET",
@@ -168,11 +700,32 @@
     "sent_ts": "2026-08-28T15:05:18+00:00"
   },
   {
+    "filename": "mid-morning-look-2026-08-28.html",
+    "subject": "Mid Morning Look 2026-08-28",
+    "email_date": "Aug 28, 2026 · 10:31 AM ET",
+    "preview": "Fed Chair Kevin Warsh spoke at Jackson Hole signaling the inflation fight may not be over, stating financing conditions don't look restricti...",
+    "sent_ts": "2026-08-28T14:31:31+00:00"
+  },
+  {
     "filename": "warsh-takeaways-odds-of-a-sept-hike-should-go-up-which-is-a-good-thing.html",
     "subject": "Warsh takeaways: odds of a Sept hike should go up, which is a good thing",
     "email_date": "Aug 28, 2026 · 10:18 AM ET",
     "preview": "No market price data was provided in this newsletter.",
     "sent_ts": "2026-08-28T14:18:37+00:00"
+  },
+  {
+    "filename": "calendar-2026-08-28.html",
+    "subject": "Calendar 2026-08-28",
+    "email_date": "Aug 28, 2026 · 07:47 AM ET",
+    "preview": "Heavy data week ahead with the August Jobs Report on Friday (8:30 AM ET) as the marquee event — Nonfarm Payrolls, Unemployment Rate, and Ave...",
+    "sent_ts": "2026-08-28T11:47:28+00:00"
+  },
+  {
+    "filename": "street-recs-2026-08-28.html",
+    "subject": "Street Recs 2026-08-28",
+    "email_date": "Aug 28, 2026 · 07:45 AM ET",
+    "preview": "No macro or Fed data in this alert. Sector-level read-throughs from retailer earnings (Dollar General, Burlington, Best Buy) suggest a bifur...",
+    "sent_ts": "2026-08-28T11:45:37+00:00"
   },
   {
     "filename": "catalyst-watch-week-of-mon-8-31-aug-eco-data-isms-and-jobs-g20-fin-min-meeting-a.html",
@@ -187,6 +740,13 @@
     "email_date": "Aug 28, 2026 · 07:38 AM ET",
     "preview": "The newsletter doesn't provide explicit index close figures, but characterizes the week as a decisive bull victory in tech. Specific percent...",
     "sent_ts": "2026-08-28T11:38:54+00:00"
+  },
+  {
+    "filename": "early-look-2026-08-28.html",
+    "subject": "Early Look 2026-08-28",
+    "email_date": "Aug 28, 2026 · 06:42 AM ET",
+    "preview": "Fed Chair Kevin Warsh delivers his first Jackson Hole keynote at 1:00 PM ET today — the market's primary focus. Traders are watching for sig...",
+    "sent_ts": "2026-08-28T10:42:39+00:00"
   },
   {
     "filename": "morning-intelligentsia-friday-august-28-2026.html",

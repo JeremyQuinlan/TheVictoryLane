@@ -1,18 +1,18 @@
 """
-The Victory Lane — Market Intelligence Digest
-----------------------------------------------
-Polls Yahoo Mail via IMAP for newsletters, summarizes them with Claude,
-saves styled HTML digests, and commits to GitHub Pages.
-Also grades every email for Changing Fundamentals significance and
-pushes flagged items to Notion's Stocks On Watch database.
+The Victory Lane — Morning Game Plan
+--------------------------------------
+Polls Yahoo Mail via IMAP for Vital Knowledge (and optionally Earnings Whispers /
+Hammerstone) newsletters, parses them into structured MGP sections with Claude,
+reads Trade Ideas scanner CSVs, fetches Benzinga news for scanner tickers,
+and publishes a styled Morning Game Plan dashboard to GitHub Pages.
 
 Folder: C:\\Tools\\TheVictoryLane\\
-Setup:
-  pip install anthropic requests
-  Then configure the CONFIG block below for local use.
+Secrets (env vars / GitHub Actions secrets):
+  YAHOO_EMAIL, YAHOO_APP_PASSWORD, ANTHROPIC_API_KEY,
+  NOTION_TOKEN, BENZINGA_API_KEY (Massive reseller)
 
 TO RUN LOCALLY:
-  python victory_lane.py
+  $env:YAHOO_EMAIL="..."; $env:YAHOO_APP_PASSWORD="..."; $env:ANTHROPIC_API_KEY="..."; python victory_lane.py
 """
 
 import imaplib
@@ -21,6 +21,8 @@ import base64
 import json
 import os
 import re
+import glob
+import csv
 import subprocess
 import requests
 import anthropic
@@ -36,427 +38,156 @@ EASTERN = ZoneInfo("America/New_York")
 # CONFIG
 # ─────────────────────────────────────────────
 CONFIG = {
-    "yahoo_email":              os.environ.get("YAHOO_EMAIL",        "YOUR_EMAIL@yahoo.com"),
-    "yahoo_app_password":       os.environ.get("YAHOO_APP_PASSWORD", "YOUR_APP_PASSWORD"),
-    "anthropic_api_key":        os.environ.get("ANTHROPIC_API_KEY",  "YOUR_ANTHROPIC_API_KEY"),
-    "notion_token":             os.environ.get("NOTION_TOKEN",        ""),
-    "stocks_on_watch_db_id":    "2ee48333-7409-81a3-a830-000b9ce19118",
-    "lookback_hours":           48,
-    "html_output":              r"C:\Tools\VitalRecap\digest.html",
-    "state_file":               r"C:\Tools\VitalRecap\processed_ids.json",
-    "edge_exe":                 r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-    "tts_rate":                 1.3,
-    "github_actions":           os.environ.get("GITHUB_ACTIONS", "false").lower() == "true",
+    "yahoo_email":           os.environ.get("YAHOO_EMAIL",        "YOUR_EMAIL@yahoo.com"),
+    "yahoo_app_password":    os.environ.get("YAHOO_APP_PASSWORD", "YOUR_APP_PASSWORD"),
+    "anthropic_api_key":     os.environ.get("ANTHROPIC_API_KEY",  "YOUR_ANTHROPIC_API_KEY"),
+    "benzinga_api_key":      os.environ.get("BENZINGA_API_KEY",   ""),
+    "notion_token":          os.environ.get("NOTION_TOKEN",        ""),
+    "stocks_on_watch_db_id": "2ee48333-7409-81a3-a830-000b9ce19118",
+    "lookback_hours":        48,
+    "scanner_csv_dir":       r"C:\Users\jerem\Documents\TradeIdeasPro",
+    "edge_exe":              r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+    "tts_rate":              1.3,
+    "github_actions":        os.environ.get("GITHUB_ACTIONS", "false").lower() == "true",
 }
 
 # ── Email sources ──
 EMAIL_SOURCES = [
-    {
-        "name": "vitalknowledge",
-        "sender_filter": "vitalknowledge",
-        "source_type": "vk",
-    },
-    {
-        "name": "earningswhispers",
-        "sender_filter": "earningswhispers",
-        "source_type": "ew",
-    },
-    {
-        "name": "hammerstone",
-        "sender_filter": os.environ.get("HAMMERSTONE_SENDER", "hammerstone"),
-        "source_type": "hs",
-    },
+    {"name": "vitalknowledge",  "sender_filter": "vitalknowledge",  "source_type": "vk"},
+    {"name": "earningswhispers","sender_filter": "earningswhispers","source_type": "ew"},
+    {"name": "hammerstone",     "sender_filter": os.environ.get("HAMMERSTONE_SENDER", "hammerstone"), "source_type": "hs"},
 ]
 # ─────────────────────────────────────────────
 
 SITE_NAME = "The Victory Lane"
 
-SUMMARIZE_PROMPT = """You are summarizing a financial newsletter for a trading team called Victory Lane.
-Your job is to produce a concise but substantive digest that captures the author's voice — direct, confident,
-uses parenthetical asides, cites sources inline (NYT, WSJ, FT, Bloomberg, etc.), and isn't shy about
-giving a market view. Write in flowing prose for the narrative sections, not just bullet fragments.
+# ── Scanner name patterns → display label ──
+SCANNER_LABELS = {
+    "changing": "Changing Fundamentals",
+    "usual":    "Usual Suspects Volume",
+    "premarket":"Premarket Volume",
+    "high":     "High PM AVOL",
+    "low float":"Low Floats & Small Caps",
+    "gapper":   "Gappers",
+}
 
-Structure your response in exactly this order using these exact section headers:
+# ─────────────────────────────────────────────
+# PROMPTS
+# ─────────────────────────────────────────────
 
-## MARKETS
-Report SPX and Nasdaq as PERCENTAGE CHANGE only (e.g. -0.26%, +0.54%).
-Do NOT use basis points or point values for SPX and Nasdaq.
-Also include Dow, R2K, Brent, Gold, Silver, BTC, DXY if present — these can use their native units.
+VK_MGP_PROMPT = """You are parsing a Vital Knowledge newsletter from Adam Crisafulli for a day trader's Morning Game Plan.
 
-## RATES & FED
-Treasury move and Fed expectations. Keep to 2-3 sentences.
-When referencing basis point moves on yields, write "basis points" in full, never "bp".
+Extract and return ONLY a valid JSON object with exactly these fields:
 
-## MARKET OUTLOOK
-Editorial view on where markets are headed. 3-5 sentences, confident tone.
+{{
+  "email_type": "dawn|midday|recap|other",
+  "macro": "2-3 sentences on broad market context — index moves, risk tone, overnight action",
+  "rates_fed": "2-3 sentences on rates, Fed, yields, dollar",
+  "market_outlook": "Adam's directional view — bull or bear leaning, key catalyst to watch today",
+  "bull_case": "2-4 sentences on the bull argument for today's session",
+  "bear_case": "2-4 sentences on the bear argument for today's session",
+  "company_items": [
+    {{
+      "ticker": "AAPL",
+      "company": "Apple",
+      "summary": "2-3 sentence catalyst summary — specific numbers, why it matters",
+      "catalyst": "Earnings Beat|Earnings Miss|Guidance Raise|Guidance Cut|M&A|FDA Approval|FDA Rejection|Massive Capex|Partnership|Activist Entry|Short Report|Sector Reprice|Buyback|Restructuring|Contract Win|Product Launch|Other",
+      "direction": "bullish|bearish|mixed"
+    }}
+  ],
+  "sectors": "Any sector-level commentary worth noting (empty string if none)",
+  "earnings_today": ["TICKER BMO", "TICKER AMC"],
+  "key_dates": ["Sep 17 — CPI 8:30am", "Sep 18 — FOMC 2pm"],
+  "tts_summary": "A 350-450 word audio-ready summary in Adam's direct confident voice. Write for ear, not eye. No brand names (do not say Vital Knowledge). Expand bp to basis points. Lead with the macro read, then the key company items, then directional outlook."
+}}
 
-## GEOPOLITICAL
-Key geopolitical developments. Prose bullets with source attribution in parentheses.
-No repeated information — consolidate if the newsletter says the same thing twice.
-
-## COMPANY NEWS
-Individual company items with ticker in bold. Include EPS/revenue figures where reported.
-One paragraph per company. Cite sources. No duplicates.
-
-## MACRO & FED DATES
-Upcoming macro, Fed, and consumer data dates. Format: DATE — description.
-Include context on what to watch for where relevant.
-
-## EARNINGS THIS WEEK
-Pre and post market, grouped by day.
-
-## EARNINGS NEXT 2 WEEKS
-Pre and post market, grouped by day.
+Rules:
+- company_items: include ALL companies with meaningful commentary. Max 10 items.
+- direction: bullish if the news is net positive for the stock, bearish if negative, mixed if unclear.
+- If a field has no content use empty string "" or empty array [].
+- Return ONLY the JSON — no preamble, no markdown fences, no explanation.
 
 Newsletter content:
-{body}
-
-Important rules:
-- Write in a direct, confident voice throughout
-- Do NOT mention "Vital Knowledge", "Vital", "Dawn", or the newsletter's name anywhere in your output
-- Consolidate any repeated news items — mention each story only once
-- Include specific numbers and source attributions
-- Always write "basis points" in full, never abbreviate as "bp"
-- Keep total length under 4000 characters for the TTS readout
-- Do not include scheduling notes, subscription info, or technical notices"""
+{body}"""
 
 
-EW_SUMMARIZE_PROMPT = """You are summarizing an earnings preview newsletter for a trading team called Victory Lane.
-Your job is to produce a concise but substantive earnings preview that captures the key data points
-for each company mentioned. Write in a direct, confident voice.
-
-For each company in the newsletter, create a section with:
+EW_SUMMARIZE_PROMPT = """You are summarizing an earnings preview newsletter for a trading team.
+For each company create a section:
 
 ## TICKER — Company Name
 
 Include ONLY:
-- Confirmed earnings report date and time (before/after market)
-- Consensus EPS estimate and revenue estimate
-- Whisper number if different from consensus
-- Year-over-year revenue growth expectations
-- Company guidance vs consensus
-- Investor sentiment (bullish/bearish percentage)
-- Short interest changes since last earnings
-- Options market implied move vs historical average move
-- Any notable unusual options activity
-- Earnings estimate revision trends (revised higher/lower)
+- Confirmed earnings date/time (BMO or AMC)
+- Consensus EPS and revenue estimates
+- Whisper number if different
+- Options implied move vs historical average move
+- Analyst sentiment (% bullish/bearish)
+- Any notable guidance vs consensus divergence
 
-Do NOT include:
-- Stock price movements or percentage changes
-- Distance from moving averages
-- Price drift since last earnings
-- Any price action commentary
+Do NOT include price action, moving averages, or technical commentary.
 
 Newsletter content:
 {body}
 
-Important rules:
-- Write in a direct, confident voice throughout
-- Do NOT mention "Earnings Whispers" or the newsletter's name anywhere in your output
-- Include specific numbers for all estimates and data points
-- Keep each company section focused and concise
-- Order companies by earnings date (earliest first)
-- Do not include ads, subscription info, or promotional content"""
+Rules: direct voice, no newsletter name in output, specific numbers, order by earnings date."""
 
 
-HS_SUMMARIZE_PROMPT = """You are summarizing a Hammerstone Markets real-time news alert for a trading team called Victory Lane.
-Your job is to produce a concise digest of the key news items. Write in a direct, confident voice.
-
-Structure your response using these section headers as applicable:
+HS_SUMMARIZE_PROMPT = """You are summarizing a real-time news alert for a trading team.
 
 ## MACRO / FED
-Any Fed speak, economic data, rates developments, or broad macro surprises.
-
 ## SECTOR
-Any earnings, guidance, or news items that have sector-wide repricing implications.
-
 ## STOCKS
-Individual stock news items with ticker in bold. Include price reaction, magnitude of move, and catalyst.
 
-Newsletter content:
-{body}
+Stocks section: ticker in bold, 2-3 sentences max per item. Include price reaction, move size, catalyst.
+No brand name in output. Direct voice.
 
-Important rules:
-- Write in a direct, confident voice throughout
-- Do NOT mention "Hammerstone" anywhere in your output
-- Include specific numbers, price levels, and percentage moves
-- Tickers in bold
-- Keep each item to 2-3 sentences max
-- Do not include ads, subscription info, or promotional content"""
+Alert content:
+{body}"""
 
 
-CF_GRADING_PROMPT = """You are a senior equity trader and analyst. Your job is to scan this financial news email
-and identify any items that represent a CHANGING FUNDAMENTAL (CF) — news that forces institutional
-repositioning because it materially changes the earnings power, competitive position, or risk profile
-of a company, sector, or the macro environment.
+CF_GRADING_PROMPT = """You are a senior equity trader. Scan this financial news email and identify
+CHANGING FUNDAMENTAL (CF) events — news that forces institutional repositioning.
 
-Ignore ordinary daily noise. Flag only items that are genuinely out of step with the consensus or
-that create a new narrative. A CF event typically causes a stock to trade differently for weeks or months.
+Respond ONLY with valid JSON:
 
-For each flagged item, return structured data. Respond ONLY with a valid JSON object in this exact format:
-
-{
+{{
   "items": [
-    {
+    {{
       "ticker": "AAPL",
       "type": "STOCK",
       "grade": "A",
       "catalyst": "Earnings Beat",
       "setup": "Day 1 Earnings",
-      "notes": "Beat by $0.18 EPS on strong services growth; guided above consensus for next quarter. Classic episodic pivot setup.",
+      "notes": "Beat by $0.18 EPS on strong services growth; guided above consensus. Classic episodic pivot.",
       "trade_plan": "Watch for gap-and-go or base building off the earnings gap level",
       "key_levels": "195 support (earnings gap); 210 resistance"
-    }
+    }}
   ]
-}
+}}
 
-Field definitions:
-- ticker: Stock ticker (e.g. "AAPL") OR "MACRO" for macro/Fed items OR "SECTOR:XLK" for sector items
-- type: One of STOCK, SECTOR, MACRO
-- grade: Significance grade — one of: "A+", "A", "A-", "B+", "B", "B-"
-  - A+: Massive, rare event. M&A announced, FDA approval/rejection, blowout quarter that reprices the whole sector, Fed pivot.
-  - A: Strong CF event. Big earnings beat/miss, major capex announcement, leadership change at large-cap, sector ETF event.
-  - A-: Meaningful event. Solid beat with raised guidance, notable guidance cut, partnership or contract win, activist entry.
-  - B+: Notable but less urgent. Inline beat, moderate guidance raise, small M&A, analyst upgrade on new thesis.
-  - B: Watch list level. Slight beat, mixed results, minor news. May develop into something.
-  - B-: Low conviction. Noise or minimal significance. Only flag if still marginally notable.
-- catalyst: One of: Earnings Beat, Earnings Miss, Guidance Raise, Guidance Cut, M&A, FDA Approval, FDA Rejection,
+Grades: A+ (transformative), A (strong CF), A- (meaningful), B+ (notable), B (watch list), B- (marginal)
+Types: STOCK, SECTOR, MACRO
+Catalysts: Earnings Beat, Earnings Miss, Guidance Raise, Guidance Cut, M&A, FDA Approval, FDA Rejection,
   Massive Capex, Leadership Change, Partnership, Activist Entry, Short Report, Macro Surprise, Fed Pivot,
   Sector Reprice, Buyback, Dividend Cut, Legal Settlement, Regulatory Action, Product Launch, Contract Win,
   Bankruptcy, Restructuring, Other
-- setup: One of: Changing Fundamentals, Day 1 Earnings, Day 1 News, Breaking News, Macro Event Swing,
+Setups: Changing Fundamentals, Day 1 Earnings, Day 1 News, Breaking News, Macro Event Swing,
   HTF Reversal, Short Squeeze, Sector Rotation, Other
-- notes: 2-3 sentence description of WHY this is significant. Be specific — include numbers.
-- trade_plan: Brief trading framework (1-2 sentences). Can be empty string if unclear.
-- key_levels: Key technical levels to watch (1 sentence). Can be empty string if unknown.
 
-GRADING RULES:
-- Only grade A- or higher if the news is genuinely out of step with consensus expectations.
-- An expected earnings beat is B+. A massive beat with sector implications is A or A+.
-- Macro items: only flag if they represent a genuine surprise or policy shift, not routine data.
-- Sector items: flag when one company's news reprices expectations for the whole group.
-- If nothing in the email meets even B- threshold, return: {"items": []}
-- Return AT MOST 5 items per email. If more qualify, pick the highest-grade ones.
-- Return ONLY the JSON — no preamble, no explanation, no markdown fences.
+Rules:
+- Only A- or higher if genuinely out of step with consensus
+- Max 5 items — pick highest grades if more qualify
+- Return {{"items": []}} if nothing meets B- threshold
+- Return ONLY the JSON
 
 Email subject: {subject}
-
 Email content:
 {body}"""
 
 
-def grade_for_cf(body, subject, api_key):
-    """Run CF grading pass on email body. Returns list of flagged items (dicts) or []."""
-    client = anthropic.Anthropic(api_key=api_key)
-    try:
-        message = client.messages.create(
-            model="claude-sonnet-4-6",
-            max_tokens=2000,
-            messages=[{
-                "role": "user",
-                "content": CF_GRADING_PROMPT.format(subject=subject, body=body[:25000])
-            }]
-        )
-        raw = message.content[0].text.strip()
-        # Strip markdown fences if model added them anyway
-        raw = re.sub(r"^```(?:json)?\s*", "", raw)
-        raw = re.sub(r"\s*```$", "", raw)
-        data = json.loads(raw)
-        items = data.get("items", [])
-        print(f"  CF grading: {len(items)} flagged item(s)")
-        return items
-    except Exception as e:
-        print(f"  CF grading error: {e}")
-        return []
-
-
-def push_to_notion_stocks_on_watch(items, notion_token, db_id, target_date=None):
-    """Push CF-graded items to Notion Stocks On Watch database."""
-    if not notion_token:
-        print("  Notion: NOTION_TOKEN not set — skipping push")
-        return
-    if not items:
-        return
-
-    if target_date is None:
-        target_date = datetime.now(EASTERN).strftime("%Y-%m-%d")
-
-    headers = {
-        "Authorization": f"Bearer {notion_token}",
-        "Content-Type": "application/json",
-        "Notion-Version": "2022-06-28",
-    }
-
-    pushed = 0
-    for item in items:
-        ticker = item.get("ticker", "").strip()
-        if not ticker:
-            continue
-
-        # Build multi-select options (Notion requires [{name: ...}] format)
-        catalyst_val = item.get("catalyst", "").strip()
-        grade_val = item.get("grade", "").strip()
-        setup_val = item.get("setup", "").strip()
-
-        # Build rich_text helper
-        def rt(text):
-            return [{"type": "text", "text": {"content": text[:2000]}}] if text else []
-
-        properties = {
-            "Ticker": {
-                "title": rt(ticker)
-            },
-            "Date": {
-                "date": {"start": target_date}
-            },
-        }
-
-        if catalyst_val:
-            properties["Catalyst"] = {"multi_select": [{"name": catalyst_val}]}
-        if grade_val:
-            properties["Grade"] = {"multi_select": [{"name": grade_val}]}
-        if setup_val:
-            properties["Setup"] = {"multi_select": [{"name": setup_val}]}
-
-        notes = item.get("notes", "").strip()
-        if notes:
-            properties["Notes"] = {"rich_text": rt(notes)}
-
-        trade_plan = item.get("trade_plan", "").strip()
-        if trade_plan:
-            properties["Trade Plan"] = {"rich_text": rt(trade_plan)}
-
-        key_levels = item.get("key_levels", "").strip()
-        if key_levels:
-            properties["Key Levels"] = {"rich_text": rt(key_levels)}
-
-        payload = {
-            "parent": {"database_id": db_id},
-            "properties": properties,
-        }
-
-        try:
-            resp = requests.post(
-                "https://api.notion.com/v1/pages",
-                headers=headers,
-                json=payload,
-                timeout=15,
-            )
-            if resp.status_code in (200, 201):
-                pushed += 1
-                print(f"  ✓ Notion: pushed {ticker} ({grade_val})")
-            else:
-                print(f"  ✗ Notion push failed for {ticker}: {resp.status_code} — {resp.text[:200]}")
-        except Exception as e:
-            print(f"  ✗ Notion push error for {ticker}: {e}")
-
-    print(f"  Notion: {pushed}/{len(items)} item(s) pushed to Stocks On Watch")
-
-
-def clean_subject(raw_subject, source_type="vk"):
-    """Rewrite email subject to Victory Lane branding, stripping source references."""
-    if source_type == "ew":
-        # Extract date if present
-        date_match = re.search(r"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?,?\s*\w+\s+\d+,?\s*\d{4}", raw_subject)
-        if not date_match:
-            date_match = re.search(r"\w+\s+\d+,?\s*\d{4}", raw_subject)
-        date_str = date_match.group(0).strip(", ") if date_match else ""
-
-        s_lower = raw_subject.lower()
-        if "most anticipated" in s_lower or "releases" in s_lower:
-            return f"Earnings Calendar · {date_str}".strip(" ·")
-        else:
-            return f"Earnings Preview · {date_str}".strip(" ·")
-
-    if source_type == "hs":
-        # Hammerstone: strip the brand, keep the content
-        s = re.sub(r"(?i)^hammerstone\s*[-:·]?\s*", "", raw_subject).strip()
-        s = re.sub(r"(?i)\bhammerstone\b", "", s).strip(" -·")
-        date_match = re.search(r"\d{1,2}/\d{1,2}(?:/\d{2,4})?", s)
-        date_str = date_match.group(0) if date_match else ""
-        if not s or s == date_str:
-            s = f"Market Alert · {date_str}".strip(" ·")
-        return s
-
-    s = re.sub(r"^Vital Knowledge:\s*", "", raw_subject).strip()
-
-    # Extract date portion if present
-    date_match = re.search(r"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+\w+\s+\d+,?\s*\d{4}", s)
-    date_str = date_match.group(0) if date_match else ""
-
-    s_lower = s.lower()
-
-    if "dawn" in s_lower or "morning" in s_lower:
-        return f"Morning Intelligentsia · {date_str}".strip(" ·")
-    elif "mid-day" in s_lower or "midday" in s_lower:
-        return f"Mid-Day Update · {date_str}".strip(" ·")
-    elif "recap" in s_lower or "close" in s_lower:
-        return f"Market Recap · {date_str}".strip(" ·")
-    else:
-        # Strip any remaining "vital" or "knowledge" from other subjects
-        s = re.sub(r"\b(vital|knowledge|dawn)\b", "", s, flags=re.IGNORECASE)
-        s = re.sub(r"\s+", " ", s).strip(" -·")
-        return s
-
-
-def get_category_tag(subject):
-    s = subject.lower()
-    if "earnings calendar" in s:
-        return "EARNINGS"
-    elif "earnings preview" in s:
-        return "EARNINGS"
-    elif "market alert" in s or "alert" in s:
-        return "ALERT"
-    elif "morning intelligentsia" in s or "morning" in s:
-        return "MORNING"
-    elif "mid-day" in s or "midday" in s:
-        return "MID-DAY"
-    elif "recap" in s or "close" in s:
-        return "RECAP"
-    elif "intraday" in s:
-        return "INTRADAY"
-    else:
-        return "UPDATE"
-
-
-def get_tag_color(tag):
-    colors = {
-        "MORNING":  ("#1a3a2a", "#4caf82"),
-        "MID-DAY":  ("#1a2a3a", "#4c8faf"),
-        "RECAP":    ("#2a1a1a", "#af4c4c"),
-        "INTRADAY": ("#2a2a1a", "#af9f4c"),
-        "UPDATE":   ("#2a1a3a", "#8f4caf"),
-        "EARNINGS": ("#2a2a1a", "#c9b97a"),
-        "ALERT":    ("#2a1a1a", "#e07050"),
-    }
-    return colors.get(tag, ("#1a1a1a", "#888888"))
-
-
-def load_processed_ids(state_file):
-    if os.path.exists(state_file):
-        with open(state_file) as f:
-            return set(json.load(f))
-    return set()
-
-
-def save_processed_ids(state_file, ids):
-    os.makedirs(os.path.dirname(state_file), exist_ok=True)
-    with open(state_file, "w") as f:
-        json.dump(list(ids), f)
-
-
-def load_processed_ids_github():
-    path = "processed_ids.json"
-    if os.path.exists(path):
-        with open(path, encoding="utf-8") as f:
-            return set(json.load(f))
-    return set()
-
-
-def save_processed_ids_github(ids):
-    with open("processed_ids.json", "w", encoding="utf-8") as f:
-        json.dump(list(ids), f)
-
+# ─────────────────────────────────────────────
+# EMAIL UTILITIES (unchanged from v1)
+# ─────────────────────────────────────────────
 
 def decode_str(s):
     if s is None:
@@ -489,60 +220,11 @@ def get_email_body(msg):
     return body[:30000]
 
 
-def extract_calendar_image(msg):
-    """Extract the earnings calendar image — try inline attachments first, then linked images."""
-    # Try inline attachments first
-    largest = None
-    largest_size = 0
-    for part in msg.walk():
-        ct = part.get_content_type()
-        if ct.startswith("image/"):
-            payload = part.get_payload(decode=True)
-            if payload and len(payload) > largest_size:
-                largest_size = len(payload)
-                ext = ct.split("/")[-1].replace("jpeg", "jpg")
-                largest = (payload, ext, ct)
-    if largest:
-        return largest
-
-    # No inline images — look for linked calendar image in HTML
-    for part in msg.walk():
-        ct = part.get_content_type()
-        if ct == "text/html":
-            html = part.get_payload(decode=True).decode("utf-8", errors="replace")
-            # Look for large images that are likely the calendar grid
-            img_urls = re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', html, re.IGNORECASE)
-            for url in img_urls:
-                # Skip tiny tracking pixels and icons
-                if "earningswhispers" in url.lower() and ("calendar" in url.lower() or "anticipated" in url.lower()):
-                    try:
-                        resp = requests.get(url, timeout=15)
-                        if resp.status_code == 200 and len(resp.content) > 10000:
-                            ct_header = resp.headers.get("Content-Type", "image/png")
-                            ext = ct_header.split("/")[-1].split(";")[0].replace("jpeg", "jpg")
-                            return (resp.content, ext, ct_header)
-                    except Exception as e:
-                        print(f"  Warning: could not download calendar image: {e}")
-            # Fallback: grab the largest linked image
-            for url in img_urls:
-                if url.startswith("http") and "track" not in url.lower() and "pixel" not in url.lower():
-                    try:
-                        resp = requests.get(url, timeout=15)
-                        if resp.status_code == 200 and len(resp.content) > 50000:
-                            ct_header = resp.headers.get("Content-Type", "image/png")
-                            ext = ct_header.split("/")[-1].split(";")[0].replace("jpeg", "jpg")
-                            return (resp.content, ext, ct_header)
-                    except Exception:
-                        continue
-    return None
-
-
 def get_email_date(msg):
     date_str = msg.get("Date", "")
     try:
-        dt = parsedate_to_datetime(date_str)
-        dt_eastern = dt.astimezone(EASTERN)
-        return dt_eastern.strftime("%b %d, %Y · %I:%M %p ET")
+        dt = parsedate_to_datetime(date_str).astimezone(EASTERN)
+        return dt.strftime("%b %d, %Y · %I:%M %p ET")
     except Exception:
         return datetime.now(EASTERN).strftime("%b %d, %Y · %I:%M %p ET")
 
@@ -558,47 +240,331 @@ def get_email_sent_utc(msg):
         return datetime.now(timezone.utc)
 
 
+def load_processed_ids():
+    path = "processed_ids.json"
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            return set(json.load(f))
+    return set()
+
+
+def save_processed_ids(ids):
+    with open("processed_ids.json", "w", encoding="utf-8") as f:
+        json.dump(list(ids), f)
+
+
+def clean_subject(raw_subject, source_type="vk"):
+    s = re.sub(r"^Vital Knowledge:\s*", "", raw_subject).strip()
+    date_match = re.search(r"(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+\w+\s+\d+,?\s*\d{4}", s)
+    date_str = date_match.group(0) if date_match else ""
+    s_lower = s.lower()
+    if source_type == "vk":
+        if "dawn" in s_lower or "morning" in s_lower:
+            return f"Morning Intelligentsia · {date_str}".strip(" ·")
+        elif "mid-day" in s_lower or "midday" in s_lower:
+            return f"Mid-Day Update · {date_str}".strip(" ·")
+        elif "recap" in s_lower or "close" in s_lower:
+            return f"Market Recap · {date_str}".strip(" ·")
+        else:
+            s = re.sub(r"\b(vital|knowledge|dawn)\b", "", s, flags=re.IGNORECASE)
+            return re.sub(r"\s+", " ", s).strip(" -·")
+    elif source_type == "ew":
+        date_match2 = re.search(r"\w+\s+\d+,?\s*\d{4}", raw_subject)
+        date_str2 = date_match2.group(0).strip(", ") if date_match2 else ""
+        if "most anticipated" in raw_subject.lower() or "releases" in raw_subject.lower():
+            return f"Earnings Calendar · {date_str2}".strip(" ·")
+        return f"Earnings Preview · {date_str2}".strip(" ·")
+    elif source_type == "hs":
+        s2 = re.sub(r"(?i)^hammerstone\s*[-:·]?\s*", "", raw_subject).strip()
+        s2 = re.sub(r"(?i)\bhammerstone\b", "", s2).strip(" -·")
+        return s2 or "Market Alert"
+    return s
+
+
+def get_category_tag(subject):
+    s = subject.lower()
+    if "earnings calendar" in s: return "EARNINGS"
+    if "earnings preview" in s:  return "EARNINGS"
+    if "morning" in s:           return "MORNING"
+    if "mid-day" in s:           return "MID-DAY"
+    if "recap" in s:             return "RECAP"
+    if "alert" in s:             return "ALERT"
+    return "UPDATE"
+
+
+def get_tag_color(tag):
+    colors = {
+        "MORNING":  ("#1a3a2a", "#4caf82"),
+        "MID-DAY":  ("#1a2a3a", "#4c8faf"),
+        "RECAP":    ("#2a1a1a", "#af4c4c"),
+        "UPDATE":   ("#2a1a3a", "#8f4caf"),
+        "EARNINGS": ("#2a2a1a", "#c9b97a"),
+        "ALERT":    ("#2a1a1a", "#e07050"),
+    }
+    return colors.get(tag, ("#1a1a1a", "#888888"))
+
+
+# ─────────────────────────────────────────────
+# CLAUDE API CALLS
+# ─────────────────────────────────────────────
+
+def parse_vk_to_mgp(body, api_key):
+    """Parse VK email into structured MGP JSON. Returns dict or None on failure."""
+    client = anthropic.Anthropic(api_key=api_key)
+    try:
+        msg = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=3000,
+            messages=[{"role": "user", "content": VK_MGP_PROMPT.format(body=body[:28000])}]
+        )
+        raw = msg.content[0].text.strip()
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw)
+        data = json.loads(raw)
+        print(f"  VK parse: {len(data.get('company_items', []))} company item(s), type={data.get('email_type')}")
+        return data
+    except Exception as e:
+        print(f"  VK parse error: {e}")
+        return None
+
+
+def summarize_generic(body, api_key, source_type):
+    """Fallback summarizer for EW and HS emails."""
+    client = anthropic.Anthropic(api_key=api_key)
+    if source_type == "ew":
+        prompt, max_tok = EW_SUMMARIZE_PROMPT, 3000
+    else:
+        prompt, max_tok = HS_SUMMARIZE_PROMPT, 1500
+    msg = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=max_tok,
+        messages=[{"role": "user", "content": prompt.format(body=body)}]
+    )
+    return msg.content[0].text
+
+
+def grade_for_cf(body, subject, api_key):
+    """CF grading pass. Returns list of flagged items or []."""
+    client = anthropic.Anthropic(api_key=api_key)
+    try:
+        msg = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=2000,
+            messages=[{"role": "user", "content": CF_GRADING_PROMPT.format(subject=subject, body=body[:25000])}]
+        )
+        raw = msg.content[0].text.strip()
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw)
+        items = json.loads(raw).get("items", [])
+        print(f"  CF grading: {len(items)} flagged item(s)")
+        return items
+    except Exception as e:
+        print(f"  CF grading error: {e}")
+        return []
+
+
+# ─────────────────────────────────────────────
+# NOTION PUSH (unchanged from v1)
+# ─────────────────────────────────────────────
+
+def push_to_notion_stocks_on_watch(items, notion_token, db_id, target_date=None):
+    if not notion_token or not items:
+        if not notion_token:
+            print("  Notion: NOTION_TOKEN not set — skipping")
+        return
+    if target_date is None:
+        target_date = datetime.now(EASTERN).strftime("%Y-%m-%d")
+    headers = {
+        "Authorization": f"Bearer {notion_token}",
+        "Content-Type": "application/json",
+        "Notion-Version": "2022-06-28",
+    }
+    def rt(text):
+        return [{"type": "text", "text": {"content": text[:2000]}}] if text else []
+
+    pushed = 0
+    for item in items:
+        ticker = item.get("ticker", "").strip()
+        if not ticker:
+            continue
+        properties = {"Ticker": {"title": rt(ticker)}, "Date": {"date": {"start": target_date}}}
+        for field, notion_key in [("catalyst","Catalyst"),("grade","Grade"),("setup","Setup")]:
+            val = item.get(field, "").strip()
+            if val:
+                properties[notion_key] = {"multi_select": [{"name": val}]}
+        for field, notion_key in [("notes","Notes"),("trade_plan","Trade Plan"),("key_levels","Key Levels")]:
+            val = item.get(field, "").strip()
+            if val:
+                properties[notion_key] = {"rich_text": rt(val)}
+        try:
+            resp = requests.post("https://api.notion.com/v1/pages",
+                                 headers=headers, json={"parent": {"database_id": db_id}, "properties": properties}, timeout=15)
+            if resp.status_code in (200, 201):
+                pushed += 1
+                print(f"  ✓ Notion: pushed {ticker} ({item.get('grade','')})")
+            else:
+                print(f"  ✗ Notion push failed {ticker}: {resp.status_code}")
+        except Exception as e:
+            print(f"  ✗ Notion push error {ticker}: {e}")
+    print(f"  Notion: {pushed}/{len(items)} pushed")
+
+
+# ─────────────────────────────────────────────
+# SCANNER CSV READER
+# ─────────────────────────────────────────────
+
+def read_scanner_csvs(csv_dir):
+    """
+    Read Trade Ideas scanner CSVs from csv_dir.
+    Returns dict: { scanner_label: [ {symbol, price, avol_pct, chg_close, chg_20d, chg_50d, ...}, ... ] }
+    Gracefully returns {} if dir doesn't exist or no CSVs found.
+    """
+    if not os.path.isdir(csv_dir):
+        print(f"  Scanner CSV dir not found: {csv_dir} — skipping")
+        return {}
+
+    # Find all CSVs modified in the last 24 hours
+    cutoff = datetime.now().timestamp() - 86400
+    csv_files = [f for f in glob.glob(os.path.join(csv_dir, "*.csv"))
+                 if os.path.getmtime(f) >= cutoff]
+
+    if not csv_files:
+        print(f"  No recent scanner CSVs found in {csv_dir}")
+        return {}
+
+    result = {}
+    for filepath in csv_files:
+        fname = os.path.basename(filepath).lower()
+        # Determine scanner label from filename
+        label = "Scanner"
+        for key, lbl in SCANNER_LABELS.items():
+            if key in fname:
+                label = lbl
+                break
+
+        rows = []
+        try:
+            with open(filepath, encoding="utf-8", errors="replace") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    symbol = (row.get("Symbol") or row.get("symbol") or "").strip()
+                    if not symbol:
+                        continue
+                    rows.append({
+                        "symbol":    symbol,
+                        "price":     _safe_float(row.get("Price") or row.get("price")),
+                        "chg_close": _safe_float(row.get("Change from the Close") or row.get("Chg Close")),
+                        "vol_today": _safe_float(row.get("Volume Today") or row.get("Vol Today")),
+                        "chg_20d":   _safe_float(row.get("Change from 20 Day SMA") or row.get("Chg 20 Day")),
+                        "chg_50d":   _safe_float(row.get("Change from 50 Day SMA") or row.get("Chg 50 Day")),
+                        "chg_200d":  _safe_float(row.get("Change from 200 Day SMA") or row.get("Chg 200 Day")),
+                        "pos_yr":    _safe_float(row.get("Position in Year Range") or row.get("Pos Yr Rng (%)")),
+                        "pos_life":  _safe_float(row.get("Position in Lifetime Range") or row.get("Pos Lifetime")),
+                        "earn_date": (row.get("Earnings Date") or row.get("Earn Date") or "").strip(),
+                        "timestamp": (row.get("TimeStamp") or row.get("Timestamp") or "").strip(),
+                    })
+        except Exception as e:
+            print(f"  CSV read error {filepath}: {e}")
+            continue
+
+        if rows:
+            if label not in result:
+                result[label] = []
+            result[label].extend(rows)
+            print(f"  Scanner '{label}': {len(rows)} row(s) from {os.path.basename(filepath)}")
+
+    return result
+
+
+def _safe_float(val):
+    try:
+        return float(str(val).replace(",", "").strip())
+    except Exception:
+        return None
+
+
+# ─────────────────────────────────────────────
+# BENZINGA NEWS FETCH
+# ─────────────────────────────────────────────
+
+def fetch_benzinga_news(tickers, api_key, hours_back=20):
+    """
+    Fetch news for a list of tickers via Massive/Benzinga API.
+    Returns dict: { ticker: [ {published, title, teaser, channels}, ... ] }
+    Gracefully returns {} if no API key or request fails.
+    """
+    if not api_key:
+        print("  BENZINGA_API_KEY not set — skipping news fetch")
+        return {}
+    if not tickers:
+        return {}
+
+    since = (datetime.now(timezone.utc) - timedelta(hours=hours_back)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    result = {}
+
+    for ticker in tickers:
+        try:
+            resp = requests.get(
+                "https://api.massive.com/benzinga/v2/news",
+                params={"apiKey": api_key, "stocks": ticker, "published": since,
+                        "limit": "5", "sort": "published.desc"},
+                timeout=15,
+            )
+            data = resp.json()
+            stories = data.get("results", [])
+            if stories:
+                result[ticker] = []
+                for s in stories:
+                    channels = s.get("channels", [])
+                    if channels and isinstance(channels[0], dict):
+                        channels = [c.get("name", "") for c in channels]
+                    result[ticker].append({
+                        "published": s.get("published", "")[:16],
+                        "title":     s.get("title", ""),
+                        "teaser":    s.get("teaser", "")[:200],
+                        "channels":  channels,
+                    })
+                print(f"  Benzinga {ticker}: {len(stories)} story(ies)")
+        except Exception as e:
+            print(f"  Benzinga fetch error {ticker}: {e}")
+
+    return result
+
+
+# ─────────────────────────────────────────────
+# IMAP EMAIL FETCH
+# ─────────────────────────────────────────────
+
 def fetch_new_emails(config):
     mail = imaplib.IMAP4_SSL("imap.mail.yahoo.com", 993)
     mail.login(config["yahoo_email"], config["yahoo_app_password"])
     mail.select("inbox")
 
-    if config["github_actions"]:
-        processed = load_processed_ids_github()
-    else:
-        processed = load_processed_ids(config["state_file"])
-
+    processed = load_processed_ids()
     since_date = (datetime.utcnow() - timedelta(hours=config["lookback_hours"] + 24)).strftime("%d-%b-%Y")
     cutoff = datetime.now(timezone.utc) - timedelta(hours=config["lookback_hours"])
-    results = []
 
-    # Single IMAP search for all recent emails, then filter by source in Python
-    status, data = mail.uid('search', None, f'(SINCE "{since_date}")')
+    status, data = mail.uid("search", None, f'(SINCE "{since_date}")')
     all_uids = data[0].split()
     print(f"  Found {len(all_uids)} total email(s) since {since_date}")
 
+    results = []
     for uid in all_uids:
         uid_str = uid.decode()
         if uid_str in processed:
             continue
-
-        status, msg_data = mail.uid('fetch', uid, "(BODY.PEEK[])")
+        status, msg_data = mail.uid("fetch", uid, "(BODY.PEEK[])")
         raw = msg_data[0][1]
         msg = email.message_from_bytes(raw)
-
         from_addr = decode_str(msg.get("From", "")).lower()
 
-        # Match against each source
         matched_source = None
         for source in EMAIL_SOURCES:
             if source["sender_filter"].lower() in from_addr:
                 matched_source = source
                 break
-
         if not matched_source:
             continue
-
-        source_type = matched_source["source_type"]
 
         sent_utc = get_email_sent_utc(msg)
         if sent_utc < cutoff:
@@ -606,314 +572,226 @@ def fetch_new_emails(config):
             continue
 
         raw_subject = decode_str(msg.get("Subject", "(No Subject)"))
-        subject = clean_subject(raw_subject, source_type)
+        subject = clean_subject(raw_subject, matched_source["source_type"])
         body = get_email_body(msg)
         email_date = get_email_date(msg)
 
-        # Extract calendar image only for the "Most Anticipated" calendar emails
-        calendar_image = None
-        if source_type == "ew" and "calendar" in subject.lower():
-            calendar_image = extract_calendar_image(msg)
-
         if body.strip():
-            results.append((uid_str, subject, body, email_date, sent_utc, source_type, calendar_image))
+            results.append((uid_str, subject, body, email_date, sent_utc, matched_source["source_type"]))
             print(f"  Found [{matched_source['name']}]: {subject} ({email_date})")
-            # Mark as read
-            mail.uid('store', uid, '+FLAGS', '\\Seen')
+            mail.uid("store", uid, "+FLAGS", "\\Seen")
 
     mail.logout()
     results.sort(key=lambda x: x[4])
     return results, processed
 
 
-def summarize_with_claude(body, api_key, source_type="vk"):
-    client = anthropic.Anthropic(api_key=api_key)
-    if source_type == "ew":
-        prompt = EW_SUMMARIZE_PROMPT
-        max_tok = 3000
-    elif source_type == "hs":
-        prompt = HS_SUMMARIZE_PROMPT
-        max_tok = 1500
-    else:
-        prompt = SUMMARIZE_PROMPT
-        max_tok = 1800
-    message = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=max_tok,
-        messages=[{"role": "user", "content": prompt.format(body=body)}]
-    )
-    return message.content[0].text
+# ─────────────────────────────────────────────
+# TTS UTILITIES
+# ─────────────────────────────────────────────
 
-
-def get_preview(digest_text):
-    lines = [l.strip() for l in digest_text.split("\n") if l.strip() and not l.startswith("#")]
-    if lines:
-        preview = lines[0][:140]
-        if len(lines[0]) > 140:
-            preview += "..."
-        return preview
-    return ""
-
-
-def markdown_to_html_body(text):
-    lines = text.split("\n")
-    html_parts = []
-    for line in lines:
-        line = line.strip()
-        if not line:
-            continue
-        if line.startswith("## "):
-            html_parts.append(f'<h2>{line[3:]}</h2>')
-        elif line.startswith("**") and line.endswith("**"):
-            html_parts.append(f'<p class="ticker-line">{line[2:-2]}</p>')
-        else:
-            line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
-            html_parts.append(f'<p>{line}</p>')
-    return "\n".join(html_parts)
-
-
-def prepare_tts_text(html_body):
-    """Convert HTML digest to clean TTS text.
-    Skips sections with fewer than 120 chars of content (placeholder sections).
-    Also strips any remaining VK brand references and source citations.
-    """
-    sections = re.split(r"<h2>[^<]*</h2>", html_body)
-    headers = re.findall(r"<h2>([^<]*)</h2>", html_body)
-
-    tts_parts = []
-
-    for i, section_html in enumerate(sections):
-        section_text = re.sub(r"<[^>]+>", " ", section_html)
-        section_text = re.sub(r"\s+", " ", section_text).strip()
-
-        if i == 0:
-            if section_text:
-                tts_parts.append(section_text)
-            continue
-
-        header = headers[i - 1] if i - 1 < len(headers) else ""
-
-        if len(section_text) < 120:
-            continue
-
-        if header:
-            tts_parts.append(header + ".")
-        tts_parts.append(section_text)
-
-    text = " ".join(tts_parts)
-
-    # Strip any remaining brand references
+def prepare_tts_text(text):
+    """Clean text for TTS — expand abbreviations, strip brand names."""
     text = re.sub(r"\b(Vital Knowledge|Vital Dawn|Vital)\b", "", text, flags=re.IGNORECASE)
-
-    # Strip source citations: (Bloomberg), (WSJ), (NYT), (FT), (Reuters), (Axios), etc.
-    text = re.sub(r"\s*\((?:Bloomberg|WSJ|Wall Street Journal|NYT|New York Times|FT|Financial Times|Reuters|Axios|CNBC|CNN|AP|Barron\'?s|MarketWatch)\)", "", text, flags=re.IGNORECASE)
-
-    # Abbreviation expansions
+    text = re.sub(r"\s*\((?:Bloomberg|WSJ|Wall Street Journal|NYT|FT|Reuters|Axios|CNBC|AP|Barron\'?s|MarketWatch)\)", "", text, flags=re.IGNORECASE)
     text = re.sub(r"\bbp\b", "basis points", text)
     text = re.sub(r"\bBP\b", "basis points", text)
     text = re.sub(r"\bpct\b", "percent", text, flags=re.IGNORECASE)
     text = re.sub(r"\bYoY\b", "year over year", text, flags=re.IGNORECASE)
     text = re.sub(r"\bQoQ\b", "quarter over quarter", text, flags=re.IGNORECASE)
-    text = re.sub(r"\bY/Y\b", "year over year", text)
-    text = re.sub(r"\bQ/Q\b", "quarter over quarter", text)
     text = re.sub(r"\bEPS\b", "earnings per share", text)
-    text = re.sub(r"\bET\b", "Eastern time", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
+    text = re.sub(r"\bET\b",  "Eastern time", text)
+    text = re.sub(r"\bBMO\b", "before the open", text)
+    text = re.sub(r"\bAMC\b", "after the close", text)
+    return re.sub(r"\s+", " ", text).strip()
 
 
-def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=None):
-    body_html = markdown_to_html_body(digest_text)
-    calendar_html = ""
-    if calendar_image_path:
-        calendar_html = f"""<div style="margin-bottom:28px; text-align:center;">
-  <img src="{calendar_image_path}" alt="Earnings Calendar" style="max-width:100%; border-radius:6px; border:1px solid #1a1a1a;">
-</div>
+TTS_JS = r"""
+  const CHUNK_SIZE = 4000;
+  let rate = TTS_RATE_PLACEHOLDER;
+  let charIndex = 0;
+  let isPaused = false;
+  let utterance = null;
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let iosWarmedUp = false;
+
+  function getChunks(text) {
+    const chunks = [];
+    let start = 0;
+    while (start < text.length) {
+      let end = Math.min(start + CHUNK_SIZE, text.length);
+      if (end < text.length) {
+        const slice = text.slice(start, end);
+        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
+        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
+      }
+      chunks.push({ text: text.slice(start, end), start: start });
+      start = end;
+    }
+    return chunks;
+  }
+
+  function getVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return (
+      voices.find(v => v.name === "Microsoft David Desktop - English (United States)") ||
+      voices.find(v => v.name.includes("David"))  ||
+      voices.find(v => v.name.includes("Guy"))    ||
+      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)") ||
+      voices.find(v => v.name.includes("Aria"))   ||
+      voices.find(v => v.name === "Samantha")     ||
+      voices.find(v => v.lang.startsWith("en-US")) ||
+      voices.find(v => v.lang.startsWith("en"))   ||
+      voices[0]
+    );
+  }
+
+  function iosWarmup() {
+    if (!isIOS || iosWarmedUp) return;
+    const warm = new SpeechSynthesisUtterance(""); warm.volume = 0;
+    window.speechSynthesis.speak(warm); iosWarmedUp = true;
+  }
+
+  function updateSpeed(val) {
+    rate = parseFloat(val);
+    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
+    if (window.speechSynthesis.speaking && !isPaused) speakFrom(charIndex);
+  }
+
+  function setStatus(msg) { document.getElementById("tts-status").textContent = msg; }
+
+  function setPlayBtn(playing) {
+    const btn = document.getElementById("btn-play");
+    if (playing) { btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }
+    else { btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }
+  }
+
+  let _chunks = null;
+  function chunks() { if (!_chunks) _chunks = getChunks(ttsText); return _chunks; }
+
+  function findChunkIndex(charPos) {
+    const ch = chunks();
+    for (let i = ch.length - 1; i >= 0; i--) { if (charPos >= ch[i].start) return i; }
+    return 0;
+  }
+
+  function speakChain(chunkIdx) {
+    const ch = chunks();
+    if (chunkIdx >= ch.length || isPaused) {
+      if (!isPaused) { charIndex = 0; setPlayBtn(false); setStatus("Done \u2014 press Replay to listen again"); }
+      return;
+    }
+    const chunk = ch[chunkIdx];
+    utterance = new SpeechSynthesisUtterance(chunk.text);
+    utterance.rate = rate; utterance.pitch = 1.0; utterance.volume = 1.0;
+    utterance.onboundary = (e) => { if (e.name === "word") charIndex = chunk.start + e.charIndex; };
+    utterance.onend = () => { if (!isPaused) speakChain(chunkIdx + 1); };
+    utterance.onerror = (e) => { if (e.error !== "canceled") speakChain(chunkIdx + 1); };
+    const voice = getVoice();
+    if (voice) utterance.voice = voice;
+    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
+    setPlayBtn(true);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function speakFrom(startChar) {
+    window.speechSynthesis.cancel();
+    const ch = chunks();
+    startChar = Math.max(0, Math.min(startChar, ttsText.length - 1));
+    charIndex = startChar;
+    const chunkIdx = findChunkIndex(startChar);
+    if (startChar > ch[chunkIdx].start) {
+      const offset = startChar - ch[chunkIdx].start;
+      const orig = ch[chunkIdx].text;
+      ch[chunkIdx] = { text: orig.slice(offset), start: startChar };
+      speakChain(chunkIdx);
+      ch[chunkIdx] = { text: orig, start: startChar - offset };
+    } else {
+      speakChain(chunkIdx);
+    }
+  }
+
+  const CHARS_PER_10S = Math.floor(125 * TTS_RATE_PLACEHOLDER);
+
+  function togglePlay() {
+    iosWarmup();
+    if (isPaused) { isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }
+    else if (window.speechSynthesis.speaking) { isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \u2014 press Play to resume"); }
+    else { charIndex = 0; isPaused = false; speakFrom(0); }
+  }
+
+  function skipForward() {
+    const was = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.min(charIndex + CHARS_PER_10S, ttsText.length - 1);
+    if (was) { isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }
+    else setStatus("Skipped forward \u2014 press Play to resume");
+  }
+
+  function skipBack() {
+    const was = window.speechSynthesis.speaking && !isPaused;
+    window.speechSynthesis.cancel();
+    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
+    if (was) { isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }
+    else setStatus("Skipped back \u2014 press Play to resume");
+  }
+
+  function stopReading() {
+    isPaused = false; charIndex = 0; window.speechSynthesis.cancel();
+    setPlayBtn(false); setStatus("Stopped \u2014 press Replay to start over");
+  }
+
+  function replayReading() {
+    isPaused = false; charIndex = 0; window.speechSynthesis.cancel();
+    setStatus("Restarting..."); setTimeout(() => speakFrom(0), 300);
+  }
+
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      [523.25, 659.25, 783.99].forEach((freq, i) => {
+        const osc = ctx.createOscillator(), gain = ctx.createGain();
+        osc.type = "sine"; osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15); osc.stop(ctx.currentTime + i * 0.15 + 0.5);
+      });
+    } catch(e) {}
+  }
+
+  function updateNotifyBtn() {
+    const btn = document.getElementById("notify-btn");
+    if (!btn) return;
+    if (Notification.permission === "granted") { btn.textContent = "Notifications on"; btn.classList.add("enabled"); }
+    else if (Notification.permission === "denied") { btn.textContent = "Notifications blocked"; }
+    else { btn.textContent = "Notify me"; btn.classList.remove("enabled"); }
+  }
+
+  function requestNotifications() {
+    if (!("Notification" in window)) { setStatus("Notifications not supported"); return; }
+    if (Notification.permission === "granted") { setStatus("Notifications already enabled!"); return; }
+    Notification.requestPermission().then(p => {
+      updateNotifyBtn();
+      if (p === "granted") {
+        setStatus("Notifications enabled");
+        new Notification("The Victory Lane", { body: "You'll be notified when new dispatches arrive." });
+      }
+    });
+  }
+
+  window.addEventListener("load", () => {
+    updateNotifyBtn();
+    if (isIOS) setStatus("Tap Play to start");
+    else setTimeout(() => speakFrom(0), 1800);
+  });
+  window.addEventListener("pagehide", () => window.speechSynthesis.cancel());
+  window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
 """
-    tts_text = prepare_tts_text(body_html)
-    tts_text_escaped = (tts_text
-        .replace("\\", "\\\\")
-        .replace('"', '\\"')
-        .replace("\n", " ")
-        .replace("`", "'"))
-    tag = get_category_tag(subject)
-    bg, fg = get_tag_color(tag)
-    chars_per_10sec = int(125 * tts_rate)
 
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{subject} · {SITE_NAME}</title>
-<meta http-equiv="refresh" content="180">
-<meta property="og:title" content="{subject}">
-<meta property="og:description" content="{SITE_NAME} · Market Intelligentsia">
-<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
-<meta property="og:type" content="article">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{subject}">
-<meta name="twitter:description" content="{SITE_NAME} · Market Intelligentsia">
-<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
-<style>
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    font-family: Georgia, 'Times New Roman', serif;
-    background: #0a0a0a;
-    color: #e8e4d9;
-    max-width: 820px;
-    margin: 0 auto;
-    padding: 40px 32px 100px;
-    line-height: 1.75;
-    font-size: 16px;
-  }}
-  .top-bar {{
-    position: sticky;
-    top: 0;
-    background: #0a0a0a;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 0;
-    margin-bottom: 24px;
-    border-bottom: 1px solid #1a1a1a;
-  }}
-  .back-link {{
-    font-size: 12px;
-    color: #555;
-    text-decoration: none;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.05em;
-  }}
-  .back-link:hover {{ color: #c9b97a; }}
-  .site-name {{
-    font-size: 12px;
-    color: #333;
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.1em;
-  }}
-  header {{ margin-bottom: 28px; }}
-  .tag {{
-    display: inline-block;
-    font-size: 11px;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    padding: 3px 8px;
-    border-radius: 3px;
-    margin-bottom: 10px;
-    background: {bg};
-    color: {fg};
-    border: 1px solid {fg}44;
-  }}
-  header h1 {{
-    font-size: 26px;
-    font-weight: normal;
-    letter-spacing: 0.02em;
-    color: #c9b97a;
-    line-height: 1.3;
-    margin-bottom: 8px;
-  }}
-  header .meta {{
-    font-size: 13px;
-    color: #555;
-    font-family: 'Courier New', monospace;
-  }}
-  .divider {{
-    border: none;
-    border-top: 1px solid #1a1a1a;
-    margin: 20px 0 28px;
-  }}
-  h2 {{
-    font-size: 10px;
-    font-weight: normal;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #666;
-    margin: 32px 0 10px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #1a1a1a;
-  }}
-  p {{ margin-bottom: 12px; color: #ccc8bc; }}
-  strong {{ color: #c9b97a; font-weight: bold; }}
-  .ticker-line {{ color: #c9b97a; font-weight: bold; }}
-  #tts-bar {{
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: #111;
-    border-top: 1px solid #222;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    flex-wrap: wrap;
-  }}
-  #tts-bar button {{
-    background: #1a1a1a;
-    border: 1px solid #333;
-    color: #e8e4d9;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 11px;
-    border-radius: 3px;
-    font-family: 'Courier New', monospace;
-    transition: background 0.15s;
-    white-space: nowrap;
-  }}
-  #tts-bar button:hover {{ background: #2a2a2a; }}
-  #tts-bar button.active {{ background: #3d3820; border-color: #c9b97a; color: #c9b97a; }}
-  #tts-bar button.skip {{ color: #777; }}
-  #tts-bar button.skip:hover {{ color: #e8e4d9; }}
-  .speed-group {{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-left: 4px;
-  }}
-  .speed-group label {{
-    color: #555;
-    font-size: 11px;
-    white-space: nowrap;
-  }}
-  #speed-slider {{
-    width: 80px;
-    accent-color: #c9b97a;
-  }}
-  #speed-val {{
-    color: #c9b97a;
-    font-size: 11px;
-    min-width: 28px;
-  }}
-  #tts-status {{ color: #555; flex: 1; font-size: 11px; min-width: 120px; }}
-  .notify-btn {{
-    margin-left: auto;
-    background: #1a1a2a !important;
-    border-color: #334 !important;
-    color: #668 !important;
-  }}
-  .notify-btn.enabled {{ color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }}
-</style>
-</head>
-<body>
 
-<div class="top-bar">
-  <a class="back-link" href="index.html">&#8592; All Dispatches</a>
-  <span class="site-name">THE VICTORY LANE</span>
-</div>
-
-<header>
-  <div class="tag">{tag}</div>
-  <h1>{subject}</h1>
-  <div class="meta">{email_date}</div>
-</header>
-<hr class="divider">
-
-{calendar_html}{body_html}
-
-<div id="tts-bar">
+def tts_bar_html():
+    return """<div id="tts-bar">
   <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
   <button class="skip" onclick="skipBack()">&#8592; 10s</button>
   <button class="skip" onclick="skipForward()">10s &#8594;</button>
@@ -921,455 +799,470 @@ def build_html(digest_text, subject, email_date, tts_rate, calendar_image_path=N
   <button onclick="replayReading()">&#8635; Replay</button>
   <div class="speed-group">
     <label>Speed</label>
-    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="{tts_rate}" oninput="updateSpeed(this.value)">
-    <span id="speed-val">{tts_rate}x</span>
+    <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
+    <span id="speed-val">1.3x</span>
   </div>
   <span id="tts-status">Ready &mdash; auto-starting...</span>
   <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
+</div>"""
+
+
+COMMON_CSS = """
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #0a0a0a;
+  color: #e8e4d9;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 28px 100px;
+  line-height: 1.72;
+  font-size: 15px;
+}
+a { color: inherit; text-decoration: none; }
+.top-bar {
+  position: sticky; top: 0; background: #0a0a0a; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 0; margin-bottom: 22px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.back-link { font-size: 12px; color: #555; font-family: 'Courier New', monospace; }
+.back-link:hover { color: #c9b97a; }
+.site-name { font-size: 11px; color: #333; font-family: 'Courier New', monospace; letter-spacing: 0.12em; }
+.section-head {
+  font-size: 10px; font-weight: normal; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #555;
+  margin: 28px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #181818;
+}
+p { margin-bottom: 11px; color: #c8c4b8; }
+strong { color: #c9b97a; }
+#tts-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #0e0e0e; border-top: 1px solid #1e1e1e;
+  padding: 7px 14px;
+  display: flex; align-items: center; gap: 7px;
+  font-family: 'Courier New', monospace; font-size: 11px; flex-wrap: wrap;
+}
+#tts-bar button {
+  background: #181818; border: 1px solid #2a2a2a; color: #d8d4c8;
+  padding: 4px 9px; cursor: pointer; font-size: 11px; border-radius: 3px;
+  font-family: 'Courier New', monospace; transition: background 0.15s; white-space: nowrap;
+}
+#tts-bar button:hover { background: #242424; }
+#tts-bar button.active { background: #3d3820; border-color: #c9b97a; color: #c9b97a; }
+#tts-bar button.skip { color: #666; }
+.speed-group { display: flex; align-items: center; gap: 5px; }
+.speed-group label { color: #555; font-size: 11px; }
+#speed-slider { width: 72px; accent-color: #c9b97a; }
+#speed-val { color: #c9b97a; font-size: 11px; min-width: 26px; }
+#tts-status { color: #555; flex: 1; font-size: 11px; min-width: 100px; }
+.notify-btn { margin-left: auto; background: #1a1a2a !important; border-color: #334 !important; color: #668 !important; }
+.notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
+"""
+
+
+# ─────────────────────────────────────────────
+# MGP DASHBOARD HTML
+# ─────────────────────────────────────────────
+
+def _dir_arrow(direction):
+    if direction == "bullish":  return '<span style="color:#4caf82">▲</span>'
+    if direction == "bearish":  return '<span style="color:#e05050">▼</span>'
+    return '<span style="color:#888">◆</span>'
+
+
+def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate):
+    """
+    Build the main MGP index.html dashboard.
+    vk_data: dict from parse_vk_to_mgp (or None)
+    scanner_data: dict from read_scanner_csvs
+    news_data: dict from fetch_benzinga_news
+    """
+    # ── VK sections ──
+    macro_html = ""
+    bullbear_html = ""
+    outlook_html = ""
+    company_html = ""
+    calendar_html = ""
+    sectors_html = ""
+
+    # TTS text built from VK tts_summary + scanner summary
+    tts_text = ""
+
+    if vk_data:
+        macro = vk_data.get("macro", "")
+        rates = vk_data.get("rates_fed", "")
+        outlook = vk_data.get("market_outlook", "")
+        bull = vk_data.get("bull_case", "")
+        bear = vk_data.get("bear_case", "")
+        sectors = vk_data.get("sectors", "")
+        items = vk_data.get("company_items", [])
+        earnings = vk_data.get("earnings_today", [])
+        key_dates = vk_data.get("key_dates", [])
+        tts_text = prepare_tts_text(vk_data.get("tts_summary", macro + " " + outlook))
+
+        if macro or rates:
+            macro_html = f"""<div class="section-head">Macro Context</div>
+<div class="prose-block">
+{"<p>" + macro + "</p>" if macro else ""}
+{"<p>" + rates + "</p>" if rates else ""}
+</div>"""
+
+        if bull or bear:
+            bullbear_html = f"""<div class="section-head">Bull / Bear</div>
+<div class="two-col">
+  <div class="col bull-col">
+    <div class="col-label">BULL CASE</div>
+    <p>{bull}</p>
+  </div>
+  <div class="col bear-col">
+    <div class="col-label">BEAR CASE</div>
+    <p>{bear}</p>
+  </div>
+</div>"""
+
+        if outlook:
+            outlook_html = f"""<div class="section-head">Market Outlook</div>
+<div class="prose-block"><p>{outlook}</p></div>"""
+
+        if sectors:
+            sectors_html = f"""<div class="section-head">Sector Watch</div>
+<div class="prose-block"><p>{sectors}</p></div>"""
+
+        if items:
+            cards = ""
+            for item in items:
+                ticker   = item.get("ticker", "")
+                company  = item.get("company", "")
+                summary  = item.get("summary", "")
+                catalyst = item.get("catalyst", "")
+                direction= item.get("direction", "mixed")
+                arrow    = _dir_arrow(direction)
+                # Pull in Benzinga news if available
+                news_html = ""
+                if ticker in news_data:
+                    news_items = news_data[ticker][:2]
+                    for n in news_items:
+                        news_html += f'<div class="bz-story">[{n["published"]}] {n["title"]}</div>'
+
+                cards += f"""<div class="company-card">
+  <div class="card-header">
+    <span class="card-ticker">{arrow} {ticker}</span>
+    <span class="card-company">{company}</span>
+    <span class="card-catalyst">{catalyst}</span>
+  </div>
+  <p class="card-summary">{summary}</p>
+  {news_html}
 </div>
+"""
+            company_html = f"""<div class="section-head">Stocks on Watch — VK</div>
+<div class="company-grid">{cards}</div>"""
 
-<script>
-  const digestText = "{tts_text_escaped}";
-  const CHARS_PER_10S = {chars_per_10sec};
-  const CHUNK_SIZE = 4000;
-  let rate = {tts_rate};
-  let charIndex = 0;
-  let isPaused = false;
-  let utterance = null;
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  let iosWarmedUp = false;
+        # Earnings + key dates
+        cal_parts = []
+        if earnings:
+            cal_parts.append('<div class="cal-group"><div class="cal-label">EARNINGS TODAY</div>'
+                             + "".join(f'<div class="cal-item">{e}</div>' for e in earnings) + "</div>")
+        if key_dates:
+            cal_parts.append('<div class="cal-group"><div class="cal-label">KEY DATES</div>'
+                             + "".join(f'<div class="cal-item">{d}</div>' for d in key_dates) + "</div>")
+        if cal_parts:
+            calendar_html = f"""<div class="section-head">Calendar</div>
+<div class="cal-row">{"".join(cal_parts)}</div>"""
 
-  // Split text into chunks at sentence boundaries
-  function getChunks(text) {{
-    const chunks = [];
-    let start = 0;
-    while (start < text.length) {{
-      let end = Math.min(start + CHUNK_SIZE, text.length);
-      if (end < text.length) {{
-        // Find last sentence break before the limit
-        const slice = text.slice(start, end);
-        const lastPeriod = Math.max(slice.lastIndexOf(". "), slice.lastIndexOf("? "), slice.lastIndexOf("! "));
-        if (lastPeriod > CHUNK_SIZE * 0.3) end = start + lastPeriod + 2;
-      }}
-      chunks.push({{ text: text.slice(start, end), start: start }});
-      start = end;
-    }}
-    return chunks;
-  }}
+    # ── Scanner sections ──
+    scanner_html = ""
+    if scanner_data:
+        scanner_blocks = []
+        for scanner_label, rows in scanner_data.items():
+            tickers_in_scanner = [r["symbol"] for r in rows]
+            # Append scanner tickers to TTS
+            if tickers_in_scanner:
+                tts_text += f" Scanner alert: {scanner_label}. Tickers: {', '.join(tickers_in_scanner)}."
 
-  const chunks = getChunks(digestText);
+            rows_html = ""
+            for r in rows:
+                sym = r["symbol"]
+                price = f"${r['price']:.2f}" if r["price"] is not None else "—"
+                chg = f"{r['chg_close']:+.2f}%" if r["chg_close"] is not None else "—"
+                vol = f"{r['vol_today']:.1f}x" if r["vol_today"] is not None else "—"
+                chg20 = f"{r['chg_20d']:+.1f}%" if r["chg_20d"] is not None else "—"
+                chg200= f"{r['chg_200d']:+.1f}%" if r["chg_200d"] is not None else "—"
+                pos_yr= f"{r['pos_yr']:.0f}%" if r["pos_yr"] is not None else "—"
 
-  function getVoice() {{
-    const voices = window.speechSynthesis.getVoices();
-    return (
-      voices.find(v => v.name === "Microsoft Aria Online (Natural) - English (United States)")  ||
-      voices.find(v => v.name.includes("Aria"))           ||  // Edge US female
-      voices.find(v => v.name === "Microsoft Jenny Online (Natural) - English (United States)")  ||
-      voices.find(v => v.name.includes("Jenny"))          ||  // Edge US female fallback
-      voices.find(v => v.name === "Samantha")             ||  // macOS/iOS
-      voices.find(v => v.name === "Karen")                ||  // macOS Australian female
-      voices.find(v => v.name.includes("Female") && v.lang.startsWith("en-US")) ||
-      voices.find(v => v.lang.startsWith("en-US"))        ||
-      voices.find(v => v.lang.startsWith("en"))           ||
-      voices[0]
-    );
-  }}
+                # Benzinga news for this ticker
+                bz_html = ""
+                if sym in news_data and news_data[sym]:
+                    n = news_data[sym][0]
+                    bz_html = f'<div class="scanner-news">{n["title"][:100]}</div>'
 
-  function iosWarmup() {{
-    if (!isIOS || iosWarmedUp) return;
-    const warm = new SpeechSynthesisUtterance("");
-    warm.volume = 0;
-    window.speechSynthesis.speak(warm);
-    iosWarmedUp = true;
-  }}
+                rows_html += f"""<div class="scanner-row">
+  <span class="sc-sym">{sym}</span>
+  <span class="sc-price">{price}</span>
+  <span class="sc-chg">{chg}</span>
+  <span class="sc-vol" title="Volume today multiplier">{vol}</span>
+  <span class="sc-sma">20d {chg20} · 200d {chg200}</span>
+  <span class="sc-yr">Yr {pos_yr}</span>
+  {bz_html}
+</div>"""
 
-  function updateSpeed(val) {{
-    rate = parseFloat(val);
-    document.getElementById("speed-val").textContent = rate.toFixed(1) + "x";
-    if (window.speechSynthesis.speaking && !isPaused) {{
-      speakFrom(charIndex);
-    }}
-  }}
+            scanner_blocks.append(f"""<div class="scanner-block">
+  <div class="scanner-name">{scanner_label}</div>
+  {rows_html}
+</div>""")
 
-  function setStatus(msg) {{ document.getElementById("tts-status").textContent = msg; }}
+        scanner_html = f"""<div class="section-head">Trade Ideas Scanners</div>
+<div class="scanner-container">{"".join(scanner_blocks)}</div>"""
 
-  function setPlayBtn(playing) {{
-    const btn = document.getElementById("btn-play");
-    if (playing) {{ btn.innerHTML = "&#9646;&#9646; Pause"; btn.classList.add("active"); }}
-    else {{ btn.innerHTML = "&#9654; Play"; btn.classList.remove("active"); }}
-  }}
+    tts_escaped = (tts_text
+        .replace("\\", "\\\\")
+        .replace('"', '\\"')
+        .replace("\n", " ")
+        .replace("`", "'"))
 
-  function findChunkIndex(charPos) {{
-    for (let i = chunks.length - 1; i >= 0; i--) {{
-      if (charPos >= chunks[i].start) return i;
-    }}
-    return 0;
-  }}
+    updated = datetime.now(EASTERN).strftime("%b %d, %Y · %I:%M %p ET")
 
-  function speakChain(chunkIdx) {{
-    if (chunkIdx >= chunks.length || isPaused) {{
-      if (!isPaused && chunkIdx >= chunks.length) {{
-        charIndex = 0;
-        setPlayBtn(false);
-        setStatus("Done \\u2014 press Replay to listen again");
-      }}
-      return;
-    }}
-    const chunk = chunks[chunkIdx];
-    utterance = new SpeechSynthesisUtterance(chunk.text);
-    utterance.rate = rate;
-    utterance.pitch = 1.0;
-    utterance.volume = 1.0;
-    utterance.onboundary = (e) => {{ if (e.name === "word") charIndex = chunk.start + e.charIndex; }};
-    utterance.onend = () => {{ if (!isPaused) speakChain(chunkIdx + 1); }};
-    utterance.onerror = (e) => {{ if (e.error !== "canceled") speakChain(chunkIdx + 1); }};
-    const voice = getVoice();
-    if (voice) utterance.voice = voice;
-    if (chunkIdx === 0) setStatus("Voice: " + (voice ? voice.name : "default"));
-    setPlayBtn(true);
-    window.speechSynthesis.speak(utterance);
-  }}
-
-  function speakFrom(startChar) {{
-    window.speechSynthesis.cancel();
-    startChar = Math.max(0, Math.min(startChar, digestText.length - 1));
-    charIndex = startChar;
-    const chunkIdx = findChunkIndex(startChar);
-    // Adjust first chunk to start from the right position
-    if (startChar > chunks[chunkIdx].start) {{
-      const offset = startChar - chunks[chunkIdx].start;
-      const origText = chunks[chunkIdx].text;
-      chunks[chunkIdx] = {{ text: origText.slice(offset), start: startChar }};
-      speakChain(chunkIdx);
-      // Restore chunk for future use
-      chunks[chunkIdx] = {{ text: origText, start: chunks[chunkIdx].start - offset + offset }};
-    }} else {{
-      speakChain(chunkIdx);
-    }}
-  }}
-
-  function togglePlay() {{
-    iosWarmup();
-    if (isPaused) {{ isPaused = false; speakFrom(charIndex); setStatus("Resumed..."); }}
-    else if (window.speechSynthesis.speaking) {{ isPaused = true; window.speechSynthesis.cancel(); setPlayBtn(false); setStatus("Paused \\u2014 press Play to resume"); }}
-    else {{ charIndex = 0; isPaused = false; speakFrom(0); }}
-  }}
-
-  function skipForward() {{
-    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
-    window.speechSynthesis.cancel();
-    charIndex = Math.min(charIndex + CHARS_PER_10S, digestText.length - 1);
-    if (wasPlaying) {{ isPaused = false; speakFrom(charIndex); setStatus("Skipped forward 10s..."); }}
-    else {{ setStatus("Skipped forward \\u2014 press Play to resume"); }}
-  }}
-
-  function skipBack() {{
-    const wasPlaying = window.speechSynthesis.speaking && !isPaused;
-    window.speechSynthesis.cancel();
-    charIndex = Math.max(0, charIndex - CHARS_PER_10S);
-    if (wasPlaying) {{ isPaused = false; speakFrom(charIndex); setStatus("Skipped back 10s..."); }}
-    else {{ setStatus("Skipped back \\u2014 press Play to resume"); }}
-  }}
-
-  function stopReading() {{
-    isPaused = false; charIndex = 0;
-    window.speechSynthesis.cancel();
-    setPlayBtn(false);
-    setStatus("Stopped \\u2014 press Replay to start over");
-  }}
-
-  function replayReading() {{
-    isPaused = false; charIndex = 0;
-    window.speechSynthesis.cancel();
-    setStatus("Restarting...");
-    setTimeout(() => speakFrom(0), 300);
-  }}
-
-  // Audio chime for new dispatches
-  function playChime() {{
-    try {{
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 major chord arpeggio
-      notes.forEach((freq, i) => {{
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.value = freq;
-        gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.15);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(ctx.currentTime + i * 0.15);
-        osc.stop(ctx.currentTime + i * 0.15 + 0.5);
-      }});
-    }} catch(e) {{}}
-  }}
-
-  function updateNotifyBtn() {{
-    const btn = document.getElementById("notify-btn");
-    if (Notification.permission === "granted") {{
-      btn.textContent = "Notifications on";
-      btn.classList.add("enabled");
-    }} else if (Notification.permission === "denied") {{
-      btn.textContent = "Notifications blocked";
-    }} else {{
-      btn.textContent = "Notify me";
-      btn.classList.remove("enabled");
-    }}
-  }}
-
-  function requestNotifications() {{
-    if (!("Notification" in window)) {{ setStatus("Notifications not supported"); return; }}
-    if (Notification.permission === "granted") {{ setStatus("Notifications already enabled!"); return; }}
-    Notification.requestPermission().then(permission => {{
-      updateNotifyBtn();
-      if (permission === "granted") {{
-        setStatus("Notifications enabled");
-        new Notification("{SITE_NAME}", {{ body: "You'll be notified when new dispatches arrive." }});
-      }}
-    }});
-  }}
-
-  function checkForNewDigest() {{
-    fetch("digests.json?t=" + Date.now())
-      .then(r => r.json())
-      .then(data => {{
-        if (data && data.length > 0) {{
-          const latest = data[0];
-          const lastSeen = localStorage.getItem("lastSeenDigest");
-          if (lastSeen !== latest.filename) {{
-            localStorage.setItem("lastSeenDigest", latest.filename);
-            if (lastSeen !== null) {{
-              // Play chime for new dispatch
-              playChime();
-              if (Notification.permission === "granted") {{
-                const n = new Notification("{SITE_NAME}", {{
-                  body: latest.subject + " \\u00b7 " + latest.email_date,
-                }});
-                n.onclick = () => {{ window.open(latest.filename); }};
-              }}
-            }}
-          }}
-        }}
-      }})
-      .catch(() => {{}});
-  }}
-
-  // Auto-return to index after 5 minutes
-  let autoReturnTimer = setTimeout(() => {{
-    window.location.href = "index.html";
-  }}, 5 * 60 * 1000);
-
-  // Reset timer on user interaction
-  document.addEventListener("click", () => {{
-    clearTimeout(autoReturnTimer);
-    autoReturnTimer = setTimeout(() => {{ window.location.href = "index.html"; }}, 5 * 60 * 1000);
-  }});
-
-  window.addEventListener("load", () => {{
-    updateNotifyBtn();
-    localStorage.setItem("lastSeenDigest", window.location.pathname.split("/").pop());
-    checkForNewDigest();
-    setInterval(checkForNewDigest, 3 * 60 * 1000);
-    if (isIOS) {{
-      setStatus("Tap Play to start");
-    }} else {{
-      setTimeout(() => speakFrom(0), 1800);
-    }}
-  }});
-  window.addEventListener("pagehide", () => {{ window.speechSynthesis.cancel(); }});
-  window.addEventListener("visibilitychange", () => {{ if (document.hidden) {{ window.speechSynthesis.cancel(); setPlayBtn(false); }} }});
-</script>
-
-</body>
-</html>"""
-
-
-def build_index_html(digests):
-    cards = ""
-    for i, entry in enumerate(digests):
-        tag = get_category_tag(entry["subject"])
-        bg, fg = get_tag_color(tag)
-        latest = f' <span style="font-size:10px; background:#3d3820; color:#c9b97a; border:1px solid #c9b97a44; padding:2px 6px; border-radius:3px; font-family:\'Courier New\',monospace; vertical-align:middle; margin-left:6px;">LATEST</span>' if i == 0 else ""
-        preview = entry.get("preview", "")
-
-        cards += f"""
-    <a class="card" href="{entry['filename']}">
-      <div class="card-tag" style="background:{bg}; color:{fg}; border-color:{fg}44;">{tag}</div>
-      <div class="card-meta">{entry['email_date']}</div>
-      <div class="card-title">{entry['subject']}{latest}</div>
-      {"<div class='card-preview'>" + preview + "</div>" if preview else ""}
-    </a>"""
-
-    updated = datetime.now(EASTERN).strftime("%b %d, %Y %I:%M %p ET")
+    js = TTS_JS.replace("TTS_RATE_PLACEHOLDER", str(tts_rate))
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{SITE_NAME}</title>
-<meta http-equiv="refresh" content="180">
-<meta property="og:title" content="{SITE_NAME}">
-<meta property="og:description" content="Market Intelligentsia">
-<meta property="og:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{SITE_NAME}">
-<meta name="twitter:description" content="Market Intelligentsia">
-<meta name="twitter:image" content="https://jeremyquinlan.github.io/TheVictoryLane/og-image.png">
+<title>Morning Game Plan · {today_str} · The Victory Lane</title>
+<meta http-equiv="refresh" content="300">
 <style>
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    font-family: Georgia, 'Times New Roman', serif;
-    background: #0a0a0a;
-    color: #e8e4d9;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 40px 32px 60px;
-    font-size: 16px;
-  }}
-  .site-header {{
-    position: sticky;
-    top: 0;
-    background: #0a0a0a;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #1a1a1a;
-    padding: 16px 0 16px;
-    margin-bottom: 32px;
-  }}
-  .site-title-group {{
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }}
-  .site-title {{
-    font-size: 22px;
-    font-weight: normal;
-    letter-spacing: 0.02em;
-    color: #f0ece0;
-    font-family: Georgia, 'Times New Roman', serif;
-  }}
-  .site-subtitle {{
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: #f0ece0;
-    font-family: 'Courier New', monospace;
-  }}
-  .site-updated {{
-    font-size: 11px;
-    color: #444;
-    font-family: 'Courier New', monospace;
-  }}
-  .card {{
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    border-bottom: 1px solid #141414;
-    padding: 20px 0;
-    transition: padding-left 0.15s;
-  }}
-  .card:hover {{ padding-left: 8px; }}
-  .card:hover .card-title {{ color: #c9b97a; }}
-  .card:first-of-type {{ border-top: 1px solid #141414; margin-top: 8px; }}
-  .card-tag {{
-    display: inline-block;
-    font-size: 10px;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    padding: 2px 7px;
-    border-radius: 3px;
-    border: 1px solid;
-    margin-bottom: 6px;
-  }}
-  .card-meta {{
-    font-size: 12px;
-    color: #444;
-    font-family: 'Courier New', monospace;
-    margin-bottom: 6px;
-  }}
-  .card-title {{
-    font-size: 18px;
-    color: #d8d4c8;
-    line-height: 1.4;
-    margin-bottom: 6px;
-    transition: color 0.15s;
-  }}
-  .card-preview {{
-    font-size: 14px;
-    color: #555;
-    line-height: 1.5;
-  }}
+{COMMON_CSS}
+header {{ margin-bottom: 26px; }}
+.mgp-title {{ font-size: 28px; font-weight: normal; color: #f0ece0; letter-spacing: 0.02em; }}
+.mgp-date  {{ font-size: 12px; color: #444; font-family: 'Courier New', monospace; margin-top: 5px; }}
+.prose-block {{ margin-bottom: 6px; }}
+.two-col {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 6px; }}
+@media (max-width: 680px) {{ .two-col {{ grid-template-columns: 1fr; }} }}
+.col {{ padding: 14px 16px; border-radius: 4px; }}
+.bull-col {{ background: #0d1f14; border: 1px solid #1a3a22; }}
+.bear-col {{ background: #1f0d0d; border: 1px solid #3a1a1a; }}
+.col-label {{ font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; }}
+.bull-col .col-label {{ color: #4caf82; }}
+.bear-col .col-label {{ color: #e05050; }}
+.company-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-bottom: 6px; }}
+.company-card {{
+  background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 4px;
+  padding: 13px 15px;
+}}
+.card-header {{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 7px; flex-wrap: wrap; }}
+.card-ticker {{ font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }}
+.card-company {{ font-size: 12px; color: #555; flex: 1; }}
+.card-catalyst {{ font-size: 10px; color: #666; font-family: 'Courier New', monospace;
+  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }}
+.card-summary {{ font-size: 13px; color: #b8b4a8; margin-bottom: 6px; }}
+.bz-story {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace;
+  border-top: 1px solid #181818; padding-top: 5px; margin-top: 5px; }}
+.cal-row {{ display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 6px; }}
+.cal-group {{ display: flex; flex-direction: column; gap: 4px; }}
+.cal-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 4px; }}
+.cal-item {{ font-size: 13px; color: #a8a49a; }}
+.scanner-container {{ display: flex; flex-direction: column; gap: 16px; margin-bottom: 6px; }}
+.scanner-block {{ background: #0c0c0c; border: 1px solid #1a1a1a; border-radius: 4px; padding: 12px 14px; }}
+.scanner-name {{ font-size: 10px; color: #c9b97a; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 10px; }}
+.scanner-row {{ display: flex; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px solid #141414; flex-wrap: wrap; }}
+.scanner-row:last-child {{ border-bottom: none; }}
+.sc-sym   {{ font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 60px; font-weight: bold; }}
+.sc-price {{ font-size: 13px; color: #d8d4c8; min-width: 55px; }}
+.sc-chg   {{ font-size: 12px; color: #888; min-width: 55px; }}
+.sc-vol   {{ font-size: 12px; color: #4c8faf; min-width: 40px; }}
+.sc-sma   {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; flex: 1; }}
+.sc-yr    {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; }}
+.scanner-news {{ width: 100%; font-size: 11px; color: #555; font-family: 'Courier New', monospace;
+  padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a1a1a; }}
+.archive-link {{ margin-top: 24px; }}
+.archive-link a {{ font-size: 12px; color: #444; font-family: 'Courier New', monospace; }}
+.archive-link a:hover {{ color: #c9b97a; }}
 </style>
 </head>
 <body>
 
-<div class="site-header">
-  <div class="site-title-group">
-    <div class="site-title">THE VICTORY LANE</div>
-    <div class="site-subtitle">MARKET INTELLIGENTSIA</div>
-  </div>
-  <div class="site-updated">Updated {updated}</div>
+<div class="top-bar">
+  <a class="back-link" href="archive.html">&#8592; Archive</a>
+  <span class="site-name">THE VICTORY LANE</span>
 </div>
 
-{cards}
+<header>
+  <div class="mgp-title">Morning Game Plan</div>
+  <div class="mgp-date">{today_str} &nbsp;·&nbsp; Updated {updated}</div>
+</header>
+
+{macro_html}
+{bullbear_html}
+{outlook_html}
+{sectors_html}
+{company_html}
+{scanner_html}
+{calendar_html}
+
+{tts_bar_html()}
+
+<script>
+  const ttsText = "{tts_escaped}";
+  {js}
+</script>
 
 </body>
 </html>"""
 
 
-def save_html_local(html, output_path):
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(html)
-    print(f"  ✓ HTML digest saved: {output_path}")
+# ─────────────────────────────────────────────
+# INDIVIDUAL DIGEST PAGE (non-VK emails)
+# ─────────────────────────────────────────────
+
+def markdown_to_html_body(text):
+    lines = text.split("\n")
+    parts = []
+    for line in lines:
+        line = line.strip()
+        if not line: continue
+        if line.startswith("## "):
+            parts.append(f'<div class="section-head">{line[3:]}</div>')
+        else:
+            line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
+            parts.append(f"<p>{line}</p>")
+    return "\n".join(parts)
 
 
-def save_html_github(html, subject):
+def build_digest_html(digest_text, subject, email_date, tts_rate):
+    body_html = markdown_to_html_body(digest_text)
+    tts_text = prepare_tts_text(re.sub(r"<[^>]+>", " ", body_html))
+    tts_escaped = tts_text.replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ").replace("`", "'")
+    tag = get_category_tag(subject)
+    bg, fg = get_tag_color(tag)
+    js = TTS_JS.replace("TTS_RATE_PLACEHOLDER", str(tts_rate))
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{subject} · The Victory Lane</title>
+<style>
+{COMMON_CSS}
+.tag {{ display: inline-block; font-size: 11px; font-family: 'Courier New', monospace; font-weight: bold;
+  letter-spacing: 0.1em; padding: 3px 8px; border-radius: 3px; margin-bottom: 10px;
+  background: {bg}; color: {fg}; border: 1px solid {fg}44; }}
+header h1 {{ font-size: 24px; font-weight: normal; color: #c9b97a; margin-bottom: 7px; }}
+header .meta {{ font-size: 12px; color: #555; font-family: 'Courier New', monospace; }}
+hr.div {{ border: none; border-top: 1px solid #181818; margin: 18px 0 24px; }}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; Game Plan</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+<header>
+  <div class="tag">{tag}</div>
+  <h1>{subject}</h1>
+  <div class="meta">{email_date}</div>
+</header>
+<hr class="div">
+{body_html}
+{tts_bar_html()}
+<script>
+  const ttsText = "{tts_escaped}";
+  {js}
+</script>
+</body>
+</html>"""
+
+
+# ─────────────────────────────────────────────
+# ARCHIVE INDEX
+# ─────────────────────────────────────────────
+
+def build_archive_html(digests):
+    cards = ""
+    for i, entry in enumerate(digests):
+        tag = get_category_tag(entry["subject"])
+        bg, fg = get_tag_color(tag)
+        latest = (' <span style="font-size:10px; background:#3d3820; color:#c9b97a; border:1px solid #c9b97a44; '
+                  'padding:2px 6px; border-radius:3px; font-family:\'Courier New\',monospace; '
+                  'vertical-align:middle; margin-left:6px;">LATEST</span>') if i == 0 else ""
+        preview = entry.get("preview", "")
+        cards += f"""<a class="card" href="{entry['filename']}">
+  <div class="card-tag" style="background:{bg}; color:{fg}; border-color:{fg}44;">{tag}</div>
+  <div class="card-meta">{entry['email_date']}</div>
+  <div class="card-title">{entry['subject']}{latest}</div>
+  {"<div class='card-preview'>" + preview + "</div>" if preview else ""}
+</a>"""
+
+    updated = datetime.now(EASTERN).strftime("%b %d, %Y %I:%M %p ET")
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive · The Victory Lane</title>
+<style>
+{COMMON_CSS}
+.site-header {{ position: sticky; top: 0; background: #0a0a0a; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid #1a1a1a; padding: 14px 0; margin-bottom: 28px; }}
+.site-title {{ font-size: 20px; color: #f0ece0; }}
+.site-updated {{ font-size: 11px; color: #444; font-family: 'Courier New', monospace; }}
+.card {{ display: block; border-bottom: 1px solid #141414; padding: 18px 0; transition: padding-left 0.15s; }}
+.card:hover {{ padding-left: 8px; }}
+.card:hover .card-title {{ color: #c9b97a; }}
+.card:first-of-type {{ border-top: 1px solid #141414; margin-top: 6px; }}
+.card-tag {{ display: inline-block; font-size: 10px; font-family: 'Courier New', monospace; font-weight: bold;
+  letter-spacing: 0.1em; padding: 2px 7px; border-radius: 3px; border: 1px solid; margin-bottom: 5px; }}
+.card-meta {{ font-size: 12px; color: #444; font-family: 'Courier New', monospace; margin-bottom: 5px; }}
+.card-title {{ font-size: 17px; color: #d8d4c8; line-height: 1.4; transition: color 0.15s; margin-bottom: 4px; }}
+.card-preview {{ font-size: 13px; color: #555; line-height: 1.5; }}
+</style>
+</head>
+<body>
+<div class="site-header">
+  <div>
+    <div class="site-title">THE VICTORY LANE</div>
+    <div style="font-size:11px; color:#555; font-family:'Courier New',monospace;">DISPATCH ARCHIVE</div>
+  </div>
+  <div class="site-updated">Updated {updated}</div>
+</div>
+{cards}
+</body>
+</html>"""
+
+
+# ─────────────────────────────────────────────
+# FILE I/O & GITHUB
+# ─────────────────────────────────────────────
+
+def save_to_docs(html, filename):
     os.makedirs("docs", exist_ok=True)
-    slug = re.sub(r"[^a-z0-9]+", "-", subject.lower()).strip("-")
-    slug = slug[:80]
-    filename = f"{slug}.html"
     filepath = f"docs/{filename}"
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(html)
-    print(f"  ✓ HTML digest saved: {filepath}")
+    print(f"  ✓ Saved: {filepath}")
     return filename
 
 
-def update_index(new_entries):
+def update_archive(new_entries):
     meta_path = "docs/digests.json"
     existing = []
-
     if os.path.exists(meta_path):
         with open(meta_path, encoding="utf-8") as f:
             existing = json.load(f)
-
     existing_filenames = {e["filename"] for e in existing}
     for filename, subject, email_date, preview, sent_ts in new_entries:
         if filename not in existing_filenames:
-            existing.append({
-                "filename": filename,
-                "subject": subject,
-                "email_date": email_date,
-                "preview": preview,
-                "sent_ts": sent_ts
-            })
-
+            existing.append({"filename": filename, "subject": subject,
+                             "email_date": email_date, "preview": preview, "sent_ts": sent_ts})
     existing.sort(key=lambda x: x.get("sent_ts", x["filename"]), reverse=True)
-
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(existing, f, indent=2, ensure_ascii=False)
-
-    index_html = build_index_html(existing)
-    with open("docs/index.html", "w", encoding="utf-8") as f:
-        f.write(index_html)
-
-    print(f"  ✓ Index updated — {len(existing)} dispatch(es) listed")
+    archive_html = build_archive_html(existing)
+    with open("docs/archive.html", "w", encoding="utf-8") as f:
+        f.write(archive_html)
+    print(f"  ✓ Archive updated — {len(existing)} dispatch(es)")
 
 
 def launch_edge(html_path, edge_exe):
@@ -1377,95 +1270,129 @@ def launch_edge(html_path, edge_exe):
         edge_exe = r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"
     if os.path.exists(edge_exe):
         subprocess.Popen([edge_exe, html_path])
-        print(f"  ✓ Launched Edge")
+        print("  ✓ Launched Edge")
     else:
-        os.startfile(html_path)
+        try:
+            os.startfile(html_path)
+        except Exception:
+            pass
 
+
+# ─────────────────────────────────────────────
+# MAIN
+# ─────────────────────────────────────────────
 
 def run():
-    print(f"[{datetime.now(EASTERN).strftime('%H:%M:%S ET')}] The Victory Lane starting...")
+    now_et = datetime.now(EASTERN)
+    today_str = now_et.strftime("%A, %B %d, %Y")
+    print(f"[{now_et.strftime('%H:%M:%S ET')}] The Victory Lane — Morning Game Plan starting...")
     config = CONFIG
 
+    # ── 1. Read scanner CSVs ──
+    scanner_data = {}
+    if not config["github_actions"]:
+        # Only available locally; GitHub Actions can't read C:\Users\jerem\...
+        scanner_data = read_scanner_csvs(config["scanner_csv_dir"])
+    else:
+        # In GitHub Actions, look for CSVs committed to repo under scanners/
+        scanner_data = read_scanner_csvs("scanners")
+
+    # Collect all scanner tickers for news fetch
+    scanner_tickers = []
+    for rows in scanner_data.values():
+        for r in rows:
+            if r["symbol"] not in scanner_tickers:
+                scanner_tickers.append(r["symbol"])
+
+    # ── 2. Fetch Benzinga news for scanner tickers ──
+    news_data = {}
+    if scanner_tickers:
+        news_data = fetch_benzinga_news(scanner_tickers, config["benzinga_api_key"])
+
+    # ── 3. Fetch and process emails ──
     emails, processed_ids = fetch_new_emails(config)
 
-    if not emails:
-        print("  No new emails found.")
-        return
-
-    print(f"  Found {len(emails)} unprocessed email(s) — processing in chronological order...")
-
+    vk_data = None          # latest VK parse (dawn email preferred)
     new_ids = set()
-    new_index_entries = []
+    new_archive_entries = []
 
-    for uid, subject, body, email_date, sent_utc, source_type, calendar_image in emails:
+    for uid, subject, body, email_date, sent_utc, source_type in emails:
         print(f"\n  ── Processing: {subject} ({email_date}) ──")
         try:
-            # Check if HTML already exists (skip re-summarization)
             slug = re.sub(r"[^a-z0-9]+", "-", subject.lower()).strip("-")[:80]
             expected_file = f"docs/{slug}.html"
-            if config["github_actions"] and os.path.exists(expected_file):
-                print(f"  ✓ Already exists, skipping summarization: {expected_file}")
+            if os.path.exists(expected_file):
+                print(f"  ✓ Already exists, skipping: {expected_file}")
                 new_ids.add(uid)
                 continue
 
-            # ── CF Grading pass (runs on ALL source types) ──
+            # CF grading on all email types
             print("  Grading for Changing Fundamentals...")
             cf_items = grade_for_cf(body, subject, config["anthropic_api_key"])
-
             if cf_items:
                 target_date = sent_utc.astimezone(EASTERN).strftime("%Y-%m-%d")
-                push_to_notion_stocks_on_watch(
-                    cf_items,
-                    config["notion_token"],
-                    config["stocks_on_watch_db_id"],
-                    target_date=target_date,
-                )
+                push_to_notion_stocks_on_watch(cf_items, config["notion_token"],
+                                               config["stocks_on_watch_db_id"], target_date=target_date)
             else:
                 print("  CF grading: nothing flagged above threshold")
 
-            # ── Summarize for HTML digest ──
-            print("  Summarizing with Claude...")
-            digest = summarize_with_claude(body, config["anthropic_api_key"], source_type)
-            preview = get_preview(digest)
+            if source_type == "vk":
+                # Structured MGP parse
+                print("  Parsing VK for MGP...")
+                parsed = parse_vk_to_mgp(body, config["anthropic_api_key"])
+                if parsed:
+                    # Dawn email takes precedence; otherwise keep most recent
+                    if vk_data is None or parsed.get("email_type") == "dawn":
+                        vk_data = parsed
+                # Also save individual digest page (with generic summary for archive)
+                print("  Summarizing for archive digest...")
+                # Reuse tts_summary as the digest text for the archive page
+                archive_text = parsed.get("tts_summary", "") if parsed else ""
+                if not archive_text:
+                    # Fallback: build a simple text from parsed sections
+                    parts = []
+                    if parsed:
+                        for key in ("macro", "rates_fed", "market_outlook", "bull_case", "bear_case"):
+                            val = parsed.get(key, "")
+                            if val: parts.append(val)
+                        for item in parsed.get("company_items", []):
+                            parts.append(f"**{item.get('ticker','')}** — {item.get('summary','')}")
+                    archive_text = "\n\n".join(parts)
 
-            # Save calendar image for EW emails
-            calendar_image_path = None
-            if calendar_image and config["github_actions"]:
-                img_data, img_ext, img_ct = calendar_image
-                img_filename = f"{slug}-calendar.{img_ext}"
-                img_filepath = f"docs/{img_filename}"
-                os.makedirs("docs", exist_ok=True)
-                with open(img_filepath, "wb") as f:
-                    f.write(img_data)
-                calendar_image_path = img_filename
-                print(f"  ✓ Calendar image saved: {img_filepath}")
-
-            html = build_html(digest, subject, email_date, config["tts_rate"], calendar_image_path)
-
-            if config["github_actions"]:
-                filename = save_html_github(html, subject)
-                new_index_entries.append((filename, subject, email_date, preview, sent_utc.isoformat()))
             else:
-                save_html_local(html, config["html_output"])
-                launch_edge(config["html_output"], config["edge_exe"])
+                # EW or HS: generic summarizer for archive
+                print(f"  Summarizing [{source_type}] with Claude...")
+                archive_text = summarize_generic(body, config["anthropic_api_key"], source_type)
+
+            # Save individual digest page
+            digest_html = build_digest_html(archive_text, subject, email_date, config["tts_rate"])
+            filename = save_to_docs(digest_html, f"{slug}.html")
+            preview = archive_text[:140].replace("\n", " ") + ("..." if len(archive_text) > 140 else "")
+            new_archive_entries.append((filename, subject, email_date, preview, sent_utc.isoformat()))
 
             new_ids.add(uid)
-
-            # Save progress after each email so crashes don't lose work
-            if config["github_actions"]:
-                save_processed_ids_github(processed_ids | new_ids)
+            save_processed_ids(processed_ids | new_ids)
 
         except Exception as e:
             print(f"  ✗ Error processing '{subject}': {e}")
             raise
 
-    if config["github_actions"]:
-        update_index(new_index_entries)
-        save_processed_ids_github(processed_ids | new_ids)
-    else:
-        save_processed_ids(config["state_file"], processed_ids | new_ids)
+    # ── 4. Build and save MGP dashboard (always rebuild index.html) ──
+    print("\n  Building MGP dashboard...")
+    dashboard_html = build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, config["tts_rate"])
+    save_to_docs(dashboard_html, "index.html")
 
-    print(f"\n  Done. Processed {len(new_ids)} dispatch(es).")
+    # ── 5. Update archive ──
+    if new_archive_entries:
+        update_archive(new_archive_entries)
+
+    save_processed_ids(processed_ids | new_ids)
+
+    # ── 6. Local: launch Edge ──
+    if not config["github_actions"]:
+        launch_edge(os.path.abspath("docs/index.html"), config["edge_exe"])
+
+    print(f"\n  Done. Processed {len(new_ids)} new email(s).")
 
 
 if __name__ == "__main__":

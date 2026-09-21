@@ -544,16 +544,37 @@ def fetch_new_emails(config):
     since_date = (datetime.utcnow() - timedelta(hours=config["lookback_hours"] + 24)).strftime("%d-%b-%Y")
     cutoff = datetime.now(timezone.utc) - timedelta(hours=config["lookback_hours"])
 
-    status, data = mail.uid("search", None, f'(SINCE "{since_date}")')
-    all_uids = data[0].split()
-    print(f"  Found {len(all_uids)} total email(s) since {since_date}")
+    # Search per-sender so we only fetch the emails we actually need
+    # (avoids downloading hundreds of unrelated emails and hitting Yahoo's IMAP timeout)
+    all_candidate_uids = set()
+    for source in EMAIL_SOURCES:
+        try:
+            status, data = mail.uid("search", None, f'(SINCE "{since_date}" FROM "{source["sender_filter"]}")')
+            uids = data[0].split() if data and data[0] else []
+            print(f"  [{source['name']}] {len(uids)} email(s) found since {since_date}")
+            all_candidate_uids.update(uid.decode() for uid in uids)
+        except Exception as e:
+            print(f"  Search error for [{source['name']}]: {e}")
 
     results = []
-    for uid in all_uids:
-        uid_str = uid.decode()
+    for uid_str in sorted(all_candidate_uids, key=lambda x: int(x)):
         if uid_str in processed:
             continue
-        status, msg_data = mail.uid("fetch", uid, "(BODY.PEEK[])")
+        try:
+            status, msg_data = mail.uid("fetch", uid_str.encode(), "(BODY.PEEK[])")
+        except Exception:
+            # Reconnect once if Yahoo drops the connection mid-batch
+            try:
+                mail = imaplib.IMAP4_SSL("imap.mail.yahoo.com", 993)
+                mail.login(config["yahoo_email"], config["yahoo_app_password"])
+                mail.select("inbox")
+                status, msg_data = mail.uid("fetch", uid_str.encode(), "(BODY.PEEK[])")
+            except Exception as e2:
+                print(f"  Fetch error (uid {uid_str}): {e2}")
+                continue
+
+        if not msg_data or msg_data[0] is None:
+            continue
         raw = msg_data[0][1]
         msg = email.message_from_bytes(raw)
         from_addr = decode_str(msg.get("From", "")).lower()
@@ -579,9 +600,12 @@ def fetch_new_emails(config):
         if body.strip():
             results.append((uid_str, subject, body, email_date, sent_utc, matched_source["source_type"]))
             print(f"  Found [{matched_source['name']}]: {subject} ({email_date})")
-            mail.uid("store", uid, "+FLAGS", "\\Seen")
+            mail.uid("store", uid_str.encode(), "+FLAGS", "\\Seen")
 
-    mail.logout()
+    try:
+        mail.logout()
+    except Exception:
+        pass
     results.sort(key=lambda x: x[4])
     return results, processed
 

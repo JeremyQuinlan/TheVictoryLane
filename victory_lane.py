@@ -871,94 +871,111 @@ def _dir_arrow(direction):
     return '<span style="color:#888">◆</span>'
 
 
-def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate):
+def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, ew_items=None):
     """
-    Build the main MGP index.html dashboard.
-    vk_data: dict from parse_vk_to_mgp (or None)
-    scanner_data: dict from read_scanner_csvs
-    news_data: dict from fetch_benzinga_news
-    """
-    # ── VK sections ──
-    macro_html = ""
-    bullbear_html = ""
-    outlook_html = ""
-    company_html = ""
-    calendar_html = ""
-    sectors_html = ""
+    Build the main MGP index.html dashboard — 3-panel layout:
+      LEFT  : VK company stories + Earnings Whispers articles
+      TOP-R : Macro context, bull/bear, market outlook, calendar  (green accent)
+      BOT-R : Trade Ideas scanners + Benzinga news               (blue accent)
 
-    # TTS text built from VK tts_summary + scanner summary
+    vk_data     : dict from parse_vk_to_mgp (or None)
+    scanner_data: dict from read_scanner_csvs
+    news_data   : dict from fetch_benzinga_news
+    ew_items    : list of {"subject": str, "text": str, "email_date": str}
+    """
+    ew_items = ew_items or []
+
+    # ── TTS ──
     tts_text = ""
 
+    # ── LEFT PANEL: VK company cards ──
+    left_vk_cards = ""
     if vk_data:
-        macro = vk_data.get("macro", "")
-        rates = vk_data.get("rates_fed", "")
-        outlook = vk_data.get("market_outlook", "")
-        bull = vk_data.get("bull_case", "")
-        bear = vk_data.get("bear_case", "")
-        sectors = vk_data.get("sectors", "")
         items = vk_data.get("company_items", [])
-        earnings = vk_data.get("earnings_today", [])
-        key_dates = vk_data.get("key_dates", [])
-        tts_text = prepare_tts_text(vk_data.get("tts_summary", macro + " " + outlook))
-
-        if macro or rates:
-            macro_html = f"""<div class="section-head">Macro Context</div>
-<div class="prose-block">
-{"<p>" + macro + "</p>" if macro else ""}
-{"<p>" + rates + "</p>" if rates else ""}
-</div>"""
-
-        if bull or bear:
-            bullbear_html = f"""<div class="section-head">Bull / Bear</div>
-<div class="two-col">
-  <div class="col bull-col">
-    <div class="col-label">BULL CASE</div>
-    <p>{bull}</p>
-  </div>
-  <div class="col bear-col">
-    <div class="col-label">BEAR CASE</div>
-    <p>{bear}</p>
-  </div>
-</div>"""
-
-        if outlook:
-            outlook_html = f"""<div class="section-head">Market Outlook</div>
-<div class="prose-block"><p>{outlook}</p></div>"""
-
-        if sectors:
-            sectors_html = f"""<div class="section-head">Sector Watch</div>
-<div class="prose-block"><p>{sectors}</p></div>"""
-
-        if items:
-            cards = ""
-            for item in items:
-                ticker   = item.get("ticker", "")
-                company  = item.get("company", "")
-                summary  = item.get("summary", "")
-                catalyst = item.get("catalyst", "")
-                direction= item.get("direction", "mixed")
-                arrow    = _dir_arrow(direction)
-                # Pull in Benzinga news if available
-                news_html = ""
-                if ticker in news_data:
-                    news_items = news_data[ticker][:2]
-                    for n in news_items:
-                        news_html += f'<div class="bz-story">[{n["published"]}] {n["title"]}</div>'
-
-                cards += f"""<div class="company-card">
+        tts_text = prepare_tts_text(vk_data.get("tts_summary",
+                                    vk_data.get("macro","") + " " + vk_data.get("market_outlook","")))
+        for item in items:
+            ticker   = item.get("ticker", "")
+            company  = item.get("company", "")
+            summary  = item.get("summary", "")
+            catalyst = item.get("catalyst", "")
+            direction= item.get("direction", "mixed")
+            arrow    = _dir_arrow(direction)
+            bz_html  = ""
+            if ticker in news_data:
+                for n in news_data[ticker][:2]:
+                    bz_html += f'<div class="bz-story">[{n["published"]}] {n["title"]}</div>'
+            left_vk_cards += f"""<div class="company-card">
   <div class="card-header">
     <span class="card-ticker">{arrow} {ticker}</span>
     <span class="card-company">{company}</span>
     <span class="card-catalyst">{catalyst}</span>
   </div>
   <p class="card-summary">{summary}</p>
-  {news_html}
+  {bz_html}
 </div>
 """
-            company_html = f"""<div class="section-head">Stocks on Watch — VK</div>
-<div class="company-grid">{cards}</div>"""
 
-        # Earnings + key dates
+    # ── LEFT PANEL: EW articles ──
+    left_ew_html = ""
+    for ew in ew_items:
+        subj = ew.get("subject", "Earnings Whispers")
+        text = ew.get("text", "")
+        edate = ew.get("email_date", "")
+        # render markdown-ish text
+        rendered = ""
+        for line in text.split("\n"):
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith("## "):
+                rendered += f'<div class="ew-ticker-head">{line[3:]}</div>'
+            else:
+                line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
+                rendered += f'<p class="ew-line">{line}</p>'
+        left_ew_html += f"""<div class="ew-block">
+  <div class="ew-label">{subj} &nbsp;<span class="ew-date">{edate}</span></div>
+  {rendered}
+</div>"""
+
+    left_placeholder = ""
+    if not left_vk_cards and not left_ew_html:
+        left_placeholder = '<p class="empty-msg">No newsletter stories yet — check back after the market open.</p>'
+
+    # ── RIGHT TOP: Macro / Outlook / Calendar ──
+    rt_parts = []
+    if vk_data:
+        macro   = vk_data.get("macro", "")
+        rates   = vk_data.get("rates_fed", "")
+        outlook = vk_data.get("market_outlook", "")
+        bull    = vk_data.get("bull_case", "")
+        bear    = vk_data.get("bear_case", "")
+        sectors = vk_data.get("sectors", "")
+        earnings= vk_data.get("earnings_today", [])
+        key_dates=vk_data.get("key_dates", [])
+
+        if macro or rates:
+            rt_parts.append(f"""<div class="section-head">Macro · Rates</div>
+<div class="prose-block">
+{"<p>" + macro + "</p>" if macro else ""}
+{"<p>" + rates + "</p>" if rates else ""}
+</div>""")
+
+        if bull or bear:
+            rt_parts.append(f"""<div class="section-head">Bull / Bear</div>
+<div class="two-col">
+  <div class="col bull-col"><div class="col-label">BULL CASE</div><p>{bull}</p></div>
+  <div class="col bear-col"><div class="col-label">BEAR CASE</div><p>{bear}</p></div>
+</div>""")
+
+        if outlook:
+            rt_parts.append(f"""<div class="section-head">Market Outlook</div>
+<div class="prose-block"><p>{outlook}</p></div>""")
+
+        if sectors:
+            rt_parts.append(f"""<div class="section-head">Sector Watch</div>
+<div class="prose-block"><p>{sectors}</p></div>""")
+
         cal_parts = []
         if earnings:
             cal_parts.append('<div class="cal-group"><div class="cal-label">EARNINGS TODAY</div>'
@@ -967,53 +984,50 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate):
             cal_parts.append('<div class="cal-group"><div class="cal-label">KEY DATES</div>'
                              + "".join(f'<div class="cal-item">{d}</div>' for d in key_dates) + "</div>")
         if cal_parts:
-            calendar_html = f"""<div class="section-head">Calendar</div>
-<div class="cal-row">{"".join(cal_parts)}</div>"""
+            rt_parts.append(f"""<div class="section-head">Calendar</div>
+<div class="cal-row">{"".join(cal_parts)}</div>""")
 
-    # ── Scanner sections ──
-    scanner_html = ""
-    if scanner_data:
-        scanner_blocks = []
-        for scanner_label, rows in scanner_data.items():
-            tickers_in_scanner = [r["symbol"] for r in rows]
-            # Append scanner tickers to TTS
-            if tickers_in_scanner:
-                tts_text += f" Scanner alert: {scanner_label}. Tickers: {', '.join(tickers_in_scanner)}."
+    right_top_body = "\n".join(rt_parts) if rt_parts else '<p class="empty-msg">Macro data will appear after VK is parsed.</p>'
 
-            rows_html = ""
-            for r in rows:
-                sym = r["symbol"]
-                price = f"${r['price']:.2f}" if r["price"] is not None else "—"
-                chg = f"{r['chg_close']:+.2f}%" if r["chg_close"] is not None else "—"
-                vol = f"{r['vol_today']:.1f}x" if r["vol_today"] is not None else "—"
-                chg20 = f"{r['chg_20d']:+.1f}%" if r["chg_20d"] is not None else "—"
-                chg200= f"{r['chg_200d']:+.1f}%" if r["chg_200d"] is not None else "—"
-                pos_yr= f"{r['pos_yr']:.0f}%" if r["pos_yr"] is not None else "—"
+    # ── RIGHT BOTTOM: Scanners + Benzinga ──
+    rb_blocks = []
+    for scanner_label, rows in (scanner_data or {}).items():
+        tickers_in_scanner = [r["symbol"] for r in rows]
+        if tickers_in_scanner:
+            tts_text += f" Scanner alert: {scanner_label}. Tickers: {', '.join(tickers_in_scanner)}."
 
-                # Benzinga news for this ticker
-                bz_html = ""
-                if sym in news_data and news_data[sym]:
-                    n = news_data[sym][0]
-                    bz_html = f'<div class="scanner-news">{n["title"][:100]}</div>'
-
-                rows_html += f"""<div class="scanner-row">
+        rows_html = ""
+        for r in rows:
+            sym    = r["symbol"]
+            price  = f"${r['price']:.2f}"         if r["price"]     is not None else "—"
+            chg    = f"{r['chg_close']:+.2f}%"    if r["chg_close"] is not None else "—"
+            vol    = f"{r['vol_today']:.1f}x"     if r["vol_today"] is not None else "—"
+            chg20  = f"{r['chg_20d']:+.1f}%"      if r["chg_20d"]   is not None else "—"
+            chg200 = f"{r['chg_200d']:+.1f}%"     if r["chg_200d"]  is not None else "—"
+            pos_yr = f"{r['pos_yr']:.0f}%"        if r["pos_yr"]    is not None else "—"
+            bz_html = ""
+            if sym in news_data and news_data[sym]:
+                for n in news_data[sym][:2]:
+                    bz_html += f'<div class="scanner-news">[{n["published"]}] {n["title"]}</div>'
+            rows_html += f"""<div class="scanner-row">
   <span class="sc-sym">{sym}</span>
   <span class="sc-price">{price}</span>
   <span class="sc-chg">{chg}</span>
-  <span class="sc-vol" title="Volume today multiplier">{vol}</span>
+  <span class="sc-vol" title="Volume today">{vol}</span>
   <span class="sc-sma">20d {chg20} · 200d {chg200}</span>
   <span class="sc-yr">Yr {pos_yr}</span>
   {bz_html}
 </div>"""
-
-            scanner_blocks.append(f"""<div class="scanner-block">
+        rb_blocks.append(f"""<div class="scanner-block">
   <div class="scanner-name">{scanner_label}</div>
   {rows_html}
 </div>""")
 
-        scanner_html = f"""<div class="section-head">Trade Ideas Scanners</div>
-<div class="scanner-container">{"".join(scanner_blocks)}</div>"""
+    right_bot_body = ("\n".join(rb_blocks)
+                      if rb_blocks
+                      else '<p class="empty-msg">Scanner CSVs will appear here once Trade Ideas is running.</p>')
 
+    # ── Assemble ──
     tts_escaped = (tts_text
         .replace("\\", "\\\\")
         .replace('"', '\\"')
@@ -1021,7 +1035,6 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate):
         .replace("`", "'"))
 
     updated = datetime.now(EASTERN).strftime("%b %d, %Y · %I:%M %p ET")
-
     js = TTS_JS.replace("TTS_RATE_PLACEHOLDER", str(tts_rate))
 
     return f"""<!DOCTYPE html>
@@ -1033,51 +1046,104 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate):
 <meta http-equiv="refresh" content="300">
 <style>
 {COMMON_CSS}
-header {{ margin-bottom: 26px; }}
+/* ── MGP layout ── */
+header {{ margin-bottom: 20px; }}
 .mgp-title {{ font-size: 28px; font-weight: normal; color: #f0ece0; letter-spacing: 0.02em; }}
 .mgp-date  {{ font-size: 12px; color: #444; font-family: 'Courier New', monospace; margin-top: 5px; }}
-.prose-block {{ margin-bottom: 6px; }}
-.two-col {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 6px; }}
-@media (max-width: 680px) {{ .two-col {{ grid-template-columns: 1fr; }} }}
-.col {{ padding: 14px 16px; border-radius: 4px; }}
-.bull-col {{ background: #0d1f14; border: 1px solid #1a3a22; }}
-.bear-col {{ background: #1f0d0d; border: 1px solid #3a1a1a; }}
-.col-label {{ font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; }}
-.bull-col .col-label {{ color: #4caf82; }}
-.bear-col .col-label {{ color: #e05050; }}
-.company-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-bottom: 6px; }}
-.company-card {{
-  background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 4px;
-  padding: 13px 15px;
+
+.mgp-grid {{
+  display: grid;
+  grid-template-columns: 55% 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  align-items: start;
 }}
-.card-header {{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 7px; flex-wrap: wrap; }}
+@media (max-width: 900px) {{ .mgp-grid {{ grid-template-columns: 1fr; }} }}
+
+/* LEFT: newsletters */
+.panel-left {{
+  grid-row: 1 / 3;
+  border: 1px solid #2a1a1a;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #0d0a0a;
+}}
+.panel-label {{
+  font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
+  color: #555; margin-bottom: 14px; text-transform: uppercase;
+}}
+
+/* RIGHT TOP: macro */
+.panel-macro {{
+  border: 1px solid #1a3a22;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #080f0a;
+}}
+/* RIGHT BOTTOM: scanners */
+.panel-scanner {{
+  border: 1px solid #1a2a3a;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #08090f;
+}}
+
+/* company cards */
+.company-card {{
+  background: #111; border: 1px solid #1e1e1e; border-radius: 4px;
+  padding: 12px 14px; margin-bottom: 10px;
+}}
+.company-card:last-child {{ margin-bottom: 0; }}
+.card-header {{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }}
 .card-ticker {{ font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }}
 .card-company {{ font-size: 12px; color: #555; flex: 1; }}
 .card-catalyst {{ font-size: 10px; color: #666; font-family: 'Courier New', monospace;
   background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }}
-.card-summary {{ font-size: 13px; color: #b8b4a8; margin-bottom: 6px; }}
+.card-summary {{ font-size: 13px; color: #b8b4a8; margin-bottom: 5px; }}
 .bz-story {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace;
-  border-top: 1px solid #181818; padding-top: 5px; margin-top: 5px; }}
-.cal-row {{ display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 6px; }}
-.cal-group {{ display: flex; flex-direction: column; gap: 4px; }}
-.cal-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 4px; }}
-.cal-item {{ font-size: 13px; color: #a8a49a; }}
-.scanner-container {{ display: flex; flex-direction: column; gap: 16px; margin-bottom: 6px; }}
-.scanner-block {{ background: #0c0c0c; border: 1px solid #1a1a1a; border-radius: 4px; padding: 12px 14px; }}
-.scanner-name {{ font-size: 10px; color: #c9b97a; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 10px; }}
-.scanner-row {{ display: flex; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px solid #141414; flex-wrap: wrap; }}
+  border-top: 1px solid #1a1a1a; padding-top: 4px; margin-top: 4px; }}
+
+/* EW */
+.ew-block {{ margin-top: 18px; border-top: 1px solid #1c1c1c; padding-top: 14px; }}
+.ew-label {{ font-size: 10px; font-family: 'Courier New', monospace; color: #c9b97a; letter-spacing: 0.12em; margin-bottom: 10px; }}
+.ew-date {{ color: #444; font-size: 10px; }}
+.ew-ticker-head {{ font-size: 12px; color: #c9b97a; font-family: 'Courier New', monospace;
+  margin: 12px 0 4px; letter-spacing: 0.08em; }}
+.ew-line {{ font-size: 12px; color: #888; margin-bottom: 4px; }}
+
+/* bull/bear */
+.prose-block {{ margin-bottom: 8px; }}
+.two-col {{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }}
+@media (max-width: 680px) {{ .two-col {{ grid-template-columns: 1fr; }} }}
+.col {{ padding: 12px 14px; border-radius: 4px; }}
+.bull-col {{ background: #0d1f14; border: 1px solid #1a3a22; }}
+.bear-col {{ background: #1f0d0d; border: 1px solid #3a1a1a; }}
+.col-label {{ font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 6px; }}
+.bull-col .col-label {{ color: #4caf82; }}
+.bear-col .col-label {{ color: #e05050; }}
+
+/* calendar */
+.cal-row {{ display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }}
+.cal-group {{ display: flex; flex-direction: column; gap: 3px; }}
+.cal-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 3px; }}
+.cal-item {{ font-size: 12px; color: #a8a49a; }}
+
+/* scanner */
+.scanner-block {{ background: #0a0c10; border: 1px solid #1a1f2a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }}
+.scanner-block:last-child {{ margin-bottom: 0; }}
+.scanner-name {{ font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; }}
+.scanner-row {{ display: flex; align-items: baseline; gap: 10px; padding: 4px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }}
 .scanner-row:last-child {{ border-bottom: none; }}
 .sc-sym   {{ font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 60px; font-weight: bold; }}
-.sc-price {{ font-size: 13px; color: #d8d4c8; min-width: 55px; }}
-.sc-chg   {{ font-size: 12px; color: #888; min-width: 55px; }}
-.sc-vol   {{ font-size: 12px; color: #4c8faf; min-width: 40px; }}
+.sc-price {{ font-size: 13px; color: #d8d4c8; min-width: 52px; }}
+.sc-chg   {{ font-size: 12px; color: #888; min-width: 52px; }}
+.sc-vol   {{ font-size: 12px; color: #4c8faf; min-width: 38px; }}
 .sc-sma   {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; flex: 1; }}
 .sc-yr    {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; }}
-.scanner-news {{ width: 100%; font-size: 11px; color: #555; font-family: 'Courier New', monospace;
-  padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a1a1a; }}
-.archive-link {{ margin-top: 24px; }}
-.archive-link a {{ font-size: 12px; color: #444; font-family: 'Courier New', monospace; }}
-.archive-link a:hover {{ color: #c9b97a; }}
+.scanner-news {{ width: 100%; font-size: 11px; color: #4a6070; font-family: 'Courier New', monospace;
+  padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a2030; }}
+
+.empty-msg {{ font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }}
 </style>
 </head>
 <body>
@@ -1092,13 +1158,29 @@ header {{ margin-bottom: 26px; }}
   <div class="mgp-date">{today_str} &nbsp;·&nbsp; Updated {updated}</div>
 </header>
 
-{macro_html}
-{bullbear_html}
-{outlook_html}
-{sectors_html}
-{company_html}
-{scanner_html}
-{calendar_html}
+<div class="mgp-grid">
+
+  <!-- LEFT: VK Stories + Earnings Whispers -->
+  <div class="panel-left">
+    <div class="panel-label">VK · Earnings Whispers</div>
+    {left_vk_cards}
+    {left_ew_html}
+    {left_placeholder}
+  </div>
+
+  <!-- RIGHT TOP: Macro / Outlook / Calendar -->
+  <div class="panel-macro">
+    <div class="panel-label">Macro · Outlook · Key Names</div>
+    {right_top_body}
+  </div>
+
+  <!-- RIGHT BOTTOM: Scanners + Benzinga -->
+  <div class="panel-scanner">
+    <div class="panel-label">Scanners · News</div>
+    {right_bot_body}
+  </div>
+
+</div>
 
 {tts_bar_html()}
 
@@ -1312,8 +1394,9 @@ def run():
     # ── 3. Fetch and process emails ──
     emails, processed_ids = fetch_new_emails(config)
 
-    vk_data = None          # latest VK parse (dawn email preferred)
-    new_ids = set()
+    vk_data  = None          # latest VK parse (dawn email preferred)
+    ew_items = []            # Earnings Whispers / Hammerstone articles for left panel
+    new_ids  = set()
     new_archive_entries = []
 
     for uid, subject, body, email_date, sent_utc, source_type in emails:
@@ -1344,12 +1427,9 @@ def run():
                     # Dawn email takes precedence; otherwise keep most recent
                     if vk_data is None or parsed.get("email_type") == "dawn":
                         vk_data = parsed
-                # Also save individual digest page (with generic summary for archive)
-                print("  Summarizing for archive digest...")
                 # Reuse tts_summary as the digest text for the archive page
                 archive_text = parsed.get("tts_summary", "") if parsed else ""
                 if not archive_text:
-                    # Fallback: build a simple text from parsed sections
                     parts = []
                     if parsed:
                         for key in ("macro", "rates_fed", "market_outlook", "bull_case", "bear_case"):
@@ -1360,9 +1440,14 @@ def run():
                     archive_text = "\n\n".join(parts)
 
             else:
-                # EW or HS: generic summarizer for archive
+                # EW or HS: generic summarizer — add to left panel and archive
                 print(f"  Summarizing [{source_type}] with Claude...")
                 archive_text = summarize_generic(body, config["anthropic_api_key"], source_type)
+                ew_items.append({
+                    "subject":    subject,
+                    "text":       archive_text,
+                    "email_date": email_date,
+                })
 
             # Save individual digest page
             digest_html = build_digest_html(archive_text, subject, email_date, config["tts_rate"])
@@ -1379,7 +1464,9 @@ def run():
 
     # ── 4. Build and save MGP dashboard (always rebuild index.html) ──
     print("\n  Building MGP dashboard...")
-    dashboard_html = build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, config["tts_rate"])
+    dashboard_html = build_mgp_dashboard(
+        vk_data, scanner_data, news_data, today_str, config["tts_rate"], ew_items=ew_items
+    )
     save_to_docs(dashboard_html, "index.html")
 
     # ── 5. Update archive ──

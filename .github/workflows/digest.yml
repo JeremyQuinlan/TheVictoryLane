@@ -5,6 +5,11 @@ on:
     # Backup: runs every 2 hours (primary trigger is cron-job.org every 5 min)
     - cron: '0 */2 * * *'
   workflow_dispatch: # Allow manual trigger from GitHub UI
+    inputs:
+      force_reprocess:
+        description: 'Clear processed_ids.json to reprocess all emails'
+        required: false
+        default: 'false'
 
 jobs:
   digest:
@@ -25,6 +30,10 @@ jobs:
 
       - name: Install dependencies
         run: pip install anthropic requests
+
+      - name: Force reprocess (clear processed IDs)
+        if: github.event.inputs.force_reprocess == 'true'
+        run: echo "[]" > processed_ids.json
 
       - name: Run digest script
         env:

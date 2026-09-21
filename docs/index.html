@@ -58,51 +58,104 @@ strong { color: #c9b97a; }
 .notify-btn { margin-left: auto; background: #1a1a2a !important; border-color: #334 !important; color: #668 !important; }
 .notify-btn.enabled { color: #4c8faf !important; border-color: #4c8faf44 !important; background: #1a2a3a !important; }
 
-header { margin-bottom: 26px; }
+/* ── MGP layout ── */
+header { margin-bottom: 20px; }
 .mgp-title { font-size: 28px; font-weight: normal; color: #f0ece0; letter-spacing: 0.02em; }
 .mgp-date  { font-size: 12px; color: #444; font-family: 'Courier New', monospace; margin-top: 5px; }
-.prose-block { margin-bottom: 6px; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 6px; }
-@media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
-.col { padding: 14px 16px; border-radius: 4px; }
-.bull-col { background: #0d1f14; border: 1px solid #1a3a22; }
-.bear-col { background: #1f0d0d; border: 1px solid #3a1a1a; }
-.col-label { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; }
-.bull-col .col-label { color: #4caf82; }
-.bear-col .col-label { color: #e05050; }
-.company-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-bottom: 6px; }
-.company-card {
-  background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 4px;
-  padding: 13px 15px;
+
+.mgp-grid {
+  display: grid;
+  grid-template-columns: 55% 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  align-items: start;
 }
-.card-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 7px; flex-wrap: wrap; }
+@media (max-width: 900px) { .mgp-grid { grid-template-columns: 1fr; } }
+
+/* LEFT: newsletters */
+.panel-left {
+  grid-row: 1 / 3;
+  border: 1px solid #2a1a1a;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #0d0a0a;
+}
+.panel-label {
+  font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
+  color: #555; margin-bottom: 14px; text-transform: uppercase;
+}
+
+/* RIGHT TOP: macro */
+.panel-macro {
+  border: 1px solid #1a3a22;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #080f0a;
+}
+/* RIGHT BOTTOM: scanners */
+.panel-scanner {
+  border: 1px solid #1a2a3a;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #08090f;
+}
+
+/* company cards */
+.company-card {
+  background: #111; border: 1px solid #1e1e1e; border-radius: 4px;
+  padding: 12px 14px; margin-bottom: 10px;
+}
+.company-card:last-child { margin-bottom: 0; }
+.card-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
 .card-ticker { font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }
 .card-company { font-size: 12px; color: #555; flex: 1; }
 .card-catalyst { font-size: 10px; color: #666; font-family: 'Courier New', monospace;
   background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }
-.card-summary { font-size: 13px; color: #b8b4a8; margin-bottom: 6px; }
+.card-summary { font-size: 13px; color: #b8b4a8; margin-bottom: 5px; }
 .bz-story { font-size: 11px; color: #555; font-family: 'Courier New', monospace;
-  border-top: 1px solid #181818; padding-top: 5px; margin-top: 5px; }
-.cal-row { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 6px; }
-.cal-group { display: flex; flex-direction: column; gap: 4px; }
-.cal-label { font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 4px; }
-.cal-item { font-size: 13px; color: #a8a49a; }
-.scanner-container { display: flex; flex-direction: column; gap: 16px; margin-bottom: 6px; }
-.scanner-block { background: #0c0c0c; border: 1px solid #1a1a1a; border-radius: 4px; padding: 12px 14px; }
-.scanner-name { font-size: 10px; color: #c9b97a; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 10px; }
-.scanner-row { display: flex; align-items: baseline; gap: 12px; padding: 5px 0; border-bottom: 1px solid #141414; flex-wrap: wrap; }
+  border-top: 1px solid #1a1a1a; padding-top: 4px; margin-top: 4px; }
+
+/* EW */
+.ew-block { margin-top: 18px; border-top: 1px solid #1c1c1c; padding-top: 14px; }
+.ew-label { font-size: 10px; font-family: 'Courier New', monospace; color: #c9b97a; letter-spacing: 0.12em; margin-bottom: 10px; }
+.ew-date { color: #444; font-size: 10px; }
+.ew-ticker-head { font-size: 12px; color: #c9b97a; font-family: 'Courier New', monospace;
+  margin: 12px 0 4px; letter-spacing: 0.08em; }
+.ew-line { font-size: 12px; color: #888; margin-bottom: 4px; }
+
+/* bull/bear */
+.prose-block { margin-bottom: 8px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+@media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+.col { padding: 12px 14px; border-radius: 4px; }
+.bull-col { background: #0d1f14; border: 1px solid #1a3a22; }
+.bear-col { background: #1f0d0d; border: 1px solid #3a1a1a; }
+.col-label { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 6px; }
+.bull-col .col-label { color: #4caf82; }
+.bear-col .col-label { color: #e05050; }
+
+/* calendar */
+.cal-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }
+.cal-group { display: flex; flex-direction: column; gap: 3px; }
+.cal-label { font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 3px; }
+.cal-item { font-size: 12px; color: #a8a49a; }
+
+/* scanner */
+.scanner-block { background: #0a0c10; border: 1px solid #1a1f2a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }
+.scanner-block:last-child { margin-bottom: 0; }
+.scanner-name { font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; }
+.scanner-row { display: flex; align-items: baseline; gap: 10px; padding: 4px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }
 .scanner-row:last-child { border-bottom: none; }
 .sc-sym   { font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 60px; font-weight: bold; }
-.sc-price { font-size: 13px; color: #d8d4c8; min-width: 55px; }
-.sc-chg   { font-size: 12px; color: #888; min-width: 55px; }
-.sc-vol   { font-size: 12px; color: #4c8faf; min-width: 40px; }
+.sc-price { font-size: 13px; color: #d8d4c8; min-width: 52px; }
+.sc-chg   { font-size: 12px; color: #888; min-width: 52px; }
+.sc-vol   { font-size: 12px; color: #4c8faf; min-width: 38px; }
 .sc-sma   { font-size: 11px; color: #555; font-family: 'Courier New', monospace; flex: 1; }
 .sc-yr    { font-size: 11px; color: #555; font-family: 'Courier New', monospace; }
-.scanner-news { width: 100%; font-size: 11px; color: #555; font-family: 'Courier New', monospace;
-  padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a1a1a; }
-.archive-link { margin-top: 24px; }
-.archive-link a { font-size: 12px; color: #444; font-family: 'Courier New', monospace; }
-.archive-link a:hover { color: #c9b97a; }
+.scanner-news { width: 100%; font-size: 11px; color: #4a6070; font-family: 'Courier New', monospace;
+  padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a2030; }
+
+.empty-msg { font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }
 </style>
 </head>
 <body>
@@ -114,16 +167,32 @@ header { margin-bottom: 26px; }
 
 <header>
   <div class="mgp-title">Morning Game Plan</div>
-  <div class="mgp-date">Sunday, September 20, 2026 &nbsp;·&nbsp; Updated Sep 20, 2026 · 08:11 PM ET</div>
+  <div class="mgp-date">Sunday, September 20, 2026 &nbsp;·&nbsp; Updated Sep 20, 2026 · 08:16 PM ET</div>
 </header>
 
+<div class="mgp-grid">
 
+  <!-- LEFT: VK Stories + Earnings Whispers -->
+  <div class="panel-left">
+    <div class="panel-label">VK · Earnings Whispers</div>
+    
+    
+    <p class="empty-msg">No newsletter stories yet — check back after the market open.</p>
+  </div>
 
+  <!-- RIGHT TOP: Macro / Outlook / Calendar -->
+  <div class="panel-macro">
+    <div class="panel-label">Macro · Outlook · Key Names</div>
+    <p class="empty-msg">Macro data will appear after VK is parsed.</p>
+  </div>
 
+  <!-- RIGHT BOTTOM: Scanners + Benzinga -->
+  <div class="panel-scanner">
+    <div class="panel-label">Scanners · News</div>
+    <p class="empty-msg">Scanner CSVs will appear here once Trade Ideas is running.</p>
+  </div>
 
-
-
-
+</div>
 
 <div id="tts-bar">
   <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>

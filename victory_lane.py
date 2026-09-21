@@ -44,7 +44,7 @@ CONFIG = {
     "benzinga_api_key":      os.environ.get("BENZINGA_API_KEY",   ""),
     "notion_token":          os.environ.get("NOTION_TOKEN",        ""),
     "stocks_on_watch_db_id": "2ee48333-7409-81a3-a830-000b9ce19118",
-    "lookback_hours":        48,
+    "lookback_hours":        168,
     "scanner_csv_dir":       r"C:\Users\jerem\Documents\TradeIdeasPro",
     "edge_exe":              r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
     "tts_rate":              1.3,

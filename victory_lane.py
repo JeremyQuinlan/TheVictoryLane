@@ -535,43 +535,45 @@ def fetch_benzinga_news(tickers, api_key, hours_back=20):
 # IMAP EMAIL FETCH
 # ─────────────────────────────────────────────
 
-def fetch_latest_vk_for_dashboard(config):
-    """Always fetch the single most recent VK email for the dashboard.
-    Completely independent of processed_ids — so the macro panel is never empty."""
-    try:
-        mail = imaplib.IMAP4_SSL("imap.mail.yahoo.com", 993)
-        mail.login(config["yahoo_email"], config["yahoo_app_password"])
-        mail.select("inbox")
-        since_date = (datetime.utcnow() - timedelta(hours=config["lookback_hours"] + 24)).strftime("%d-%b-%Y")
-        status, data = mail.uid("search", None, f'(SINCE "{since_date}" FROM "vitalknowledge")')
-        uids = data[0].split() if data and data[0] else []
-        if not uids:
-            mail.logout()
-            return None, None
-        # Most recent = last UID
-        uid = uids[-1]
-        status, msg_data = mail.uid("fetch", uid, "(BODY.PEEK[])")
-        mail.logout()
-        if not msg_data or msg_data[0] is None:
-            return None, None
-        raw = msg_data[0][1]
-        msg = email.message_from_bytes(raw)
-        body = get_email_body(msg)
-        subject = decode_str(msg.get("Subject", ""))
-        return body, subject
-    except Exception as e:
-        print(f"  fetch_latest_vk error: {e}")
-        return None, None
-
-
 def fetch_new_emails(config):
+    """Single IMAP connection — fetches new emails AND latest VK for dashboard.
+    Returns (results, processed_ids, latest_vk_body, latest_vk_subject)."""
+    print("  IMAP: connecting to imap.mail.yahoo.com:993...")
     mail = imaplib.IMAP4_SSL("imap.mail.yahoo.com", 993)
+    print(f"  IMAP: logging in as {config['yahoo_email'][:4]}****")
     mail.login(config["yahoo_email"], config["yahoo_app_password"])
     mail.select("inbox")
+    print("  IMAP: inbox selected")
 
     processed = load_processed_ids()
     since_date = (datetime.utcnow() - timedelta(hours=config["lookback_hours"] + 24)).strftime("%d-%b-%Y")
     cutoff = datetime.now(timezone.utc) - timedelta(hours=config["lookback_hours"])
+    print(f"  IMAP: searching since {since_date} (lookback={config['lookback_hours']}h)")
+
+    # ── Grab latest VK email for dashboard panel (while connection is open) ──
+    latest_vk_body    = None
+    latest_vk_subject = None
+    try:
+        status, data = mail.uid("search", None, f'(SINCE "{since_date}" FROM "vitalknowledge")')
+        vk_uids = data[0].split() if data and data[0] else []
+        print(f"  [vitalknowledge] {len(vk_uids)} email(s) found for dashboard fetch")
+        if vk_uids:
+            uid = vk_uids[-1]  # most recent
+            status, msg_data = mail.uid("fetch", uid, "(BODY.PEEK[])")
+            if msg_data and msg_data[0] is not None:
+                raw = msg_data[0][1]
+                msg = email.message_from_bytes(raw)
+                latest_vk_body    = get_email_body(msg)
+                latest_vk_subject = decode_str(msg.get("Subject", ""))
+                print(f"  [vitalknowledge] dashboard email fetched: {latest_vk_subject[:80]}")
+            else:
+                print("  [vitalknowledge] fetch returned empty — msg_data was None/empty")
+        else:
+            print(f"  [vitalknowledge] 0 UIDs returned — no email in lookback window")
+    except Exception as e:
+        import traceback
+        print(f"  [vitalknowledge] dashboard fetch FAILED: {e}")
+        traceback.print_exc()
 
     # Search per-sender so we only fetch the emails we actually need
     # (avoids downloading hundreds of unrelated emails and hitting Yahoo's IMAP timeout)
@@ -636,7 +638,7 @@ def fetch_new_emails(config):
     except Exception:
         pass
     results.sort(key=lambda x: x[4])
-    return results, processed
+    return results, processed, latest_vk_body, latest_vk_subject
 
 
 # ─────────────────────────────────────────────
@@ -1444,23 +1446,25 @@ def run():
     if scanner_tickers:
         news_data = fetch_benzinga_news(scanner_tickers, config["benzinga_api_key"])
 
-    # ── 3. Fetch and process emails ──
-    emails, processed_ids = fetch_new_emails(config)
+    # ── 3. Fetch and process emails (single IMAP connection) ──
+    emails, processed_ids, latest_vk_body, latest_vk_subject = fetch_new_emails(config)
 
     vk_data  = None          # latest VK parse (dawn email preferred)
     ew_items = []            # Earnings Whispers / Hammerstone articles for left panel
     new_ids  = set()
     new_archive_entries = []
 
-    # ── Always fetch and parse the latest VK email for the dashboard ──
-    # This is independent of processed_ids so the macro panel is never empty.
-    print("\n  Fetching latest VK email for dashboard...")
-    latest_body, latest_subject = fetch_latest_vk_for_dashboard(config)
-    if latest_body:
-        print(f"  Parsing: {latest_subject}")
-        vk_data = parse_vk_to_mgp(latest_body, config["anthropic_api_key"])
+    # ── Parse the latest VK email for the dashboard panels ──
+    print("\n  Parsing latest VK email for dashboard...")
+    if latest_vk_body:
+        print(f"  Parsing: {latest_vk_subject}")
+        vk_data = parse_vk_to_mgp(latest_vk_body, config["anthropic_api_key"])
+        if vk_data:
+            print(f"  vk_data parsed OK — email_type={vk_data.get('email_type','?')}")
+        else:
+            print("  parse_vk_to_mgp returned None — Claude API parse failed")
     else:
-        print("  No recent VK email found for dashboard")
+        print("  No recent VK email found in lookback window")
 
     for uid, subject, body, email_date, sent_utc, source_type in emails:
         print(f"\n  ── Processing: {subject} ({email_date}) ──")

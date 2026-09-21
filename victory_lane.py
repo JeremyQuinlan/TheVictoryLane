@@ -1529,14 +1529,32 @@ def run():
             print(f"  ✗ Error processing '{subject}': {e}")
             raise
 
-    # ── 4. Build and save MGP dashboard (always rebuild index.html) ──
+    # ── 4. Cache VK data / load from cache if current run got nothing ──
+    vk_cache_path = "docs/last_vk_cache.json"
+    if vk_data:
+        os.makedirs("docs", exist_ok=True)
+        with open(vk_cache_path, "w", encoding="utf-8") as f:
+            json.dump(vk_data, f, ensure_ascii=False)
+        print("  ✓ VK cache updated")
+    elif os.path.exists(vk_cache_path):
+        print("  No fresh VK email — loading from cache...")
+        try:
+            with open(vk_cache_path, encoding="utf-8") as f:
+                vk_data = json.load(f)
+            print(f"  ✓ VK cache loaded (email_type={vk_data.get('email_type','?')})")
+        except Exception as e:
+            print(f"  ✗ VK cache load failed: {e}")
+    else:
+        print("  No fresh VK email and no cache — dashboard will show placeholders")
+
+    # ── 5. Build and save MGP dashboard (always rebuild index.html) ──
     print("\n  Building MGP dashboard...")
     dashboard_html = build_mgp_dashboard(
         vk_data, scanner_data, news_data, today_str, config["tts_rate"], ew_items=ew_items
     )
     save_to_docs(dashboard_html, "index.html")
 
-    # ── 5. Update archive ──
+    # ── 6. Update archive ──
     if new_archive_entries:
         update_archive(new_archive_entries)
 

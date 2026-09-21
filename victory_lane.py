@@ -1423,6 +1423,14 @@ def run():
     new_ids  = set()
     new_archive_entries = []
 
+    # ── Pre-pass: always parse the most recent VK email for the dashboard ──
+    # (even if its doc already exists — so the right panel is never empty)
+    for uid, subject, body, email_date, sent_utc, source_type in reversed(emails):
+        if source_type == "vk":
+            print(f"\n  ── Pre-parsing most recent VK for dashboard: {subject} ──")
+            vk_data = parse_vk_to_mgp(body, config["anthropic_api_key"])
+            break
+
     for uid, subject, body, email_date, sent_utc, source_type in emails:
         print(f"\n  ── Processing: {subject} ({email_date}) ──")
         try:

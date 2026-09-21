@@ -535,6 +535,35 @@ def fetch_benzinga_news(tickers, api_key, hours_back=20):
 # IMAP EMAIL FETCH
 # ─────────────────────────────────────────────
 
+def fetch_latest_vk_for_dashboard(config):
+    """Always fetch the single most recent VK email for the dashboard.
+    Completely independent of processed_ids — so the macro panel is never empty."""
+    try:
+        mail = imaplib.IMAP4_SSL("imap.mail.yahoo.com", 993)
+        mail.login(config["yahoo_email"], config["yahoo_app_password"])
+        mail.select("inbox")
+        since_date = (datetime.utcnow() - timedelta(hours=config["lookback_hours"] + 24)).strftime("%d-%b-%Y")
+        status, data = mail.uid("search", None, f'(SINCE "{since_date}" FROM "vitalknowledge")')
+        uids = data[0].split() if data and data[0] else []
+        if not uids:
+            mail.logout()
+            return None, None
+        # Most recent = last UID
+        uid = uids[-1]
+        status, msg_data = mail.uid("fetch", uid, "(BODY.PEEK[])")
+        mail.logout()
+        if not msg_data or msg_data[0] is None:
+            return None, None
+        raw = msg_data[0][1]
+        msg = email.message_from_bytes(raw)
+        body = get_email_body(msg)
+        subject = decode_str(msg.get("Subject", ""))
+        return body, subject
+    except Exception as e:
+        print(f"  fetch_latest_vk error: {e}")
+        return None, None
+
+
 def fetch_new_emails(config):
     mail = imaplib.IMAP4_SSL("imap.mail.yahoo.com", 993)
     mail.login(config["yahoo_email"], config["yahoo_app_password"])
@@ -1423,13 +1452,15 @@ def run():
     new_ids  = set()
     new_archive_entries = []
 
-    # ── Pre-pass: always parse the most recent VK email for the dashboard ──
-    # (even if its doc already exists — so the right panel is never empty)
-    for uid, subject, body, email_date, sent_utc, source_type in reversed(emails):
-        if source_type == "vk":
-            print(f"\n  ── Pre-parsing most recent VK for dashboard: {subject} ──")
-            vk_data = parse_vk_to_mgp(body, config["anthropic_api_key"])
-            break
+    # ── Always fetch and parse the latest VK email for the dashboard ──
+    # This is independent of processed_ids so the macro panel is never empty.
+    print("\n  Fetching latest VK email for dashboard...")
+    latest_body, latest_subject = fetch_latest_vk_for_dashboard(config)
+    if latest_body:
+        print(f"  Parsing: {latest_subject}")
+        vk_data = parse_vk_to_mgp(latest_body, config["anthropic_api_key"])
+    else:
+        print("  No recent VK email found for dashboard")
 
     for uid, subject, body, email_date, sent_utc, source_type in emails:
         print(f"\n  ── Processing: {subject} ({email_date}) ──")

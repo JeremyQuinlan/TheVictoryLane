@@ -210,20 +210,34 @@ def decode_str(s):
 
 
 def get_email_body(msg):
-    body = ""
+    """Extract email body — prefer HTML (strip tags) over plain text to avoid
+    'does not support HTML' disclaimers and [image url] artifacts."""
+    html_body = ""
+    plain_body = ""
     if msg.is_multipart():
         for part in msg.walk():
             ct = part.get_content_type()
             cd = str(part.get("Content-Disposition", ""))
-            if ct == "text/plain" and "attachment" not in cd:
-                body = part.get_payload(decode=True).decode("utf-8", errors="replace")
-                break
-            elif ct == "text/html" and "attachment" not in cd and not body:
+            if "attachment" in cd:
+                continue
+            if ct == "text/html" and not html_body:
                 raw_html = part.get_payload(decode=True).decode("utf-8", errors="replace")
-                body = re.sub(r"<[^>]+>", " ", raw_html)
-                body = re.sub(r"\s+", " ", body).strip()
+                # Strip tags and clean whitespace
+                text = re.sub(r"<[^>]+>", " ", raw_html)
+                text = re.sub(r"\s+", " ", text).strip()
+                html_body = text
+            elif ct == "text/plain" and not plain_body:
+                plain_body = part.get_payload(decode=True).decode("utf-8", errors="replace")
     else:
-        body = msg.get_payload(decode=True).decode("utf-8", errors="replace")
+        plain_body = msg.get_payload(decode=True).decode("utf-8", errors="replace")
+
+    # Prefer HTML-derived text; fall back to plain text
+    body = html_body or plain_body
+
+    # Strip any residual image URL artifacts (e.g. [https://...])
+    body = re.sub(r"\[https?://[^\]]*\]", "", body)
+    body = re.sub(r"\s+", " ", body).strip()
+
     return body[:30000]
 
 
@@ -1163,17 +1177,31 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, a
         if tickers_in_scanner:
             tts_text += f" Scanner alert: {scanner_label}. Tickers: {', '.join(tickers_in_scanner)}."
 
+        # Header row
+        header_html = """<div class="scanner-row scanner-header">
+  <span class="sc-sym">TICKER</span>
+  <span class="sc-rvol">REL VOL</span>
+  <span class="sc-chg">CHG</span>
+  <span class="sc-price">PRICE</span>
+</div>"""
+
         rows_html = ""
         for r in rows:
             sym     = r["symbol"]
             price   = f"${r['price']:.2f}"        if r["price"]     is not None else "—"
             chg     = f"{r['chg_close']:+.1f}%"   if r["chg_close"] is not None else "—"
-            rel_vol = f"{r['rel_vol']:.1f}x"      if r.get("rel_vol") is not None else "—"
+            # Convert relative volume multiplier to percentage (e.g. 4.5x → +350%)
+            if r.get("rel_vol") is not None:
+                rv_pct = (r["rel_vol"] - 1) * 100
+                rel_vol = f"+{rv_pct:.0f}%" if rv_pct >= 0 else f"{rv_pct:.0f}%"
+            else:
+                rel_vol = "—"
             chg_cls = "sc-up" if (r["chg_close"] or 0) >= 0 else "sc-dn"
 
             bz_html = ""
-            if sym in news_data and news_data[sym]:
-                for n in news_data[sym][:3]:
+            nd = news_data or {}
+            if sym in nd and nd[sym]:
+                for n in nd[sym][:3]:
                     beat_badge = f'<span class="bz-beat">{n["beat"]}</span> ' if n.get("beat") else ""
                     ch = n.get("channels", [])
                     if "Earnings" in ch:
@@ -1194,6 +1222,7 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, a
 
         rb_blocks.append(f"""<div class="scanner-block">
   <div class="scanner-name">{scanner_label}</div>
+  {header_html}
   {rows_html}
 </div>""")
 
@@ -1297,6 +1326,8 @@ header {{ margin-bottom: 20px; }}
 .scanner-name {{ font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; text-transform: uppercase; }}
 .scanner-row {{ display: flex; align-items: baseline; gap: 10px; padding: 5px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }}
 .scanner-row:last-child {{ border-bottom: none; }}
+.scanner-header {{ border-bottom: 1px solid #2a3040 !important; margin-bottom: 2px; padding-bottom: 4px; }}
+.scanner-header span {{ color: #4a5568; font-size: 0.65rem; letter-spacing: 0.08em; font-weight: 600; }}
 .sc-sym   {{ font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 62px; font-weight: bold; }}
 .sc-rvol  {{ font-size: 12px; color: #4c8faf; min-width: 40px; }}
 .sc-chg   {{ font-size: 12px; min-width: 52px; font-family: 'Courier New', monospace; }}

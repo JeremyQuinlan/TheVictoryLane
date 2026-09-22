@@ -65,25 +65,45 @@ header { margin-bottom: 20px; }
 
 .mgp-grid {
   display: grid;
-  grid-template-columns: 55% 1fr;
+  grid-template-columns: 48% 1fr;
   grid-template-rows: auto auto;
   gap: 16px;
   align-items: start;
 }
 @media (max-width: 900px) { .mgp-grid { grid-template-columns: 1fr; } }
 
-/* LEFT: newsletters */
+/* LEFT: dispatch link list */
 .panel-left {
   grid-row: 1 / 3;
-  border: 1px solid #2a1a1a;
+  border: 1px solid #1e1a14;
   border-radius: 6px;
   padding: 16px 18px;
-  background: #0d0a0a;
+  background: #0c0a08;
 }
 .panel-label {
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
-  color: #555; margin-bottom: 14px; text-transform: uppercase;
+  color: #555; margin-bottom: 4px; text-transform: uppercase;
 }
+
+/* dispatch cards */
+.dispatch-card {
+  display: block; border-bottom: 1px solid #161410; padding: 13px 0;
+  text-decoration: none; color: inherit; transition: padding-left 0.12s;
+}
+.dispatch-card:hover { padding-left: 6px; }
+.dispatch-card:hover .dispatch-title { color: #c9b97a; }
+.dispatch-card:first-of-type { border-top: 1px solid #161410; margin-top: 8px; }
+.dispatch-header {
+  display: flex; align-items: center; gap: 7px; margin-bottom: 4px; flex-wrap: wrap;
+}
+.dispatch-tag {
+  font-size: 9px; font-family: 'Courier New', monospace; font-weight: bold;
+  letter-spacing: 0.1em; padding: 2px 5px; border-radius: 2px; border: 1px solid;
+}
+.dispatch-src  { font-size: 10px; color: #444; font-family: 'Courier New', monospace; }
+.dispatch-date { font-size: 10px; color: #3a3830; font-family: 'Courier New', monospace; margin-left: auto; }
+.dispatch-title { font-size: 13px; color: #b8b4a8; line-height: 1.35; margin-bottom: 3px; transition: color 0.12s; }
+.dispatch-preview { font-size: 11px; color: #484440; line-height: 1.5; }
 
 /* RIGHT TOP: macro */
 .panel-macro {
@@ -100,39 +120,8 @@ header { margin-bottom: 20px; }
   background: #08090f;
 }
 
-/* company cards */
-.company-card {
-  background: #111; border: 1px solid #1e1e1e; border-radius: 4px;
-  padding: 12px 14px; margin-bottom: 10px;
-}
-.company-card:last-child { margin-bottom: 0; }
-.card-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
-.card-ticker { font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }
-.card-company { font-size: 12px; color: #555; flex: 1; }
-.card-catalyst { font-size: 10px; color: #666; font-family: 'Courier New', monospace;
-  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }
-.card-summary { font-size: 13px; color: #b8b4a8; margin-bottom: 5px; }
-.bz-story { font-size: 11px; color: #555; font-family: 'Courier New', monospace;
-  border-top: 1px solid #1a1a1a; padding-top: 4px; margin-top: 4px; }
-
-/* EW */
-.ew-block { margin-top: 18px; border-top: 1px solid #1c1c1c; padding-top: 14px; }
-.ew-label { font-size: 10px; font-family: 'Courier New', monospace; color: #c9b97a; letter-spacing: 0.12em; margin-bottom: 10px; }
-.ew-date { color: #444; font-size: 10px; }
-.ew-ticker-head { font-size: 12px; color: #c9b97a; font-family: 'Courier New', monospace;
-  margin: 12px 0 4px; letter-spacing: 0.08em; }
-.ew-line { font-size: 12px; color: #888; margin-bottom: 4px; }
-
-/* bull/bear */
+/* macro */
 .prose-block { margin-bottom: 8px; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
-@media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
-.col { padding: 12px 14px; border-radius: 4px; }
-.bull-col { background: #0d1f14; border: 1px solid #1a3a22; }
-.bear-col { background: #1f0d0d; border: 1px solid #3a1a1a; }
-.col-label { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 6px; }
-.bull-col .col-label { color: #4caf82; }
-.bear-col .col-label { color: #e05050; }
 
 /* calendar */
 .cal-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }
@@ -143,17 +132,22 @@ header { margin-bottom: 20px; }
 /* scanner */
 .scanner-block { background: #0a0c10; border: 1px solid #1a1f2a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }
 .scanner-block:last-child { margin-bottom: 0; }
-.scanner-name { font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; }
-.scanner-row { display: flex; align-items: baseline; gap: 10px; padding: 4px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }
+.scanner-name { font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; text-transform: uppercase; }
+.scanner-row { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }
 .scanner-row:last-child { border-bottom: none; }
-.sc-sym   { font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 60px; font-weight: bold; }
-.sc-price { font-size: 13px; color: #d8d4c8; min-width: 52px; }
-.sc-chg   { font-size: 12px; color: #888; min-width: 52px; }
-.sc-vol   { font-size: 12px; color: #4c8faf; min-width: 38px; }
-.sc-sma   { font-size: 11px; color: #555; font-family: 'Courier New', monospace; flex: 1; }
-.sc-yr    { font-size: 11px; color: #555; font-family: 'Courier New', monospace; }
+.sc-sym   { font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 62px; font-weight: bold; }
+.sc-rvol  { font-size: 12px; color: #4c8faf; min-width: 40px; }
+.sc-chg   { font-size: 12px; min-width: 52px; font-family: 'Courier New', monospace; }
+.sc-up    { color: #4caf82; }
+.sc-dn    { color: #e05050; }
+.sc-price { font-size: 12px; color: #888; }
 .scanner-news { width: 100%; font-size: 11px; color: #4a6070; font-family: 'Courier New', monospace;
-  padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a2030; }
+  padding-top: 3px; margin-top: 2px; border-top: 1px dashed #1a2030; }
+.bz-tag { font-size: 9px; font-family: 'Courier New', monospace; font-weight: bold;
+  letter-spacing: 0.08em; padding: 1px 4px; border-radius: 2px;
+  background: #1a2a1a; color: #4caf82; border: 1px solid #4caf8244; }
+.bz-tag.bz-guidance { background: #2a2a1a; color: #c9b97a; border-color: #c9b97a44; }
+.bz-beat { font-size: 10px; color: #c9b97a; font-family: 'Courier New', monospace; }
 
 .empty-msg { font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }
 </style>
@@ -167,122 +161,189 @@ header { margin-bottom: 20px; }
 
 <header>
   <div class="mgp-title">Morning Game Plan</div>
-  <div class="mgp-date">Tuesday, September 22, 2026 &nbsp;·&nbsp; Updated Sep 22, 2026 · 03:51 PM ET</div>
+  <div class="mgp-date">Tuesday, September 22, 2026 &nbsp;·&nbsp; Updated Sep 22, 2026 · 03:56 PM ET</div>
 </header>
 
 <div class="mgp-grid">
 
-  <!-- LEFT: VK Stories + Earnings Whispers -->
+  <!-- LEFT: Dispatch link list -->
   <div class="panel-left">
-    <div class="panel-label">VK · Earnings Whispers</div>
-    <div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#888">◆</span> AZO</span>
-    <span class="card-company">AutoZone</span>
-    <span class="card-catalyst">Earnings Beat</span>
-  </div>
-  <p class="card-summary">AutoZone reported fiscal Q4 EPS of $56.05 versus the Street at $54.03, but the beat was low quality — driven by tariff refunds adding 145 basis points to gross margins and a non-cash LIFO benefit adding another 105 basis points. Domestic comps came in at +1.6% versus the Street's +3.1%, though management noted positive sales linearity in the quarter, which is providing some comfort.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#4caf82">▲</span> MLKN</span>
-    <span class="card-company">MillerKnoll</span>
-    <span class="card-catalyst">Earnings Beat</span>
-  </div>
-  <p class="card-summary">MillerKnoll posted solid fiscal Q1 EPS of 53 cents versus the Street at 36 cents, and critically the beat holds up even excluding tariff refunds — stripping out the 11-cent tailwind still leaves EPS at 42 cents, well above consensus. Guidance is mixed with fiscal 2027 sales trimmed but EPS outlook left unchanged.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#e05050">▼</span> THO</span>
-    <span class="card-company">THOR Industries</span>
-    <span class="card-catalyst">Earnings Miss</span>
-  </div>
-  <p class="card-summary">THOR Industries missed fiscal Q4 EPS at 78 cents versus the Street at 87 cents, with gross margins falling 230 basis points year-over-year to 12.4% versus the Street's 13.85%. Revenue came in at $2.311 billion, down 8.4% year-over-year but above the Street's $2.17 billion estimate, and management cited a difficult macro environment.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#4caf82">▲</span> META</span>
-    <span class="card-company">Meta</span>
-    <span class="card-catalyst">Product Launch</span>
-  </div>
-  <p class="card-summary">Meta's Muse personal AI agent is seeing surging downloads ahead of Zuckerberg's keynote at Meta Connect on Wednesday night. Shopify will allow Muse to complete purchases on its platform, expanding the agentic commerce ecosystem, while Amazon has blocked Muse from its site. Investor expectations are growing increasingly bullish into the event.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#4caf82">▲</span> SHOP</span>
-    <span class="card-company">Shopify</span>
-    <span class="card-catalyst">Partnership</span>
-  </div>
-  <p class="card-summary">Shopify announced it will allow Meta's Muse personal AI agent to complete purchases on its e-commerce platform, positioning itself as a key enabler of agentic commerce. This follows Amazon's decision to block Muse, potentially giving Shopify a competitive advantage in the emerging AI shopping agent ecosystem.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#e05050">▼</span> DGX</span>
-    <span class="card-company">Quest Diagnostics</span>
-    <span class="card-catalyst">Other</span>
-  </div>
-  <p class="card-summary">Quest Diagnostics shares were hit Tuesday following new Medicare payment rates from CMS for lab services, with the rate reductions coming in larger than the market had anticipated. This is a sector-wide headwind also hitting LabCorp.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#e05050">▼</span> LH</span>
-    <span class="card-company">LabCorp</span>
-    <span class="card-catalyst">Other</span>
-  </div>
-  <p class="card-summary">LabCorp shares are under pressure alongside Quest Diagnostics following CMS announcing Medicare lab service rate cuts that were steeper than expected. The move represents a direct hit to reimbursement revenue for both major lab testing firms.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#888">◆</span> CGNX</span>
-    <span class="card-company">Cognex</span>
-    <span class="card-catalyst">M&A</span>
-  </div>
-  <p class="card-summary">Cognex announced it will acquire RealSense, described as the market leader in depth-sensing cameras and vision technology for robotic perception and Physical AI, for approximately $500 million upfront plus an additional $106.5 million. The deal expands Cognex's footprint into the Physical AI and robotics perception space.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#4caf82">▲</span> VKTX</span>
-    <span class="card-company">Viking Therapeutics</span>
-    <span class="card-catalyst">FDA Approval</span>
-  </div>
-  <p class="card-summary">Viking Therapeutics reported positive trial results for its GLP-1 drug VK2735, including 22% weight loss. The data keeps Viking competitive in the increasingly crowded but high-value obesity drug market.</p>
-  
-</div>
-<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker"><span style="color:#4caf82">▲</span> ONON</span>
-    <span class="card-company">On Holdings</span>
-    <span class="card-catalyst">Guidance Raise</span>
-  </div>
-  <p class="card-summary">On Holdings held its analyst meeting and outlined plans to achieve 2029 sales of at least CHF 5.6 billion versus the Street at CHF 5.4 billion, with EBITDA margins of 22% or better versus the Street's 21% estimate. The company also adopted a $1 billion buyback authorization, adding shareholder return credibility to the growth story.</p>
-  
-</div>
-
+    <div class="panel-label">Dispatches</div>
+    <a class="dispatch-card" href="mid-day-update-tuesday-september-22-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#4c8faf;border-color:#4c8faf44;background:#1a2a3a;">MID-DAY</span>
     
+    <span class="dispatch-date">Sep 22, 2026 · 11:03 AM ET</span>
+  </div>
+  <div class="dispatch-title">Mid-Day Update · Tuesday September
+ 22, 2026</div>
+  
+</a><a class="dispatch-card" href="company-specific-news-for-tues-9-22-bmo-azo-cgnx-mlkn-pnr-tho-vktx.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
     
+    <span class="dispatch-date">Sep 22, 2026 · 07:15 AM ET</span>
+  </div>
+  <div class="dispatch-title">Company-specific news for Tues 9/22 (BMO) - AZO, CGNX, MLKN, PNR, THO, VKTX</div>
+  <div class='dispatch-preview'>Good morning. This is a company-specific earnings note covering Tuesday before-the-open reporters — no broad m…</div>
+</a><a class="dispatch-card" href="middle-east-hopes-kick-into-high-gear-following-iran-and-saudi-headlines.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
+    
+    <span class="dispatch-date">Sep 22, 2026 · 06:05 AM ET</span>
+  </div>
+  <div class="dispatch-title">Middle East hopes kick into high gear following Iran and Saudi headlines</div>
+  <div class='dispatch-preview'>Here's what you need to know heading into the session on September 22nd. The dominant story this morning is a …</div>
+</a><a class="dispatch-card" href="morning-intelligentsia-tuesday-september-22-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#4caf82;border-color:#4caf8244;background:#1a3a2a;">MORNING</span>
+    
+    <span class="dispatch-date">Sep 22, 2026 · 05:17 AM ET</span>
+  </div>
+  <div class="dispatch-title">Morning Intelligentsia · Tuesday September 22, 2026</div>
+  
+</a><a class="dispatch-card" href="earnings-preview-september-21-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#c9b97a;border-color:#c9b97a44;background:#2a2a1a;">EARNINGS</span>
+    
+    <span class="dispatch-date">Sep 21, 2026 · 07:46 PM ET</span>
+  </div>
+  <div class="dispatch-title">Earnings Preview · September 21, 2026</div>
+  <div class='dispatch-preview'>## ABVX — ABIVAX Société Anonyme  - **Earnings Date:** Q2 FY2026 (June quarter) — already reported - **Consens…</div>
+</a><a class="dispatch-card" href="market-recap-monday-september-21-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#af4c4c;border-color:#af4c4c44;background:#2a1a1a;">RECAP</span>
+    
+    <span class="dispatch-date">Sep 21, 2026 · 04:04 PM ET</span>
+  </div>
+  <div class="dispatch-title">Market Recap · Monday September 21, 2026</div>
+  
+</a><a class="dispatch-card" href="muse-hype-sparks-ai-rally-but-investor-sentiment-cools-as-sb-energy-delays-its-i.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
+    
+    <span class="dispatch-date">Sep 21, 2026 · 02:43 PM ET</span>
+  </div>
+  <div class="dispatch-title">Muse hype sparks AI rally, but investor sentiment cools as SB Energy delays its IPO</div>
+  <div class='dispatch-preview'>Here's where things stand Monday afternoon. AI stocks are ripping higher, and the headline driver is Meta's pe…</div>
+</a><a class="dispatch-card" href="mid-day-update-monday-september-21-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#4c8faf;border-color:#4c8faf44;background:#1a2a3a;">MID-DAY</span>
+    
+    <span class="dispatch-date">Sep 21, 2026 · 11:05 AM ET</span>
+  </div>
+  <div class="dispatch-title">Mid-Day Update · Monday September
+ 21, 2026</div>
+  <div class='dispatch-preview'>Here's your midday update for Monday, September 21st.  The headline story today is a Nasdaq-led rally driven b…</div>
+</a><a class="dispatch-card" href="morning-intelligentsia-monday-september-21-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#4caf82;border-color:#4caf8244;background:#1a3a2a;">MORNING</span>
+    
+    <span class="dispatch-date">Sep 21, 2026 · 05:23 AM ET</span>
+  </div>
+  <div class="dispatch-title">Morning Intelligentsia · Monday September 21, 2026</div>
+  <div class='dispatch-preview'>Good morning. Here is your morning game plan for Monday, September 21st, 2026.  The macro setup is genuinely c…</div>
+</a><a class="dispatch-card" href="weekend-sun-9-20-2026-getting-ready-for-the-week-ahead.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
+    
+    <span class="dispatch-date">Sep 20, 2026 · 09:30 AM ET</span>
+  </div>
+  <div class="dispatch-title">Weekend (Sun 9/20/2026) - getting ready for the week ahead</div>
+  <div class='dispatch-preview'>No closing price data provided for this weekend edition. Week-ahead positioning note: AI sector headwinds and …</div>
+</a><a class="dispatch-card" href="earnings-calendar-monday-september-21-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#c9b97a;border-color:#c9b97a44;background:#2a2a1a;">EARNINGS</span>
+    
+    <span class="dispatch-date">Sep 19, 2026 · 08:58 AM ET</span>
+  </div>
+  <div class="dispatch-title">Earnings Calendar · Monday, September
+ 21, 2026</div>
+  <div class='dispatch-preview'>---</div>
+</a><a class="dispatch-card" href="earnings-calendar-september-21-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#c9b97a;border-color:#c9b97a44;background:#2a2a1a;">EARNINGS</span>
+    
+    <span class="dispatch-date">Sep 19, 2026 · 08:58 AM ET</span>
+  </div>
+  <div class="dispatch-title">Earnings Calendar · September
+ 21, 2026</div>
+  <div class='dispatch-preview'># Earnings Preview: Week of September 21, 2026  ---  ## ABVX — ABIVAX Société Anonyme  - **Date/Time:** Monday…</div>
+</a><a class="dispatch-card" href="nscale-takeaways-from-the-s1.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
+    
+    <span class="dispatch-date">Sep 18, 2026 · 04:37 PM ET</span>
+  </div>
+  <div class="dispatch-title">Nscale: takeaways from the S1</div>
+  <div class='dispatch-preview'>No broad market data provided in this edition.</div>
+</a><a class="dispatch-card" href="mid-day-update-friday-september-18-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#4c8faf;border-color:#4c8faf44;background:#1a2a3a;">MID-DAY</span>
+    
+    <span class="dispatch-date">Sep 18, 2026 · 11:15 AM ET</span>
+  </div>
+  <div class="dispatch-title">Mid-Day Update · Friday September 18,
+ 2026</div>
+  <div class='dispatch-preview'>SPX: -0.15% | Nasdaq: -0.06% | Dow: -232 points (-0.45%) | R2K: -0.88% | Brent: -0.40% | Gold: +0.20% | Silver…</div>
+</a><a class="dispatch-card" href="catalyst-watch-week-of-mon-9-21-trump-xi-un-ga-flash-pmis-meta-connect-some-earn.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
+    
+    <span class="dispatch-date">Sep 18, 2026 · 08:27 AM ET</span>
+  </div>
+  <div class="dispatch-title">Catalyst Watch (week of Mon 9/21) - Trump/Xi, UN GA, flash PMIs, Meta Connect, some earnings (AZO, COST, DRI, GIS, and PAYX), and more</div>
+  <div class='dispatch-preview'>No market price data was included in this newsletter. SPX, Nasdaq, and other asset levels not reported.</div>
+</a><a class="dispatch-card" href="market-recap-friday-september-18-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#af4c4c;border-color:#af4c4c44;background:#2a1a1a;">RECAP</span>
+    
+    <span class="dispatch-date">Sep 18, 2026 · 08:21 AM ET</span>
+  </div>
+  <div class="dispatch-title">Market Recap · Friday September 18, 2026</div>
+  <div class='dispatch-preview'>No specific index closes were provided in this recap, so precise percentage moves aren't quotable. The week's …</div>
+</a><a class="dispatch-card" href="morning-intelligentsia-friday-september-18-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#4caf82;border-color:#4caf8244;background:#1a3a2a;">MORNING</span>
+    
+    <span class="dispatch-date">Sep 18, 2026 · 05:25 AM ET</span>
+  </div>
+  <div class="dispatch-title">Morning Intelligentsia · Friday September 18, 2026</div>
+  <div class='dispatch-preview'>S&P futures: **+0.26%** | Nasdaq futures: **+0.50%** | Dow: +94 points | R2K: +2.3 points | Brent: -2.2% (~$10…</div>
+</a><a class="dispatch-card" href="steel-earnings-nue-and-stld-provide-q3-eps-updates.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
+    
+    <span class="dispatch-date">Sep 17, 2026 · 04:54 PM ET</span>
+  </div>
+  <div class="dispatch-title">Steel earnings: NUE and STLD provide Q3 EPS updates</div>
+  <div class='dispatch-preview'>No broad market data reported in this edition.</div>
+</a><a class="dispatch-card" href="market-recap-thursday-september-17-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#af4c4c;border-color:#af4c4c44;background:#2a1a1a;">RECAP</span>
+    
+    <span class="dispatch-date">Sep 17, 2026 · 04:05 PM ET</span>
+  </div>
+  <div class="dispatch-title">Market Recap · Thursday September 17,
+ 2026</div>
+  <div class='dispatch-preview'>SPX +1.14%, Nasdaq +1.69%. Dow +318 points, R2K +15.8 points. Brent -1.80% (~$104). Gold +2.00%, Silver +3.70%…</div>
+</a><a class="dispatch-card" href="mid-day-update-thursday-september-17-2026.html">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:#4c8faf;border-color:#4c8faf44;background:#1a2a3a;">MID-DAY</span>
+    
+    <span class="dispatch-date">Sep 17, 2026 · 11:00 AM ET</span>
+  </div>
+  <div class="dispatch-title">Mid-Day Update · Thursday
+ September 17, 2026</div>
+  <div class='dispatch-preview'>- **SPX:** +0.90%</div>
+</a>
   </div>
 
   <!-- RIGHT TOP: Macro / Outlook / Calendar -->
   <div class="panel-macro">
     <div class="panel-label">Macro · Outlook · Key Names</div>
-    <div class="section-head">Macro · Rates</div>
-<div class="prose-block">
-<p>US equity indices are mixed at midday with the SPX flat, Nasdaq up 38 basis points, R2K up 30 basis points, and the Dow down 43 basis points. Markets are in a holding pattern as investors watch UN diplomatic developments around Iran and the Middle East, with Brent crude off modestly near $100 on hopes for a Hormuz resolution and the partial resumption of Saudi Arabia's East-West Pipeline. Treasuries are pretty flat across the curve, while gold, silver, and bitcoin are all modestly lower.</p>
-<p>Treasuries are largely unchanged across the curve with no major rate catalysts driving action today. There is no notable Fed commentary in this update. The macro backdrop is dominated by geopolitical energy dynamics rather than monetary policy.</p>
-</div>
-<div class="section-head">Bull / Bear</div>
-<div class="two-col">
-  <div class="col bull-col"><div class="col-label">BULL CASE</div><p>AI-related names are outperforming broadly as investor excitement builds into the Meta Connect keynote Wednesday night and subsequent catalysts including OpenAI DevDay and Micron earnings. Meta's Muse personal AI agent is seeing surging downloads, and Shopify's integration with Muse for agentic checkout expands the commercial ecosystem. Iran's reported offer to reopen Hormuz within seven days and the partial restart of Saudi Arabia's East-West Pipeline are easing energy concerns, which could reduce a key macro headwind. Housing and travel/leisure names are also showing relative strength, suggesting some underlying consumer resilience.</p></div>
-  <div class="col bear-col"><div class="col-label">BEAR CASE</div><p>Financials are broadly under pressure with banks, brokers, insurers, and asset managers all underperforming, which could signal broader caution on economic growth. Lab testing stocks Quest and LabCorp are getting hit hard on larger-than-expected CMS Medicare rate cuts, a reminder of regulatory risk across healthcare. Texas Governor Abbott's permit freeze on new data center projects adds a potential constraint on the AI infrastructure buildout, and SB Energy delaying its IPO on weak investor reception signals some sentiment cooling around the data center boom. THOR Industries' earnings miss and commentary about a difficult macro landscape adds a cautionary note on the consumer and industrial side.</p></div>
-</div>
+    <div class="section-head">Macro</div>
+<div class="prose-block"><p>US equity indices are mixed at midday with the SPX flat, Nasdaq up 38 basis points, R2K up 30 basis points, and the Dow down 43 basis points. Markets are in a holding pattern as investors watch UN diplomatic developments around Iran and the Middle East, with Brent crude off modestly near $100 on hopes for a Hormuz resolution and the partial resumption of Saudi Arabia's East-West Pipeline. Treasuries are pretty flat across the curve, while gold, silver, and bitcoin are all modestly lower.</p></div>
 <div class="section-head">Market Outlook</div>
 <div class="prose-block"><p>The market is in a wait-and-see mode, with the major indices treading water. The directional lean is neutral-to-cautiously bullish on AI and tech into a dense catalyst window over the next 10 days — Zuckerberg's Meta Connect keynote Wednesday night, OpenAI DevDay on September 29th, and Micron earnings on September 30th. Watch those AI events as the key near-term catalysts.</p></div>
 <div class="section-head">Sector Watch</div>
@@ -310,7 +371,7 @@ header { margin-bottom: 20px; }
     <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
     <span id="speed-val">1.3x</span>
   </div>
-  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <span id="tts-status">Ready &mdash; press Play to start</span>
   <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
 </div>
 
@@ -492,8 +553,7 @@ header { margin-bottom: 20px; }
 
   window.addEventListener("load", () => {
     updateNotifyBtn();
-    if (isIOS) setStatus("Tap Play to start");
-    else setTimeout(() => speakFrom(0), 1800);
+    setStatus("Ready — press Play to start");
   });
   window.addEventListener("pagehide", () => window.speechSynthesis.cancel());
   window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });

@@ -1256,15 +1256,16 @@ header {{ margin-bottom: 20px; }}
 
 .mgp-grid {{
   display: grid;
-  grid-template-columns: 48% 1fr;
+  grid-template-columns: 1fr 52%;
   grid-template-rows: auto auto;
   gap: 16px;
   align-items: start;
 }}
 @media (max-width: 900px) {{ .mgp-grid {{ grid-template-columns: 1fr; }} }}
 
-/* LEFT: scanner list (main column) */
+/* RIGHT: scanner list (main column) */
 .panel-left {{
+  grid-column: 2;
   grid-row: 1 / 3;
   border: 1px solid #1a2a3a;
   border-radius: 6px;
@@ -1312,7 +1313,7 @@ header {{ margin-bottom: 20px; }}
 }}
 
 /* macro */
-.prose-block {{ margin-bottom: 8px; }}
+.prose-block {{ margin-bottom: 8px; font-size: 12px; line-height: 1.55; color: #8a8880; }}
 
 /* calendar */
 .cal-row {{ display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }}

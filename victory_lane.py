@@ -69,7 +69,17 @@ SCANNER_LABELS = {
     "high":     "High PM AVOL",
     "low float":"Low Floats & Small Caps",
     "gapper":   "Gappers",
+    "earnings": "Earnings Today",
 }
+
+# Order scanners appear on the dashboard (unlisted scanners append at end)
+SCANNER_DISPLAY_ORDER = [
+    "Changing Fundamentals",
+    "High PM AVOL",
+    "Earnings Today",
+    "Usual Suspects Volume",
+    "Low Floats & Small Caps",
+]
 
 # ─────────────────────────────────────────────
 # PROMPTS
@@ -105,6 +115,7 @@ Rules:
 - company_items: include ALL companies with meaningful commentary. Max 10 items.
 - direction: bullish if the news is net positive for the stock, bearish if negative, mixed if unclear.
 - If a field has no content use empty string "" or empty array [].
+- Express all basis-point references as percentages across every field (e.g. "25bp" → "0.25%", "100bp" → "1.0%", "50bp rate cut" → "0.50% rate cut").
 - Return ONLY the JSON — no preamble, no markdown fences, no explanation.
 
 Newsletter content:
@@ -455,6 +466,7 @@ def read_scanner_csvs(csv_dir):
                         "price":     _safe_float(row.get("Price") or row.get("price")),
                         "chg_close": _safe_float(row.get("Change from the Close") or row.get("Chg Close")),
                         "vol_today": _safe_float(row.get("Volume Today") or row.get("Vol Today")),
+                        "rel_vol":   _safe_float(row.get("Relative Volume") or row.get("Rel Vol")),
                         "chg_20d":   _safe_float(row.get("Change from 20 Day SMA") or row.get("Chg 20 Day")),
                         "chg_50d":   _safe_float(row.get("Change from 50 Day SMA") or row.get("Chg 50 Day")),
                         "chg_200d":  _safe_float(row.get("Change from 200 Day SMA") or row.get("Chg 200 Day")),
@@ -487,10 +499,48 @@ def _safe_float(val):
 # BENZINGA NEWS FETCH
 # ─────────────────────────────────────────────
 
+def _parse_earnings_beat(title, teaser):
+    """
+    Scan a Benzinga news headline + teaser for earnings beat/miss or guidance info.
+    Returns a short badge string like '+$0.18 EPS beat' or 'Guidance ↑', or None.
+    """
+    text = (title + " " + teaser).lower()
+
+    # EPS beat with dollar amount: "beats by $0.18" / "beat estimates of $1.05, reported $1.23"
+    m = re.search(r'beat[s]?\s+(?:estimates?\s+)?by\s+\$?([\d.]+)', text)
+    if m:
+        return f"+${m.group(1)} EPS"
+
+    m = re.search(r'miss(?:es)?\s+(?:estimates?\s+)?by\s+\$?([\d.]+)', text)
+    if m:
+        return f"-${m.group(1)} EPS"
+
+    # Percentage beat: "beats estimates by 12%"
+    m = re.search(r'beat[s]?\s+\w+\s+by\s+([\d.]+)%', text)
+    if m:
+        return f"+{m.group(1)}% beat"
+
+    # Generic beats/misses without amount
+    if re.search(r'\bbeat[s]?\b.{0,30}\bestimate', text):
+        return "Beat Est."
+    if re.search(r'\bmiss(?:es)?\b.{0,30}\bestimate', text):
+        return "Miss Est."
+
+    # Guidance
+    if re.search(r'rais(?:es?|ed)\s+(?:full.year\s+)?guidance|lifts?\s+guidance|raises?\s+outlook', text):
+        return "Guidance ↑"
+    if re.search(r'(?:cut|cut|lower|reduc)[s]?\s+guidance|cuts?\s+outlook', text):
+        return "Guidance ↓"
+    if re.search(r'reaffirm[s]?\s+guidance|maintains?\s+guidance', text):
+        return "Guidance ="
+
+    return None
+
+
 def fetch_benzinga_news(tickers, api_key, hours_back=20):
     """
     Fetch news for a list of tickers via Massive/Benzinga API.
-    Returns dict: { ticker: [ {published, title, teaser, channels}, ... ] }
+    Returns dict: { ticker: [ {published, title, teaser, channels, beat}, ... ] }
     Gracefully returns {} if no API key or request fails.
     """
     if not api_key:
@@ -518,11 +568,15 @@ def fetch_benzinga_news(tickers, api_key, hours_back=20):
                     channels = s.get("channels", [])
                     if channels and isinstance(channels[0], dict):
                         channels = [c.get("name", "") for c in channels]
+                    title  = s.get("title", "")
+                    teaser = s.get("teaser", "")[:200]
+                    beat   = _parse_earnings_beat(title, teaser)
                     result[ticker].append({
                         "published": s.get("published", "")[:16],
-                        "title":     s.get("title", ""),
-                        "teaser":    s.get("teaser", "")[:200],
+                        "title":     title,
+                        "teaser":    teaser,
                         "channels":  channels,
+                        "beat":      beat,
                     })
                 print(f"  Benzinga {ticker}: {len(stories)} story(ies)")
         except Exception as e:
@@ -837,8 +891,7 @@ TTS_JS = r"""
 
   window.addEventListener("load", () => {
     updateNotifyBtn();
-    if (isIOS) setStatus("Tap Play to start");
-    else setTimeout(() => speakFrom(0), 1800);
+    setStatus("Ready — press Play to start");
   });
   window.addEventListener("pagehide", () => window.speechSynthesis.cancel());
   window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
@@ -857,7 +910,7 @@ def tts_bar_html():
     <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
     <span id="speed-val">1.3x</span>
   </div>
-  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <span id="tts-status">Ready &mdash; press Play to start</span>
   <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
 </div>"""
 
@@ -926,102 +979,62 @@ def _dir_arrow(direction):
     return '<span style="color:#888">◆</span>'
 
 
-def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, ew_items=None):
+def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, archive_entries=None):
     """
-    Build the main MGP index.html dashboard — 3-panel layout:
-      LEFT  : VK company stories + Earnings Whispers articles
-      TOP-R : Macro context, bull/bear, market outlook, calendar  (green accent)
-      BOT-R : Trade Ideas scanners + Benzinga news               (blue accent)
+    Build the main MGP index.html dashboard — 2-column layout:
+      LEFT  : Recent dispatch link cards (VK + EW + HS)
+      RIGHT : Macro context (top) + Trade Ideas scanners w/ Benzinga (bottom)
 
-    vk_data     : dict from parse_vk_to_mgp (or None)
-    scanner_data: dict from read_scanner_csvs
-    news_data   : dict from fetch_benzinga_news
-    ew_items    : list of {"subject": str, "text": str, "email_date": str}
+    vk_data        : dict from parse_vk_to_mgp (or None)
+    scanner_data   : dict from read_scanner_csvs
+    news_data      : dict from fetch_benzinga_news
+    archive_entries: list of recent dispatch dicts from digests.json
     """
-    ew_items = ew_items or []
+    archive_entries = archive_entries or []
 
-    # ── TTS ──
+    # ── TTS text (built from VK + scanner tickers) ──
     tts_text = ""
-
-    # ── LEFT PANEL: VK company cards ──
-    left_vk_cards = ""
     if vk_data:
-        items = vk_data.get("company_items", [])
         tts_text = prepare_tts_text(vk_data.get("tts_summary",
-                                    vk_data.get("macro","") + " " + vk_data.get("market_outlook","")))
-        for item in items:
-            ticker   = item.get("ticker", "")
-            company  = item.get("company", "")
-            summary  = item.get("summary", "")
-            catalyst = item.get("catalyst", "")
-            direction= item.get("direction", "mixed")
-            arrow    = _dir_arrow(direction)
-            bz_html  = ""
-            if ticker in news_data:
-                for n in news_data[ticker][:2]:
-                    bz_html += f'<div class="bz-story">[{n["published"]}] {n["title"]}</div>'
-            left_vk_cards += f"""<div class="company-card">
-  <div class="card-header">
-    <span class="card-ticker">{arrow} {ticker}</span>
-    <span class="card-company">{company}</span>
-    <span class="card-catalyst">{catalyst}</span>
+                                    vk_data.get("macro", "") + " " + vk_data.get("market_outlook", "")))
+
+    # ── LEFT PANEL: Dispatch link cards ──
+    left_cards_html = ""
+    for entry in archive_entries[:20]:
+        filename   = entry.get("filename", "#")
+        subject    = entry.get("subject", "Dispatch")
+        email_date = entry.get("email_date", "")
+        preview    = entry.get("preview", "")
+        source_type= entry.get("source_type", "")
+        tag        = get_category_tag(subject)
+        bg, fg     = get_tag_color(tag)
+        src_label  = {"vk": "VK", "ew": "Earnings Whispers", "hs": "Hammerstone"}.get(source_type, "")
+        preview_snip = (preview[:110] + "…") if len(preview) > 110 else preview
+        left_cards_html += f"""<a class="dispatch-card" href="{filename}">
+  <div class="dispatch-header">
+    <span class="dispatch-tag" style="color:{fg};border-color:{fg}44;background:{bg};">{tag}</span>
+    {"<span class='dispatch-src'>" + src_label + "</span>" if src_label else ""}
+    <span class="dispatch-date">{email_date}</span>
   </div>
-  <p class="card-summary">{summary}</p>
-  {bz_html}
-</div>
-"""
+  <div class="dispatch-title">{subject}</div>
+  {"<div class='dispatch-preview'>" + preview_snip + "</div>" if preview_snip else ""}
+</a>"""
 
-    # ── LEFT PANEL: EW articles ──
-    left_ew_html = ""
-    for ew in ew_items:
-        subj = ew.get("subject", "Earnings Whispers")
-        text = ew.get("text", "")
-        edate = ew.get("email_date", "")
-        # render markdown-ish text
-        rendered = ""
-        for line in text.split("\n"):
-            line = line.strip()
-            if not line:
-                continue
-            if line.startswith("## "):
-                rendered += f'<div class="ew-ticker-head">{line[3:]}</div>'
-            else:
-                line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
-                rendered += f'<p class="ew-line">{line}</p>'
-        left_ew_html += f"""<div class="ew-block">
-  <div class="ew-label">{subj} &nbsp;<span class="ew-date">{edate}</span></div>
-  {rendered}
-</div>"""
-
-    left_placeholder = ""
-    if not left_vk_cards and not left_ew_html:
-        left_placeholder = '<p class="empty-msg">No newsletter stories yet — check back after the market open.</p>'
+    if not left_cards_html:
+        left_cards_html = '<p class="empty-msg">No dispatches yet — check back after the market open.</p>'
 
     # ── RIGHT TOP: Macro / Outlook / Calendar ──
     rt_parts = []
     if vk_data:
-        macro   = vk_data.get("macro", "")
-        rates   = vk_data.get("rates_fed", "")
-        outlook = vk_data.get("market_outlook", "")
-        bull    = vk_data.get("bull_case", "")
-        bear    = vk_data.get("bear_case", "")
-        sectors = vk_data.get("sectors", "")
-        earnings= vk_data.get("earnings_today", [])
-        key_dates=vk_data.get("key_dates", [])
+        macro    = vk_data.get("macro", "")
+        outlook  = vk_data.get("market_outlook", "")
+        sectors  = vk_data.get("sectors", "")
+        earnings = vk_data.get("earnings_today", [])
+        key_dates= vk_data.get("key_dates", [])
 
-        if macro or rates:
-            rt_parts.append(f"""<div class="section-head">Macro · Rates</div>
-<div class="prose-block">
-{"<p>" + macro + "</p>" if macro else ""}
-{"<p>" + rates + "</p>" if rates else ""}
-</div>""")
-
-        if bull or bear:
-            rt_parts.append(f"""<div class="section-head">Bull / Bear</div>
-<div class="two-col">
-  <div class="col bull-col"><div class="col-label">BULL CASE</div><p>{bull}</p></div>
-  <div class="col bear-col"><div class="col-label">BEAR CASE</div><p>{bear}</p></div>
-</div>""")
+        if macro:
+            rt_parts.append(f"""<div class="section-head">Macro</div>
+<div class="prose-block"><p>{macro}</p></div>""")
 
         if outlook:
             rt_parts.append(f"""<div class="section-head">Market Outlook</div>
@@ -1045,34 +1058,48 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
     right_top_body = "\n".join(rt_parts) if rt_parts else '<p class="empty-msg">Macro data will appear after VK is parsed.</p>'
 
     # ── RIGHT BOTTOM: Scanners + Benzinga ──
+    # Apply display order; unlisted scanners appended at end
+    sd = scanner_data or {}
+    ordered_labels   = [lbl for lbl in SCANNER_DISPLAY_ORDER if lbl in sd]
+    remaining_labels = [lbl for lbl in sd if lbl not in SCANNER_DISPLAY_ORDER]
+    display_labels   = ordered_labels + remaining_labels
+
     rb_blocks = []
-    for scanner_label, rows in (scanner_data or {}).items():
+    for scanner_label in display_labels:
+        rows = sd[scanner_label]
         tickers_in_scanner = [r["symbol"] for r in rows]
         if tickers_in_scanner:
             tts_text += f" Scanner alert: {scanner_label}. Tickers: {', '.join(tickers_in_scanner)}."
 
         rows_html = ""
         for r in rows:
-            sym    = r["symbol"]
-            price  = f"${r['price']:.2f}"         if r["price"]     is not None else "—"
-            chg    = f"{r['chg_close']:+.2f}%"    if r["chg_close"] is not None else "—"
-            vol    = f"{r['vol_today']:.1f}x"     if r["vol_today"] is not None else "—"
-            chg20  = f"{r['chg_20d']:+.1f}%"      if r["chg_20d"]   is not None else "—"
-            chg200 = f"{r['chg_200d']:+.1f}%"     if r["chg_200d"]  is not None else "—"
-            pos_yr = f"{r['pos_yr']:.0f}%"        if r["pos_yr"]    is not None else "—"
+            sym     = r["symbol"]
+            price   = f"${r['price']:.2f}"        if r["price"]     is not None else "—"
+            chg     = f"{r['chg_close']:+.1f}%"   if r["chg_close"] is not None else "—"
+            rel_vol = f"{r['rel_vol']:.1f}x"      if r.get("rel_vol") is not None else "—"
+            chg_cls = "sc-up" if (r["chg_close"] or 0) >= 0 else "sc-dn"
+
             bz_html = ""
             if sym in news_data and news_data[sym]:
-                for n in news_data[sym][:2]:
-                    bz_html += f'<div class="scanner-news">[{n["published"]}] {n["title"]}</div>'
+                for n in news_data[sym][:3]:
+                    beat_badge = f'<span class="bz-beat">{n["beat"]}</span> ' if n.get("beat") else ""
+                    ch = n.get("channels", [])
+                    if "Earnings" in ch:
+                        ch_badge = '<span class="bz-tag">EARNINGS</span> '
+                    elif "Guidance" in ch:
+                        ch_badge = '<span class="bz-tag bz-guidance">GUIDANCE</span> '
+                    else:
+                        ch_badge = ""
+                    bz_html += f'<div class="scanner-news">{ch_badge}{beat_badge}{n["title"]}</div>'
+
             rows_html += f"""<div class="scanner-row">
   <span class="sc-sym">{sym}</span>
+  <span class="sc-rvol">{rel_vol}</span>
+  <span class="sc-chg {chg_cls}">{chg}</span>
   <span class="sc-price">{price}</span>
-  <span class="sc-chg">{chg}</span>
-  <span class="sc-vol" title="Volume today">{vol}</span>
-  <span class="sc-sma">20d {chg20} · 200d {chg200}</span>
-  <span class="sc-yr">Yr {pos_yr}</span>
   {bz_html}
 </div>"""
+
         rb_blocks.append(f"""<div class="scanner-block">
   <div class="scanner-name">{scanner_label}</div>
   {rows_html}
@@ -1108,25 +1135,45 @@ header {{ margin-bottom: 20px; }}
 
 .mgp-grid {{
   display: grid;
-  grid-template-columns: 55% 1fr;
+  grid-template-columns: 48% 1fr;
   grid-template-rows: auto auto;
   gap: 16px;
   align-items: start;
 }}
 @media (max-width: 900px) {{ .mgp-grid {{ grid-template-columns: 1fr; }} }}
 
-/* LEFT: newsletters */
+/* LEFT: dispatch link list */
 .panel-left {{
   grid-row: 1 / 3;
-  border: 1px solid #2a1a1a;
+  border: 1px solid #1e1a14;
   border-radius: 6px;
   padding: 16px 18px;
-  background: #0d0a0a;
+  background: #0c0a08;
 }}
 .panel-label {{
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
-  color: #555; margin-bottom: 14px; text-transform: uppercase;
+  color: #555; margin-bottom: 4px; text-transform: uppercase;
 }}
+
+/* dispatch cards */
+.dispatch-card {{
+  display: block; border-bottom: 1px solid #161410; padding: 13px 0;
+  text-decoration: none; color: inherit; transition: padding-left 0.12s;
+}}
+.dispatch-card:hover {{ padding-left: 6px; }}
+.dispatch-card:hover .dispatch-title {{ color: #c9b97a; }}
+.dispatch-card:first-of-type {{ border-top: 1px solid #161410; margin-top: 8px; }}
+.dispatch-header {{
+  display: flex; align-items: center; gap: 7px; margin-bottom: 4px; flex-wrap: wrap;
+}}
+.dispatch-tag {{
+  font-size: 9px; font-family: 'Courier New', monospace; font-weight: bold;
+  letter-spacing: 0.1em; padding: 2px 5px; border-radius: 2px; border: 1px solid;
+}}
+.dispatch-src  {{ font-size: 10px; color: #444; font-family: 'Courier New', monospace; }}
+.dispatch-date {{ font-size: 10px; color: #3a3830; font-family: 'Courier New', monospace; margin-left: auto; }}
+.dispatch-title {{ font-size: 13px; color: #b8b4a8; line-height: 1.35; margin-bottom: 3px; transition: color 0.12s; }}
+.dispatch-preview {{ font-size: 11px; color: #484440; line-height: 1.5; }}
 
 /* RIGHT TOP: macro */
 .panel-macro {{
@@ -1143,39 +1190,8 @@ header {{ margin-bottom: 20px; }}
   background: #08090f;
 }}
 
-/* company cards */
-.company-card {{
-  background: #111; border: 1px solid #1e1e1e; border-radius: 4px;
-  padding: 12px 14px; margin-bottom: 10px;
-}}
-.company-card:last-child {{ margin-bottom: 0; }}
-.card-header {{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }}
-.card-ticker {{ font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }}
-.card-company {{ font-size: 12px; color: #555; flex: 1; }}
-.card-catalyst {{ font-size: 10px; color: #666; font-family: 'Courier New', monospace;
-  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }}
-.card-summary {{ font-size: 13px; color: #b8b4a8; margin-bottom: 5px; }}
-.bz-story {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace;
-  border-top: 1px solid #1a1a1a; padding-top: 4px; margin-top: 4px; }}
-
-/* EW */
-.ew-block {{ margin-top: 18px; border-top: 1px solid #1c1c1c; padding-top: 14px; }}
-.ew-label {{ font-size: 10px; font-family: 'Courier New', monospace; color: #c9b97a; letter-spacing: 0.12em; margin-bottom: 10px; }}
-.ew-date {{ color: #444; font-size: 10px; }}
-.ew-ticker-head {{ font-size: 12px; color: #c9b97a; font-family: 'Courier New', monospace;
-  margin: 12px 0 4px; letter-spacing: 0.08em; }}
-.ew-line {{ font-size: 12px; color: #888; margin-bottom: 4px; }}
-
-/* bull/bear */
+/* macro */
 .prose-block {{ margin-bottom: 8px; }}
-.two-col {{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }}
-@media (max-width: 680px) {{ .two-col {{ grid-template-columns: 1fr; }} }}
-.col {{ padding: 12px 14px; border-radius: 4px; }}
-.bull-col {{ background: #0d1f14; border: 1px solid #1a3a22; }}
-.bear-col {{ background: #1f0d0d; border: 1px solid #3a1a1a; }}
-.col-label {{ font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 6px; }}
-.bull-col .col-label {{ color: #4caf82; }}
-.bear-col .col-label {{ color: #e05050; }}
 
 /* calendar */
 .cal-row {{ display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }}
@@ -1186,17 +1202,22 @@ header {{ margin-bottom: 20px; }}
 /* scanner */
 .scanner-block {{ background: #0a0c10; border: 1px solid #1a1f2a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }}
 .scanner-block:last-child {{ margin-bottom: 0; }}
-.scanner-name {{ font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; }}
-.scanner-row {{ display: flex; align-items: baseline; gap: 10px; padding: 4px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }}
+.scanner-name {{ font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; text-transform: uppercase; }}
+.scanner-row {{ display: flex; align-items: baseline; gap: 10px; padding: 5px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }}
 .scanner-row:last-child {{ border-bottom: none; }}
-.sc-sym   {{ font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 60px; font-weight: bold; }}
-.sc-price {{ font-size: 13px; color: #d8d4c8; min-width: 52px; }}
-.sc-chg   {{ font-size: 12px; color: #888; min-width: 52px; }}
-.sc-vol   {{ font-size: 12px; color: #4c8faf; min-width: 38px; }}
-.sc-sma   {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; flex: 1; }}
-.sc-yr    {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; }}
+.sc-sym   {{ font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 62px; font-weight: bold; }}
+.sc-rvol  {{ font-size: 12px; color: #4c8faf; min-width: 40px; }}
+.sc-chg   {{ font-size: 12px; min-width: 52px; font-family: 'Courier New', monospace; }}
+.sc-up    {{ color: #4caf82; }}
+.sc-dn    {{ color: #e05050; }}
+.sc-price {{ font-size: 12px; color: #888; }}
 .scanner-news {{ width: 100%; font-size: 11px; color: #4a6070; font-family: 'Courier New', monospace;
-  padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a2030; }}
+  padding-top: 3px; margin-top: 2px; border-top: 1px dashed #1a2030; }}
+.bz-tag {{ font-size: 9px; font-family: 'Courier New', monospace; font-weight: bold;
+  letter-spacing: 0.08em; padding: 1px 4px; border-radius: 2px;
+  background: #1a2a1a; color: #4caf82; border: 1px solid #4caf8244; }}
+.bz-tag.bz-guidance {{ background: #2a2a1a; color: #c9b97a; border-color: #c9b97a44; }}
+.bz-beat {{ font-size: 10px; color: #c9b97a; font-family: 'Courier New', monospace; }}
 
 .empty-msg {{ font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }}
 </style>
@@ -1215,12 +1236,10 @@ header {{ margin-bottom: 20px; }}
 
 <div class="mgp-grid">
 
-  <!-- LEFT: VK Stories + Earnings Whispers -->
+  <!-- LEFT: Dispatch link list -->
   <div class="panel-left">
-    <div class="panel-label">VK · Earnings Whispers</div>
-    {left_vk_cards}
-    {left_ew_html}
-    {left_placeholder}
+    <div class="panel-label">Dispatches</div>
+    {left_cards_html}
   </div>
 
   <!-- RIGHT TOP: Macro / Outlook / Calendar -->
@@ -1288,6 +1307,144 @@ def build_digest_html(digest_text, subject, email_date, tts_rate):
 header h1 {{ font-size: 24px; font-weight: normal; color: #c9b97a; margin-bottom: 7px; }}
 header .meta {{ font-size: 12px; color: #555; font-family: 'Courier New', monospace; }}
 hr.div {{ border: none; border-top: 1px solid #181818; margin: 18px 0 24px; }}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a class="back-link" href="index.html">&#8592; Game Plan</a>
+  <span class="site-name">THE VICTORY LANE</span>
+</div>
+<header>
+  <div class="tag">{tag}</div>
+  <h1>{subject}</h1>
+  <div class="meta">{email_date}</div>
+</header>
+<hr class="div">
+{body_html}
+{tts_bar_html()}
+<script>
+  const ttsText = "{tts_escaped}";
+  {js}
+</script>
+</body>
+</html>"""
+
+
+# ─────────────────────────────────────────────
+# VK STRUCTURED DIGEST PAGE
+# ─────────────────────────────────────────────
+
+def build_vk_digest_html(parsed_data, subject, email_date, tts_rate):
+    """
+    Build a rich structured digest page for a VK email.
+    Shows macro, market outlook, sectors, calendar, and company cards.
+    """
+    macro    = parsed_data.get("macro", "")
+    rates    = parsed_data.get("rates_fed", "")
+    outlook  = parsed_data.get("market_outlook", "")
+    sectors  = parsed_data.get("sectors", "")
+    earnings = parsed_data.get("earnings_today", [])
+    key_dates= parsed_data.get("key_dates", [])
+    items    = parsed_data.get("company_items", [])
+    tts_sum  = parsed_data.get("tts_summary", "")
+
+    sections = []
+
+    if macro or rates:
+        sections.append(
+            '<div class="section-head">Macro · Rates</div>'
+            '<div class="prose-block">'
+            + (f"<p>{macro}</p>" if macro else "")
+            + (f"<p>{rates}</p>" if rates else "")
+            + "</div>"
+        )
+
+    if outlook:
+        sections.append(
+            '<div class="section-head">Market Outlook</div>'
+            f'<div class="prose-block"><p>{outlook}</p></div>'
+        )
+
+    if sectors:
+        sections.append(
+            '<div class="section-head">Sector Watch</div>'
+            f'<div class="prose-block"><p>{sectors}</p></div>'
+        )
+
+    cal_parts = []
+    if earnings:
+        cal_parts.append(
+            '<div class="cal-group"><div class="cal-label">EARNINGS TODAY</div>'
+            + "".join(f'<div class="cal-item">{e}</div>' for e in earnings)
+            + "</div>"
+        )
+    if key_dates:
+        cal_parts.append(
+            '<div class="cal-group"><div class="cal-label">KEY DATES</div>'
+            + "".join(f'<div class="cal-item">{d}</div>' for d in key_dates)
+            + "</div>"
+        )
+    if cal_parts:
+        sections.append(
+            '<div class="section-head">Calendar</div>'
+            f'<div class="cal-row">{"".join(cal_parts)}</div>'
+        )
+
+    if items:
+        sections.append('<div class="section-head">Company Coverage</div>')
+        cards_html = ""
+        for item in items:
+            ticker    = item.get("ticker", "")
+            company   = item.get("company", "")
+            summary   = item.get("summary", "")
+            catalyst  = item.get("catalyst", "")
+            direction = item.get("direction", "mixed")
+            arrow     = _dir_arrow(direction)
+            cards_html += f"""<div class="company-card">
+  <div class="card-header">
+    <span class="card-ticker">{arrow} {ticker}</span>
+    <span class="card-company">{company}</span>
+    <span class="card-catalyst">{catalyst}</span>
+  </div>
+  <p class="card-summary">{summary}</p>
+</div>
+"""
+        sections.append(cards_html)
+
+    body_html  = "\n".join(sections)
+    tts_text   = prepare_tts_text(tts_sum or (macro + " " + outlook))
+    tts_escaped = tts_text.replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ").replace("`", "'")
+    tag         = get_category_tag(subject)
+    bg, fg      = get_tag_color(tag)
+    js          = TTS_JS.replace("TTS_RATE_PLACEHOLDER", str(tts_rate))
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{subject} · The Victory Lane</title>
+<style>
+{COMMON_CSS}
+.tag {{ display: inline-block; font-size: 11px; font-family: 'Courier New', monospace; font-weight: bold;
+  letter-spacing: 0.1em; padding: 3px 8px; border-radius: 3px; margin-bottom: 10px;
+  background: {bg}; color: {fg}; border: 1px solid {fg}44; }}
+header h1 {{ font-size: 24px; font-weight: normal; color: #c9b97a; margin-bottom: 7px; }}
+header .meta {{ font-size: 12px; color: #555; font-family: 'Courier New', monospace; }}
+hr.div {{ border: none; border-top: 1px solid #181818; margin: 18px 0 24px; }}
+.prose-block {{ margin-bottom: 8px; }}
+.cal-row {{ display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }}
+.cal-group {{ display: flex; flex-direction: column; gap: 3px; }}
+.cal-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 3px; }}
+.cal-item {{ font-size: 12px; color: #a8a49a; }}
+.company-card {{ background: #111; border: 1px solid #1e1e1e; border-radius: 4px;
+  padding: 12px 14px; margin-bottom: 10px; }}
+.card-header {{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }}
+.card-ticker {{ font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }}
+.card-company {{ font-size: 12px; color: #555; flex: 1; }}
+.card-catalyst {{ font-size: 10px; color: #666; font-family: 'Courier New', monospace;
+  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }}
+.card-summary {{ font-size: 13px; color: #b8b4a8; margin-bottom: 0; }}
 </style>
 </head>
 <body>
@@ -1389,10 +1546,13 @@ def update_archive(new_entries):
         with open(meta_path, encoding="utf-8") as f:
             existing = json.load(f)
     existing_filenames = {e["filename"] for e in existing}
-    for filename, subject, email_date, preview, sent_ts in new_entries:
+    for entry_tuple in new_entries:
+        filename, subject, email_date, preview, sent_ts = entry_tuple[:5]
+        source_type = entry_tuple[5] if len(entry_tuple) > 5 else ""
         if filename not in existing_filenames:
             existing.append({"filename": filename, "subject": subject,
-                             "email_date": email_date, "preview": preview, "sent_ts": sent_ts})
+                             "email_date": email_date, "preview": preview,
+                             "sent_ts": sent_ts, "source_type": source_type})
     existing.sort(key=lambda x: x.get("sent_ts", x["filename"]), reverse=True)
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(existing, f, indent=2, ensure_ascii=False)
@@ -1450,7 +1610,6 @@ def run():
     emails, processed_ids, latest_vk_body, latest_vk_subject = fetch_new_emails(config)
 
     vk_data  = None          # latest VK parse (dawn email preferred)
-    ew_items = []            # Earnings Whispers / Hammerstone articles for left panel
     new_ids  = set()
     new_archive_entries = []
 
@@ -1487,40 +1646,36 @@ def run():
                 print("  CF grading: nothing flagged above threshold")
 
             if source_type == "vk":
-                # Structured MGP parse
-                print("  Parsing VK for MGP...")
+                # Structured VK parse → rich digest page with company cards + macro sections
+                print("  Parsing VK for structured digest page...")
                 parsed = parse_vk_to_mgp(body, config["anthropic_api_key"])
                 if parsed:
-                    # Dawn email takes precedence; otherwise keep most recent
+                    # Dawn email takes precedence for the dashboard macro panel
                     if vk_data is None or parsed.get("email_type") == "dawn":
                         vk_data = parsed
-                # Reuse tts_summary as the digest text for the archive page
-                archive_text = parsed.get("tts_summary", "") if parsed else ""
-                if not archive_text:
-                    parts = []
-                    if parsed:
-                        for key in ("macro", "rates_fed", "market_outlook", "bull_case", "bear_case"):
-                            val = parsed.get(key, "")
-                            if val: parts.append(val)
-                        for item in parsed.get("company_items", []):
-                            parts.append(f"**{item.get('ticker','')}** — {item.get('summary','')}")
-                    archive_text = "\n\n".join(parts)
+                    digest_html = build_vk_digest_html(parsed, subject, email_date, config["tts_rate"])
+                    # Build preview from tts_summary or company items
+                    tts_sum = parsed.get("tts_summary", "")
+                    preview_text = tts_sum if tts_sum else " · ".join(
+                        item.get("ticker", "") for item in parsed.get("company_items", [])[:6]
+                    )
+                else:
+                    # VK parse failed — fall back to generic digest from raw body
+                    print("  VK structured parse failed, falling back to generic digest")
+                    digest_html  = build_digest_html(body[:3000], subject, email_date, config["tts_rate"])
+                    preview_text = body[:140]
 
             else:
-                # EW or HS: generic summarizer — add to left panel and archive
+                # EW or HS: generic summarizer
                 print(f"  Summarizing [{source_type}] with Claude...")
                 archive_text = summarize_generic(body, config["anthropic_api_key"], source_type)
-                ew_items.append({
-                    "subject":    subject,
-                    "text":       archive_text,
-                    "email_date": email_date,
-                })
+                digest_html  = build_digest_html(archive_text, subject, email_date, config["tts_rate"])
+                preview_text = archive_text
 
             # Save individual digest page
-            digest_html = build_digest_html(archive_text, subject, email_date, config["tts_rate"])
             filename = save_to_docs(digest_html, f"{slug}.html")
-            preview = archive_text[:140].replace("\n", " ") + ("..." if len(archive_text) > 140 else "")
-            new_archive_entries.append((filename, subject, email_date, preview, sent_utc.isoformat()))
+            preview  = preview_text[:140].replace("\n", " ") + ("…" if len(preview_text) > 140 else "")
+            new_archive_entries.append((filename, subject, email_date, preview, sent_utc.isoformat(), source_type))
 
             new_ids.add(uid)
             save_processed_ids(processed_ids | new_ids)
@@ -1547,20 +1702,31 @@ def run():
     else:
         print("  No fresh VK email and no cache — dashboard will show placeholders")
 
-    # ── 5. Build and save MGP dashboard (always rebuild index.html) ──
-    print("\n  Building MGP dashboard...")
-    dashboard_html = build_mgp_dashboard(
-        vk_data, scanner_data, news_data, today_str, config["tts_rate"], ew_items=ew_items
-    )
-    save_to_docs(dashboard_html, "index.html")
-
-    # ── 6. Update archive ──
+    # ── 5. Update archive ──
     if new_archive_entries:
         update_archive(new_archive_entries)
 
+    # ── 6. Load recent dispatches for left panel link list ──
+    archive_entries = []
+    meta_path = "docs/digests.json"
+    if os.path.exists(meta_path):
+        try:
+            with open(meta_path, encoding="utf-8") as f:
+                archive_entries = json.load(f)[:20]
+        except Exception as e:
+            print(f"  ✗ Could not load digests.json for left panel: {e}")
+
+    # ── 7. Build and save MGP dashboard (always rebuild index.html) ──
+    print("\n  Building MGP dashboard...")
+    dashboard_html = build_mgp_dashboard(
+        vk_data, scanner_data, news_data, today_str, config["tts_rate"],
+        archive_entries=archive_entries
+    )
+    save_to_docs(dashboard_html, "index.html")
+
     save_processed_ids(processed_ids | new_ids)
 
-    # ── 6. Local: launch Edge ──
+    # ── 8. Local: launch Edge ──
     if not config["github_actions"]:
         launch_edge(os.path.abspath("docs/index.html"), config["edge_exe"])
 

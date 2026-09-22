@@ -1,0 +1,47 @@
+name: Morning Game Plan
+
+on:
+  push:
+    paths:
+      - 'scanners/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic requests python-dotenv
+
+      - name: Configure git
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+
+      - name: Run Victory Lane
+        env:
+          YAHOO_EMAIL: ${{ secrets.YAHOO_EMAIL }}
+          YAHOO_APP_PASSWORD: ${{ secrets.YAHOO_APP_PASSWORD }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BENZINGA_API_KEY: ${{ secrets.BENZINGA_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          HAMMERSTONE_SENDER: ${{ secrets.HAMMERSTONE_SENDER }}
+          GITHUB_ACTIONS: "true"
+        run: python victory_lane.py
+
+      - name: Push docs
+        run: |
+          git add docs/
+          git diff --staged --quiet && echo "No changes to push" || (git commit -m "MGP update $(date +'%H:%M ET')" && git push)

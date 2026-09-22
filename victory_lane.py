@@ -32,6 +32,14 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+try:
+    from dotenv import load_dotenv
+    # Load .env from the same directory as this script, regardless of where it's run from
+    _env_path = Path(__file__).parent / ".env"
+    load_dotenv(dotenv_path=_env_path)
+except ImportError:
+    pass  # dotenv optional — falls back to system env vars
+
 EASTERN = ZoneInfo("America/New_York")
 
 # ─────────────────────────────────────────────
@@ -45,7 +53,7 @@ CONFIG = {
     "notion_token":          os.environ.get("NOTION_TOKEN",        ""),
     "stocks_on_watch_db_id": "2ee48333-7409-81a3-a830-000b9ce19118",
     "lookback_hours":        168,
-    "scanner_csv_dir":       r"C:\Users\jerem\Documents\TradeIdeasPro",
+    "scanner_csv_dir":       "scanners" if os.environ.get("GITHUB_ACTIONS", "false").lower() == "true" else r"C:\Users\jerem\Documents\TradeIdeasPro",
     "edge_exe":              r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
     "tts_rate":              1.3,
     "github_actions":        os.environ.get("GITHUB_ACTIONS", "false").lower() == "true",
@@ -87,36 +95,24 @@ SCANNER_DISPLAY_ORDER = [
 
 VK_MGP_PROMPT = """You are parsing a Vital Knowledge newsletter from Adam Crisafulli for a day trader's Morning Game Plan.
 
-Extract and return ONLY a valid JSON object with exactly these fields:
+Extract structured data using the store_mgp_data tool. Fill every field accurately from the newsletter content.
 
-{{
-  "email_type": "dawn|midday|recap|other",
-  "macro": "2-3 sentences on broad market context — index moves, risk tone, overnight action",
-  "rates_fed": "2-3 sentences on rates, Fed, yields, dollar",
-  "market_outlook": "Adam's directional view — bull or bear leaning, key catalyst to watch today",
-  "bull_case": "2-4 sentences on the bull argument for today's session",
-  "bear_case": "2-4 sentences on the bear argument for today's session",
-  "company_items": [
-    {{
-      "ticker": "AAPL",
-      "company": "Apple",
-      "summary": "2-3 sentence catalyst summary — specific numbers, why it matters",
-      "catalyst": "Earnings Beat|Earnings Miss|Guidance Raise|Guidance Cut|M&A|FDA Approval|FDA Rejection|Massive Capex|Partnership|Activist Entry|Short Report|Sector Reprice|Buyback|Restructuring|Contract Win|Product Launch|Other",
-      "direction": "bullish|bearish|mixed"
-    }}
-  ],
-  "sectors": "Any sector-level commentary worth noting (empty string if none)",
-  "earnings_today": ["TICKER BMO", "TICKER AMC"],
-  "key_dates": ["Sep 17 — CPI 8:30am", "Sep 18 — FOMC 2pm"],
-  "tts_summary": "A 350-450 word audio-ready summary in Adam's direct confident voice. Write for ear, not eye. No brand names (do not say Vital Knowledge). Expand bp to basis points. Lead with the macro read, then the key company items, then directional outlook."
-}}
+Fields:
+- email_type: "dawn" (pre-market morning), "midday", "recap" (post-close), or "other"
+- macro: 2-3 sentences on broad market context — index moves, risk tone, overnight action
+- market_outlook: Adam's directional view — bull or bear leaning, key catalyst to watch today
+- company_items: ALL companies with meaningful commentary (max 10). Each needs ticker, company name,
+  2-3 sentence summary with specific numbers, catalyst type, and direction (bullish/bearish/mixed)
+- sectors: sector-level commentary worth noting (empty string if none)
+- earnings_today: list of tickers reporting today e.g. ["AAPL BMO", "MSFT AMC"]
+- key_dates: upcoming catalysts e.g. ["Sep 17 — CPI 8:30am", "Sep 18 — FOMC 2pm"]
+- tts_summary: 350-450 word audio-ready summary in Adam's direct confident voice. Write for ear not eye.
+  No brand names (do not say Vital Knowledge). Lead with the macro read, then key company items, then outlook.
 
 Rules:
-- company_items: include ALL companies with meaningful commentary. Max 10 items.
-- direction: bullish if the news is net positive for the stock, bearish if negative, mixed if unclear.
-- If a field has no content use empty string "" or empty array [].
-- Express all basis-point references as percentages across every field (e.g. "25bp" → "0.25%", "100bp" → "1.0%", "50bp rate cut" → "0.50% rate cut").
-- Return ONLY the JSON — no preamble, no markdown fences, no explanation.
+- Express all basis-point references as percentages (e.g. "25bp" → "0.25%", "100bp" → "1.0%")
+- direction: bullish if net positive for the stock, bearish if negative, mixed if unclear
+- Empty string "" or empty array [] for fields with no content
 
 Newsletter content:
 {body}"""
@@ -320,20 +316,55 @@ def get_tag_color(tag):
 # ─────────────────────────────────────────────
 
 def parse_vk_to_mgp(body, api_key):
-    """Parse VK email into structured MGP JSON. Returns dict or None on failure."""
+    """Parse VK email into structured MGP data via tool use — guarantees valid JSON output."""
     client = anthropic.Anthropic(api_key=api_key)
+    tools = [{
+        "name": "store_mgp_data",
+        "description": "Store the parsed Morning Game Plan data from the VK newsletter.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "email_type":     {"type": "string", "enum": ["dawn", "midday", "recap", "other"]},
+                "macro":          {"type": "string"},
+                "market_outlook": {"type": "string"},
+                "company_items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "ticker":    {"type": "string"},
+                            "company":   {"type": "string"},
+                            "summary":   {"type": "string"},
+                            "catalyst":  {"type": "string"},
+                            "direction": {"type": "string", "enum": ["bullish", "bearish", "mixed"]},
+                        },
+                        "required": ["ticker", "company", "summary", "catalyst", "direction"],
+                    },
+                },
+                "sectors":       {"type": "string"},
+                "earnings_today": {"type": "array", "items": {"type": "string"}},
+                "key_dates":      {"type": "array", "items": {"type": "string"}},
+                "tts_summary":    {"type": "string"},
+            },
+            "required": ["email_type", "macro", "market_outlook", "company_items",
+                         "sectors", "earnings_today", "key_dates", "tts_summary"],
+        },
+    }]
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=3000,
-            messages=[{"role": "user", "content": VK_MGP_PROMPT.format(body=body[:28000])}]
+            max_tokens=4000,
+            tools=tools,
+            tool_choice={"type": "any"},
+            messages=[{"role": "user", "content": VK_MGP_PROMPT.format(body=body[:28000])}],
         )
-        raw = msg.content[0].text.strip()
-        raw = re.sub(r"^```(?:json)?\s*", "", raw)
-        raw = re.sub(r"\s*```$", "", raw)
-        data = json.loads(raw)
-        print(f"  VK parse: {len(data.get('company_items', []))} company item(s), type={data.get('email_type')}")
-        return data
+        for block in msg.content:
+            if block.type == "tool_use" and block.name == "store_mgp_data":
+                data = block.input
+                print(f"  VK parse: {len(data.get('company_items', []))} company item(s), type={data.get('email_type')}")
+                return data
+        print("  VK parse: no tool_use block returned")
+        return None
     except Exception as e:
         print(f"  VK parse error: {e}")
         return None
@@ -355,20 +386,50 @@ def summarize_generic(body, api_key, source_type):
 
 
 def grade_for_cf(body, subject, api_key):
-    """CF grading pass. Returns list of flagged items or []."""
+    """CF grading pass via tool use — returns list of flagged items or []."""
     client = anthropic.Anthropic(api_key=api_key)
+    tools = [{
+        "name": "store_cf_grades",
+        "description": "Store the Changing Fundamentals graded items.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "ticker":     {"type": "string"},
+                            "type":       {"type": "string"},
+                            "grade":      {"type": "string"},
+                            "catalyst":   {"type": "string"},
+                            "setup":      {"type": "string"},
+                            "notes":      {"type": "string"},
+                            "trade_plan": {"type": "string"},
+                            "key_levels": {"type": "string"},
+                        },
+                        "required": ["ticker", "type", "grade", "catalyst", "setup",
+                                     "notes", "trade_plan", "key_levels"],
+                    },
+                }
+            },
+            "required": ["items"],
+        },
+    }]
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
             max_tokens=2000,
-            messages=[{"role": "user", "content": CF_GRADING_PROMPT.format(subject=subject, body=body[:25000])}]
+            tools=tools,
+            tool_choice={"type": "any"},
+            messages=[{"role": "user", "content": CF_GRADING_PROMPT.format(subject=subject, body=body[:25000])}],
         )
-        raw = msg.content[0].text.strip()
-        raw = re.sub(r"^```(?:json)?\s*", "", raw)
-        raw = re.sub(r"\s*```$", "", raw)
-        items = json.loads(raw).get("items", [])
-        print(f"  CF grading: {len(items)} flagged item(s)")
-        return items
+        for block in msg.content:
+            if block.type == "tool_use" and block.name == "store_cf_grades":
+                items = block.input.get("items", [])
+                print(f"  CF grading: {len(items)} flagged item(s)")
+                return items
+        return []
     except Exception as e:
         print(f"  CF grading error: {e}")
         return []
@@ -583,6 +644,37 @@ def fetch_benzinga_news(tickers, api_key, hours_back=20):
             print(f"  Benzinga fetch error {ticker}: {e}")
 
     return result
+
+
+# ─────────────────────────────────────────────
+# BENZINGA CACHE (per-day, per-ticker)
+# ─────────────────────────────────────────────
+
+BENZINGA_CACHE_PATH = "docs/benzinga_cache.json"
+
+def load_benzinga_cache():
+    """Load today's Benzinga cache. Returns {} if stale or missing."""
+    today = datetime.now(EASTERN).strftime("%Y-%m-%d")
+    if os.path.exists(BENZINGA_CACHE_PATH):
+        try:
+            with open(BENZINGA_CACHE_PATH, encoding="utf-8") as f:
+                cached = json.load(f)
+            if cached.get("date") == today:
+                data = cached.get("data", {})
+                print(f"  Benzinga cache: {len(data)} ticker(s) already fetched today")
+                return data
+        except Exception as e:
+            print(f"  Benzinga cache load error: {e}")
+    return {}
+
+
+def save_benzinga_cache(data):
+    """Save today's Benzinga results so subsequent runs skip re-fetching."""
+    today = datetime.now(EASTERN).strftime("%Y-%m-%d")
+    os.makedirs("docs", exist_ok=True)
+    with open(BENZINGA_CACHE_PATH, "w", encoding="utf-8") as f:
+        json.dump({"date": today, "data": data}, f, indent=2, ensure_ascii=False)
+    print(f"  Benzinga cache: saved {len(data)} ticker(s)")
 
 
 # ─────────────────────────────────────────────
@@ -1340,7 +1432,6 @@ def build_vk_digest_html(parsed_data, subject, email_date, tts_rate):
     Shows macro, market outlook, sectors, calendar, and company cards.
     """
     macro    = parsed_data.get("macro", "")
-    rates    = parsed_data.get("rates_fed", "")
     outlook  = parsed_data.get("market_outlook", "")
     sectors  = parsed_data.get("sectors", "")
     earnings = parsed_data.get("earnings_today", [])
@@ -1350,13 +1441,10 @@ def build_vk_digest_html(parsed_data, subject, email_date, tts_rate):
 
     sections = []
 
-    if macro or rates:
+    if macro:
         sections.append(
-            '<div class="section-head">Macro · Rates</div>'
-            '<div class="prose-block">'
-            + (f"<p>{macro}</p>" if macro else "")
-            + (f"<p>{rates}</p>" if rates else "")
-            + "</div>"
+            '<div class="section-head">Macro</div>'
+            f'<div class="prose-block"><p>{macro}</p></div>'
         )
 
     if outlook:
@@ -1576,6 +1664,40 @@ def launch_edge(html_path, edge_exe):
 
 
 # ─────────────────────────────────────────────
+# GIT PUSH
+# ─────────────────────────────────────────────
+
+def git_commit_push():
+    """Stage docs/, commit, and push — only if there are actual changes.
+    Skipped in GitHub Actions — the workflow handles the push as its final step."""
+    if os.environ.get("GITHUB_ACTIONS", "false").lower() == "true":
+        print("  Git: running in GitHub Actions — push handled by workflow")
+        return
+    try:
+        # Check for changes in docs/
+        status = subprocess.run(
+            ["git", "status", "--porcelain", "docs/"],
+            capture_output=True, text=True
+        )
+        if not status.stdout.strip():
+            print("  Git: no changes to push")
+            return
+        subprocess.run(["git", "add", "docs/"], check=True)
+        msg = f"MGP update {datetime.now(EASTERN).strftime('%H:%M ET')}"
+        subprocess.run(
+            ["git", "commit", "-m", msg,
+             "--author", "Claude <noreply@anthropic.com>"],
+            check=True
+        )
+        subprocess.run(["git", "push"], check=True)
+        print("  ✓ Git: pushed to GitHub")
+    except subprocess.CalledProcessError as e:
+        print(f"  ✗ Git push failed: {e}")
+    except Exception as e:
+        print(f"  ✗ Git error: {e}")
+
+
+# ─────────────────────────────────────────────
 # MAIN
 # ─────────────────────────────────────────────
 
@@ -1601,27 +1723,52 @@ def run():
             if r["symbol"] not in scanner_tickers:
                 scanner_tickers.append(r["symbol"])
 
-    # ── 2. Fetch Benzinga news for scanner tickers ──
+    # ── 2. Fetch Benzinga news for scanner tickers (with daily cache) ──
     news_data = {}
     if scanner_tickers:
-        news_data = fetch_benzinga_news(scanner_tickers, config["benzinga_api_key"])
+        bz_cache = load_benzinga_cache()
+        new_tickers = [t for t in scanner_tickers if t not in bz_cache]
+        if new_tickers:
+            print(f"  Benzinga: fetching {len(new_tickers)} new ticker(s) ({len(bz_cache)} served from cache)")
+            fresh = fetch_benzinga_news(new_tickers, config["benzinga_api_key"])
+            bz_cache.update(fresh)
+            save_benzinga_cache(bz_cache)
+        else:
+            print(f"  Benzinga: all {len(scanner_tickers)} ticker(s) served from cache")
+        news_data = {t: bz_cache[t] for t in scanner_tickers if t in bz_cache}
 
     # ── 3. Fetch and process emails (single IMAP connection) ──
     emails, processed_ids, latest_vk_body, latest_vk_subject = fetch_new_emails(config)
 
-    vk_data  = None          # latest VK parse (dawn email preferred)
+    # Pre-load VK cache so subject comparison works on the first 5-min run after an email arrives
+    vk_data  = None
+    vk_cache_path = "docs/last_vk_cache.json"
+    if os.path.exists(vk_cache_path):
+        try:
+            with open(vk_cache_path, encoding="utf-8") as f:
+                vk_data = json.load(f)
+            print(f"  VK cache loaded (email_type={vk_data.get('email_type','?')})")
+        except Exception as e:
+            print(f"  VK cache load error: {e}")
+
     new_ids  = set()
     new_archive_entries = []
 
-    # ── Parse the latest VK email for the dashboard panels ──
+    # ── Parse the latest VK email for the dashboard panels (cached by subject) ──
     print("\n  Parsing latest VK email for dashboard...")
     if latest_vk_body:
-        print(f"  Parsing: {latest_vk_subject}")
-        vk_data = parse_vk_to_mgp(latest_vk_body, config["anthropic_api_key"])
-        if vk_data:
-            print(f"  vk_data parsed OK — email_type={vk_data.get('email_type','?')}")
+        cached_subject = vk_data.get("_cached_subject") if vk_data else None
+        if cached_subject and cached_subject == latest_vk_subject:
+            print(f"  VK: cache hit — '{latest_vk_subject[:70]}' already parsed, skipping API call")
         else:
-            print("  parse_vk_to_mgp returned None — Claude API parse failed")
+            print(f"  Parsing: {latest_vk_subject}")
+            parsed = parse_vk_to_mgp(latest_vk_body, config["anthropic_api_key"])
+            if parsed:
+                parsed["_cached_subject"] = latest_vk_subject
+                vk_data = parsed
+                print(f"  vk_data parsed OK — email_type={vk_data.get('email_type','?')}")
+            else:
+                print("  parse_vk_to_mgp returned None — will use existing cache")
     else:
         print("  No recent VK email found in lookback window")
 
@@ -1684,23 +1831,14 @@ def run():
             print(f"  ✗ Error processing '{subject}': {e}")
             raise
 
-    # ── 4. Cache VK data / load from cache if current run got nothing ──
-    vk_cache_path = "docs/last_vk_cache.json"
-    if vk_data:
+    # ── 4. Persist VK cache if we have fresh data ──
+    if vk_data and vk_data.get("_cached_subject"):
         os.makedirs("docs", exist_ok=True)
         with open(vk_cache_path, "w", encoding="utf-8") as f:
             json.dump(vk_data, f, ensure_ascii=False)
         print("  ✓ VK cache updated")
-    elif os.path.exists(vk_cache_path):
-        print("  No fresh VK email — loading from cache...")
-        try:
-            with open(vk_cache_path, encoding="utf-8") as f:
-                vk_data = json.load(f)
-            print(f"  ✓ VK cache loaded (email_type={vk_data.get('email_type','?')})")
-        except Exception as e:
-            print(f"  ✗ VK cache load failed: {e}")
-    else:
-        print("  No fresh VK email and no cache — dashboard will show placeholders")
+    elif not vk_data:
+        print("  No VK data available — dashboard will show placeholders")
 
     # ── 5. Update archive ──
     if new_archive_entries:
@@ -1726,8 +1864,9 @@ def run():
 
     save_processed_ids(processed_ids | new_ids)
 
-    # ── 8. Local: launch Edge ──
+    # ── 8. Local: git push + launch Edge ──
     if not config["github_actions"]:
+        git_commit_push()
         launch_edge(os.path.abspath("docs/index.html"), config["edge_exe"])
 
     print(f"\n  Done. Processed {len(new_ids)} new email(s).")

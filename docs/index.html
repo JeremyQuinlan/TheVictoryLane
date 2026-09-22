@@ -72,13 +72,13 @@ header { margin-bottom: 20px; }
 }
 @media (max-width: 900px) { .mgp-grid { grid-template-columns: 1fr; } }
 
-/* LEFT: dispatch link list */
+/* LEFT: scanner list (main column) */
 .panel-left {
   grid-row: 1 / 3;
-  border: 1px solid #1e1a14;
+  border: 1px solid #1a2a3a;
   border-radius: 6px;
   padding: 16px 18px;
-  background: #0c0a08;
+  background: #08090f;
 }
 .panel-label {
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
@@ -87,7 +87,7 @@ header { margin-bottom: 20px; }
 
 /* dispatch cards */
 .dispatch-card {
-  display: block; border-bottom: 1px solid #161410; padding: 13px 0;
+  display: block; border-bottom: 1px solid #161410; padding: 8px 0;
   text-decoration: none; color: inherit; transition: padding-left 0.12s;
 }
 .dispatch-card:hover { padding-left: 6px; }
@@ -102,8 +102,8 @@ header { margin-bottom: 20px; }
 }
 .dispatch-src  { font-size: 10px; color: #444; font-family: 'Courier New', monospace; }
 .dispatch-date { font-size: 10px; color: #3a3830; font-family: 'Courier New', monospace; margin-left: auto; }
-.dispatch-title { font-size: 13px; color: #b8b4a8; line-height: 1.35; margin-bottom: 3px; transition: color 0.12s; }
-.dispatch-preview { font-size: 11px; color: #484440; line-height: 1.5; }
+.dispatch-title { font-size: 11px; color: #888480; line-height: 1.35; margin-bottom: 2px; transition: color 0.12s; }
+.dispatch-preview { font-size: 10px; color: #3a3834; line-height: 1.4; }
 
 /* RIGHT TOP: macro */
 .panel-macro {
@@ -112,12 +112,12 @@ header { margin-bottom: 20px; }
   padding: 16px 18px;
   background: #080f0a;
 }
-/* RIGHT BOTTOM: scanners */
+/* RIGHT BOTTOM: dispatches (compact) */
 .panel-scanner {
-  border: 1px solid #1a2a3a;
+  border: 1px solid #1e1a14;
   border-radius: 6px;
-  padding: 16px 18px;
-  background: #08090f;
+  padding: 12px 14px;
+  background: #0c0a08;
 }
 
 /* macro */
@@ -162,14 +162,202 @@ header { margin-bottom: 20px; }
 </div>
 
 <header>
-  <div class="mgp-title">Morning Game Plan</div>
-  <div class="mgp-date">Tuesday, September 22, 2026 &nbsp;·&nbsp; Updated Sep 22, 2026 · 06:50 PM ET</div>
+  <div class="mgp-title">The Victory Lane</div>
+  <div class="mgp-date">Tuesday, September 22, 2026 &nbsp;·&nbsp; Updated Sep 22, 2026 · 06:55 PM ET</div>
 </header>
 
 <div class="mgp-grid">
 
-  <!-- LEFT: Dispatch link list -->
+  <!-- LEFT: Scanners + News (main column) -->
   <div class="panel-left">
+    <div class="panel-label">Scanners · News</div>
+    <div class="scanner-block">
+  <div class="scanner-name">Changing Fundamentals</div>
+  <div class="scanner-row scanner-header">
+  <span class="sc-sym">TICKER</span>
+  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-chg">CHG</span>
+  <span class="sc-price">PRICE</span>
+</div>
+  <div class="scanner-row">
+  <span class="sc-sym">VKTX</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">+36.5%</span>
+  <span class="sc-price">$41.10</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">CLDX</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-dn">-11.7%</span>
+  <span class="sc-price">$33.45</span>
+  
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">High PM AVOL</div>
+  <div class="scanner-row scanner-header">
+  <span class="sc-sym">TICKER</span>
+  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-chg">CHG</span>
+  <span class="sc-price">PRICE</span>
+</div>
+  <div class="scanner-row">
+  <span class="sc-sym">VKTX</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">+36.5%</span>
+  <span class="sc-price">$41.10</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">CLDX</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-dn">-11.7%</span>
+  <span class="sc-price">$33.45</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">CMPX</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-dn">-31.3%</span>
+  <span class="sc-price">$1.25</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">DBRG</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">+0.5%</span>
+  <span class="sc-price">$16.00</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">INOD</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">+17.0%</span>
+  <span class="sc-price">$71.44</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">BFLY</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">+21.9%</span>
+  <span class="sc-price">$9.92</span>
+  
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">Usual Suspects Volume</div>
+  <div class="scanner-row scanner-header">
+  <span class="sc-sym">TICKER</span>
+  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-chg">CHG</span>
+  <span class="sc-price">PRICE</span>
+</div>
+  <div class="scanner-row">
+  <span class="sc-sym">SHOP</span>
+  <span class="sc-rvol">+348%</span>
+  <span class="sc-chg sc-up">+7.1%</span>
+  <span class="sc-price">$147.77</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">PYPL</span>
+  <span class="sc-rvol">+256%</span>
+  <span class="sc-chg sc-up">+0.7%</span>
+  <span class="sc-price">$53.00</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">NEXT</span>
+  <span class="sc-rvol">+181%</span>
+  <span class="sc-chg sc-dn">-3.6%</span>
+  <span class="sc-price">$6.77</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">CSCO</span>
+  <span class="sc-rvol">+208%</span>
+  <span class="sc-chg sc-dn">-4.8%</span>
+  <span class="sc-price">$106.15</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">BABA</span>
+  <span class="sc-rvol">+69%</span>
+  <span class="sc-chg sc-up">+0.7%</span>
+  <span class="sc-price">$116.54</span>
+  
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">Low Floats & Small Caps</div>
+  <div class="scanner-row scanner-header">
+  <span class="sc-sym">TICKER</span>
+  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-chg">CHG</span>
+  <span class="sc-price">PRICE</span>
+</div>
+  <div class="scanner-row">
+  <span class="sc-sym">LHSW</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">—</span>
+  <span class="sc-price">—</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">QNME</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">—</span>
+  <span class="sc-price">—</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">DCOY</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">—</span>
+  <span class="sc-price">—</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">TOPS</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">—</span>
+  <span class="sc-price">—</span>
+  
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">Premarket Volume</div>
+  <div class="scanner-row scanner-header">
+  <span class="sc-sym">TICKER</span>
+  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-chg">CHG</span>
+  <span class="sc-price">PRICE</span>
+</div>
+  <div class="scanner-row">
+  <span class="sc-sym">VKTX</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">+36.5%</span>
+  <span class="sc-price">$41.10</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">BFLY</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">+21.9%</span>
+  <span class="sc-price">$9.92</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">VICR</span>
+  <span class="sc-rvol">—</span>
+  <span class="sc-chg sc-up">+20.1%</span>
+  <span class="sc-price">$268.88</span>
+  
+</div>
+</div>
+  </div>
+
+  <!-- RIGHT TOP: Macro / Outlook / Calendar -->
+  <div class="panel-macro">
+    <div class="panel-label">Macro · Outlook · Key Names</div>
+    <div class="section-head">Macro</div>
+<div class="prose-block"><p>This is a post-close earnings recap for Tuesday, September 22, 2026. No broad index or overnight macro commentary was provided in this edition. The newsletter focuses exclusively on after-market company-specific earnings and news flow.</p></div>
+<div class="section-head">Market Outlook</div>
+<div class="prose-block"><p>No explicit directional market outlook was provided by Adam in this recap. The housing-related commentary from KBH skews cautious given ongoing macro headwinds — higher mortgage rates, geopolitical uncertainty, and weakening buyer demand — which carries broader implications for the homebuilder sector.</p></div>
+<div class="section-head">Sector Watch</div>
+<div class="prose-block"><p>Homebuilders: KBH's cautious commentary points to continued sector pressure — higher mortgage rates and economic uncertainty are weighing on buyer demand, with conditions described as worsening since June. Healthcare/Lab Services: LH's CMS Medicare rate cut concerns may weigh broadly on clinical lab names. Industrials/Data Center Infrastructure: WOR's callout of surging demand for liquid cooling tanks highlights ongoing data center buildout as a tailwind for niche industrial suppliers.</p></div>
+<div class="section-head">Calendar</div>
+<div class="cal-row"><div class="cal-group"><div class="cal-label">EARNINGS TODAY</div><div class="cal-item">KBH AMC</div><div class="cal-item">LH AMC</div><div class="cal-item">WOR AMC</div></div><div class="cal-group"><div class="cal-label">KEY DATES</div><div class="cal-item">Feb 2027 — LH Q4 earnings; 2027 guidance impact from CMS rate cuts to be provided</div></div></div>
+  </div>
+
+  <!-- RIGHT BOTTOM: Dispatches (compact) -->
+  <div class="panel-scanner">
     <div class="panel-label">Dispatches</div>
     <a class="dispatch-card" href="earnings-preview-september-22-2026.html">
   <div class="dispatch-header">
@@ -337,194 +525,6 @@ header { margin-bottom: 20px; }
   <div class="dispatch-title">Morning Intelligentsia · Friday September 18, 2026</div>
   <div class='dispatch-preview'>S&P futures: **+0.26%** | Nasdaq futures: **+0.50%** | Dow: +94 points | R2K: +2.3 points | Brent: -2.2% (~$10…</div>
 </a>
-  </div>
-
-  <!-- RIGHT TOP: Macro / Outlook / Calendar -->
-  <div class="panel-macro">
-    <div class="panel-label">Macro · Outlook · Key Names</div>
-    <div class="section-head">Macro</div>
-<div class="prose-block"><p>This is a post-close earnings recap for Tuesday, September 22, 2026. No broad index or overnight macro commentary was provided in this edition. The newsletter focuses exclusively on after-market company-specific earnings and news flow.</p></div>
-<div class="section-head">Market Outlook</div>
-<div class="prose-block"><p>No explicit directional market outlook was provided by Adam in this recap. The housing-related commentary from KBH skews cautious given ongoing macro headwinds — higher mortgage rates, geopolitical uncertainty, and weakening buyer demand — which carries broader implications for the homebuilder sector.</p></div>
-<div class="section-head">Sector Watch</div>
-<div class="prose-block"><p>Homebuilders: KBH's cautious commentary points to continued sector pressure — higher mortgage rates and economic uncertainty are weighing on buyer demand, with conditions described as worsening since June. Healthcare/Lab Services: LH's CMS Medicare rate cut concerns may weigh broadly on clinical lab names. Industrials/Data Center Infrastructure: WOR's callout of surging demand for liquid cooling tanks highlights ongoing data center buildout as a tailwind for niche industrial suppliers.</p></div>
-<div class="section-head">Calendar</div>
-<div class="cal-row"><div class="cal-group"><div class="cal-label">EARNINGS TODAY</div><div class="cal-item">KBH AMC</div><div class="cal-item">LH AMC</div><div class="cal-item">WOR AMC</div></div><div class="cal-group"><div class="cal-label">KEY DATES</div><div class="cal-item">Feb 2027 — LH Q4 earnings; 2027 guidance impact from CMS rate cuts to be provided</div></div></div>
-  </div>
-
-  <!-- RIGHT BOTTOM: Scanners + Benzinga -->
-  <div class="panel-scanner">
-    <div class="panel-label">Scanners · News</div>
-    <div class="scanner-block">
-  <div class="scanner-name">Changing Fundamentals</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">REL VOL</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">VKTX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+36.5%</span>
-  <span class="sc-price">$41.10</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">CLDX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-dn">-11.7%</span>
-  <span class="sc-price">$33.45</span>
-  
-</div>
-</div>
-<div class="scanner-block">
-  <div class="scanner-name">High PM AVOL</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">REL VOL</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">VKTX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+36.5%</span>
-  <span class="sc-price">$41.10</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">CLDX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-dn">-11.7%</span>
-  <span class="sc-price">$33.45</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">CMPX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-dn">-31.3%</span>
-  <span class="sc-price">$1.25</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">DBRG</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+0.5%</span>
-  <span class="sc-price">$16.00</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">INOD</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+17.0%</span>
-  <span class="sc-price">$71.44</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">BFLY</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+21.9%</span>
-  <span class="sc-price">$9.92</span>
-  
-</div>
-</div>
-<div class="scanner-block">
-  <div class="scanner-name">Usual Suspects Volume</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">REL VOL</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">SHOP</span>
-  <span class="sc-rvol">+348%</span>
-  <span class="sc-chg sc-up">+7.1%</span>
-  <span class="sc-price">$147.77</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">PYPL</span>
-  <span class="sc-rvol">+256%</span>
-  <span class="sc-chg sc-up">+0.7%</span>
-  <span class="sc-price">$53.00</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">NEXT</span>
-  <span class="sc-rvol">+181%</span>
-  <span class="sc-chg sc-dn">-3.6%</span>
-  <span class="sc-price">$6.77</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">CSCO</span>
-  <span class="sc-rvol">+208%</span>
-  <span class="sc-chg sc-dn">-4.8%</span>
-  <span class="sc-price">$106.15</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">BABA</span>
-  <span class="sc-rvol">+69%</span>
-  <span class="sc-chg sc-up">+0.7%</span>
-  <span class="sc-price">$116.54</span>
-  
-</div>
-</div>
-<div class="scanner-block">
-  <div class="scanner-name">Low Floats & Small Caps</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">REL VOL</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">LHSW</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">—</span>
-  <span class="sc-price">—</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">QNME</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">—</span>
-  <span class="sc-price">—</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">DCOY</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">—</span>
-  <span class="sc-price">—</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">TOPS</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">—</span>
-  <span class="sc-price">—</span>
-  
-</div>
-</div>
-<div class="scanner-block">
-  <div class="scanner-name">Premarket Volume</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">REL VOL</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">VKTX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+36.5%</span>
-  <span class="sc-price">$41.10</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">BFLY</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+21.9%</span>
-  <span class="sc-price">$9.92</span>
-  
-</div><div class="scanner-row">
-  <span class="sc-sym">VICR</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+20.1%</span>
-  <span class="sc-price">$268.88</span>
-  
-</div>
-</div>
   </div>
 
 </div>

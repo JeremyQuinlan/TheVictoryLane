@@ -1180,7 +1180,7 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, a
         # Header row
         header_html = """<div class="scanner-row scanner-header">
   <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">REL VOL</span>
+  <span class="sc-rvol">%AVOL</span>
   <span class="sc-chg">CHG</span>
   <span class="sc-price">PRICE</span>
 </div>"""
@@ -1263,13 +1263,13 @@ header {{ margin-bottom: 20px; }}
 }}
 @media (max-width: 900px) {{ .mgp-grid {{ grid-template-columns: 1fr; }} }}
 
-/* LEFT: dispatch link list */
+/* LEFT: scanner list (main column) */
 .panel-left {{
   grid-row: 1 / 3;
-  border: 1px solid #1e1a14;
+  border: 1px solid #1a2a3a;
   border-radius: 6px;
   padding: 16px 18px;
-  background: #0c0a08;
+  background: #08090f;
 }}
 .panel-label {{
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
@@ -1278,7 +1278,7 @@ header {{ margin-bottom: 20px; }}
 
 /* dispatch cards */
 .dispatch-card {{
-  display: block; border-bottom: 1px solid #161410; padding: 13px 0;
+  display: block; border-bottom: 1px solid #161410; padding: 8px 0;
   text-decoration: none; color: inherit; transition: padding-left 0.12s;
 }}
 .dispatch-card:hover {{ padding-left: 6px; }}
@@ -1293,8 +1293,8 @@ header {{ margin-bottom: 20px; }}
 }}
 .dispatch-src  {{ font-size: 10px; color: #444; font-family: 'Courier New', monospace; }}
 .dispatch-date {{ font-size: 10px; color: #3a3830; font-family: 'Courier New', monospace; margin-left: auto; }}
-.dispatch-title {{ font-size: 13px; color: #b8b4a8; line-height: 1.35; margin-bottom: 3px; transition: color 0.12s; }}
-.dispatch-preview {{ font-size: 11px; color: #484440; line-height: 1.5; }}
+.dispatch-title {{ font-size: 11px; color: #888480; line-height: 1.35; margin-bottom: 2px; transition: color 0.12s; }}
+.dispatch-preview {{ font-size: 10px; color: #3a3834; line-height: 1.4; }}
 
 /* RIGHT TOP: macro */
 .panel-macro {{
@@ -1303,12 +1303,12 @@ header {{ margin-bottom: 20px; }}
   padding: 16px 18px;
   background: #080f0a;
 }}
-/* RIGHT BOTTOM: scanners */
+/* RIGHT BOTTOM: dispatches (compact) */
 .panel-scanner {{
-  border: 1px solid #1a2a3a;
+  border: 1px solid #1e1a14;
   border-radius: 6px;
-  padding: 16px 18px;
-  background: #08090f;
+  padding: 12px 14px;
+  background: #0c0a08;
 }}
 
 /* macro */
@@ -1353,16 +1353,16 @@ header {{ margin-bottom: 20px; }}
 </div>
 
 <header>
-  <div class="mgp-title">Morning Game Plan</div>
+  <div class="mgp-title">The Victory Lane</div>
   <div class="mgp-date">{today_str} &nbsp;·&nbsp; Updated {updated}</div>
 </header>
 
 <div class="mgp-grid">
 
-  <!-- LEFT: Dispatch link list -->
+  <!-- LEFT: Scanners + News (main column) -->
   <div class="panel-left">
-    <div class="panel-label">Dispatches</div>
-    {left_cards_html}
+    <div class="panel-label">Scanners · News</div>
+    {right_bot_body}
   </div>
 
   <!-- RIGHT TOP: Macro / Outlook / Calendar -->
@@ -1371,10 +1371,10 @@ header {{ margin-bottom: 20px; }}
     {right_top_body}
   </div>
 
-  <!-- RIGHT BOTTOM: Scanners + Benzinga -->
+  <!-- RIGHT BOTTOM: Dispatches (compact) -->
   <div class="panel-scanner">
-    <div class="panel-label">Scanners · News</div>
-    {right_bot_body}
+    <div class="panel-label">Dispatches</div>
+    {left_cards_html}
   </div>
 
 </div>

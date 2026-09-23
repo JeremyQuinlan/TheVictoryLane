@@ -12,7 +12,7 @@ body {
   font-family: Georgia, 'Times New Roman', serif;
   background: #0a0a0a;
   color: #e8e4d9;
-  max-width: 1100px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 32px 28px 100px;
   line-height: 1.72;
@@ -120,7 +120,8 @@ header { margin-bottom: 20px; }
 .card-ticker { font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }
 .card-company { font-size: 12px; color: #555; flex: 1; }
 .card-catalyst { font-size: 10px; color: #666; font-family: 'Courier New', monospace;
-  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }
+  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; }
 .card-summary { font-size: 13px; color: #b8b4a8; margin-bottom: 5px; }
 .bz-story { font-size: 11px; color: #555; font-family: 'Courier New', monospace;
   border-top: 1px solid #1a1a1a; padding-top: 4px; margin-top: 4px; }
@@ -150,14 +151,34 @@ header { margin-bottom: 20px; }
 .cal-timing { font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; font-weight: bold; margin-right: 8px; letter-spacing: 0.08em; }
 .cal-date { font-size: 11px; color: #555; font-family: 'Courier New', monospace; }
 
-/* dispatch inside macro panel */
-.dispatch-inner { display: flex; flex-direction: column; gap: 7px; margin-bottom: 6px; }
-.dispatch-inner .dispatch-row { display: flex; flex-direction: column; gap: 1px; text-decoration: none; }
-.dispatch-inner .dispatch-row:hover .dispatch-title { color: #c9b97a; }
-.dispatch-date { font-size: 10px; color: #333; font-family: 'Courier New', monospace; }
-.dispatch-title { font-size: 11px; color: #666; }
-.dispatch-all { font-size: 10px; color: #333; font-family: 'Courier New', monospace; text-decoration: none; margin-top: 3px; }
-.dispatch-all:hover { color: #c9b97a; }
+/* dispatch section — full-width strip below the 3-col grid */
+.dispatch-section { margin-top: 22px; border-top: 1px solid #1a1a1a; padding-top: 16px; }
+.dispatch-section-head {
+  font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #555; margin-bottom: 14px;
+}
+.dispatch-archive-link { color: #444; text-decoration: none; font-size: 10px; }
+.dispatch-archive-link:hover { color: #c9b97a; }
+.disp-card {
+  display: block; border-bottom: 1px solid #141414; padding: 14px 0;
+  transition: padding-left 0.15s; text-decoration: none;
+}
+.disp-card:first-of-type { border-top: 1px solid #141414; margin-top: 6px; }
+.disp-card:hover { padding-left: 8px; }
+.disp-card:hover .disp-title { color: #c9b97a; }
+.disp-tag {
+  display: inline-block; font-size: 10px; font-family: 'Courier New', monospace;
+  font-weight: bold; letter-spacing: 0.1em; padding: 2px 7px;
+  border-radius: 3px; border: 1px solid; margin-bottom: 5px;
+}
+.disp-meta { font-size: 12px; color: #444; font-family: 'Courier New', monospace; margin-bottom: 5px; }
+.disp-title { font-size: 17px; color: #d8d4c8; line-height: 1.4; transition: color 0.15s; margin-bottom: 4px; }
+.disp-preview { font-size: 13px; color: #555; line-height: 1.5; }
+.disp-latest {
+  font-size: 10px; background: #3d3820; color: #c9b97a;
+  border: 1px solid #c9b97a44; padding: 2px 6px; border-radius: 3px;
+  font-family: 'Courier New', monospace; vertical-align: middle; margin-left: 6px;
+}
 
 /* earnings 3rd column */
 .earn-group { margin-bottom: 14px; }
@@ -193,7 +214,7 @@ header { margin-bottom: 20px; }
 
 <header>
   <div class="mgp-title">Morning Game Plan</div>
-  <div class="mgp-date">Wednesday, September 23, 2026 &nbsp;·&nbsp; Updated Sep 23, 2026 · 02:36 PM ET</div>
+  <div class="mgp-date">Wednesday, September 23, 2026 &nbsp;·&nbsp; Updated Sep 23, 2026 · 02:39 PM ET</div>
 </header>
 
 <div class="mgp-grid">
@@ -212,12 +233,6 @@ header { margin-bottom: 20px; }
 <div class="prose-block"><p>Food-focused consumer staples (GIS) face persistent cyclical and secular headwinds despite a modestly better FQ1 print; sector sentiment likely remains gloomy. Restaurant sector (MCD, CBRL) sees mixed signals — Cracker Barrel strongly outperforms while McDonald's analyst day targets beat on margins but signal heavier capex spend ahead.</p></div>
 <div class="section-head">Calendar</div>
 <div class="cal-stack"><div class="cal-item"><span class="cal-timing">BMO</span>CBRL, GIS, MANU, MCD</div><div class="cal-item cal-date">Sep 23 — MCD Analyst Meeting (today)</div></div>
-<div class="section-head">Recent Dispatches</div>
-<div class="dispatch-inner">
-  <a class="dispatch-row" href="mid-day-update-wednesday-september-23-2026.html"><span class="dispatch-date">Sep 23, 2026 · 11:04 AM ET</span><span class="dispatch-title">Mid-Day Update · Wednesday
- September 23, 2026</span></a><a class="dispatch-row" href="flash-pmis-are-too-strong-for-stocks.html"><span class="dispatch-date">Sep 23, 2026 · 09:53 AM ET</span><span class="dispatch-title">Flash PMIs are too strong for stocks</span></a><a class="dispatch-row" href="company-specific-news-for-wed-9-23-bmo-cbrl-gis-manu-mcd.html"><span class="dispatch-date">Sep 23, 2026 · 08:12 AM ET</span><span class="dispatch-title">Company-specific news for Wed 9/23 (BMO) - CBRL, GIS, MANU, MCD</span></a><a class="dispatch-row" href="morning-intelligentsia-wednesday-september-23-2026.html"><span class="dispatch-date">Sep 23, 2026 · 05:21 AM ET</span><span class="dispatch-title">Morning Intelligentsia · Wednesday September 23, 2026</span></a><a class="dispatch-row" href="earnings-preview-september-22-2026.html"><span class="dispatch-date">Sep 22, 2026 · 06:26 PM ET</span><span class="dispatch-title">Earnings Preview · September 22, 2026</span></a>
-  <a class="dispatch-all" href="archive.html">View full archive &rarr;</a>
-</div>
   </div>
 
   <!-- COL 2: Scanners — full middle column -->
@@ -486,6 +501,42 @@ header { margin-bottom: 20px; }
   </div>
 
 </div>
+
+<section class="dispatch-section">
+  <div class="dispatch-section-head">Recent Dispatches &nbsp;<a class="dispatch-archive-link" href="archive.html">View full archive &rarr;</a></div>
+  <a class="disp-card" href="mid-day-update-wednesday-september-23-2026.html">
+  <div class="disp-tag" style="background:#1a2a3a; color:#4c8faf; border-color:#4c8faf44;">MID-DAY</div>
+  <div class="disp-meta">Sep 23, 2026 · 11:04 AM ET</div>
+  <div class="disp-title">Mid-Day Update · Wednesday
+ September 23, 2026 <span class="disp-latest">LATEST</span></div>
+  <div class="disp-preview">Here's your midday market update for Wednesday, September 23rd.  Stocks are getting hit hard this session, and the culprit is clear — this m…</div>
+</a><a class="disp-card" href="flash-pmis-are-too-strong-for-stocks.html">
+  <div class="disp-tag" style="background:#2a1a3a; color:#8f4caf; border-color:#8f4caf44;">UPDATE</div>
+  <div class="disp-meta">Sep 23, 2026 · 09:53 AM ET</div>
+  <div class="disp-title">Flash PMIs are too strong for stocks</div>
+  <div class="disp-preview">Here's your midday read for September 23rd, 2026.  The big story this morning is the flash PMI data for September, and it's a case of growth…</div>
+</a><a class="disp-card" href="company-specific-news-for-wed-9-23-bmo-cbrl-gis-manu-mcd.html">
+  <div class="disp-tag" style="background:#2a1a3a; color:#8f4caf; border-color:#8f4caf44;">UPDATE</div>
+  <div class="disp-meta">Sep 23, 2026 · 08:12 AM ET</div>
+  <div class="disp-title">Company-specific news for Wed 9/23 (BMO) - CBRL, GIS, MANU, MCD</div>
+  <div class="disp-preview">Good morning. This is your pre-market briefing for Wednesday, September 23rd, 2026. Today's edition is entirely focused on earnings — no bro…</div>
+</a><a class="disp-card" href="morning-intelligentsia-wednesday-september-23-2026.html">
+  <div class="disp-tag" style="background:#1a3a2a; color:#4caf82; border-color:#4caf8244;">MORNING</div>
+  <div class="disp-meta">Sep 23, 2026 · 05:21 AM ET</div>
+  <div class="disp-title">Morning Intelligentsia · Wednesday September 23, 2026</div>
+  <div class="disp-preview">Here's your morning game plan for Wednesday, September 23rd.  Futures are dead flat to start the session — S&P up barely 0.05%, Dow nearly u…</div>
+</a><a class="disp-card" href="earnings-preview-september-22-2026.html">
+  <div class="disp-tag" style="background:#2a2a1a; color:#c9b97a; border-color:#c9b97a44;">EARNINGS</div>
+  <div class="disp-meta">Sep 22, 2026 · 06:26 PM ET</div>
+  <div class="disp-title">Earnings Preview · September 22, 2026</div>
+  <div class="disp-preview">## THO — THOR Industries  - **Reported:** Fiscal Q4 (ended July 2026), timing not specified - **Consensus EPS:** $0.93 | **Actual:** $0.78 —…</div>
+</a><a class="disp-card" href="company-specific-news-for-tues-9-22-amc-kbh-lh-wor.html">
+  <div class="disp-tag" style="background:#2a1a3a; color:#8f4caf; border-color:#8f4caf44;">UPDATE</div>
+  <div class="disp-meta">Sep 22, 2026 · 05:27 PM ET</div>
+  <div class="disp-title">Company-specific news for Tues 9/22 (AMC) - KBH, LH, WOR</div>
+  <div class="disp-preview">The email doesn't support HTML, some texts may not be displayed properly.   [https://vitalknowledge.net/assets/images/resources//section1.</div>
+</a>
+</section>
 
 <div id="tts-bar">
   <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>

@@ -1262,28 +1262,26 @@ header {{ margin-bottom: 20px; }}
 
 .empty-msg {{ font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }}
 
-/* dispatch footer */
+/* dispatch strip — sits between header and grid */
 .dispatch-section {{
-  margin-top: 24px; border-top: 1px solid #181818; padding-top: 16px;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  border: 1px solid #1a1a1a; border-radius: 4px;
+  background: #0a0a0a; padding: 8px 14px; margin-bottom: 14px;
 }}
 .dispatch-label {{
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
-  color: #444; text-transform: uppercase; margin-bottom: 10px;
+  color: #444; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
 }}
 .dispatch-row {{
-  display: flex; gap: 16px; padding: 7px 0; border-bottom: 1px solid #111;
-  text-decoration: none; transition: padding-left 0.12s;
+  display: flex; gap: 10px; align-items: baseline;
+  text-decoration: none; flex-shrink: 0;
 }}
-.dispatch-row:last-of-type {{ border-bottom: none; }}
-.dispatch-row:hover {{ padding-left: 6px; }}
-.dispatch-date {{ font-size: 11px; color: #444; font-family: 'Courier New', monospace;
-  min-width: 110px; flex-shrink: 0; }}
-.dispatch-title {{ font-size: 12px; color: #888; }}
 .dispatch-row:hover .dispatch-title {{ color: #c9b97a; }}
+.dispatch-date {{ font-size: 10px; color: #333; font-family: 'Courier New', monospace; }}
+.dispatch-title {{ font-size: 11px; color: #666; }}
 .dispatch-all {{
-  display: inline-block; margin-top: 10px;
-  font-size: 11px; color: #444; font-family: 'Courier New', monospace;
-  text-decoration: none; letter-spacing: 0.08em;
+  font-size: 10px; color: #333; font-family: 'Courier New', monospace;
+  text-decoration: none; margin-left: auto; white-space: nowrap;
 }}
 .dispatch-all:hover {{ color: #c9b97a; }}
 </style>
@@ -1299,6 +1297,8 @@ header {{ margin-bottom: 20px; }}
   <div class="mgp-title">Morning Game Plan</div>
   <div class="mgp-date">{today_str} &nbsp;·&nbsp; Updated {updated}</div>
 </header>
+
+{dispatch_html}
 
 <div class="mgp-grid">
 
@@ -1325,8 +1325,6 @@ header {{ margin-bottom: 20px; }}
 </div>
 
 {tts_bar_html()}
-
-{dispatch_html}
 
 <script>
   const ttsText = "{tts_escaped}";

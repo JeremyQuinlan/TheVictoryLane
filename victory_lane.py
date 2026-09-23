@@ -988,14 +988,14 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
             break
     else:
         print("  [dispatch] digests.json not found")
-    dispatch_html = f'''<div class="dispatch-section">
-  <div class="dispatch-label">Recent Dispatches</div>
-  {dispatch_rows if dispatch_rows else '<span class="dispatch-date">No dispatches yet</span>'}
-  <a class="dispatch-all" href="archive.html">View full archive &rarr;</a>
-</div>'''
+    # dispatch_rows is used inline inside the macro panel (not as a standalone strip)
 
     # ── TTS ──
     tts_text = ""
+
+    # ── Pre-extract earnings/key_dates for use in panel + 3rd column ──
+    earnings = []
+    key_dates = []
 
     # ── LEFT PANEL: VK company cards ──
     left_vk_cards = ""
@@ -1057,30 +1057,23 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
     if not left_vk_cards and not left_ew_html:
         left_placeholder = '<p class="empty-msg">No newsletter stories yet — check back after the market open.</p>'
 
-    # ── RIGHT TOP: Macro / Outlook / Calendar ──
+    # ── LEFT PANEL (col 1): Macro / Outlook / Sector / Dispatch / Calendar ──
     rt_parts = []
     if vk_data:
-        macro   = vk_data.get("macro", "")
-        rates   = vk_data.get("rates_fed", "")
-        outlook = vk_data.get("market_outlook", "")
-        bull    = vk_data.get("bull_case", "")
-        bear    = vk_data.get("bear_case", "")
-        sectors = vk_data.get("sectors", "")
-        earnings= vk_data.get("earnings_today", [])
-        key_dates=vk_data.get("key_dates", [])
+        macro    = vk_data.get("macro", "")
+        rates    = vk_data.get("rates_fed", "")
+        outlook  = vk_data.get("market_outlook", "")
+        bull     = vk_data.get("bull_case", "")
+        bear     = vk_data.get("bear_case", "")
+        sectors  = vk_data.get("sectors", "")
+        earnings  = vk_data.get("earnings_today", [])
+        key_dates = vk_data.get("key_dates", [])
 
         if macro or rates:
             rt_parts.append(f"""<div class="section-head">Macro · Rates</div>
 <div class="prose-block">
 {"<p>" + macro + "</p>" if macro else ""}
 {"<p>" + rates + "</p>" if rates else ""}
-</div>""")
-
-        if bull or bear:
-            rt_parts.append(f"""<div class="section-head">Bull / Bear</div>
-<div class="two-col">
-  <div class="col bull-col"><div class="col-label">BULL CASE</div><p>{bull}</p></div>
-  <div class="col bear-col"><div class="col-label">BEAR CASE</div><p>{bear}</p></div>
 </div>""")
 
         if outlook:
@@ -1091,18 +1084,63 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
             rt_parts.append(f"""<div class="section-head">Sector Watch</div>
 <div class="prose-block"><p>{sectors}</p></div>""")
 
-        cal_parts = []
-        if earnings:
-            cal_parts.append('<div class="cal-group"><div class="cal-label">EARNINGS TODAY</div>'
-                             + "".join(f'<div class="cal-item">{e}</div>' for e in earnings) + "</div>")
-        if key_dates:
-            cal_parts.append('<div class="cal-group"><div class="cal-label">KEY DATES</div>'
-                             + "".join(f'<div class="cal-item">{d}</div>' for d in key_dates) + "</div>")
-        if cal_parts:
+        # Dispatch directly below Sector Watch, inside macro panel
+        rt_parts.append(f"""<div class="section-head">Recent Dispatches</div>
+<div class="dispatch-inner">
+  {dispatch_rows if dispatch_rows else '<span class="empty-msg">No dispatches yet</span>'}
+  <a class="dispatch-all" href="archive.html">View full archive &rarr;</a>
+</div>""")
+
+        if bull or bear:
+            rt_parts.append(f"""<div class="section-head">Bull / Bear</div>
+<div class="two-col">
+  <div class="col bull-col"><div class="col-label">BULL CASE</div><p>{bull}</p></div>
+  <div class="col bear-col"><div class="col-label">BEAR CASE</div><p>{bear}</p></div>
+</div>""")
+
+        # Calendar — grouped BMO/AMC format
+        bmo_tickers = []
+        amc_tickers = []
+        for e in earnings:
+            e_up = str(e).upper().strip()
+            ticker = re.sub(r'\s*(BMO|AMC)\s*', '', e_up).strip()
+            if 'BMO' in e_up:
+                bmo_tickers.append(ticker)
+            elif 'AMC' in e_up:
+                amc_tickers.append(ticker)
+
+        cal_rows = ""
+        if bmo_tickers:
+            cal_rows += f'<div class="cal-item"><span class="cal-timing">BMO</span>{", ".join(bmo_tickers)}</div>'
+        if amc_tickers:
+            cal_rows += f'<div class="cal-item"><span class="cal-timing">AMC</span>{", ".join(amc_tickers)}</div>'
+        for d in key_dates:
+            cal_rows += f'<div class="cal-item cal-date">{d}</div>'
+
+        if cal_rows:
             rt_parts.append(f"""<div class="section-head">Calendar</div>
-<div class="cal-row">{"".join(cal_parts)}</div>""")
+<div class="cal-stack">{cal_rows}</div>""")
 
     right_top_body = "\n".join(rt_parts) if rt_parts else '<p class="empty-msg">Macro data will appear after VK is parsed.</p>'
+
+    # ── 3rd column: Earnings Names (BMO/AMC grouped + key dates) ──
+    earn_html = ""
+    bmo_3col = []
+    amc_3col = []
+    for e in earnings:
+        e_up = str(e).upper().strip()
+        ticker = re.sub(r'\s*(BMO|AMC)\s*', '', e_up).strip()
+        if 'BMO' in e_up:
+            bmo_3col.append(ticker)
+        elif 'AMC' in e_up:
+            amc_3col.append(ticker)
+    if bmo_3col:
+        earn_html += f'<div class="earn-group"><div class="earn-timing">BMO</div><div class="earn-tickers">{" · ".join(bmo_3col)}</div></div>'
+    if amc_3col:
+        earn_html += f'<div class="earn-group"><div class="earn-timing">AMC</div><div class="earn-tickers">{" · ".join(amc_3col)}</div></div>'
+    for d in key_dates:
+        earn_html += f'<div class="earn-date">{d}</div>'
+    earnings_panel_html = earn_html or '<p class="empty-msg">No earnings data</p>'
 
     # ── RIGHT BOTTOM: Scanners + Benzinga ──
     rb_blocks = []
@@ -1168,20 +1206,21 @@ header {{ margin-bottom: 20px; }}
 
 .mgp-grid {{
   display: grid;
-  grid-template-columns: 42% 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: 36% 1fr 200px;
   gap: 16px;
   align-items: start;
 }}
-@media (max-width: 900px) {{ .mgp-grid {{ grid-template-columns: 1fr; }} }}
+@media (max-width: 1000px) {{ .mgp-grid {{ grid-template-columns: 36% 1fr; }} }}
+@media (max-width: 700px) {{ .mgp-grid {{ grid-template-columns: 1fr; }} }}
 
 .panel-label {{
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
   color: #555; margin-bottom: 14px; text-transform: uppercase;
 }}
 
-/* LEFT: macro / outlook / calendar — spans both rows */
+/* COL 1: macro / outlook / dispatch / calendar — spans both rows */
 .panel-macro {{
+  grid-column: 1;
   grid-row: 1 / 3;
   border: 1px solid #1a3a22;
   border-radius: 6px;
@@ -1189,20 +1228,34 @@ header {{ margin-bottom: 20px; }}
   background: #080f0a;
 }}
 
-/* RIGHT TOP: newsletters */
+/* COL 2 ROW 1: scanners (top of middle column) */
+.panel-scanner {{
+  grid-column: 2;
+  grid-row: 1;
+  border: 1px solid #1a2a3a;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #08090f;
+}}
+
+/* COL 2 ROW 2: VK key names (below scanners) */
 .panel-left {{
+  grid-column: 2;
+  grid-row: 2;
   border: 1px solid #2a1a1a;
   border-radius: 6px;
   padding: 16px 18px;
   background: #0d0a0a;
 }}
 
-/* RIGHT BOTTOM: scanners */
-.panel-scanner {{
-  border: 1px solid #1a2a3a;
+/* COL 3: earnings names — spans both rows */
+.panel-earnings {{
+  grid-column: 3;
+  grid-row: 1 / 3;
+  border: 1px solid #2a2a1a;
   border-radius: 6px;
   padding: 16px 18px;
-  background: #08090f;
+  background: #0c0c08;
 }}
 
 /* company cards */
@@ -1239,11 +1292,26 @@ header {{ margin-bottom: 20px; }}
 .bull-col .col-label {{ color: #4caf82; }}
 .bear-col .col-label {{ color: #e05050; }}
 
-/* calendar */
-.cal-row {{ display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }}
-.cal-group {{ display: flex; flex-direction: column; gap: 3px; }}
-.cal-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 3px; }}
+/* calendar — stacked BMO/AMC format */
+.cal-stack {{ display: flex; flex-direction: column; gap: 5px; margin-bottom: 6px; }}
 .cal-item {{ font-size: 12px; color: #a8a49a; }}
+.cal-timing {{ font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; font-weight: bold; margin-right: 8px; letter-spacing: 0.08em; }}
+.cal-date {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; }}
+
+/* dispatch inside macro panel */
+.dispatch-inner {{ display: flex; flex-direction: column; gap: 7px; margin-bottom: 6px; }}
+.dispatch-inner .dispatch-row {{ display: flex; flex-direction: column; gap: 1px; text-decoration: none; }}
+.dispatch-inner .dispatch-row:hover .dispatch-title {{ color: #c9b97a; }}
+.dispatch-date {{ font-size: 10px; color: #333; font-family: 'Courier New', monospace; }}
+.dispatch-title {{ font-size: 11px; color: #666; }}
+.dispatch-all {{ font-size: 10px; color: #333; font-family: 'Courier New', monospace; text-decoration: none; margin-top: 3px; }}
+.dispatch-all:hover {{ color: #c9b97a; }}
+
+/* earnings 3rd column */
+.earn-group {{ margin-bottom: 14px; }}
+.earn-timing {{ font-size: 10px; color: #4caf82; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 5px; }}
+.earn-tickers {{ font-size: 13px; color: #c9b97a; font-family: 'Courier New', monospace; line-height: 1.7; }}
+.earn-date {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; margin-bottom: 4px; border-top: 1px solid #1a1a1a; padding-top: 8px; margin-top: 4px; }}
 
 /* scanner */
 .scanner-block {{ background: #0a0c10; border: 1px solid #1a1f2a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }}
@@ -1262,28 +1330,6 @@ header {{ margin-bottom: 20px; }}
 
 .empty-msg {{ font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }}
 
-/* dispatch strip — sits between header and grid */
-.dispatch-section {{
-  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-  border: 1px solid #1a1a1a; border-radius: 4px;
-  background: #0a0a0a; padding: 8px 14px; margin-bottom: 14px;
-}}
-.dispatch-label {{
-  font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
-  color: #444; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
-}}
-.dispatch-row {{
-  display: flex; gap: 10px; align-items: baseline;
-  text-decoration: none; flex-shrink: 0;
-}}
-.dispatch-row:hover .dispatch-title {{ color: #c9b97a; }}
-.dispatch-date {{ font-size: 10px; color: #333; font-family: 'Courier New', monospace; }}
-.dispatch-title {{ font-size: 11px; color: #666; }}
-.dispatch-all {{
-  font-size: 10px; color: #333; font-family: 'Courier New', monospace;
-  text-decoration: none; margin-left: auto; white-space: nowrap;
-}}
-.dispatch-all:hover {{ color: #c9b97a; }}
 </style>
 </head>
 <body>
@@ -1298,17 +1344,21 @@ header {{ margin-bottom: 20px; }}
   <div class="mgp-date">{today_str} &nbsp;·&nbsp; Updated {updated}</div>
 </header>
 
-{dispatch_html}
-
 <div class="mgp-grid">
 
-  <!-- LEFT: Macro / Outlook / Calendar -->
+  <!-- COL 1: Macro / Outlook / Sector / Dispatch / Calendar -->
   <div class="panel-macro">
     <div class="panel-label">Macro · Outlook · Key Names</div>
     {right_top_body}
   </div>
 
-  <!-- RIGHT TOP: VK Stories + Earnings Whispers -->
+  <!-- COL 2 TOP: Scanners (top of middle column) -->
+  <div class="panel-scanner">
+    <div class="panel-label">Scanners · News</div>
+    {right_bot_body}
+  </div>
+
+  <!-- COL 2 BOTTOM: VK Key Names + EW -->
   <div class="panel-left">
     <div class="panel-label">VK · Key Names</div>
     {left_vk_cards}
@@ -1316,10 +1366,10 @@ header {{ margin-bottom: 20px; }}
     {left_placeholder}
   </div>
 
-  <!-- RIGHT BOTTOM: Scanners + Benzinga -->
-  <div class="panel-scanner">
-    <div class="panel-label">Scanners · News</div>
-    {right_bot_body}
+  <!-- COL 3: Earnings Names -->
+  <div class="panel-earnings">
+    <div class="panel-label">Earnings</div>
+    {earnings_panel_html}
   </div>
 
 </div>

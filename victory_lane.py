@@ -745,7 +745,9 @@ def fetch_new_emails(config):
     cutoff = datetime.now(timezone.utc) - timedelta(hours=config["lookback_hours"])
     print(f"  IMAP: searching since {since_date} (lookback={config['lookback_hours']}h)")
 
-    # ── Grab latest VK email for dashboard panel (while connection is open) ──
+    # ── Grab best VK email for dashboard panel ──
+    # Prefer the most recent MORNING email; fall back to most recent of any type.
+    # "Morning" signals: "Morning" in subject. Non-morning signals: "(AMC)", "Recap", "Post-Close".
     latest_vk_body    = None
     latest_vk_subject = None
     try:
@@ -753,14 +755,42 @@ def fetch_new_emails(config):
         vk_uids = data[0].split() if data and data[0] else []
         print(f"  [vitalknowledge] {len(vk_uids)} email(s) found for dashboard fetch")
         if vk_uids:
-            uid = vk_uids[-1]  # most recent
-            status, msg_data = mail.uid("fetch", uid, "(BODY.PEEK[])")
+            # Fetch subjects for the most recent 10 emails (lightweight header-only fetch)
+            _NON_MORNING = re.compile(r'\(AMC\)|recap|post.?close|after.?close|after.?hours', re.IGNORECASE)
+            _MORNING     = re.compile(r'morning|pre.?market|BMO|game.?plan', re.IGNORECASE)
+            candidates   = vk_uids[-10:]  # newest last
+
+            # Score each: morning=2, unknown=1, non-morning=0
+            best_uid   = candidates[-1]   # default: most recent
+            best_score = -1
+            for cuid in reversed(candidates):  # newest first
+                try:
+                    _, hdata = mail.uid("fetch", cuid, "(BODY.PEEK[HEADER.FIELDS (SUBJECT)])")
+                    raw_hdr  = hdata[0][1] if hdata and hdata[0] else b""
+                    subj     = decode_str(email.message_from_bytes(raw_hdr).get("Subject", ""))
+                    if _MORNING.search(subj):
+                        score = 2
+                    elif _NON_MORNING.search(subj):
+                        score = 0
+                    else:
+                        score = 1
+                    print(f"  [vitalknowledge] subject score={score}: {subj[:70]}")
+                    if score > best_score:
+                        best_score = score
+                        best_uid   = cuid
+                    if score == 2:
+                        break  # can't do better than a morning email
+                except Exception as _he:
+                    print(f"  [vitalknowledge] header fetch error: {_he}")
+
+            # Fetch full body for the winner
+            status, msg_data = mail.uid("fetch", best_uid, "(BODY.PEEK[])")
             if msg_data and msg_data[0] is not None:
                 raw = msg_data[0][1]
                 msg = email.message_from_bytes(raw)
                 latest_vk_body    = get_email_body(msg)
                 latest_vk_subject = decode_str(msg.get("Subject", ""))
-                print(f"  [vitalknowledge] dashboard email fetched: {latest_vk_subject[:80]}")
+                print(f"  [vitalknowledge] dashboard email fetched (score={best_score}): {latest_vk_subject[:80]}")
             else:
                 print("  [vitalknowledge] fetch returned empty — msg_data was None/empty")
         else:

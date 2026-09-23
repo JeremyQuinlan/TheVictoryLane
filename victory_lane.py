@@ -865,8 +865,7 @@ TTS_JS = r"""
 
   window.addEventListener("load", () => {
     updateNotifyBtn();
-    if (isIOS) setStatus("Tap Play to start");
-    else setTimeout(() => speakFrom(0), 1800);
+    setStatus("Ready");
   });
   window.addEventListener("pagehide", () => window.speechSynthesis.cancel());
   window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });
@@ -885,7 +884,7 @@ def tts_bar_html():
     <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
     <span id="speed-val">1.3x</span>
   </div>
-  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <span id="tts-status">Ready</span>
   <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
 </div>"""
 
@@ -960,8 +959,8 @@ def _dir_arrow(direction):
 def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, ew_items=None):
     """
     Build the main MGP index.html dashboard — 3-panel layout:
-      LEFT  : VK company stories + Earnings Whispers articles
-      TOP-R : Macro context, bull/bear, market outlook, calendar  (green accent)
+      LEFT  : Macro context, bull/bear, market outlook, calendar  (green accent)
+      TOP-R : VK company stories + Earnings Whispers articles
       BOT-R : Trade Ideas scanners + Benzinga news               (blue accent)
 
     vk_data     : dict from parse_vk_to_mgp (or None)
@@ -970,6 +969,29 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
     ew_items    : list of {"subject": str, "text": str, "email_date": str}
     """
     ew_items = ew_items or []
+
+    # ── Load recent dispatches for footer ──
+    dispatch_html = ""
+    meta_path = "docs/digests.json"
+    if os.path.exists(meta_path):
+        try:
+            with open(meta_path, encoding="utf-8") as f:
+                digests = json.load(f)
+            recent = digests[:5]  # last 5 dispatches
+            if recent:
+                rows = ""
+                for d in recent:
+                    rows += (f'<a class="dispatch-row" href="{d["filename"]}">'
+                             f'<span class="dispatch-date">{d.get("email_date","")}</span>'
+                             f'<span class="dispatch-title">{d.get("subject","")}</span>'
+                             f'</a>')
+                dispatch_html = f'''<div class="dispatch-section">
+  <div class="dispatch-label">Recent Dispatches</div>
+  {rows}
+  <a class="dispatch-all" href="archive.html">View all &rarr;</a>
+</div>'''
+        except Exception:
+            pass
 
     # ── TTS ──
     tts_text = ""
@@ -1002,24 +1024,30 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
 </div>
 """
 
-    # ── LEFT PANEL: EW articles ──
+    # ── RIGHT PANEL: EW articles (capped at 5 ticker sections) ──
     left_ew_html = ""
     for ew in ew_items:
         subj = ew.get("subject", "Earnings Whispers")
         text = ew.get("text", "")
         edate = ew.get("email_date", "")
-        # render markdown-ish text
+        # render markdown-ish text; cap at 5 ticker sections to prevent explosion
         rendered = ""
+        ticker_count = 0
         for line in text.split("\n"):
             line = line.strip()
             if not line:
                 continue
             if line.startswith("## "):
+                ticker_count += 1
+                if ticker_count > 5:
+                    rendered += '<p class="ew-line" style="color:#444;">…more in archive</p>'
+                    break
                 rendered += f'<div class="ew-ticker-head">{line[3:]}</div>'
-            else:
+            elif ticker_count > 0:  # only render lines under a ticker header
                 line = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", line)
                 rendered += f'<p class="ew-line">{line}</p>'
-        left_ew_html += f"""<div class="ew-block">
+        if rendered:
+            left_ew_html += f"""<div class="ew-block">
   <div class="ew-label">{subj} &nbsp;<span class="ew-date">{edate}</span></div>
   {rendered}
 </div>"""
@@ -1139,33 +1167,35 @@ header {{ margin-bottom: 20px; }}
 
 .mgp-grid {{
   display: grid;
-  grid-template-columns: 55% 1fr;
+  grid-template-columns: 42% 1fr;
   grid-template-rows: auto auto;
   gap: 16px;
   align-items: start;
 }}
 @media (max-width: 900px) {{ .mgp-grid {{ grid-template-columns: 1fr; }} }}
 
-/* LEFT: newsletters */
-.panel-left {{
-  grid-row: 1 / 3;
-  border: 1px solid #2a1a1a;
-  border-radius: 6px;
-  padding: 16px 18px;
-  background: #0d0a0a;
-}}
 .panel-label {{
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
   color: #555; margin-bottom: 14px; text-transform: uppercase;
 }}
 
-/* RIGHT TOP: macro */
+/* LEFT: macro / outlook / calendar — spans both rows */
 .panel-macro {{
+  grid-row: 1 / 3;
   border: 1px solid #1a3a22;
   border-radius: 6px;
   padding: 16px 18px;
   background: #080f0a;
 }}
+
+/* RIGHT TOP: newsletters */
+.panel-left {{
+  border: 1px solid #2a1a1a;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #0d0a0a;
+}}
+
 /* RIGHT BOTTOM: scanners */
 .panel-scanner {{
   border: 1px solid #1a2a3a;
@@ -1230,6 +1260,31 @@ header {{ margin-bottom: 20px; }}
   padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a2030; }}
 
 .empty-msg {{ font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }}
+
+/* dispatch footer */
+.dispatch-section {{
+  margin-top: 24px; border-top: 1px solid #181818; padding-top: 16px;
+}}
+.dispatch-label {{
+  font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
+  color: #444; text-transform: uppercase; margin-bottom: 10px;
+}}
+.dispatch-row {{
+  display: flex; gap: 16px; padding: 7px 0; border-bottom: 1px solid #111;
+  text-decoration: none; transition: padding-left 0.12s;
+}}
+.dispatch-row:last-of-type {{ border-bottom: none; }}
+.dispatch-row:hover {{ padding-left: 6px; }}
+.dispatch-date {{ font-size: 11px; color: #444; font-family: 'Courier New', monospace;
+  min-width: 110px; flex-shrink: 0; }}
+.dispatch-title {{ font-size: 12px; color: #888; }}
+.dispatch-row:hover .dispatch-title {{ color: #c9b97a; }}
+.dispatch-all {{
+  display: inline-block; margin-top: 10px;
+  font-size: 11px; color: #444; font-family: 'Courier New', monospace;
+  text-decoration: none; letter-spacing: 0.08em;
+}}
+.dispatch-all:hover {{ color: #c9b97a; }}
 </style>
 </head>
 <body>
@@ -1246,18 +1301,18 @@ header {{ margin-bottom: 20px; }}
 
 <div class="mgp-grid">
 
-  <!-- LEFT: VK Stories + Earnings Whispers -->
+  <!-- LEFT: Macro / Outlook / Calendar -->
+  <div class="panel-macro">
+    <div class="panel-label">Macro · Outlook · Key Names</div>
+    {right_top_body}
+  </div>
+
+  <!-- RIGHT TOP: VK Stories + Earnings Whispers -->
   <div class="panel-left">
     <div class="panel-label">VK · Earnings Whispers</div>
     {left_vk_cards}
     {left_ew_html}
     {left_placeholder}
-  </div>
-
-  <!-- RIGHT TOP: Macro / Outlook / Calendar -->
-  <div class="panel-macro">
-    <div class="panel-label">Macro · Outlook · Key Names</div>
-    {right_top_body}
   </div>
 
   <!-- RIGHT BOTTOM: Scanners + Benzinga -->
@@ -1267,6 +1322,8 @@ header {{ margin-bottom: 20px; }}
   </div>
 
 </div>
+
+{dispatch_html}
 
 {tts_bar_html()}
 

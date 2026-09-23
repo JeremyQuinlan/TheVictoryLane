@@ -68,33 +68,35 @@ header { margin-bottom: 20px; }
 
 .mgp-grid {
   display: grid;
-  grid-template-columns: 55% 1fr;
+  grid-template-columns: 42% 1fr;
   grid-template-rows: auto auto;
   gap: 16px;
   align-items: start;
 }
 @media (max-width: 900px) { .mgp-grid { grid-template-columns: 1fr; } }
 
-/* LEFT: newsletters */
-.panel-left {
-  grid-row: 1 / 3;
-  border: 1px solid #2a1a1a;
-  border-radius: 6px;
-  padding: 16px 18px;
-  background: #0d0a0a;
-}
 .panel-label {
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
   color: #555; margin-bottom: 14px; text-transform: uppercase;
 }
 
-/* RIGHT TOP: macro */
+/* LEFT: macro / outlook / calendar — spans both rows */
 .panel-macro {
+  grid-row: 1 / 3;
   border: 1px solid #1a3a22;
   border-radius: 6px;
   padding: 16px 18px;
   background: #080f0a;
 }
+
+/* RIGHT TOP: newsletters */
+.panel-left {
+  border: 1px solid #2a1a1a;
+  border-radius: 6px;
+  padding: 16px 18px;
+  background: #0d0a0a;
+}
+
 /* RIGHT BOTTOM: scanners */
 .panel-scanner {
   border: 1px solid #1a2a3a;
@@ -159,6 +161,31 @@ header { margin-bottom: 20px; }
   padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a2030; }
 
 .empty-msg { font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }
+
+/* dispatch footer */
+.dispatch-section {
+  margin-top: 24px; border-top: 1px solid #181818; padding-top: 16px;
+}
+.dispatch-label {
+  font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
+  color: #444; text-transform: uppercase; margin-bottom: 10px;
+}
+.dispatch-row {
+  display: flex; gap: 16px; padding: 7px 0; border-bottom: 1px solid #111;
+  text-decoration: none; transition: padding-left 0.12s;
+}
+.dispatch-row:last-of-type { border-bottom: none; }
+.dispatch-row:hover { padding-left: 6px; }
+.dispatch-date { font-size: 11px; color: #444; font-family: 'Courier New', monospace;
+  min-width: 110px; flex-shrink: 0; }
+.dispatch-title { font-size: 12px; color: #888; }
+.dispatch-row:hover .dispatch-title { color: #c9b97a; }
+.dispatch-all {
+  display: inline-block; margin-top: 10px;
+  font-size: 11px; color: #444; font-family: 'Courier New', monospace;
+  text-decoration: none; letter-spacing: 0.08em;
+}
+.dispatch-all:hover { color: #c9b97a; }
 </style>
 </head>
 <body>
@@ -170,12 +197,28 @@ header { margin-bottom: 20px; }
 
 <header>
   <div class="mgp-title">Morning Game Plan</div>
-  <div class="mgp-date">Wednesday, September 23, 2026 &nbsp;·&nbsp; Updated Sep 23, 2026 · 12:36 PM ET</div>
+  <div class="mgp-date">Wednesday, September 23, 2026 &nbsp;·&nbsp; Updated Sep 23, 2026 · 12:46 PM ET</div>
 </header>
 
 <div class="mgp-grid">
 
-  <!-- LEFT: VK Stories + Earnings Whispers -->
+  <!-- LEFT: Macro / Outlook / Calendar -->
+  <div class="panel-macro">
+    <div class="panel-label">Macro · Outlook · Key Names</div>
+    <div class="section-head">Macro · Rates</div>
+<div class="prose-block">
+<p>The newsletter focuses on pre-market company-specific earnings and analyst meeting news for Wednesday, September 23, 2026. No broad index moves or overnight macro context were provided in this edition. Risk tone is driven primarily by individual stock catalysts rather than macro factors.</p>
+
+</div>
+<div class="section-head">Market Outlook</div>
+<div class="prose-block"><p>No explicit directional market outlook was provided by Adam in this edition. The focus is on earnings results from CBRL, GIS, MANU, and MCD, with the key catalyst to watch being McDonald's analyst meeting and its 2030 financial targets unveiled today.</p></div>
+<div class="section-head">Sector Watch</div>
+<div class="prose-block"><p>Food-focused consumer staples (GIS) face persistent cyclical and secular headwinds despite a modestly better FQ1 print; sector sentiment likely remains gloomy. Restaurant sector (MCD, CBRL) sees mixed signals — Cracker Barrel strongly outperforms while McDonald's analyst day targets beat on margins but signal heavier capex spend ahead.</p></div>
+<div class="section-head">Calendar</div>
+<div class="cal-row"><div class="cal-group"><div class="cal-label">EARNINGS TODAY</div><div class="cal-item">CBRL BMO</div><div class="cal-item">GIS BMO</div><div class="cal-item">MANU BMO</div><div class="cal-item">MCD BMO</div></div><div class="cal-group"><div class="cal-label">KEY DATES</div><div class="cal-item">Sep 23 — MCD Analyst Meeting (today)</div></div></div>
+  </div>
+
+  <!-- RIGHT TOP: VK Stories + Earnings Whispers -->
   <div class="panel-left">
     <div class="panel-label">VK · Earnings Whispers</div>
     <div class="company-card">
@@ -217,22 +260,6 @@ header { margin-bottom: 20px; }
 
     
     
-  </div>
-
-  <!-- RIGHT TOP: Macro / Outlook / Calendar -->
-  <div class="panel-macro">
-    <div class="panel-label">Macro · Outlook · Key Names</div>
-    <div class="section-head">Macro · Rates</div>
-<div class="prose-block">
-<p>The newsletter focuses on pre-market company-specific earnings and analyst meeting news for Wednesday, September 23, 2026. No broad index moves or overnight macro context were provided in this edition. Risk tone is driven primarily by individual stock catalysts rather than macro factors.</p>
-
-</div>
-<div class="section-head">Market Outlook</div>
-<div class="prose-block"><p>No explicit directional market outlook was provided by Adam in this edition. The focus is on earnings results from CBRL, GIS, MANU, and MCD, with the key catalyst to watch being McDonald's analyst meeting and its 2030 financial targets unveiled today.</p></div>
-<div class="section-head">Sector Watch</div>
-<div class="prose-block"><p>Food-focused consumer staples (GIS) face persistent cyclical and secular headwinds despite a modestly better FQ1 print; sector sentiment likely remains gloomy. Restaurant sector (MCD, CBRL) sees mixed signals — Cracker Barrel strongly outperforms while McDonald's analyst day targets beat on margins but signal heavier capex spend ahead.</p></div>
-<div class="section-head">Calendar</div>
-<div class="cal-row"><div class="cal-group"><div class="cal-label">EARNINGS TODAY</div><div class="cal-item">CBRL BMO</div><div class="cal-item">GIS BMO</div><div class="cal-item">MANU BMO</div><div class="cal-item">MCD BMO</div></div><div class="cal-group"><div class="cal-label">KEY DATES</div><div class="cal-item">Sep 23 — MCD Analyst Meeting (today)</div></div></div>
   </div>
 
   <!-- RIGHT BOTTOM: Scanners + Benzinga -->
@@ -458,6 +485,13 @@ header { margin-bottom: 20px; }
 
 </div>
 
+<div class="dispatch-section">
+  <div class="dispatch-label">Recent Dispatches</div>
+  <a class="dispatch-row" href="mid-day-update-wednesday-september-23-2026.html"><span class="dispatch-date">Sep 23, 2026 · 11:04 AM ET</span><span class="dispatch-title">Mid-Day Update · Wednesday
+ September 23, 2026</span></a><a class="dispatch-row" href="flash-pmis-are-too-strong-for-stocks.html"><span class="dispatch-date">Sep 23, 2026 · 09:53 AM ET</span><span class="dispatch-title">Flash PMIs are too strong for stocks</span></a><a class="dispatch-row" href="company-specific-news-for-wed-9-23-bmo-cbrl-gis-manu-mcd.html"><span class="dispatch-date">Sep 23, 2026 · 08:12 AM ET</span><span class="dispatch-title">Company-specific news for Wed 9/23 (BMO) - CBRL, GIS, MANU, MCD</span></a><a class="dispatch-row" href="morning-intelligentsia-wednesday-september-23-2026.html"><span class="dispatch-date">Sep 23, 2026 · 05:21 AM ET</span><span class="dispatch-title">Morning Intelligentsia · Wednesday September 23, 2026</span></a><a class="dispatch-row" href="earnings-preview-september-22-2026.html"><span class="dispatch-date">Sep 22, 2026 · 06:26 PM ET</span><span class="dispatch-title">Earnings Preview · September 22, 2026</span></a>
+  <a class="dispatch-all" href="archive.html">View all &rarr;</a>
+</div>
+
 <div id="tts-bar">
   <button id="btn-play" onclick="togglePlay()">&#9654; Play</button>
   <button class="skip" onclick="skipBack()">&#8592; 10s</button>
@@ -469,7 +503,7 @@ header { margin-bottom: 20px; }
     <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
     <span id="speed-val">1.3x</span>
   </div>
-  <span id="tts-status">Ready &mdash; auto-starting...</span>
+  <span id="tts-status">Ready</span>
   <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
 </div>
 
@@ -651,8 +685,7 @@ header { margin-bottom: 20px; }
 
   window.addEventListener("load", () => {
     updateNotifyBtn();
-    if (isIOS) setStatus("Tap Play to start");
-    else setTimeout(() => speakFrom(0), 1800);
+    setStatus("Ready");
   });
   window.addEventListener("pagehide", () => window.speechSynthesis.cancel());
   window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });

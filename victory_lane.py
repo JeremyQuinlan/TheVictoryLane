@@ -541,7 +541,7 @@ def read_scanner_csvs(csv_dir):
                         "price":     _safe_float(row.get("Price") or row.get("price")),
                         "chg_close": _safe_float(row.get("Change from the Close") or row.get("Chg Close")),
                         "vol_today": _safe_float(row.get("Volume Today") or row.get("Vol Today")),
-                        "rel_vol":   _safe_float(row.get("Relative Volume") or row.get("Rel Vol")),
+                        "rel_vol":   _safe_float(row.get("Vol Today (%)") or row.get("Vol Today") or row.get("Turnover") or row.get("Relative Volume") or row.get("Rel Vol")),
                         "chg_20d":   _safe_float(row.get("Change from 20 Day SMA") or row.get("Chg 20 Day")),
                         "chg_50d":   _safe_float(row.get("Change from 50 Day SMA") or row.get("Chg 50 Day")),
                         "chg_200d":  _safe_float(row.get("Change from 200 Day SMA") or row.get("Chg 200 Day")),
@@ -1180,7 +1180,7 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, a
         # Header row
         header_html = """<div class="scanner-row scanner-header">
   <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-rvol">VOL%</span>
   <span class="sc-chg">CHG</span>
   <span class="sc-price">PRICE</span>
 </div>"""
@@ -1192,8 +1192,8 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, a
             chg     = f"{r['chg_close']:+.1f}%"   if r["chg_close"] is not None else "—"
             # Convert relative volume multiplier to percentage (e.g. 4.5x → +350%)
             if r.get("rel_vol") is not None:
-                rv_pct = (r["rel_vol"] - 1) * 100
-                rel_vol = f"+{rv_pct:.0f}%" if rv_pct >= 0 else f"{rv_pct:.0f}%"
+                rv = r["rel_vol"]
+                rel_vol = f"+{rv:.0f}%" if rv >= 0 else f"{rv:.0f}%"
             else:
                 rel_vol = "—"
             chg_cls = "sc-up" if (r["chg_close"] or 0) >= 0 else "sc-dn"

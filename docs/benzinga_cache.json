@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-22",
+  "date": "2026-09-23",
   "data": {
     "VKTX": [
       {
@@ -13,39 +13,6 @@
           "news",
           "commodities",
           "eurozone"
-        ],
-        "beat": null
-      },
-      {
-        "published": "2026-09-22T18:15",
-        "title": "Nasdaq 100 Flirts with Records, Oil Sinks for Fifth Day: Stock Market Today",
-        "teaser": "Nasdaq 100 printed an intraday record on AI enthusiasm while financials slid nearly 2% and crude fell for a fifth straight session.",
-        "channels": [
-          "tech",
-          "trading ideas",
-          "movers",
-          "etfs",
-          "sector etfs",
-          "broad u.s. equity etfs",
-          "bonds",
-          "earnings",
-          "economics",
-          "treasuries",
-          "econ #s",
-          "commodities",
-          "top stories",
-          "large cap",
-          "macro economic events",
-          "equities"
-        ],
-        "beat": null
-      },
-      {
-        "published": "2026-09-22T17:06",
-        "title": "12 Health Care Stocks Moving In Tuesday&#39;s Intraday Session",
-        "teaser": "Gainers\n\nJaguar Health (NASDAQ:JAGX) stock increased by 304.5% to $10.8 during Tuesday&#39;s regular session. The company&#39;s market cap stands at $1.1 million. \nGreenland Mines (NASDAQ:GRML) shares",
-        "channels": [
-          "movers"
         ],
         "beat": null
       },
@@ -161,15 +128,6 @@
           "general",
           "biotech",
           "health care"
-        ],
-        "beat": null
-      },
-      {
-        "published": "2026-09-22T17:06",
-        "title": "12 Health Care Stocks Moving In Tuesday&#39;s Intraday Session",
-        "teaser": "Gainers\n\nJaguar Health (NASDAQ:JAGX) stock increased by 304.5% to $10.8 during Tuesday&#39;s regular session. The company&#39;s market cap stands at $1.1 million. \nGreenland Mines (NASDAQ:GRML) shares",
-        "channels": [
-          "movers"
         ],
         "beat": null
       },
@@ -313,15 +271,6 @@
         "beat": null
       },
       {
-        "published": "2026-09-22T17:06",
-        "title": "12 Industrials Stocks Moving In Tuesday&#39;s Intraday Session",
-        "teaser": "Gainers\n\nZeo Energy (NASDAQ:ZEO) stock rose 38.6% to $0.43 during Tuesday&#39;s regular session. The market value of their outstanding shares is at $13.0 million. \nQuanome Technologies (NASDAQ:QNME) s",
-        "channels": [
-          "movers"
-        ],
-        "beat": null
-      },
-      {
         "published": "2026-09-22T14:01",
         "title": "Quanome Stock Soars 80% After Agreeing to Buy 32 GPU Servers",
         "teaser": "Quanome Technologies shares are trading higher Tuesday after it announced an agreement to purchase 32 GPU servers from Compal Electronics.",
@@ -343,15 +292,6 @@
           "news",
           "eurozone",
           "equities"
-        ],
-        "beat": null
-      },
-      {
-        "published": "2026-09-22T12:06",
-        "title": "12 Industrials Stocks Moving In Tuesday&#39;s Pre-Market Session",
-        "teaser": "Gainers\n\nQuanome Technologies (NASDAQ:QNME) shares moved upwards by 131.4% to $1.48 during Tuesday&#39;s pre-market session. The company&#39;s market cap stands at $22.0 million. \nFBS Global (NASDAQ:F",
-        "channels": [
-          "movers"
         ],
         "beat": null
       }
@@ -377,15 +317,6 @@
           "news",
           "commodities",
           "eurozone"
-        ],
-        "beat": null
-      },
-      {
-        "published": "2026-09-22T17:06",
-        "title": "12 Health Care Stocks Moving In Tuesday&#39;s Intraday Session",
-        "teaser": "Gainers\n\nJaguar Health (NASDAQ:JAGX) stock increased by 304.5% to $10.8 during Tuesday&#39;s regular session. The company&#39;s market cap stands at $1.1 million. \nGreenland Mines (NASDAQ:GRML) shares",
-        "channels": [
-          "movers"
         ],
         "beat": null
       },
@@ -426,28 +357,6 @@
         "beat": null
       },
       {
-        "published": "2026-09-22T12:06",
-        "title": "10 Energy Stocks Moving In Tuesday&#39;s Pre-Market Session",
-        "teaser": "Gainers\n\nTOP Ships (AMEX:TOPS) shares rose 82.5% to $1.31 during Tuesday&#39;s pre-market session. The company&#39;s market cap stands at $3.9 million. As per the news, the H1 earnings report came out",
-        "channels": [
-          "movers"
-        ],
-        "beat": null
-      },
-      {
-        "published": "2026-09-22T09:30",
-        "title": "Why Vicor Shares Are Trading Higher By Over 11%; Here Are 20 Stocks Moving Premarket",
-        "teaser": "Vicor jumped 11% premarket after raising Q3 growth guidance above 20%; TOPS, FBGL and QNME led other gainers.",
-        "channels": [
-          "markets",
-          "trading ideas",
-          "pre-market outlook",
-          "movers",
-          "news"
-        ],
-        "beat": null
-      },
-      {
         "published": "2026-09-22T04:24",
         "title": "TOP Ships (TOPS) Stock Rockets 67% After-Hours: Why Is It Moving?",
         "teaser": "TOP Ships shares rallied 67.13% after hours Monday after closing 0.84% higher, as an SEC filing highlighted changes in insider ownership.",
@@ -465,30 +374,6 @@
       }
     ],
     "VICR": [
-      {
-        "published": "2026-09-22T18:15",
-        "title": "Nasdaq 100 Flirts with Records, Oil Sinks for Fifth Day: Stock Market Today",
-        "teaser": "Nasdaq 100 printed an intraday record on AI enthusiasm while financials slid nearly 2% and crude fell for a fifth straight session.",
-        "channels": [
-          "tech",
-          "trading ideas",
-          "movers",
-          "etfs",
-          "sector etfs",
-          "broad u.s. equity etfs",
-          "bonds",
-          "earnings",
-          "economics",
-          "treasuries",
-          "econ #s",
-          "commodities",
-          "top stories",
-          "large cap",
-          "macro economic events",
-          "equities"
-        ],
-        "beat": null
-      },
       {
         "published": "2026-09-22T17:31",
         "title": "Roth Capital Reiterates Buy on Vicor, Maintains $375 Price Target",

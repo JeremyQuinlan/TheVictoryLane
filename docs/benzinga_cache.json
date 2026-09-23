@@ -1,4 +1,720 @@
 {
   "date": "2026-09-22",
-  "data": {}
+  "data": {
+    "VKTX": [
+      {
+        "published": "2026-09-22T18:26",
+        "title": "Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results",
+        "teaser": "U.S. stocks were mixed: Nasdaq and S&amp;P 500 rose while the Dow fell; communication services gained, financials dropped, and Thor Industries climbed 5%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "commodities",
+          "eurozone"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T18:15",
+        "title": "Nasdaq 100 Flirts with Records, Oil Sinks for Fifth Day: Stock Market Today",
+        "teaser": "Nasdaq 100 printed an intraday record on AI enthusiasm while financials slid nearly 2% and crude fell for a fifth straight session.",
+        "channels": [
+          "tech",
+          "trading ideas",
+          "movers",
+          "etfs",
+          "sector etfs",
+          "broad u.s. equity etfs",
+          "bonds",
+          "earnings",
+          "economics",
+          "treasuries",
+          "econ #s",
+          "commodities",
+          "top stories",
+          "large cap",
+          "macro economic events",
+          "equities"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:06",
+        "title": "12 Health Care Stocks Moving In Tuesday&#39;s Intraday Session",
+        "teaser": "Gainers\n\nJaguar Health (NASDAQ:JAGX) stock increased by 304.5% to $10.8 during Tuesday&#39;s regular session. The company&#39;s market cap stands at $1.1 million. \nGreenland Mines (NASDAQ:GRML) shares",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T14:25",
+        "title": "On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday",
+        "teaser": "U.S. stocks rose, led by On Holding&#39;s 13% surge after strong guidance and a $1B buyback; Viking Therapeutics and others also gained.",
+        "channels": [],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T13:17",
+        "title": "Weight Loss Drug: Viking Therapeutics Says Lead Obesity Drug Shows Weight Retention with Less Frequent Dosing",
+        "teaser": "Viking Therapeutics reports positive VK2735 study results showing effective weight maintenance with monthly and biweekly dosing regimens.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news",
+          "general",
+          "biotech",
+          "top stories",
+          "health care",
+          "large cap"
+        ],
+        "beat": null
+      }
+    ],
+    "CLDX": [
+      {
+        "published": "2026-09-22T18:26",
+        "title": "Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results",
+        "teaser": "U.S. stocks were mixed: Nasdaq and S&amp;P 500 rose while the Dow fell; communication services gained, financials dropped, and Thor Industries climbed 5%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "commodities",
+          "eurozone"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T16:25",
+        "title": "Celldex Prepares For 2027 FDA Submission for Chronic Skin Disease",
+        "teaser": "Celldex posts positive Phase 3 data for barzolvolimab to treat chronic spontaneous urticaria. The company plans a 2027 FDA submission.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news",
+          "general",
+          "biotech",
+          "health care"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T16:11",
+        "title": "HC Wainwright &amp; Co. Maintains Buy on Celldex Therapeutics, Raises Price Target to $64",
+        "teaser": "HC Wainwright &amp; Co.  analyst Joseph Pantginis   maintains Celldex Therapeutics (NASDAQ:CLDX) with a Buy and raises the price target from $42 to $64.",
+        "channels": [
+          "analyst ratings",
+          "news",
+          "price target"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T15:33",
+        "title": "Cantor Fitzgerald Maintains Overweight on Celldex Therapeutics, Raises Price Target to $72",
+        "teaser": "Cantor Fitzgerald  analyst Kristen Kluska   maintains Celldex Therapeutics (NASDAQ:CLDX) with a Overweight and raises the price target from $61 to $72.",
+        "channels": [
+          "analyst ratings",
+          "news",
+          "price target"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T12:06",
+        "title": "12 Health Care Stocks Moving In Tuesday&#39;s Pre-Market Session",
+        "teaser": "Gainers\n\nDecoy Therapeutics (NASDAQ:DCOY) shares rose 84.0% to $4.71 during Tuesday&#39;s pre-market session. The company&#39;s market cap stands at $1.6 million. \nGreenland Mines (NASDAQ:GRML) shares",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      }
+    ],
+    "CMPX": [
+      {
+        "published": "2026-09-22T18:26",
+        "title": "Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results",
+        "teaser": "U.S. stocks were mixed: Nasdaq and S&amp;P 500 rose while the Dow fell; communication services gained, financials dropped, and Thor Industries climbed 5%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "commodities",
+          "eurozone"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T18:02",
+        "title": "Compass Therapeutics Craters, FDA Pushes Survival-Trial Demand for Cancer Drug",
+        "teaser": "Compass Therapeutics shares plunge after FDA seeks a survival-benefit trial before tovecimig’s FDA marketing application.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news",
+          "fda",
+          "general",
+          "biotech",
+          "health care"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:06",
+        "title": "12 Health Care Stocks Moving In Tuesday&#39;s Intraday Session",
+        "teaser": "Gainers\n\nJaguar Health (NASDAQ:JAGX) stock increased by 304.5% to $10.8 during Tuesday&#39;s regular session. The company&#39;s market cap stands at $1.1 million. \nGreenland Mines (NASDAQ:GRML) shares",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T13:43",
+        "title": "Dow Gains Over 100 Points; AutoZone Posts Upbeat Earnings",
+        "teaser": "U.S. stocks rose Tuesday: Dow +0.24%, Nasdaq +0.39%, S&amp;P 500 +0.18%. Communication services led; energy fell. AutoZone beat earnings; oil dropped 2.4%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "eurozone",
+          "equities"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T12:32",
+        "title": "Compass Therapeutics Says FDA Recommended Survival Benefit Trial Before Tovecimig Approval Filing In Biliary Tract Cancer; Company Says New Trial Not Warranted",
+        "teaser": "",
+        "channels": [
+          "fda",
+          "news"
+        ],
+        "beat": null
+      }
+    ],
+    "INOD": [
+      {
+        "published": "2026-09-22T18:54",
+        "title": "Watching Innodata; Hunterbrook Media Issues Report Titled, “Meta&#39;s Muse Could Be Big Win For Innodata.”; States Hunterbrook Capital Is Long $INOD",
+        "teaser": "https://hntrbrk.com/breaking-news/innodata-muse",
+        "channels": [
+          "news",
+          "analyst ratings",
+          "trading ideas"
+        ],
+        "beat": null
+      }
+    ],
+    "BFLY": [
+      {
+        "published": "2026-09-22T16:10",
+        "title": "Butterfly Network Stock Soars After Needham Initiates Buy",
+        "teaser": "Butterfly Network Inc (NYSE:BFLY) shares are soaring Tuesday after Needham initiated coverage on the stock with a Buy rating and a $10 price target. Here&#39;s what you should know.",
+        "channels": [
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T14:25",
+        "title": "On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday",
+        "teaser": "U.S. stocks rose, led by On Holding&#39;s 13% surge after strong guidance and a $1B buyback; Viking Therapeutics and others also gained.",
+        "channels": [],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T10:58",
+        "title": "Needham Initiates Coverage On Butterfly Network with Buy Rating, Announces Price Target of $10",
+        "teaser": "Needham  analyst David Saxon   initiates coverage on Butterfly Network (NYSE:BFLY) with a Buy rating and announces Price Target of $10.",
+        "channels": [
+          "analyst ratings",
+          "news",
+          "initiation",
+          "price target"
+        ],
+        "beat": null
+      }
+    ],
+    "LHSW": [
+      {
+        "published": "2026-09-22T21:06",
+        "title": "12 Information Technology Stocks Moving In Tuesday&#39;s After-Market Session",
+        "teaser": "Gainers\n\nLocafy (NASDAQ:LCFY) shares increased by 12.4% to $2.62 during Tuesday&#39;s after-market session. The company&#39;s market cap stands at $2.9 million. \nIonQ (NYSE:IONQ) shares increased by 8",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:43",
+        "title": "Lianhe Sowell Expands Automotive Aftermarket Reach, Shares Surge Over 100%",
+        "teaser": "Lianhe Sowell inks deal with Kumquat Technology to expand intelligent automotive aftermarket solutions across China.",
+        "channels": [
+          "movers",
+          "news",
+          "small cap",
+          "equities"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T13:43",
+        "title": "Dow Gains Over 100 Points; AutoZone Posts Upbeat Earnings",
+        "teaser": "U.S. stocks rose Tuesday: Dow +0.24%, Nasdaq +0.39%, S&amp;P 500 +0.18%. Communication services led; energy fell. AutoZone beat earnings; oil dropped 2.4%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "eurozone",
+          "equities"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T12:06",
+        "title": "12 Information Technology Stocks Moving In Tuesday&#39;s Pre-Market Session",
+        "teaser": "Gainers\n\nLianhe Sowell Intl (NASDAQ:LHSW) stock increased by 26.8% to $0.55 during Tuesday&#39;s pre-market session. The company&#39;s market cap stands at $5.8 million. \n3 E Network (NASDAQ:MASK) sto",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T12:05",
+        "title": "Lianhe Sowell Enters Into Strategic Cooperation Agreement With Kumquat Technology To Promote Intelligent Equipment Solutions Across China’s Automotive Aftermarket",
+        "teaser": "Lianhe Sowell International Group Ltd (NASDAQ:LHSW) (the &#34;Company&#34;), a provider of industrial machine vision products and solutions in China, today announced that it has entered into a strateg",
+        "channels": [
+          "news"
+        ],
+        "beat": null
+      }
+    ],
+    "QNME": [
+      {
+        "published": "2026-09-22T18:26",
+        "title": "Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results",
+        "teaser": "U.S. stocks were mixed: Nasdaq and S&amp;P 500 rose while the Dow fell; communication services gained, financials dropped, and Thor Industries climbed 5%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "commodities",
+          "eurozone"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:06",
+        "title": "12 Industrials Stocks Moving In Tuesday&#39;s Intraday Session",
+        "teaser": "Gainers\n\nZeo Energy (NASDAQ:ZEO) stock rose 38.6% to $0.43 during Tuesday&#39;s regular session. The market value of their outstanding shares is at $13.0 million. \nQuanome Technologies (NASDAQ:QNME) s",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T14:01",
+        "title": "Quanome Stock Soars 80% After Agreeing to Buy 32 GPU Servers",
+        "teaser": "Quanome Technologies shares are trading higher Tuesday after it announced an agreement to purchase 32 GPU servers from Compal Electronics.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T13:43",
+        "title": "Dow Gains Over 100 Points; AutoZone Posts Upbeat Earnings",
+        "teaser": "U.S. stocks rose Tuesday: Dow +0.24%, Nasdaq +0.39%, S&amp;P 500 +0.18%. Communication services led; energy fell. AutoZone beat earnings; oil dropped 2.4%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "eurozone",
+          "equities"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T12:06",
+        "title": "12 Industrials Stocks Moving In Tuesday&#39;s Pre-Market Session",
+        "teaser": "Gainers\n\nQuanome Technologies (NASDAQ:QNME) shares moved upwards by 131.4% to $1.48 during Tuesday&#39;s pre-market session. The company&#39;s market cap stands at $22.0 million. \nFBS Global (NASDAQ:F",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      }
+    ],
+    "DCOY": [
+      {
+        "published": "2026-09-22T21:06",
+        "title": "12 Health Care Stocks Moving In Tuesday&#39;s After-Market Session",
+        "teaser": "Gainers\n\nJaguar Health (NASDAQ:JAGX) shares moved upwards by 32.2% to $45.56 during Tuesday&#39;s after-market session. The company&#39;s market cap stands at $1.1 million. \nBullfrog AI Hldgs (NASDAQ:",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T18:26",
+        "title": "Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results",
+        "teaser": "U.S. stocks were mixed: Nasdaq and S&amp;P 500 rose while the Dow fell; communication services gained, financials dropped, and Thor Industries climbed 5%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "commodities",
+          "eurozone"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:06",
+        "title": "12 Health Care Stocks Moving In Tuesday&#39;s Intraday Session",
+        "teaser": "Gainers\n\nJaguar Health (NASDAQ:JAGX) stock increased by 304.5% to $10.8 during Tuesday&#39;s regular session. The company&#39;s market cap stands at $1.1 million. \nGreenland Mines (NASDAQ:GRML) shares",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T16:54",
+        "title": "Decoy Therapeutics To Exercise 1,184,434 Series B Warrants At $3.25/Share for ~$3.85M; Cuts Series A &amp; C Warrant Prices To $3.25 And Issues 2,368,868 New Warrants At $3.25/Share",
+        "teaser": "Decoy Therapeutics, Inc. (NASDAQ:DCOY) (&#34;the Company&#34; or &#34;Decoy&#34;), a biotechnology company pioneering Designable Multi-Antivirals (D-MAVs™), a new category of antivirals engineered to ",
+        "channels": [
+          "offerings",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T13:43",
+        "title": "Dow Gains Over 100 Points; AutoZone Posts Upbeat Earnings",
+        "teaser": "U.S. stocks rose Tuesday: Dow +0.24%, Nasdaq +0.39%, S&amp;P 500 +0.18%. Communication services led; energy fell. AutoZone beat earnings; oil dropped 2.4%.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "intraday update",
+          "news",
+          "eurozone",
+          "equities"
+        ],
+        "beat": null
+      }
+    ],
+    "TOPS": [
+      {
+        "published": "2026-09-22T14:28",
+        "title": "TOP Ships Stock Loses Steam After Management Comments",
+        "teaser": "TOP Ships Inc. (NYSE:TOPS) shares are pulling back after a strong surge in after-hours trading Monday. The company issued a statement on the unusual trading activity Tuesday morning.",
+        "channels": [
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T12:06",
+        "title": "10 Energy Stocks Moving In Tuesday&#39;s Pre-Market Session",
+        "teaser": "Gainers\n\nTOP Ships (AMEX:TOPS) shares rose 82.5% to $1.31 during Tuesday&#39;s pre-market session. The company&#39;s market cap stands at $3.9 million. As per the news, the H1 earnings report came out",
+        "channels": [
+          "movers"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T09:30",
+        "title": "Why Vicor Shares Are Trading Higher By Over 11%; Here Are 20 Stocks Moving Premarket",
+        "teaser": "Vicor jumped 11% premarket after raising Q3 growth guidance above 20%; TOPS, FBGL and QNME led other gainers.",
+        "channels": [
+          "markets",
+          "trading ideas",
+          "pre-market outlook",
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T04:24",
+        "title": "TOP Ships (TOPS) Stock Rockets 67% After-Hours: Why Is It Moving?",
+        "teaser": "TOP Ships shares rallied 67.13% after hours Monday after closing 0.84% higher, as an SEC filing highlighted changes in insider ownership.",
+        "channels": [
+          "markets",
+          "after-hours center",
+          "movers &amp; shakers",
+          "news",
+          "general",
+          "small cap",
+          "sec",
+          "equities"
+        ],
+        "beat": null
+      }
+    ],
+    "VICR": [
+      {
+        "published": "2026-09-22T18:15",
+        "title": "Nasdaq 100 Flirts with Records, Oil Sinks for Fifth Day: Stock Market Today",
+        "teaser": "Nasdaq 100 printed an intraday record on AI enthusiasm while financials slid nearly 2% and crude fell for a fifth straight session.",
+        "channels": [
+          "tech",
+          "trading ideas",
+          "movers",
+          "etfs",
+          "sector etfs",
+          "broad u.s. equity etfs",
+          "bonds",
+          "earnings",
+          "economics",
+          "treasuries",
+          "econ #s",
+          "commodities",
+          "top stories",
+          "large cap",
+          "macro economic events",
+          "equities"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:31",
+        "title": "Roth Capital Reiterates Buy on Vicor, Maintains $375 Price Target",
+        "teaser": "Roth Capital  analyst Justin Clare   reiterates Vicor (NASDAQ:VICR) with a Buy and maintains $375 price target.",
+        "channels": [
+          "analyst ratings",
+          "news",
+          "reiteration",
+          "price target"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T14:25",
+        "title": "On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday",
+        "teaser": "U.S. stocks rose, led by On Holding&#39;s 13% surge after strong guidance and a $1B buyback; Viking Therapeutics and others also gained.",
+        "channels": [],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T11:27",
+        "title": "Needham Reiterates Buy on Vicor, Maintains $320 Price Target",
+        "teaser": "Needham  analyst N. Quinn Bolton   reiterates Vicor (NASDAQ:VICR) with a Buy and maintains $320 price target.",
+        "channels": [
+          "analyst ratings",
+          "news",
+          "reiteration",
+          "price target"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T11:16",
+        "title": "Market-Moving News for September 22nd",
+        "teaser": "VICR: 13% | Vicor shares are trading higher after the company raised its Q3 revenue guidance. VKTX: 38% | Viking Therapeutics Announces Top-line Results From Maintenance Study Of VK2735, A Dual Agonis",
+        "channels": [
+          "movers",
+          "trading ideas"
+        ],
+        "beat": null
+      }
+    ],
+    "SHOP": [
+      {
+        "published": "2026-09-22T18:43",
+        "title": "Intuit Stock Slides Amid Meta&#39;s AI Collaboration Uncertainty",
+        "teaser": "Intuit shares are trading lower Tuesday amid concerns Meta&#39;s Muse AI agent could disrupt legacy software offerings.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:56",
+        "title": "JPMorgan Stock Slips as Traders Shift to Tech Sector",
+        "teaser": "JPMorgan Chase shares are sliding Tuesday amid a broad financial sector selloff as investors rotate into tech stocks.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T16:59",
+        "title": "Commodity ETF Delivers Double Nvidia’s YTD Returns; Muse Ignites CPU Fever",
+        "teaser": "\n\n\n\nCPU Fever\n\n\n\nPlease click here for an enlarged chart comparing NVIDIA Corp (NASDAQ:NVDA) and Invesco Optimum Yield Diversified Commodity Strategy No K-1 ETF (PDBC)\n\n\n\nNote the following:\n\n\n\n\nThe c",
+        "channels": [
+          "opinion",
+          "market summary"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T14:25",
+        "title": "On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday",
+        "teaser": "U.S. stocks rose, led by On Holding&#39;s 13% surge after strong guidance and a $1B buyback; Viking Therapeutics and others also gained.",
+        "channels": [],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T12:03",
+        "title": "Why Is Shopify Stock Surging on Tuesday?",
+        "teaser": "Shopify Inc. stock gained Tuesday after announcing a partnership with Meta Platforms, Inc. to enable AI-powered shopping and checkout through Meta’s Muse assistant.",
+        "channels": [
+          "markets",
+          "movers",
+          "news",
+          "top stories",
+          "equities"
+        ],
+        "beat": null
+      }
+    ],
+    "PYPL": [
+      {
+        "published": "2026-09-22T18:43",
+        "title": "Intuit Stock Slides Amid Meta&#39;s AI Collaboration Uncertainty",
+        "teaser": "Intuit shares are trading lower Tuesday amid concerns Meta&#39;s Muse AI agent could disrupt legacy software offerings.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:56",
+        "title": "JPMorgan Stock Slips as Traders Shift to Tech Sector",
+        "teaser": "JPMorgan Chase shares are sliding Tuesday amid a broad financial sector selloff as investors rotate into tech stocks.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:23",
+        "title": "PayPal Stock Is Rising: What&#39;s Going On Today?",
+        "teaser": "PayPal Holdings Inc (NASDAQ:PYPL) shares are trading higher Tuesday. The company announced a partnership with Meta that will let customers shop and check out using Meta&#39;s Muse personal AI agent ac",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T16:45",
+        "title": "PayPal Collaborates With Meta For Clients To Shop, Check Out Through Muse Personal AI Agents",
+        "teaser": "https://x.com/PayPal/status/2102412767307194786",
+        "channels": [
+          "news"
+        ],
+        "beat": null
+      }
+    ],
+    "CSCO": [
+      {
+        "published": "2026-09-22T18:04",
+        "title": "Cisco Stock Falls as Piper Sandler Cuts Price Target",
+        "teaser": "Cisco Systems shares are trading lower Tuesday after Piper Sandler lowered its price target on the stock while maintaining a Neutral rating.",
+        "channels": [
+          "trading ideas",
+          "movers",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T17:38",
+        "title": "Unconfirmed Social Media Reports Suggest The ShinyHunters Hacking Group Claims To Have Breached The FBI, Stating The Attack Is &#34;Not Financially Motivated.&#34; The FBI Has Not Yet Commented.",
+        "teaser": "",
+        "channels": [
+          "news",
+          "macro economic events",
+          "economics",
+          "politics",
+          "general",
+          "rumors"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T16:09",
+        "title": "Piper Sandler Maintains Neutral on Cisco Systems, Lowers Price Target to $125",
+        "teaser": "Piper Sandler  analyst James Fish   maintains Cisco Systems (NASDAQ:CSCO) with a Neutral and lowers the price target from $132 to $125.",
+        "channels": [
+          "analyst ratings",
+          "news",
+          "price target",
+          "hot"
+        ],
+        "beat": null
+      }
+    ],
+    "BABA": [
+      {
+        "published": "2026-09-22T16:59",
+        "title": "Commodity ETF Delivers Double Nvidia’s YTD Returns; Muse Ignites CPU Fever",
+        "teaser": "\n\n\n\nCPU Fever\n\n\n\nPlease click here for an enlarged chart comparing NVIDIA Corp (NASDAQ:NVDA) and Invesco Optimum Yield Diversified Commodity Strategy No K-1 ETF (PDBC)\n\n\n\nNote the following:\n\n\n\n\nThe c",
+        "channels": [
+          "opinion",
+          "market summary"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T15:23",
+        "title": "Alibaba Debuts AI Chip, Challenges Nvidia With Triple Processing Power",
+        "teaser": "Alibaba stock climbs as the tech giant debuts its Zhenwu V900 AI chip and plans 20 gigawatts of global data center capacity.",
+        "channels": [
+          "media",
+          "tech",
+          "news"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T13:36",
+        "title": "Sovereign AI Isn’t so Sovereign: Meta’s Llama Powers 38% of Adapted Models",
+        "teaser": "Counterpoint Research finds Meta&#39;s Llama drives 38% of adapted sovereign AI models worldwide, topping rivals like Qwen and Mistral.",
+        "channels": [
+          "tech",
+          "news",
+          "analyst color",
+          "top stories"
+        ],
+        "beat": null
+      },
+      {
+        "published": "2026-09-22T08:04",
+        "title": "Alibaba Just Supercharged its AI Ambitions: New Zhenwu V900 AI Chip Promises 3X Performance, Targets 20GW Data Center Expansion by 2032",
+        "teaser": "Alibaba unveils its Zhenwu V900 AI chip and plans to expand global data center capacity to over 20GW by 2032.",
+        "channels": [
+          "markets",
+          "tech",
+          "news",
+          "asia",
+          "large cap"
+        ],
+        "beat": null
+      }
+    ]
+  }
 }

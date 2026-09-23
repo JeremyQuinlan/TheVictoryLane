@@ -62,14 +62,16 @@ EMAIL_SOURCES = [
 SITE_NAME = "The Victory Lane"
 
 # ── Scanner name patterns → display label ──
+# Keys are substrings matched against CSV filename (lowercase).
+# ORDER HERE = display order on the dashboard.
 SCANNER_LABELS = {
     "changing": "Changing Fundamentals",
-    "usual":    "Usual Suspects Volume",
     "premarket":"Premarket Volume",
     "high":     "High PM AVOL",
-    "low float":"Low Floats & Small Caps",
-    "gapper":   "Gappers",
+    "low":      "Small Caps & Low Floats",
+    "usual":    "Usual Suspects",
 }
+SCANNER_DISPLAY_ORDER = list(SCANNER_LABELS.values())
 
 # ─────────────────────────────────────────────
 # PROMPTS
@@ -1084,13 +1086,6 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
             rt_parts.append(f"""<div class="section-head">Sector Watch</div>
 <div class="prose-block"><p>{sectors}</p></div>""")
 
-        # Dispatch directly below Sector Watch, inside macro panel
-        rt_parts.append(f"""<div class="section-head">Recent Dispatches</div>
-<div class="dispatch-inner">
-  {dispatch_rows if dispatch_rows else '<span class="empty-msg">No dispatches yet</span>'}
-  <a class="dispatch-all" href="archive.html">View full archive &rarr;</a>
-</div>""")
-
         if bull or bear:
             rt_parts.append(f"""<div class="section-head">Bull / Bear</div>
 <div class="two-col">
@@ -1121,30 +1116,23 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
             rt_parts.append(f"""<div class="section-head">Calendar</div>
 <div class="cal-stack">{cal_rows}</div>""")
 
+    # Dispatch always renders below the VK macro content, regardless of whether VK loaded
+    rt_parts.append(f"""<div class="section-head">Recent Dispatches</div>
+<div class="dispatch-inner">
+  {dispatch_rows if dispatch_rows else '<span class="empty-msg">No dispatches yet</span>'}
+  <a class="dispatch-all" href="archive.html">View full archive &rarr;</a>
+</div>""")
+
     right_top_body = "\n".join(rt_parts) if rt_parts else '<p class="empty-msg">Macro data will appear after VK is parsed.</p>'
 
-    # ── 3rd column: Earnings Names (BMO/AMC grouped + key dates) ──
-    earn_html = ""
-    bmo_3col = []
-    amc_3col = []
-    for e in earnings:
-        e_up = str(e).upper().strip()
-        ticker = re.sub(r'\s*(BMO|AMC)\s*', '', e_up).strip()
-        if 'BMO' in e_up:
-            bmo_3col.append(ticker)
-        elif 'AMC' in e_up:
-            amc_3col.append(ticker)
-    if bmo_3col:
-        earn_html += f'<div class="earn-group"><div class="earn-timing">BMO</div><div class="earn-tickers">{" · ".join(bmo_3col)}</div></div>'
-    if amc_3col:
-        earn_html += f'<div class="earn-group"><div class="earn-timing">AMC</div><div class="earn-tickers">{" · ".join(amc_3col)}</div></div>'
-    for d in key_dates:
-        earn_html += f'<div class="earn-date">{d}</div>'
-    earnings_panel_html = earn_html or '<p class="empty-msg">No earnings data</p>'
 
-    # ── RIGHT BOTTOM: Scanners + Benzinga ──
+    # ── MIDDLE: Scanners + Benzinga (ordered per SCANNER_DISPLAY_ORDER) ──
     rb_blocks = []
-    for scanner_label, rows in (scanner_data or {}).items():
+    ordered_scanners = sorted(
+        (scanner_data or {}).items(),
+        key=lambda kv: SCANNER_DISPLAY_ORDER.index(kv[0]) if kv[0] in SCANNER_DISPLAY_ORDER else 99
+    )
+    for scanner_label, rows in ordered_scanners:
         tickers_in_scanner = [r["symbol"] for r in rows]
         if tickers_in_scanner:
             tts_text += f" Scanner alert: {scanner_label}. Tickers: {', '.join(tickers_in_scanner)}."
@@ -1228,34 +1216,24 @@ header {{ margin-bottom: 20px; }}
   background: #080f0a;
 }}
 
-/* COL 2 ROW 1: scanners (top of middle column) */
+/* COL 2: scanners — full height middle column */
 .panel-scanner {{
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 1 / 3;
   border: 1px solid #1a2a3a;
   border-radius: 6px;
   padding: 16px 18px;
   background: #08090f;
 }}
 
-/* COL 2 ROW 2: VK key names (below scanners) */
+/* COL 3: VK key names — far right, full height */
 .panel-left {{
-  grid-column: 2;
-  grid-row: 2;
+  grid-column: 3;
+  grid-row: 1 / 3;
   border: 1px solid #2a1a1a;
   border-radius: 6px;
   padding: 16px 18px;
   background: #0d0a0a;
-}}
-
-/* COL 3: earnings names — spans both rows */
-.panel-earnings {{
-  grid-column: 3;
-  grid-row: 1 / 3;
-  border: 1px solid #2a2a1a;
-  border-radius: 6px;
-  padding: 16px 18px;
-  background: #0c0c08;
 }}
 
 /* company cards */
@@ -1352,24 +1330,18 @@ header {{ margin-bottom: 20px; }}
     {right_top_body}
   </div>
 
-  <!-- COL 2 TOP: Scanners (top of middle column) -->
+  <!-- COL 2: Scanners — full middle column -->
   <div class="panel-scanner">
     <div class="panel-label">Scanners · News</div>
     {right_bot_body}
   </div>
 
-  <!-- COL 2 BOTTOM: VK Key Names + EW -->
+  <!-- COL 3: VK Key Names — far right -->
   <div class="panel-left">
     <div class="panel-label">VK · Key Names</div>
     {left_vk_cards}
     {left_ew_html}
     {left_placeholder}
-  </div>
-
-  <!-- COL 3: Earnings Names -->
-  <div class="panel-earnings">
-    <div class="panel-label">Earnings</div>
-    {earnings_panel_html}
   </div>
 
 </div>

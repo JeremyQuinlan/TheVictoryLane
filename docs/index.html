@@ -31,8 +31,11 @@ a { color: inherit; text-decoration: none; }
 .section-head {
   font-size: 10px; font-weight: normal; letter-spacing: 0.16em;
   text-transform: uppercase; color: #555;
-  margin: 28px 0 10px; padding-bottom: 5px; border-bottom: 1px solid #181818;
+  margin: 14px 0 8px; padding-bottom: 5px; border-bottom: 1px solid #181818;
 }
+.panel-macro .section-head:first-of-type,
+.panel-scanner .section-head:first-of-type,
+.panel-left .section-head:first-of-type { margin-top: 0; }
 p { margin-bottom: 11px; color: #c8c4b8; }
 strong { color: #c9b97a; }
 #tts-bar {
@@ -65,46 +68,25 @@ header { margin-bottom: 20px; }
 
 .mgp-grid {
   display: grid;
-  grid-template-columns: 1fr 52%;
+  grid-template-columns: 55% 1fr;
   grid-template-rows: auto auto;
   gap: 16px;
   align-items: start;
 }
 @media (max-width: 900px) { .mgp-grid { grid-template-columns: 1fr; } }
 
-/* RIGHT: scanner list (main column) */
+/* LEFT: newsletters */
 .panel-left {
-  grid-column: 2;
   grid-row: 1 / 3;
-  border: 1px solid #1a2a3a;
+  border: 1px solid #2a1a1a;
   border-radius: 6px;
   padding: 16px 18px;
-  background: #08090f;
+  background: #0d0a0a;
 }
 .panel-label {
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.18em;
-  color: #555; margin-bottom: 4px; text-transform: uppercase;
+  color: #555; margin-bottom: 14px; text-transform: uppercase;
 }
-
-/* dispatch cards */
-.dispatch-card {
-  display: block; border-bottom: 1px solid #161410; padding: 8px 0;
-  text-decoration: none; color: inherit; transition: padding-left 0.12s;
-}
-.dispatch-card:hover { padding-left: 6px; }
-.dispatch-card:hover .dispatch-title { color: #c9b97a; }
-.dispatch-card:first-of-type { border-top: 1px solid #161410; margin-top: 8px; }
-.dispatch-header {
-  display: flex; align-items: center; gap: 7px; margin-bottom: 4px; flex-wrap: wrap;
-}
-.dispatch-tag {
-  font-size: 9px; font-family: 'Courier New', monospace; font-weight: bold;
-  letter-spacing: 0.1em; padding: 2px 5px; border-radius: 2px; border: 1px solid;
-}
-.dispatch-src  { font-size: 10px; color: #444; font-family: 'Courier New', monospace; }
-.dispatch-date { font-size: 10px; color: #3a3830; font-family: 'Courier New', monospace; margin-left: auto; }
-.dispatch-title { font-size: 11px; color: #888480; line-height: 1.35; margin-bottom: 2px; transition: color 0.12s; }
-.dispatch-preview { font-size: 10px; color: #3a3834; line-height: 1.4; }
 
 /* RIGHT TOP: macro */
 .panel-macro {
@@ -113,46 +95,68 @@ header { margin-bottom: 20px; }
   padding: 16px 18px;
   background: #080f0a;
 }
-/* RIGHT BOTTOM: dispatches (compact) */
+/* RIGHT BOTTOM: scanners */
 .panel-scanner {
-  border: 1px solid #1e1a14;
+  border: 1px solid #1a2a3a;
   border-radius: 6px;
-  padding: 12px 14px;
-  background: #0c0a08;
+  padding: 16px 18px;
+  background: #08090f;
 }
 
-/* macro */
-.prose-block { margin-bottom: 8px; font-size: 12px; line-height: 1.55; color: #8a8880; }
+/* company cards */
+.company-card {
+  background: #111; border: 1px solid #1e1e1e; border-radius: 4px;
+  padding: 12px 14px; margin-bottom: 10px;
+}
+.company-card:last-child { margin-bottom: 0; }
+.card-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.card-ticker { font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }
+.card-company { font-size: 12px; color: #555; flex: 1; }
+.card-catalyst { font-size: 10px; color: #666; font-family: 'Courier New', monospace;
+  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }
+.card-summary { font-size: 13px; color: #b8b4a8; margin-bottom: 5px; }
+.bz-story { font-size: 11px; color: #555; font-family: 'Courier New', monospace;
+  border-top: 1px solid #1a1a1a; padding-top: 4px; margin-top: 4px; }
+
+/* EW */
+.ew-block { margin-top: 18px; border-top: 1px solid #1c1c1c; padding-top: 14px; }
+.ew-label { font-size: 10px; font-family: 'Courier New', monospace; color: #c9b97a; letter-spacing: 0.12em; margin-bottom: 10px; }
+.ew-date { color: #444; font-size: 10px; }
+.ew-ticker-head { font-size: 12px; color: #c9b97a; font-family: 'Courier New', monospace;
+  margin: 12px 0 4px; letter-spacing: 0.08em; }
+.ew-line { font-size: 12px; color: #888; margin-bottom: 4px; }
+
+/* bull/bear */
+.prose-block { margin-bottom: 8px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+@media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+.col { padding: 12px 14px; border-radius: 4px; }
+.bull-col { background: #0d1f14; border: 1px solid #1a3a22; }
+.bear-col { background: #1f0d0d; border: 1px solid #3a1a1a; }
+.col-label { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 6px; }
+.bull-col .col-label { color: #4caf82; }
+.bear-col .col-label { color: #e05050; }
 
 /* calendar */
 .cal-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 6px; }
 .cal-group { display: flex; flex-direction: column; gap: 3px; }
 .cal-label { font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 3px; }
 .cal-item { font-size: 12px; color: #a8a49a; }
-.earn-compact { white-space: nowrap; overflow-x: auto; }
-.earn-label { font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.08em; margin-right: 3px; }
 
 /* scanner */
 .scanner-block { background: #0a0c10; border: 1px solid #1a1f2a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }
 .scanner-block:last-child { margin-bottom: 0; }
-.scanner-name { font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; text-transform: uppercase; }
-.scanner-row { display: flex; align-items: baseline; gap: 10px; padding: 5px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }
+.scanner-name { font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; letter-spacing: 0.12em; margin-bottom: 8px; }
+.scanner-row { display: flex; align-items: baseline; gap: 10px; padding: 4px 0; border-bottom: 1px solid #121418; flex-wrap: wrap; }
 .scanner-row:last-child { border-bottom: none; }
-.scanner-header { border-bottom: 1px solid #2a3040 !important; margin-bottom: 2px; padding-bottom: 4px; }
-.scanner-header span { color: #4a5568; font-size: 0.65rem; letter-spacing: 0.08em; font-weight: 600; }
-.sc-sym   { font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 62px; font-weight: bold; }
-.sc-rvol  { font-size: 12px; color: #4c8faf; min-width: 40px; }
-.sc-chg   { font-size: 12px; min-width: 52px; font-family: 'Courier New', monospace; }
-.sc-up    { color: #4caf82; }
-.sc-dn    { color: #e05050; }
-.sc-price { font-size: 12px; color: #888; }
+.sc-sym   { font-size: 14px; color: #c9b97a; font-family: 'Courier New', monospace; min-width: 60px; font-weight: bold; }
+.sc-price { font-size: 13px; color: #d8d4c8; min-width: 52px; }
+.sc-chg   { font-size: 12px; color: #888; min-width: 52px; }
+.sc-vol   { font-size: 12px; color: #4c8faf; min-width: 38px; }
+.sc-sma   { font-size: 11px; color: #555; font-family: 'Courier New', monospace; flex: 1; }
+.sc-yr    { font-size: 11px; color: #555; font-family: 'Courier New', monospace; }
 .scanner-news { width: 100%; font-size: 11px; color: #4a6070; font-family: 'Courier New', monospace;
-  padding-top: 3px; margin-top: 2px; border-top: 1px dashed #1a2030; }
-.bz-tag { font-size: 9px; font-family: 'Courier New', monospace; font-weight: bold;
-  letter-spacing: 0.08em; padding: 1px 4px; border-radius: 2px;
-  background: #1a2a1a; color: #4caf82; border: 1px solid #4caf8244; }
-.bz-tag.bz-guidance { background: #2a2a1a; color: #c9b97a; border-color: #c9b97a44; }
-.bz-beat { font-size: 10px; color: #c9b97a; font-family: 'Courier New', monospace; }
+  padding-top: 3px; margin-top: 3px; border-top: 1px dashed #1a2030; }
 
 .empty-msg { font-size: 12px; color: #333; font-family: 'Courier New', monospace; font-style: italic; }
 </style>
@@ -165,369 +169,291 @@ header { margin-bottom: 20px; }
 </div>
 
 <header>
-  <div class="mgp-title">The Victory Lane</div>
-  <div class="mgp-date">Wednesday, September 23, 2026 &nbsp;·&nbsp; Updated Sep 23, 2026 · 12:10 PM ET</div>
+  <div class="mgp-title">Morning Game Plan</div>
+  <div class="mgp-date">Wednesday, September 23, 2026 &nbsp;·&nbsp; Updated Sep 23, 2026 · 12:17 PM ET</div>
 </header>
 
 <div class="mgp-grid">
 
-  <!-- LEFT: Scanners + News (main column) -->
+  <!-- LEFT: VK Stories + Earnings Whispers -->
   <div class="panel-left">
-    <div class="panel-label">Scanners · News</div>
-    <div class="scanner-block">
-  <div class="scanner-name">Changing Fundamentals</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">VOL%</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">VKTX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+36.5%</span>
-  <span class="sc-price">$41.10</span>
-  <div class="scanner-news">Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results</div><div class="scanner-news">On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday</div><div class="scanner-news">Weight Loss Drug: Viking Therapeutics Says Lead Obesity Drug Shows Weight Retention with Less Frequent Dosing</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">CLDX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-dn">-11.7%</span>
-  <span class="sc-price">$33.45</span>
-  <div class="scanner-news">Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results</div><div class="scanner-news">Celldex Prepares For 2027 FDA Submission for Chronic Skin Disease</div><div class="scanner-news">HC Wainwright &amp; Co. Maintains Buy on Celldex Therapeutics, Raises Price Target to $64</div>
-</div>
-</div>
-<div class="scanner-block">
-  <div class="scanner-name">High PM AVOL</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">VOL%</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">VKTX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+36.5%</span>
-  <span class="sc-price">$41.10</span>
-  <div class="scanner-news">Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results</div><div class="scanner-news">On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday</div><div class="scanner-news">Weight Loss Drug: Viking Therapeutics Says Lead Obesity Drug Shows Weight Retention with Less Frequent Dosing</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">CLDX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-dn">-11.7%</span>
-  <span class="sc-price">$33.45</span>
-  <div class="scanner-news">Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results</div><div class="scanner-news">Celldex Prepares For 2027 FDA Submission for Chronic Skin Disease</div><div class="scanner-news">HC Wainwright &amp; Co. Maintains Buy on Celldex Therapeutics, Raises Price Target to $64</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">CMPX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-dn">-31.3%</span>
-  <span class="sc-price">$1.25</span>
-  <div class="scanner-news">Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results</div><div class="scanner-news">Compass Therapeutics Craters, FDA Pushes Survival-Trial Demand for Cancer Drug</div><div class="scanner-news">Dow Gains Over 100 Points; AutoZone Posts Upbeat Earnings</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">DBRG</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+0.5%</span>
-  <span class="sc-price">$16.00</span>
+    <div class="panel-label">VK · Earnings Whispers</div>
+    <div class="company-card">
+  <div class="card-header">
+    <span class="card-ticker"><span style="color:#4caf82">▲</span> CBRL</span>
+    <span class="card-company">Cracker Barrel</span>
+    <span class="card-catalyst">Earnings beat with upside FY27 guidance</span>
+  </div>
+  <p class="card-summary">Cracker Barrel posted strong FQ4 upside across the board — sales came in at $849.3MM vs. the Street's $834MM, adjusted EPS of 99c crushed the 16c consensus, and EBITDA of $62.1MM topped the $41.5MM estimate. Tariff refunds provided a tailwind but weren't the whole story — EBITDA ex-refunds was still $53MM, well above consensus. Looking into fiscal 2027, the EBITDA guidance mid-point of $190MM beats the Street's $177MM.</p>
   
-</div><div class="scanner-row">
-  <span class="sc-sym">INOD</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+17.0%</span>
-  <span class="sc-price">$71.44</span>
-  <div class="scanner-news">Watching Innodata; Hunterbrook Media Issues Report Titled, “Meta&#39;s Muse Could Be Big Win For Innodata.”; States Hunterbrook Capital Is Long $INOD</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">BFLY</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+21.9%</span>
-  <span class="sc-price">$9.92</span>
-  <div class="scanner-news">Butterfly Network Stock Soars After Needham Initiates Buy</div><div class="scanner-news">On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday</div><div class="scanner-news">Needham Initiates Coverage On Butterfly Network with Buy Rating, Announces Price Target of $10</div>
 </div>
-</div>
-<div class="scanner-block">
-  <div class="scanner-name">Usual Suspects Volume</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">VOL%</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">SHOP</span>
-  <span class="sc-rvol">+4%</span>
-  <span class="sc-chg sc-up">+7.1%</span>
-  <span class="sc-price">$147.77</span>
-  <div class="scanner-news">Intuit Stock Slides Amid Meta&#39;s AI Collaboration Uncertainty</div><div class="scanner-news">JPMorgan Stock Slips as Traders Shift to Tech Sector</div><div class="scanner-news">Commodity ETF Delivers Double Nvidia’s YTD Returns; Muse Ignites CPU Fever</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">PYPL</span>
-  <span class="sc-rvol">+4%</span>
-  <span class="sc-chg sc-up">+0.7%</span>
-  <span class="sc-price">$53.00</span>
-  <div class="scanner-news">Intuit Stock Slides Amid Meta&#39;s AI Collaboration Uncertainty</div><div class="scanner-news">JPMorgan Stock Slips as Traders Shift to Tech Sector</div><div class="scanner-news">PayPal Stock Is Rising: What&#39;s Going On Today?</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">NEXT</span>
-  <span class="sc-rvol">+3%</span>
-  <span class="sc-chg sc-dn">-3.6%</span>
-  <span class="sc-price">$6.77</span>
+<div class="company-card">
+  <div class="card-header">
+    <span class="card-ticker"><span style="color:#888">◆</span> GIS</span>
+    <span class="card-company">General Mills</span>
+    <span class="card-catalyst">Earnings beat with reaffirmed guidance, but structural headwinds persist</span>
+  </div>
+  <p class="card-summary">General Mills reported FQ1 results that were not as bad as feared — EPS of 75c (down 13% on a foreign exchange neutral basis) beat the 72c consensus, organic revenue was roughly flat vs. the Street's -1.8% estimate, and all four business segments outperformed on revenue. Gross margins fell 0.90% to 33.3% vs. the 33% estimate, and operating margins fell 1.30% to 14.4%, topping the 13.8% forecast; full-year guidance was reaffirmed. However, Adam notes sentiment toward food-focused staples will likely stay gloomy given fierce cyclical and secular headwinds despite the modestly better print.</p>
   
-</div><div class="scanner-row">
-  <span class="sc-sym">CSCO</span>
-  <span class="sc-rvol">+3%</span>
-  <span class="sc-chg sc-dn">-4.8%</span>
-  <span class="sc-price">$106.15</span>
-  <div class="scanner-news">Cisco Stock Falls as Piper Sandler Cuts Price Target</div><div class="scanner-news">Unconfirmed Social Media Reports Suggest The ShinyHunters Hacking Group Claims To Have Breached The FBI, Stating The Attack Is &#34;Not Financially Motivated.&#34; The FBI Has Not Yet Commented.</div><div class="scanner-news">Piper Sandler Maintains Neutral on Cisco Systems, Lowers Price Target to $125</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">BABA</span>
-  <span class="sc-rvol">+2%</span>
-  <span class="sc-chg sc-up">+0.7%</span>
-  <span class="sc-price">$116.54</span>
-  <div class="scanner-news">Commodity ETF Delivers Double Nvidia’s YTD Returns; Muse Ignites CPU Fever</div><div class="scanner-news">Alibaba Debuts AI Chip, Challenges Nvidia With Triple Processing Power</div><div class="scanner-news">Sovereign AI Isn’t so Sovereign: Meta’s Llama Powers 38% of Adapted Models</div>
 </div>
+<div class="company-card">
+  <div class="card-header">
+    <span class="card-ticker"><span style="color:#888">◆</span> MANU</span>
+    <span class="card-company">Manchester United</span>
+    <span class="card-catalyst">Earnings beat but FY27 guidance miss</span>
+  </div>
+  <p class="card-summary">Manchester United posted modest FQ4 upside on sales of GBP 157.5MM vs. the Street's GBP 145MM and EBITDA of GBP 28.9MM vs. the GBP 22MM estimate. However, the fiscal 2027 EBITDA guidance mid-point of GBP 215MM falls meaningfully short of the consensus at GBP 245MM. The below-consensus forward guide is a notable negative offset to the current quarter beat.</p>
+  
 </div>
-<div class="scanner-block">
-  <div class="scanner-name">Low Floats & Small Caps</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">VOL%</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
+<div class="company-card">
+  <div class="card-header">
+    <span class="card-ticker"><span style="color:#888">◆</span> MCD</span>
+    <span class="card-company">McDonald's</span>
+    <span class="card-catalyst">Analyst Day with 2030 financial targets</span>
+  </div>
+  <p class="card-summary">McDonald's unveiled its 'McDonald's > NEXT' strategy at today's analyst meeting, headlined by an operating margin target of low-to-mid 50% by 2030 — solidly above the current consensus forecast of 49.5%. The company also plans to increase capital spending to drive growth, which is why free cash flow conversion is expected to shift lower to the mid-to-high 80% range by 2030, down from the prior 2023 goal of low-to-mid 90%. Adam's tone is skeptical of the strategic language but acknowledges the operating margin target is a clear positive relative to consensus.</p>
+  
 </div>
-  <div class="scanner-row">
-  <span class="sc-sym">LHSW</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">—</span>
-  <span class="sc-price">—</span>
-  <div class="scanner-news">12 Information Technology Stocks Moving In Tuesday&#39;s After-Market Session</div><div class="scanner-news">Lianhe Sowell Expands Automotive Aftermarket Reach, Shares Surge Over 100%</div><div class="scanner-news">Dow Gains Over 100 Points; AutoZone Posts Upbeat Earnings</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">QNME</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">—</span>
-  <span class="sc-price">—</span>
-  <div class="scanner-news">Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results</div><div class="scanner-news">Quanome Stock Soars 80% After Agreeing to Buy 32 GPU Servers</div><div class="scanner-news">Dow Gains Over 100 Points; AutoZone Posts Upbeat Earnings</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">DCOY</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">—</span>
-  <span class="sc-price">—</span>
-  <div class="scanner-news">12 Health Care Stocks Moving In Tuesday&#39;s After-Market Session</div><div class="scanner-news">Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results</div><div class="scanner-news">Decoy Therapeutics To Exercise 1,184,434 Series B Warrants At $3.25/Share for ~$3.85M; Cuts Series A &amp; C Warrant Prices To $3.25 And Issues 2,368,868 New Warrants At $3.25/Share</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">TOPS</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">—</span>
-  <span class="sc-price">—</span>
-  <div class="scanner-news">TOP Ships Stock Loses Steam After Management Comments</div><div class="scanner-news">TOP Ships (TOPS) Stock Rockets 67% After-Hours: Why Is It Moving?</div>
-</div>
-</div>
-<div class="scanner-block">
-  <div class="scanner-name">Premarket Volume</div>
-  <div class="scanner-row scanner-header">
-  <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">VOL%</span>
-  <span class="sc-chg">CHG</span>
-  <span class="sc-price">PRICE</span>
-</div>
-  <div class="scanner-row">
-  <span class="sc-sym">VKTX</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+36.5%</span>
-  <span class="sc-price">$41.10</span>
-  <div class="scanner-news">Crude Oil Down Over 1%; Thor Industries Shares Gain After Q4 Results</div><div class="scanner-news">On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday</div><div class="scanner-news">Weight Loss Drug: Viking Therapeutics Says Lead Obesity Drug Shows Weight Retention with Less Frequent Dosing</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">BFLY</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+21.9%</span>
-  <span class="sc-price">$9.92</span>
-  <div class="scanner-news">Butterfly Network Stock Soars After Needham Initiates Buy</div><div class="scanner-news">On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday</div><div class="scanner-news">Needham Initiates Coverage On Butterfly Network with Buy Rating, Announces Price Target of $10</div>
-</div><div class="scanner-row">
-  <span class="sc-sym">VICR</span>
-  <span class="sc-rvol">—</span>
-  <span class="sc-chg sc-up">+20.1%</span>
-  <span class="sc-price">$268.88</span>
-  <div class="scanner-news">Roth Capital Reiterates Buy on Vicor, Maintains $375 Price Target</div><div class="scanner-news">On Holding, Viking Therapeutics, Shopify And Other Big Stocks Moving Higher On Tuesday</div><div class="scanner-news">Needham Reiterates Buy on Vicor, Maintains $320 Price Target</div>
-</div>
-</div>
+
+    
+    
   </div>
 
   <!-- RIGHT TOP: Macro / Outlook / Calendar -->
   <div class="panel-macro">
     <div class="panel-label">Macro · Outlook · Key Names</div>
-    <div class="section-head">Macro</div>
-<div class="prose-block"><p>The newsletter focuses on pre-market company-specific earnings and analyst meeting news for Wednesday, September 23, 2026. No broad index moves or overnight macro context were provided in this edition. Risk tone is driven primarily by individual stock catalysts rather than macro factors.</p></div>
+    <div class="section-head">Macro · Rates</div>
+<div class="prose-block">
+<p>The newsletter focuses on pre-market company-specific earnings and analyst meeting news for Wednesday, September 23, 2026. No broad index moves or overnight macro context were provided in this edition. Risk tone is driven primarily by individual stock catalysts rather than macro factors.</p>
+
+</div>
 <div class="section-head">Market Outlook</div>
 <div class="prose-block"><p>No explicit directional market outlook was provided by Adam in this edition. The focus is on earnings results from CBRL, GIS, MANU, and MCD, with the key catalyst to watch being McDonald's analyst meeting and its 2030 financial targets unveiled today.</p></div>
 <div class="section-head">Sector Watch</div>
 <div class="prose-block"><p>Food-focused consumer staples (GIS) face persistent cyclical and secular headwinds despite a modestly better FQ1 print; sector sentiment likely remains gloomy. Restaurant sector (MCD, CBRL) sees mixed signals — Cracker Barrel strongly outperforms while McDonald's analyst day targets beat on margins but signal heavier capex spend ahead.</p></div>
 <div class="section-head">Calendar</div>
-<div class="cal-row"><div class="cal-group"><div class="cal-label">EARNINGS</div><div class="cal-item earn-compact"><span class='earn-label'>PM</span> CBRL, GIS, MANU, MCD</div></div><div class="cal-group"><div class="cal-label">KEY DATES</div><div class="cal-item">Sep 23 — MCD Analyst Meeting (today)</div></div></div>
+<div class="cal-row"><div class="cal-group"><div class="cal-label">EARNINGS TODAY</div><div class="cal-item">CBRL BMO</div><div class="cal-item">GIS BMO</div><div class="cal-item">MANU BMO</div><div class="cal-item">MCD BMO</div></div><div class="cal-group"><div class="cal-label">KEY DATES</div><div class="cal-item">Sep 23 — MCD Analyst Meeting (today)</div></div></div>
   </div>
 
-  <!-- RIGHT BOTTOM: Dispatches (compact) -->
+  <!-- RIGHT BOTTOM: Scanners + Benzinga -->
   <div class="panel-scanner">
-    <div class="panel-label">Dispatches</div>
-    <a class="dispatch-card" href="mid-day-update-wednesday-september-23-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#4c8faf;border-color:#4c8faf44;background:#1a2a3a;">MID-DAY</span>
-    <span class='dispatch-src'>VK</span>
-    <span class="dispatch-date">Sep 23, 2026 · 11:04 AM ET</span>
-  </div>
-  <div class="dispatch-title">Mid-Day Update · Wednesday
- September 23, 2026</div>
-  <div class='dispatch-preview'>Here's your midday market update for Wednesday, September 23rd.  Stocks are getting hit hard this session, and…</div>
-</a><a class="dispatch-card" href="flash-pmis-are-too-strong-for-stocks.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
-    <span class='dispatch-src'>VK</span>
-    <span class="dispatch-date">Sep 23, 2026 · 09:53 AM ET</span>
-  </div>
-  <div class="dispatch-title">Flash PMIs are too strong for stocks</div>
-  <div class='dispatch-preview'>Here's your midday read for September 23rd, 2026.  The big story this morning is the flash PMI data for Septem…</div>
-</a><a class="dispatch-card" href="company-specific-news-for-wed-9-23-bmo-cbrl-gis-manu-mcd.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
-    <span class='dispatch-src'>VK</span>
-    <span class="dispatch-date">Sep 23, 2026 · 08:12 AM ET</span>
-  </div>
-  <div class="dispatch-title">Company-specific news for Wed 9/23 (BMO) - CBRL, GIS, MANU, MCD</div>
-  <div class='dispatch-preview'>Good morning. This is your pre-market briefing for Wednesday, September 23rd, 2026. Today's edition is entirel…</div>
-</a><a class="dispatch-card" href="morning-intelligentsia-wednesday-september-23-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#4caf82;border-color:#4caf8244;background:#1a3a2a;">MORNING</span>
-    <span class='dispatch-src'>VK</span>
-    <span class="dispatch-date">Sep 23, 2026 · 05:21 AM ET</span>
-  </div>
-  <div class="dispatch-title">Morning Intelligentsia · Wednesday September 23, 2026</div>
-  <div class='dispatch-preview'>Here's your morning game plan for Wednesday, September 23rd.  Futures are dead flat to start the session — S&P…</div>
-</a><a class="dispatch-card" href="earnings-preview-september-22-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#c9b97a;border-color:#c9b97a44;background:#2a2a1a;">EARNINGS</span>
-    <span class='dispatch-src'>Earnings Whispers</span>
-    <span class="dispatch-date">Sep 22, 2026 · 06:26 PM ET</span>
-  </div>
-  <div class="dispatch-title">Earnings Preview · September 22, 2026</div>
-  <div class='dispatch-preview'>## THO — THOR Industries  - **Reported:** Fiscal Q4 (ended July 2026), timing not specified - **Consensus EPS:…</div>
-</a><a class="dispatch-card" href="company-specific-news-for-tues-9-22-amc-kbh-lh-wor.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
-    <span class='dispatch-src'>VK</span>
-    <span class="dispatch-date">Sep 22, 2026 · 05:27 PM ET</span>
-  </div>
-  <div class="dispatch-title">Company-specific news for Tues 9/22 (AMC) - KBH, LH, WOR</div>
-  <div class='dispatch-preview'>The email doesn't support HTML, some texts may not be displayed properly.   [https://vitalknowledge.net/asse…</div>
-</a><a class="dispatch-card" href="market-recap-tuesday-september-22-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#af4c4c;border-color:#af4c4c44;background:#2a1a1a;">RECAP</span>
-    <span class='dispatch-src'>VK</span>
-    <span class="dispatch-date">Sep 22, 2026 · 04:06 PM ET</span>
-  </div>
-  <div class="dispatch-title">Market Recap · Tuesday September 22, 2026</div>
-  <div class='dispatch-preview'>The email doesn't support HTML, some texts may not be displayed properly.   [https://vitalknowledge.net/asse…</div>
-</a><a class="dispatch-card" href="mid-day-update-tuesday-september-22-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#4c8faf;border-color:#4c8faf44;background:#1a2a3a;">MID-DAY</span>
-    
-    <span class="dispatch-date">Sep 22, 2026 · 11:03 AM ET</span>
-  </div>
-  <div class="dispatch-title">Mid-Day Update · Tuesday September
- 22, 2026</div>
+    <div class="panel-label">Scanners · News</div>
+    <div class="scanner-block">
+  <div class="scanner-name">High PM AVOL</div>
+  <div class="scanner-row">
+  <span class="sc-sym">BMEA</span>
+  <span class="sc-price">$1.65</span>
+  <span class="sc-chg">-0.05%</span>
+  <span class="sc-vol" title="Volume today">127.0x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T21:06] 12 Health Care Stocks Moving In Tuesday&#39;s After-Market Session</div><div class="scanner-news">[2026-09-22T20:07] Biomea Fusion Announces Proposed Public Offering Of Securities; Terms Not Disclosed</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">RYDE</span>
+  <span class="sc-price">$0.70</span>
+  <span class="sc-chg">+0.00%</span>
+  <span class="sc-vol" title="Volume today">109.2x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
   
-</a><a class="dispatch-card" href="company-specific-news-for-tues-9-22-bmo-azo-cgnx-mlkn-pnr-tho-vktx.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
-    
-    <span class="dispatch-date">Sep 22, 2026 · 07:15 AM ET</span>
-  </div>
-  <div class="dispatch-title">Company-specific news for Tues 9/22 (BMO) - AZO, CGNX, MLKN, PNR, THO, VKTX</div>
-  <div class='dispatch-preview'>Good morning. This is a company-specific earnings note covering Tuesday before-the-open reporters — no broad m…</div>
-</a><a class="dispatch-card" href="middle-east-hopes-kick-into-high-gear-following-iran-and-saudi-headlines.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
-    
-    <span class="dispatch-date">Sep 22, 2026 · 06:05 AM ET</span>
-  </div>
-  <div class="dispatch-title">Middle East hopes kick into high gear following Iran and Saudi headlines</div>
-  <div class='dispatch-preview'>Here's what you need to know heading into the session on September 22nd. The dominant story this morning is a …</div>
-</a><a class="dispatch-card" href="morning-intelligentsia-tuesday-september-22-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#4caf82;border-color:#4caf8244;background:#1a3a2a;">MORNING</span>
-    
-    <span class="dispatch-date">Sep 22, 2026 · 05:17 AM ET</span>
-  </div>
-  <div class="dispatch-title">Morning Intelligentsia · Tuesday September 22, 2026</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">IONQ</span>
+  <span class="sc-price">$42.81</span>
+  <span class="sc-chg">+2.08%</span>
+  <span class="sc-vol" title="Volume today">71.8x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T21:06] 12 Information Technology Stocks Moving In Tuesday&#39;s After-Market Session</div><div class="scanner-news">[2026-09-22T20:34] IonQ Stock Jumps After Real-Time Quantum Error Decoder Demonstration</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">SRFM</span>
+  <span class="sc-price">$0.83</span>
+  <span class="sc-chg">+0.06%</span>
+  <span class="sc-vol" title="Volume today">50.3x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T17:06] 12 Industrials Stocks Moving In Tuesday&#39;s Intraday Session</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">QUBT</span>
+  <span class="sc-price">$9.46</span>
+  <span class="sc-chg">+0.39%</span>
+  <span class="sc-vol" title="Volume today">36.5x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
   
-</a><a class="dispatch-card" href="earnings-preview-september-21-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#c9b97a;border-color:#c9b97a44;background:#2a2a1a;">EARNINGS</span>
-    
-    <span class="dispatch-date">Sep 21, 2026 · 07:46 PM ET</span>
-  </div>
-  <div class="dispatch-title">Earnings Preview · September 21, 2026</div>
-  <div class='dispatch-preview'>## ABVX — ABIVAX Société Anonyme  - **Earnings Date:** Q2 FY2026 (June quarter) — already reported - **Consens…</div>
-</a><a class="dispatch-card" href="market-recap-monday-september-21-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#af4c4c;border-color:#af4c4c44;background:#2a1a1a;">RECAP</span>
-    
-    <span class="dispatch-date">Sep 21, 2026 · 04:04 PM ET</span>
-  </div>
-  <div class="dispatch-title">Market Recap · Monday September 21, 2026</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">INOD</span>
+  <span class="sc-price">$71.81</span>
+  <span class="sc-chg">+1.84%</span>
+  <span class="sc-vol" title="Volume today">30.8x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T18:54] Watching Innodata; Hunterbrook Media Issues Report Titled, “Meta&#39;s Muse Could Be Big Win For Innodata.”; States Hunterbrook Capital Is Long $INOD</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">QBTS</span>
+  <span class="sc-price">$17.73</span>
+  <span class="sc-chg">+0.17%</span>
+  <span class="sc-vol" title="Volume today">30.3x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
   
-</a><a class="dispatch-card" href="muse-hype-sparks-ai-rally-but-investor-sentiment-cools-as-sb-energy-delays-its-i.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
-    
-    <span class="dispatch-date">Sep 21, 2026 · 02:43 PM ET</span>
-  </div>
-  <div class="dispatch-title">Muse hype sparks AI rally, but investor sentiment cools as SB Energy delays its IPO</div>
-  <div class='dispatch-preview'>Here's where things stand Monday afternoon. AI stocks are ripping higher, and the headline driver is Meta's pe…</div>
-</a><a class="dispatch-card" href="mid-day-update-monday-september-21-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#4c8faf;border-color:#4c8faf44;background:#1a2a3a;">MID-DAY</span>
-    
-    <span class="dispatch-date">Sep 21, 2026 · 11:05 AM ET</span>
-  </div>
-  <div class="dispatch-title">Mid-Day Update · Monday September
- 21, 2026</div>
-  <div class='dispatch-preview'>Here's your midday update for Monday, September 21st.  The headline story today is a Nasdaq-led rally driven b…</div>
-</a><a class="dispatch-card" href="morning-intelligentsia-monday-september-21-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#4caf82;border-color:#4caf8244;background:#1a3a2a;">MORNING</span>
-    
-    <span class="dispatch-date">Sep 21, 2026 · 05:23 AM ET</span>
-  </div>
-  <div class="dispatch-title">Morning Intelligentsia · Monday September 21, 2026</div>
-  <div class='dispatch-preview'>Good morning. Here is your morning game plan for Monday, September 21st, 2026.  The macro setup is genuinely c…</div>
-</a><a class="dispatch-card" href="weekend-sun-9-20-2026-getting-ready-for-the-week-ahead.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
-    
-    <span class="dispatch-date">Sep 20, 2026 · 09:30 AM ET</span>
-  </div>
-  <div class="dispatch-title">Weekend (Sun 9/20/2026) - getting ready for the week ahead</div>
-  <div class='dispatch-preview'>No closing price data provided for this weekend edition. Week-ahead positioning note: AI sector headwinds and …</div>
-</a><a class="dispatch-card" href="earnings-calendar-monday-september-21-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#c9b97a;border-color:#c9b97a44;background:#2a2a1a;">EARNINGS</span>
-    
-    <span class="dispatch-date">Sep 19, 2026 · 08:58 AM ET</span>
-  </div>
-  <div class="dispatch-title">Earnings Calendar · Monday, September
- 21, 2026</div>
-  <div class='dispatch-preview'>---</div>
-</a><a class="dispatch-card" href="earnings-calendar-september-21-2026.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#c9b97a;border-color:#c9b97a44;background:#2a2a1a;">EARNINGS</span>
-    
-    <span class="dispatch-date">Sep 19, 2026 · 08:58 AM ET</span>
-  </div>
-  <div class="dispatch-title">Earnings Calendar · September
- 21, 2026</div>
-  <div class='dispatch-preview'># Earnings Preview: Week of September 21, 2026  ---  ## ABVX — ABIVAX Société Anonyme  - **Date/Time:** Monday…</div>
-</a><a class="dispatch-card" href="nscale-takeaways-from-the-s1.html">
-  <div class="dispatch-header">
-    <span class="dispatch-tag" style="color:#8f4caf;border-color:#8f4caf44;background:#2a1a3a;">UPDATE</span>
-    
-    <span class="dispatch-date">Sep 18, 2026 · 04:37 PM ET</span>
-  </div>
-  <div class="dispatch-title">Nscale: takeaways from the S1</div>
-  <div class='dispatch-preview'>No broad market data provided in this edition.</div>
-</a>
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">Changing Fundamentals</div>
+  <div class="scanner-row">
+  <span class="sc-sym">IONQ</span>
+  <span class="sc-price">$42.81</span>
+  <span class="sc-chg">+2.08%</span>
+  <span class="sc-vol" title="Volume today">71.8x</span>
+  <span class="sc-sma">20d +9.6% · 200d -2.2%</span>
+  <span class="sc-yr">Yr 29%</span>
+  <div class="scanner-news">[2026-09-22T21:06] 12 Information Technology Stocks Moving In Tuesday&#39;s After-Market Session</div><div class="scanner-news">[2026-09-22T20:34] IonQ Stock Jumps After Real-Time Quantum Error Decoder Demonstration</div>
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">Low Floats & Small Caps</div>
+  <div class="scanner-row">
+  <span class="sc-sym">BENF</span>
+  <span class="sc-price">$2.73</span>
+  <span class="sc-chg">+2.19%</span>
+  <span class="sc-vol" title="Volume today">—</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">WHLR</span>
+  <span class="sc-price">$5.83</span>
+  <span class="sc-chg">+3.96%</span>
+  <span class="sc-vol" title="Volume today">—</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">IPDN</span>
+  <span class="sc-price">$7.09</span>
+  <span class="sc-chg">+3.19%</span>
+  <span class="sc-vol" title="Volume today">—</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T21:06] 12 Industrials Stocks Moving In Tuesday&#39;s After-Market Session</div>
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">Usual Suspects Volume</div>
+  <div class="scanner-row">
+  <span class="sc-sym">IONQ</span>
+  <span class="sc-price">$42.81</span>
+  <span class="sc-chg">+5.09%</span>
+  <span class="sc-vol" title="Volume today">71.8x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T21:06] 12 Information Technology Stocks Moving In Tuesday&#39;s After-Market Session</div><div class="scanner-news">[2026-09-22T20:34] IonQ Stock Jumps After Real-Time Quantum Error Decoder Demonstration</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">KITT</span>
+  <span class="sc-price">$0.59</span>
+  <span class="sc-chg">-4.94%</span>
+  <span class="sc-vol" title="Volume today">58.4x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">QUBT</span>
+  <span class="sc-price">$9.46</span>
+  <span class="sc-chg">+4.24%</span>
+  <span class="sc-vol" title="Volume today">36.5x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">QBTS</span>
+  <span class="sc-price">$17.73</span>
+  <span class="sc-chg">+0.97%</span>
+  <span class="sc-vol" title="Volume today">30.3x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">RGTI</span>
+  <span class="sc-price">$16.64</span>
+  <span class="sc-chg">+0.73%</span>
+  <span class="sc-vol" title="Volume today">28.9x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">BABA</span>
+  <span class="sc-price">$111.83</span>
+  <span class="sc-chg">-3.85%</span>
+  <span class="sc-vol" title="Volume today">19.3x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T16:59] Commodity ETF Delivers Double Nvidia’s YTD Returns; Muse Ignites CPU Fever</div><div class="scanner-news">[2026-09-22T15:23] Alibaba Debuts AI Chip, Challenges Nvidia With Triple Processing Power</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">ARAY</span>
+  <span class="sc-price">$0.23</span>
+  <span class="sc-chg">+1.22%</span>
+  <span class="sc-vol" title="Volume today">17.2x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">BIDU</span>
+  <span class="sc-price">$90.06</span>
+  <span class="sc-chg">-2.57%</span>
+  <span class="sc-vol" title="Volume today">14.7x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T17:35] 4 Communication Services Stocks Whale Activity In Today’s Session</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">SOXL</span>
+  <span class="sc-price">$149.31</span>
+  <span class="sc-chg">-1.74%</span>
+  <span class="sc-vol" title="Volume today">12.3x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div><div class="scanner-row">
+  <span class="sc-sym">SMCI</span>
+  <span class="sc-price">$42.15</span>
+  <span class="sc-chg">+1.47%</span>
+  <span class="sc-vol" title="Volume today">10.8x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">Premarket Volume</div>
+  <div class="scanner-row">
+  <span class="sc-sym">IONQ</span>
+  <span class="sc-price">$42.81</span>
+  <span class="sc-chg">+2.08%</span>
+  <span class="sc-vol" title="Volume today">71.8x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T21:06] 12 Information Technology Stocks Moving In Tuesday&#39;s After-Market Session</div><div class="scanner-news">[2026-09-22T20:34] IonQ Stock Jumps After Real-Time Quantum Error Decoder Demonstration</div>
+</div><div class="scanner-row">
+  <span class="sc-sym">QUBT</span>
+  <span class="sc-price">$9.46</span>
+  <span class="sc-chg">+0.39%</span>
+  <span class="sc-vol" title="Volume today">36.5x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  
+</div>
+</div>
+<div class="scanner-block">
+  <div class="scanner-name">Scanner</div>
+  <div class="scanner-row">
+  <span class="sc-sym">PAYX</span>
+  <span class="sc-price">$109.52</span>
+  <span class="sc-chg">-5.01%</span>
+  <span class="sc-vol" title="Volume today">11.4x</span>
+  <span class="sc-sma">20d — · 200d —</span>
+  <span class="sc-yr">Yr —</span>
+  <div class="scanner-news">[2026-09-22T12:16] How To Earn $500 A Month From Paychex Stock Ahead Of Q1 Earnings</div>
+</div>
+</div>
   </div>
 
 </div>
@@ -543,12 +469,12 @@ header { margin-bottom: 20px; }
     <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.3" oninput="updateSpeed(this.value)">
     <span id="speed-val">1.3x</span>
   </div>
-  <span id="tts-status">Ready &mdash; press Play to start</span>
+  <span id="tts-status">Ready &mdash; auto-starting...</span>
   <button class="notify-btn" id="notify-btn" onclick="requestNotifications()">Notify me</button>
 </div>
 
 <script>
-  const ttsText = "Good morning. Let's get right into it for Wednesday, September 23rd. This edition is laser-focused on pre-market earnings and a major analyst day, so let's break down what matters for your trading day. Starting with the biggest beat of the morning — Cracker Barrel. The stock posted a blowout fiscal Q4. Sales came in at $849 million versus the Street's $834 million estimate. Adjusted earnings per share was 99 cents — absolutely crushing the 16-cent consensus. EBITDA hit $62 million versus the $41.5 million expected. Now, tariff refunds were a tailwind, but even stripping those out, EBITDA was $53 million — still well above consensus. And looking into fiscal 2027, the EBITDA guidance mid-point of $190 million tops the Street's $177 million. This is a clean beat across the board. Bullish setup. Next up, General Mills. The read here is \"not as bad as feared.\" Fiscal Q1 earnings per share came in at 75 cents — down 13% on a foreign-exchange-neutral basis, but still above the 72-cent consensus. Organic revenue was roughly flat versus the Street's negative 1.8% estimate, and all four business segments beat on revenue. Gross margins fell 0.90% but came in at 33.3%, above the 33% estimate. Operating margins fell 1.30% to 14.4%, also ahead of the 13.8% forecast. Full-year guidance was reaffirmed. But here's the catch — Adam is flagging that sentiment toward food-focused staples is likely to stay gloomy given fierce cyclical and secular headwinds. Better-than-feared print, mixed overall. Watch how the stock trades on that tension. Manchester United posted a modest fiscal Q4 beat — sales of 157.5 million British pounds topped the 145 million estimate, and EBITDA of 28.9 million came in above the 22 million consensus. But the forward guide is the problem. The fiscal 2027 EBITDA guidance mid-point of 215 million pounds falls well short of the 245 million the Street was expecting. Beat now, miss later — that's a mixed read and the guide miss is going to weigh. Then there's McDonald's, which is holding its analyst meeting today. The headline target is an operating margin of low-to-mid 50% by 2030 — that is clearly above the current consensus forecast of 49.5%, which is a positive. The company is also increasing capital spending to drive growth, but that comes at a cost — free cash flow conversion is expected to shift down to the mid-to-high 80% range by 2030, from the prior goal of low-to-mid 90% set back in 2023. Adam's tone is measured — the margin target is a genuine beat versus consensus, but the strategic language around their new platform gets a bit of an eye-roll. Mixed, with the margin target as the key bull case. Bottom line for today: CBRL is the cleanest long setup off this morning's prints. GIS is a relief trade but faces structural sector headwinds. MANU is weighed down by the guide miss. And MCD is all about whether the operating margin target can sustain buying interest through the analyst meeting. Stay focused, manage your risk, and good luck out there. Scanner alert: Changing Fundamentals. Tickers: VKTX, CLDX. Scanner alert: High PM AVOL. Tickers: VKTX, CLDX, CMPX, DBRG, INOD, BFLY. Scanner alert: Usual Suspects Volume. Tickers: SHOP, PYPL, NEXT, CSCO, BABA. Scanner alert: Low Floats & Small Caps. Tickers: LHSW, QNME, DCOY, TOPS. Scanner alert: Premarket Volume. Tickers: VKTX, BFLY, VICR.";
+  const ttsText = "Good morning. Let's get right into it for Wednesday, September 23rd. This edition is laser-focused on pre-market earnings and a major analyst day, so let's break down what matters for your trading day. Starting with the biggest beat of the morning — Cracker Barrel. The stock posted a blowout fiscal Q4. Sales came in at $849 million versus the Street's $834 million estimate. Adjusted earnings per share was 99 cents — absolutely crushing the 16-cent consensus. EBITDA hit $62 million versus the $41.5 million expected. Now, tariff refunds were a tailwind, but even stripping those out, EBITDA was $53 million — still well above consensus. And looking into fiscal 2027, the EBITDA guidance mid-point of $190 million tops the Street's $177 million. This is a clean beat across the board. Bullish setup. Next up, General Mills. The read here is \"not as bad as feared.\" Fiscal Q1 earnings per share came in at 75 cents — down 13% on a foreign-exchange-neutral basis, but still above the 72-cent consensus. Organic revenue was roughly flat versus the Street's negative 1.8% estimate, and all four business segments beat on revenue. Gross margins fell 0.90% but came in at 33.3%, above the 33% estimate. Operating margins fell 1.30% to 14.4%, also ahead of the 13.8% forecast. Full-year guidance was reaffirmed. But here's the catch — Adam is flagging that sentiment toward food-focused staples is likely to stay gloomy given fierce cyclical and secular headwinds. Better-than-feared print, mixed overall. Watch how the stock trades on that tension. Manchester United posted a modest fiscal Q4 beat — sales of 157.5 million British pounds topped the 145 million estimate, and EBITDA of 28.9 million came in above the 22 million consensus. But the forward guide is the problem. The fiscal 2027 EBITDA guidance mid-point of 215 million pounds falls well short of the 245 million the Street was expecting. Beat now, miss later — that's a mixed read and the guide miss is going to weigh. Then there's McDonald's, which is holding its analyst meeting today. The headline target is an operating margin of low-to-mid 50% by 2030 — that is clearly above the current consensus forecast of 49.5%, which is a positive. The company is also increasing capital spending to drive growth, but that comes at a cost — free cash flow conversion is expected to shift down to the mid-to-high 80% range by 2030, from the prior goal of low-to-mid 90% set back in 2023. Adam's tone is measured — the margin target is a genuine beat versus consensus, but the strategic language around their new platform gets a bit of an eye-roll. Mixed, with the margin target as the key bull case. Bottom line for today: CBRL is the cleanest long setup off this morning's prints. GIS is a relief trade but faces structural sector headwinds. MANU is weighed down by the guide miss. And MCD is all about whether the operating margin target can sustain buying interest through the analyst meeting. Stay focused, manage your risk, and good luck out there. Scanner alert: High PM AVOL. Tickers: BMEA, RYDE, IONQ, SRFM, QUBT, INOD, QBTS. Scanner alert: Changing Fundamentals. Tickers: IONQ. Scanner alert: Low Floats & Small Caps. Tickers: BENF, WHLR, IPDN. Scanner alert: Usual Suspects Volume. Tickers: IONQ, KITT, QUBT, QBTS, RGTI, BABA, ARAY, BIDU, SOXL, SMCI. Scanner alert: Premarket Volume. Tickers: IONQ, QUBT. Scanner alert: Scanner. Tickers: PAYX.";
   
   const CHUNK_SIZE = 4000;
   let rate = 1.3;
@@ -725,7 +651,8 @@ header { margin-bottom: 20px; }
 
   window.addEventListener("load", () => {
     updateNotifyBtn();
-    setStatus("Ready — press Play to start");
+    if (isIOS) setStatus("Tap Play to start");
+    else setTimeout(() => speakFrom(0), 1800);
   });
   window.addEventListener("pagehide", () => window.speechSynthesis.cancel());
   window.addEventListener("visibilitychange", () => { if (document.hidden) { window.speechSynthesis.cancel(); setPlayBtn(false); } });

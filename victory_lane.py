@@ -970,28 +970,29 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
     """
     ew_items = ew_items or []
 
-    # ── Load recent dispatches for footer ──
-    dispatch_html = ""
-    meta_path = "docs/digests.json"
-    if os.path.exists(meta_path):
-        try:
-            with open(meta_path, encoding="utf-8") as f:
-                digests = json.load(f)
-            recent = digests[:5]  # last 5 dispatches
-            if recent:
-                rows = ""
-                for d in recent:
-                    rows += (f'<a class="dispatch-row" href="{d["filename"]}">'
-                             f'<span class="dispatch-date">{d.get("email_date","")}</span>'
-                             f'<span class="dispatch-title">{d.get("subject","")}</span>'
-                             f'</a>')
-                dispatch_html = f'''<div class="dispatch-section">
+    # ── Load recent dispatches ──
+    dispatch_rows = ""
+    for meta_path in ("docs/digests.json", "digests.json"):
+        if os.path.exists(meta_path):
+            try:
+                with open(meta_path, encoding="utf-8") as f:
+                    digests = json.load(f)
+                for d in digests[:5]:
+                    dispatch_rows += (f'<a class="dispatch-row" href="{d["filename"]}">'
+                                      f'<span class="dispatch-date">{d.get("email_date","")}</span>'
+                                      f'<span class="dispatch-title">{d.get("subject","")}</span>'
+                                      f'</a>')
+                print(f"  [dispatch] loaded {len(digests)} entries from {meta_path}")
+            except Exception as e:
+                print(f"  [dispatch] error reading {meta_path}: {e}")
+            break
+    else:
+        print("  [dispatch] digests.json not found")
+    dispatch_html = f'''<div class="dispatch-section">
   <div class="dispatch-label">Recent Dispatches</div>
-  {rows}
-  <a class="dispatch-all" href="archive.html">View all &rarr;</a>
+  {dispatch_rows if dispatch_rows else '<span class="dispatch-date">No dispatches yet</span>'}
+  <a class="dispatch-all" href="archive.html">View full archive &rarr;</a>
 </div>'''
-        except Exception:
-            pass
 
     # ── TTS ──
     tts_text = ""
@@ -1309,7 +1310,7 @@ header {{ margin-bottom: 20px; }}
 
   <!-- RIGHT TOP: VK Stories + Earnings Whispers -->
   <div class="panel-left">
-    <div class="panel-label">VK · Earnings Whispers</div>
+    <div class="panel-label">VK · Key Names</div>
     {left_vk_cards}
     {left_ew_html}
     {left_placeholder}
@@ -1323,9 +1324,9 @@ header {{ margin-bottom: 20px; }}
 
 </div>
 
-{dispatch_html}
-
 {tts_bar_html()}
+
+{dispatch_html}
 
 <script>
   const ttsText = "{tts_escaped}";

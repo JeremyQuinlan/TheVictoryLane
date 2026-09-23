@@ -1283,7 +1283,7 @@ header {{ margin-bottom: 20px; }}
 .cal-date {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; }}
 
 /* dispatch section — full-width strip below the 3-col grid */
-.dispatch-section {{ margin-top: 22px; border-top: 1px solid #1a1a1a; padding-top: 16px; }}
+.dispatch-section {{ margin-top: 0; margin-bottom: 22px; border-bottom: 1px solid #1a1a1a; padding-bottom: 16px; }}
 .dispatch-section-head {{
   font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.16em;
   text-transform: uppercase; color: #555; margin-bottom: 14px;
@@ -1348,6 +1348,8 @@ header {{ margin-bottom: 20px; }}
   <div class="mgp-date">{today_str} &nbsp;·&nbsp; Updated {updated}</div>
 </header>
 
+{dispatch_section}
+
 <div class="mgp-grid">
 
   <!-- COL 1: Macro / Outlook / Sector / Dispatch / Calendar -->
@@ -1371,8 +1373,6 @@ header {{ margin-bottom: 20px; }}
   </div>
 
 </div>
-
-{dispatch_section}
 
 {tts_bar_html()}
 

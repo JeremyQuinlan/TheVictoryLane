@@ -129,6 +129,8 @@ header { margin-bottom: 20px; }
 .cal-group { display: flex; flex-direction: column; gap: 3px; }
 .cal-label { font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 3px; }
 .cal-item { font-size: 12px; color: #a8a49a; }
+.earn-compact { white-space: nowrap; overflow-x: auto; }
+.earn-label { font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.08em; margin-right: 3px; }
 
 /* scanner */
 .scanner-block { background: #0a0c10; border: 1px solid #1a1f2a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }
@@ -164,7 +166,7 @@ header { margin-bottom: 20px; }
 
 <header>
   <div class="mgp-title">The Victory Lane</div>
-  <div class="mgp-date">Tuesday, September 22, 2026 &nbsp;·&nbsp; Updated Sep 22, 2026 · 09:35 PM ET</div>
+  <div class="mgp-date">Tuesday, September 22, 2026 &nbsp;·&nbsp; Updated Sep 22, 2026 · 09:38 PM ET</div>
 </header>
 
 <div class="mgp-grid">
@@ -176,7 +178,7 @@ header { margin-bottom: 20px; }
   <div class="scanner-name">Changing Fundamentals</div>
   <div class="scanner-row scanner-header">
   <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-rvol">VOL%</span>
   <span class="sc-chg">CHG</span>
   <span class="sc-price">PRICE</span>
 </div>
@@ -198,7 +200,7 @@ header { margin-bottom: 20px; }
   <div class="scanner-name">High PM AVOL</div>
   <div class="scanner-row scanner-header">
   <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-rvol">VOL%</span>
   <span class="sc-chg">CHG</span>
   <span class="sc-price">PRICE</span>
 </div>
@@ -244,37 +246,37 @@ header { margin-bottom: 20px; }
   <div class="scanner-name">Usual Suspects Volume</div>
   <div class="scanner-row scanner-header">
   <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-rvol">VOL%</span>
   <span class="sc-chg">CHG</span>
   <span class="sc-price">PRICE</span>
 </div>
   <div class="scanner-row">
   <span class="sc-sym">SHOP</span>
-  <span class="sc-rvol">+348%</span>
+  <span class="sc-rvol">+4%</span>
   <span class="sc-chg sc-up">+7.1%</span>
   <span class="sc-price">$147.77</span>
   <div class="scanner-news">Intuit Stock Slides Amid Meta&#39;s AI Collaboration Uncertainty</div><div class="scanner-news">JPMorgan Stock Slips as Traders Shift to Tech Sector</div><div class="scanner-news">Commodity ETF Delivers Double Nvidia’s YTD Returns; Muse Ignites CPU Fever</div>
 </div><div class="scanner-row">
   <span class="sc-sym">PYPL</span>
-  <span class="sc-rvol">+256%</span>
+  <span class="sc-rvol">+4%</span>
   <span class="sc-chg sc-up">+0.7%</span>
   <span class="sc-price">$53.00</span>
   <div class="scanner-news">Intuit Stock Slides Amid Meta&#39;s AI Collaboration Uncertainty</div><div class="scanner-news">JPMorgan Stock Slips as Traders Shift to Tech Sector</div><div class="scanner-news">PayPal Stock Is Rising: What&#39;s Going On Today?</div>
 </div><div class="scanner-row">
   <span class="sc-sym">NEXT</span>
-  <span class="sc-rvol">+181%</span>
+  <span class="sc-rvol">+3%</span>
   <span class="sc-chg sc-dn">-3.6%</span>
   <span class="sc-price">$6.77</span>
   
 </div><div class="scanner-row">
   <span class="sc-sym">CSCO</span>
-  <span class="sc-rvol">+208%</span>
+  <span class="sc-rvol">+3%</span>
   <span class="sc-chg sc-dn">-4.8%</span>
   <span class="sc-price">$106.15</span>
   <div class="scanner-news">Cisco Stock Falls as Piper Sandler Cuts Price Target</div><div class="scanner-news">Unconfirmed Social Media Reports Suggest The ShinyHunters Hacking Group Claims To Have Breached The FBI, Stating The Attack Is &#34;Not Financially Motivated.&#34; The FBI Has Not Yet Commented.</div><div class="scanner-news">Piper Sandler Maintains Neutral on Cisco Systems, Lowers Price Target to $125</div>
 </div><div class="scanner-row">
   <span class="sc-sym">BABA</span>
-  <span class="sc-rvol">+69%</span>
+  <span class="sc-rvol">+2%</span>
   <span class="sc-chg sc-up">+0.7%</span>
   <span class="sc-price">$116.54</span>
   <div class="scanner-news">Commodity ETF Delivers Double Nvidia’s YTD Returns; Muse Ignites CPU Fever</div><div class="scanner-news">Alibaba Debuts AI Chip, Challenges Nvidia With Triple Processing Power</div><div class="scanner-news">Sovereign AI Isn’t so Sovereign: Meta’s Llama Powers 38% of Adapted Models</div>
@@ -284,7 +286,7 @@ header { margin-bottom: 20px; }
   <div class="scanner-name">Low Floats & Small Caps</div>
   <div class="scanner-row scanner-header">
   <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-rvol">VOL%</span>
   <span class="sc-chg">CHG</span>
   <span class="sc-price">PRICE</span>
 </div>
@@ -318,7 +320,7 @@ header { margin-bottom: 20px; }
   <div class="scanner-name">Premarket Volume</div>
   <div class="scanner-row scanner-header">
   <span class="sc-sym">TICKER</span>
-  <span class="sc-rvol">%AVOL</span>
+  <span class="sc-rvol">VOL%</span>
   <span class="sc-chg">CHG</span>
   <span class="sc-price">PRICE</span>
 </div>
@@ -354,7 +356,7 @@ header { margin-bottom: 20px; }
 <div class="section-head">Sector Watch</div>
 <div class="prose-block"><p>Homebuilders: KBH's cautious commentary points to continued sector pressure — higher mortgage rates and economic uncertainty are weighing on buyer demand, with conditions described as worsening since June. Healthcare/Lab Services: LH's CMS Medicare rate cut concerns may weigh broadly on clinical lab names. Industrials/Data Center Infrastructure: WOR's callout of surging demand for liquid cooling tanks highlights ongoing data center buildout as a tailwind for niche industrial suppliers.</p></div>
 <div class="section-head">Calendar</div>
-<div class="cal-row"><div class="cal-group"><div class="cal-label">EARNINGS TODAY</div><div class="cal-item">KBH AMC</div><div class="cal-item">LH AMC</div><div class="cal-item">WOR AMC</div></div><div class="cal-group"><div class="cal-label">KEY DATES</div><div class="cal-item">Feb 2027 — LH Q4 earnings; 2027 guidance impact from CMS rate cuts to be provided</div></div></div>
+<div class="cal-row"><div class="cal-group"><div class="cal-label">EARNINGS</div><div class="cal-item earn-compact"><span class='earn-label'>AMC</span> KBH, LH, WOR</div></div><div class="cal-group"><div class="cal-label">KEY DATES</div><div class="cal-item">Feb 2027 — LH Q4 earnings; 2027 guidance impact from CMS rate cuts to be provided</div></div></div>
   </div>
 
   <!-- RIGHT BOTTOM: Dispatches (compact) -->

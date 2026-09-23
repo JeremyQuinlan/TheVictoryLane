@@ -897,7 +897,7 @@ body {
   font-family: Georgia, 'Times New Roman', serif;
   background: #0a0a0a;
   color: #e8e4d9;
-  max-width: 1100px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 32px 28px 100px;
   line-height: 1.72;
@@ -972,25 +972,31 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
     """
     ew_items = ew_items or []
 
-    # ── Load recent dispatches ──
-    dispatch_rows = ""
+    # ── Load recent dispatches → full archive-style cards shown below the grid ──
+    dispatch_cards_html = ""
     for meta_path in ("docs/digests.json", "digests.json"):
         if os.path.exists(meta_path):
             try:
                 with open(meta_path, encoding="utf-8") as f:
                     digests = json.load(f)
-                for d in digests[:5]:
-                    dispatch_rows += (f'<a class="dispatch-row" href="{d["filename"]}">'
-                                      f'<span class="dispatch-date">{d.get("email_date","")}</span>'
-                                      f'<span class="dispatch-title">{d.get("subject","")}</span>'
-                                      f'</a>')
+                for i, d in enumerate(digests[:6]):
+                    tag  = get_category_tag(d.get("subject", ""))
+                    bg, fg = get_tag_color(tag)
+                    latest = (' <span class="disp-latest">LATEST</span>') if i == 0 else ""
+                    preview = d.get("preview", "")
+                    preview_html = f'<div class="disp-preview">{preview}</div>' if preview else ""
+                    dispatch_cards_html += f"""<a class="disp-card" href="{d['filename']}">
+  <div class="disp-tag" style="background:{bg}; color:{fg}; border-color:{fg}44;">{tag}</div>
+  <div class="disp-meta">{d.get('email_date','')}</div>
+  <div class="disp-title">{d.get('subject','')}{latest}</div>
+  {preview_html}
+</a>"""
                 print(f"  [dispatch] loaded {len(digests)} entries from {meta_path}")
             except Exception as e:
                 print(f"  [dispatch] error reading {meta_path}: {e}")
             break
     else:
         print("  [dispatch] digests.json not found")
-    # dispatch_rows is used inline inside the macro panel (not as a standalone strip)
 
     # ── TTS ──
     tts_text = ""
@@ -1116,14 +1122,13 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
             rt_parts.append(f"""<div class="section-head">Calendar</div>
 <div class="cal-stack">{cal_rows}</div>""")
 
-    # Dispatch always renders below the VK macro content, regardless of whether VK loaded
-    rt_parts.append(f"""<div class="section-head">Recent Dispatches</div>
-<div class="dispatch-inner">
-  {dispatch_rows if dispatch_rows else '<span class="empty-msg">No dispatches yet</span>'}
-  <a class="dispatch-all" href="archive.html">View full archive &rarr;</a>
-</div>""")
-
     right_top_body = "\n".join(rt_parts) if rt_parts else '<p class="empty-msg">Macro data will appear after VK is parsed.</p>'
+
+    # Dispatch section rendered BELOW the 3-col grid as a full-width strip
+    dispatch_section = f"""<section class="dispatch-section">
+  <div class="dispatch-section-head">Recent Dispatches &nbsp;<a class="dispatch-archive-link" href="archive.html">View full archive &rarr;</a></div>
+  {dispatch_cards_html if dispatch_cards_html else '<p class="empty-msg">No dispatches yet.</p>'}
+</section>"""
 
 
     # ── MIDDLE: Scanners + Benzinga (ordered per SCANNER_DISPLAY_ORDER) ──
@@ -1246,7 +1251,8 @@ header {{ margin-bottom: 20px; }}
 .card-ticker {{ font-size: 16px; color: #c9b97a; font-family: 'Courier New', monospace; font-weight: bold; }}
 .card-company {{ font-size: 12px; color: #555; flex: 1; }}
 .card-catalyst {{ font-size: 10px; color: #666; font-family: 'Courier New', monospace;
-  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px; white-space: nowrap; }}
+  background: #1a1a1a; border: 1px solid #2a2a2a; padding: 2px 6px; border-radius: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; }}
 .card-summary {{ font-size: 13px; color: #b8b4a8; margin-bottom: 5px; }}
 .bz-story {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace;
   border-top: 1px solid #1a1a1a; padding-top: 4px; margin-top: 4px; }}
@@ -1276,14 +1282,34 @@ header {{ margin-bottom: 20px; }}
 .cal-timing {{ font-size: 10px; color: #4c8faf; font-family: 'Courier New', monospace; font-weight: bold; margin-right: 8px; letter-spacing: 0.08em; }}
 .cal-date {{ font-size: 11px; color: #555; font-family: 'Courier New', monospace; }}
 
-/* dispatch inside macro panel */
-.dispatch-inner {{ display: flex; flex-direction: column; gap: 7px; margin-bottom: 6px; }}
-.dispatch-inner .dispatch-row {{ display: flex; flex-direction: column; gap: 1px; text-decoration: none; }}
-.dispatch-inner .dispatch-row:hover .dispatch-title {{ color: #c9b97a; }}
-.dispatch-date {{ font-size: 10px; color: #333; font-family: 'Courier New', monospace; }}
-.dispatch-title {{ font-size: 11px; color: #666; }}
-.dispatch-all {{ font-size: 10px; color: #333; font-family: 'Courier New', monospace; text-decoration: none; margin-top: 3px; }}
-.dispatch-all:hover {{ color: #c9b97a; }}
+/* dispatch section — full-width strip below the 3-col grid */
+.dispatch-section {{ margin-top: 22px; border-top: 1px solid #1a1a1a; padding-top: 16px; }}
+.dispatch-section-head {{
+  font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #555; margin-bottom: 14px;
+}}
+.dispatch-archive-link {{ color: #444; text-decoration: none; font-size: 10px; }}
+.dispatch-archive-link:hover {{ color: #c9b97a; }}
+.disp-card {{
+  display: block; border-bottom: 1px solid #141414; padding: 14px 0;
+  transition: padding-left 0.15s; text-decoration: none;
+}}
+.disp-card:first-of-type {{ border-top: 1px solid #141414; margin-top: 6px; }}
+.disp-card:hover {{ padding-left: 8px; }}
+.disp-card:hover .disp-title {{ color: #c9b97a; }}
+.disp-tag {{
+  display: inline-block; font-size: 10px; font-family: 'Courier New', monospace;
+  font-weight: bold; letter-spacing: 0.1em; padding: 2px 7px;
+  border-radius: 3px; border: 1px solid; margin-bottom: 5px;
+}}
+.disp-meta {{ font-size: 12px; color: #444; font-family: 'Courier New', monospace; margin-bottom: 5px; }}
+.disp-title {{ font-size: 17px; color: #d8d4c8; line-height: 1.4; transition: color 0.15s; margin-bottom: 4px; }}
+.disp-preview {{ font-size: 13px; color: #555; line-height: 1.5; }}
+.disp-latest {{
+  font-size: 10px; background: #3d3820; color: #c9b97a;
+  border: 1px solid #c9b97a44; padding: 2px 6px; border-radius: 3px;
+  font-family: 'Courier New', monospace; vertical-align: middle; margin-left: 6px;
+}}
 
 /* earnings 3rd column */
 .earn-group {{ margin-bottom: 14px; }}
@@ -1345,6 +1371,8 @@ header {{ margin-bottom: 20px; }}
   </div>
 
 </div>
+
+{dispatch_section}
 
 {tts_bar_html()}
 

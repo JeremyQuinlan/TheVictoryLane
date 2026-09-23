@@ -574,6 +574,36 @@ def _safe_float(val):
 # BENZINGA NEWS FETCH
 # ─────────────────────────────────────────────
 
+# Patterns that identify generic market-roundup articles not specific to one ticker.
+# These are filtered OUT unless the ticker symbol itself appears in the title.
+_ROUNDUP_PATTERNS = re.compile(
+    r"\d+\s+\w*\s*(stocks?|companies|names)\s+(moving|gaining|losing|to\s+watch|to\s+buy|to\s+sell)"
+    r"|stock market today"
+    r"|intraday session"
+    r"|\bweek ahead\b"
+    r"|\bmost active\b"
+    r"|\bmarket movers?\b"
+    r"|\bmarket update\b"
+    r"|\btop\s+\d+\s+stocks?"
+    r"|\bstocks?\s+on\s+the\s+move\b",
+    re.IGNORECASE,
+)
+
+
+def _is_story_relevant(title: str, ticker: str) -> bool:
+    """
+    Return True if a Benzinga story is likely specific to *ticker*.
+    Logic:
+      - If the ticker symbol appears in the title → always relevant.
+      - Otherwise, reject titles that match generic roundup patterns.
+    """
+    if ticker.upper() in title.upper():
+        return True
+    if _ROUNDUP_PATTERNS.search(title):
+        return False
+    return True
+
+
 def _parse_earnings_beat(title, teaser):
     """
     Scan a Benzinga news headline + teaser for earnings beat/miss or guidance info.
@@ -638,22 +668,27 @@ def fetch_benzinga_news(tickers, api_key, hours_back=20):
             data = resp.json()
             stories = data.get("results", [])
             if stories:
-                result[ticker] = []
+                kept = []
                 for s in stories:
+                    title  = s.get("title", "")
+                    if not _is_story_relevant(title, ticker):
+                        print(f"  Benzinga {ticker}: skipping roundup — {title[:60]}")
+                        continue
                     channels = s.get("channels", [])
                     if channels and isinstance(channels[0], dict):
                         channels = [c.get("name", "") for c in channels]
-                    title  = s.get("title", "")
                     teaser = s.get("teaser", "")[:200]
                     beat   = _parse_earnings_beat(title, teaser)
-                    result[ticker].append({
+                    kept.append({
                         "published": s.get("published", "")[:16],
                         "title":     title,
                         "teaser":    teaser,
                         "channels":  channels,
                         "beat":      beat,
                     })
-                print(f"  Benzinga {ticker}: {len(stories)} story(ies)")
+                if kept:
+                    result[ticker] = kept
+                print(f"  Benzinga {ticker}: {len(kept)}/{len(stories)} story(ies) kept")
         except Exception as e:
             print(f"  Benzinga fetch error {ticker}: {e}")
 
@@ -1152,8 +1187,20 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, a
 
         cal_parts = []
         if earnings:
-            cal_parts.append('<div class="cal-group"><div class="cal-label">EARNINGS TODAY</div>'
-                             + "".join(f'<div class="cal-item">{e}</div>' for e in earnings) + "</div>")
+            # Group into PM (BMO) and AMC buckets, render as compact one-liner
+            pm_tickers  = [e.replace(" BMO", "").replace(" bmo", "").strip() for e in earnings if "BMO" in e.upper()]
+            amc_tickers = [e.replace(" AMC", "").replace(" amc", "").strip() for e in earnings if "AMC" in e.upper()]
+            other       = [e for e in earnings if "BMO" not in e.upper() and "AMC" not in e.upper()]
+            parts = []
+            if pm_tickers:
+                parts.append(f"<span class='earn-label'>PM</span> {', '.join(pm_tickers)}")
+            if amc_tickers:
+                parts.append(f"<span class='earn-label'>AMC</span> {', '.join(amc_tickers)}")
+            if other:
+                parts.append(", ".join(other))
+            earn_line = "&nbsp;&nbsp;".join(parts)
+            cal_parts.append(f'<div class="cal-group"><div class="cal-label">EARNINGS</div>'
+                             + f'<div class="cal-item earn-compact">{earn_line}</div></div>')
         if key_dates:
             cal_parts.append('<div class="cal-group"><div class="cal-label">KEY DATES</div>'
                              + "".join(f'<div class="cal-item">{d}</div>' for d in key_dates) + "</div>")
@@ -1320,6 +1367,8 @@ header {{ margin-bottom: 20px; }}
 .cal-group {{ display: flex; flex-direction: column; gap: 3px; }}
 .cal-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 3px; }}
 .cal-item {{ font-size: 12px; color: #a8a49a; }}
+.earn-compact {{ white-space: nowrap; overflow-x: auto; }}
+.earn-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.08em; margin-right: 3px; }}
 
 /* scanner */
 .scanner-block {{ background: #0a0c10; border: 1px solid #1a1f2a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }}
@@ -1557,6 +1606,8 @@ hr.div {{ border: none; border-top: 1px solid #181818; margin: 18px 0 24px; }}
 .cal-group {{ display: flex; flex-direction: column; gap: 3px; }}
 .cal-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.1em; margin-bottom: 3px; }}
 .cal-item {{ font-size: 12px; color: #a8a49a; }}
+.earn-compact {{ white-space: nowrap; overflow-x: auto; }}
+.earn-label {{ font-size: 10px; color: #555; font-family: 'Courier New', monospace; letter-spacing: 0.08em; margin-right: 3px; }}
 .company-card {{ background: #111; border: 1px solid #1e1e1e; border-radius: 4px;
   padding: 12px 14px; margin-bottom: 10px; }}
 .card-header {{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }}

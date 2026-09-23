@@ -423,10 +423,22 @@ def read_scanner_csvs(csv_dir):
         print(f"  Scanner CSV dir not found: {csv_dir} — skipping")
         return {}
 
-    # Find all CSVs modified in the last 24 hours
-    cutoff = datetime.now().timestamp() - 86400
-    csv_files = [f for f in glob.glob(os.path.join(csv_dir, "*.csv"))
-                 if os.path.getmtime(f) >= cutoff]
+    # Find today's CSVs.
+    # Primary: filename contains today's date (YYYYMMDD) — works after git checkout
+    #          where mtime is always "now" and useless as a filter.
+    # Fallback: no date in filename → use mtime (last 24 h), for non-dated files.
+    today_tag = datetime.now().strftime("%Y%m%d")
+    cutoff    = datetime.now().timestamp() - 86400
+    csv_files = []
+    for f in glob.glob(os.path.join(csv_dir, "*.csv")):
+        fname = os.path.basename(f)
+        date_in_name = re.search(r'\d{8}', fname)
+        if date_in_name:
+            if date_in_name.group() == today_tag:
+                csv_files.append(f)          # today's dated file
+        else:
+            if os.path.getmtime(f) >= cutoff:
+                csv_files.append(f)          # undated file, use mtime
 
     if not csv_files:
         print(f"  No recent scanner CSVs found in {csv_dir}")

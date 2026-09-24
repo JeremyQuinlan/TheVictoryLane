@@ -245,8 +245,15 @@ def get_email_sent_utc(msg):
 def load_processed_ids():
     path = "processed_ids.json"
     if os.path.exists(path):
-        with open(path, encoding="utf-8") as f:
-            return set(json.load(f))
+        for enc in ("utf-8-sig", "utf-16", "utf-8"):
+            try:
+                with open(path, encoding=enc) as f:
+                    data = json.load(f)
+                    if isinstance(data, list):
+                        return set(data)
+            except (UnicodeDecodeError, json.JSONDecodeError, ValueError):
+                continue
+        print(f"  WARNING: {path} could not be decoded — starting with empty set")
     return set()
 
 
@@ -431,16 +438,22 @@ def read_scanner_csvs(csv_dir):
     # Fallback: no date in filename → use mtime (last 24 h), for non-dated files.
     today_tag = datetime.now().strftime("%Y%m%d")
     cutoff    = datetime.now().timestamp() - 86400
+    all_csvs  = glob.glob(os.path.join(csv_dir, "*.csv"))
+    print(f"  Scanner glob found {len(all_csvs)} CSV(s) in '{csv_dir}': {[os.path.basename(f) for f in all_csvs]}")
+    print(f"  Looking for date tag: {today_tag}")
     csv_files = []
-    for f in glob.glob(os.path.join(csv_dir, "*.csv")):
+    for f in all_csvs:
         fname = os.path.basename(f)
         date_in_name = re.search(r'\d{8}', fname)
         if date_in_name:
+            print(f"    {fname}: date in name = {date_in_name.group()} — {'MATCH' if date_in_name.group() == today_tag else 'skip'}")
             if date_in_name.group() == today_tag:
-                csv_files.append(f)          # today's dated file
+                csv_files.append(f)
         else:
-            if os.path.getmtime(f) >= cutoff:
-                csv_files.append(f)          # undated file, use mtime
+            age = datetime.now().timestamp() - os.path.getmtime(f)
+            print(f"    {fname}: no date in name, mtime age = {age:.0f}s — {'MATCH' if age <= 86400 else 'skip'}")
+            if age <= 86400:
+                csv_files.append(f)
 
     if not csv_files:
         print(f"  No recent scanner CSVs found in {csv_dir}")

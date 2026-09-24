@@ -44,7 +44,7 @@ CONFIG = {
     "benzinga_api_key":      os.environ.get("BENZINGA_API_KEY",   ""),
     "notion_token":          os.environ.get("NOTION_TOKEN",        ""),
     "stocks_on_watch_db_id": "2ee48333-7409-81a3-a830-000b9ce19118",
-    "lookback_hours":        168,
+    "lookback_hours":        48,
     "scanner_csv_dir":       r"C:\Users\jerem\Documents\TradeIdeasPro",
     "edge_exe":              r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
     "tts_rate":              1.3,
@@ -1092,13 +1092,6 @@ def build_mgp_dashboard(vk_data, scanner_data, news_data, today_str, tts_rate, e
             rt_parts.append(f"""<div class="section-head">Sector Watch</div>
 <div class="prose-block"><p>{sectors}</p></div>""")
 
-        if bull or bear:
-            rt_parts.append(f"""<div class="section-head">Bull / Bear</div>
-<div class="two-col">
-  <div class="col bull-col"><div class="col-label">BULL CASE</div><p>{bull}</p></div>
-  <div class="col bear-col"><div class="col-label">BEAR CASE</div><p>{bear}</p></div>
-</div>""")
-
         # Calendar — grouped BMO/AMC format
         bmo_tickers = []
         amc_tickers = []
@@ -1568,8 +1561,8 @@ def run():
         # Only available locally; GitHub Actions can't read C:\Users\jerem\...
         scanner_data = read_scanner_csvs(config["scanner_csv_dir"])
     else:
-        # In GitHub Actions, look for CSVs committed to repo under scanners/
-        scanner_data = read_scanner_csvs("scanners")
+        # In GitHub Actions, look for CSVs committed to repo root
+        scanner_data = read_scanner_csvs(".")
 
     # Collect all scanner tickers for news fetch
     scanner_tickers = []
